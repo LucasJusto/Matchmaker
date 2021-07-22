@@ -93,3 +93,83 @@ enum LeagueOfLegendsServers: Servers, CustomStringConvertible {
         }
     }
 }
+
+enum CounterStrikeGOServers: Servers, CustomStringConvertible {
+    case EUNorth
+    case PWTianjin
+    case Singapore
+    case IndiaWest
+    case Australia
+    case EUWest
+    case PWShanghai
+    case Chile
+    case USSouthEast
+    case IndiaEast
+    case EUEast
+    case HongKong
+    case Japan
+    case Peru
+    case USWest
+    case Poland
+    case PWGuangdong
+    case USNorthCentral
+    case USSouthWest
+    case SouthAfrica
+    case SouthAmerica
+    case Spain
+    case USEast
+    case Dubai
+    
+    var description: String {
+        switch self {
+        case .EUNorth:
+            return "EU North"
+        case .Australia:
+            return "Australia"
+        case .Chile:
+            return "Chile"
+        case .Dubai:
+            return "Dubai"
+        case .EUEast:
+            return "EU East"
+        case .EUWest:
+            return "EU West"
+        case .HongKong:
+            return "Hong Kong"
+        case .IndiaEast:
+            return "India East"
+        case .IndiaWest:
+            return "India West"
+        case .Japan:
+            return "Japan"
+        case .PWGuangdong:
+            return "PW Guangdong"
+        case .PWShanghai:
+            return "PW Shanghai"
+        case .PWTianjin:
+            return "PW Tianjin"
+        case .Peru:
+            return "Peru"
+        case .Poland:
+            return "Poland"
+        case .Singapore:
+            return "Singapore"
+        case .SouthAfrica:
+            return "South Africa"
+        case .SouthAmerica:
+            return "South America"
+        case .Spain:
+            return "Spain"
+        case .USEast:
+            return "US East"
+        case .USNorthCentral:
+            return "US North Central"
+        case .USSouthEast:
+            return "US South East"
+        case .USSouthWest:
+            return "US South West"
+        case .USWest:
+            return "US West"
+        }
+    }
+}

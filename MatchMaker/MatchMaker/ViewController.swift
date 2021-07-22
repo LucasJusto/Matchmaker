@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var image: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        image.image = games[1].image
+        image.image = games[2].image
         // Do any additional setup after loading the view.
     }
 
