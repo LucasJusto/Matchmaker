@@ -50,3 +50,46 @@ enum Dota2Servers: Servers, CustomStringConvertible {
         }
     }
 }
+
+enum LeagueOfLegendsServers: Servers, CustomStringConvertible {
+    
+    case Brazil
+    case EuropeNordicEast
+    case EuropeWest
+    case LatinAmericaNorth
+    case LatinAmericaSouth
+    case NorthAmerica
+    case Oceania
+    case Russia
+    case Turkey
+    case Japan
+    case Korea
+    
+    var description: String {
+        switch self {
+        
+        case .Brazil:
+            return "Brazil"
+        case .EuropeNordicEast:
+            return "Europe Nordic & East"
+        case .EuropeWest:
+            return "Europe West"
+        case .Japan:
+            return "Japan"
+        case .Korea:
+            return "Korea"
+        case .LatinAmericaNorth:
+            return "Lating America North"
+        case .LatinAmericaSouth:
+            return "Latin America South"
+        case .NorthAmerica:
+            return "North America"
+        case .Oceania:
+            return "Oceania"
+        case .Russia:
+            return "Russia"
+        case .Turkey:
+            return "Turkey"
+        }
+    }
+}
