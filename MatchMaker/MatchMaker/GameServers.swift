@@ -22,31 +22,31 @@ enum Dota2Servers: Servers, CustomStringConvertible {
     var description: String {
         switch self {
             case .Australia:
-                return "Australia"
+                return NSLocalizedString("Australia", comment: "Australia")
                 
             case .EuropeEast:
-                return "Europe East"
+                return NSLocalizedString("Europe East", comment: "Europe East")
             
             case .EuropeWest:
-                return "Europe West"
+                return NSLocalizedString("Europe West", comment: "Europe West")
             
             case .Russia:
-                return "Russia"
+                return NSLocalizedString("Russia", comment: "Russia")
             
             case .SEAsia:
-                return "SE Asia"
-            
+                return NSLocalizedString("SE Asia", comment: "SE Asia")
+                
             case .SouthAfrica:
-                return "South Africa"
+                return NSLocalizedString("South Africa", comment: "South Africa")
                 
             case .SouthAmerica:
-                return "South America"
+                return NSLocalizedString("South America", comment: "South America")
             
             case .USEast:
-                return "US East"
+                return NSLocalizedString("US East", comment: "US East")
             
             case .USWest:
-                return "US West"
+                return NSLocalizedString("US West", comment: "US West")
         }
     }
 }

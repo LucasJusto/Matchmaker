@@ -1,0 +1,21 @@
+/* 
+  Localizable.strings
+  MatchMaker
+
+  Created by Thaís Fernandes on 22/07/21.
+  
+*/
+
+"titleLabel" = "Hello World";
+"Dota2Description" = "This is the description of Dota 2";
+"LeagueOfLegendsDescription" = "This is the description of League of Legends";
+"CounterStrikeGODescription" = "This is the description of Counter Strike: Global Offensive";
+"Australia" = "Australia"
+"Europe East" = "Europe East"
+"Europe West" = "Europe West"
+"Russia" = "Russia"
+"SE Asia" = "SE Asia"
+"South Africa" = "South Africa"
+"South America" = "South America"
+"US East" = "US East"
+"US West" = "US West"
