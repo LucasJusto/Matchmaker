@@ -76,7 +76,7 @@
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="OnboardingCollectionViewCell" id="8dX-qQ-PvR" customClass="OnboardingCollectionViewCell" customModule="MatchMaker" customModuleProvider="target">
                                         <rect key="frame" x="424" y="1" width="414" height="894"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="CbZ-bn-1u8">
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="CbZ-bn-1u8">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="894"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -94,7 +94,7 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="WT7-LW-atK">
                                                             <rect key="frame" x="62.5" y="285" width="246" height="118.5"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select games that you like to play" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7a5-zM-oBS">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Select games that you like to play" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7a5-zM-oBS">
                                                                     <rect key="frame" x="0.0" y="0.0" width="246" height="71"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="246" id="Cra-cZ-36f"/>
@@ -104,7 +104,7 @@
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S5Q-L6-HW0">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S5Q-L6-HW0">
                                                                     <rect key="frame" x="0.0" y="80" width="246" height="38.5"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="38.5" id="bjt-Uj-c10"/>
@@ -136,14 +136,72 @@ for you to choose and find players</string>
                                             <outlet property="onboardingTitleLabel" destination="7a5-zM-oBS" id="ZUR-lL-RF8"/>
                                         </connections>
                                     </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="PermissionOnboardingCollectionViewCell" id="9Ti-Ea-bjO">
+                                        <rect key="frame" x="848" y="2" width="412" height="892"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="byR-Vf-Ya3">
+                                            <rect key="frame" x="0.0" y="0.0" width="412" height="892"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="57" translatesAutoresizingMaskIntoConstraints="NO" id="zke-br-M2d">
+                                                    <rect key="frame" x="91.5" y="280" width="229" height="332.5"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nuvem_dados" translatesAutoresizingMaskIntoConstraints="NO" id="Fpl-gM-CB2">
+                                                            <rect key="frame" x="0.0" y="0.0" width="229" height="150"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="229" id="haT-28-i1f"/>
+                                                                <constraint firstAttribute="height" constant="150" id="jb1-14-i1g"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="2z1-0v-kMa">
+                                                            <rect key="frame" x="0.0" y="207" width="229" height="125.5"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B2v-56-euU">
+                                                                    <rect key="frame" x="6.5" y="0.0" width="216" height="57.5"/>
+                                                                    <string key="text">We need your authorization
+to access your iCloud to store
+your personal data securely</string>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uV3-Qi-61W">
+                                                                    <rect key="frame" x="34.5" y="87.5" width="160" height="38"/>
+                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="160" id="CEC-BY-f1d"/>
+                                                                        <constraint firstAttribute="height" constant="38" id="GjI-2y-VLu"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                                                    <state key="normal" title="Got it!">
+                                                                        <color key="titleColor" systemColor="labelColor"/>
+                                                                    </state>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                            <real key="value" value="8"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </button>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="zke-br-M2d" firstAttribute="centerY" secondItem="byR-Vf-Ya3" secondAttribute="centerY" id="cJu-Ci-CRU"/>
+                                                <constraint firstItem="zke-br-M2d" firstAttribute="centerX" secondItem="byR-Vf-Ya3" secondAttribute="centerX" id="nRP-ih-VW2"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="412" height="892"/>
+                                    </collectionViewCell>
                                 </cells>
                                 <connections>
                                     <outlet property="dataSource" destination="Y6W-OH-hqX" id="61n-Q2-0Rx"/>
                                     <outlet property="delegate" destination="Y6W-OH-hqX" id="lMK-kW-RO9"/>
                                 </connections>
                             </collectionView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="iNf-vW-cfh">
-                                <rect key="frame" x="146.5" y="768.5" width="121.5" height="27.5"/>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="iNf-vW-cfh">
+                                <rect key="frame" x="137.5" y="768.5" width="139" height="27.5"/>
                             </pageControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
@@ -169,9 +227,13 @@ for you to choose and find players</string>
     </scenes>
     <resources>
         <image name="logo" width="232" height="246"/>
+        <image name="nuvem_dados" width="261" height="189"/>
         <namedColor name="Primary">
             <color red="0.38823529411764707" green="0.090196078431372548" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

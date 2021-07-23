@@ -16,7 +16,7 @@ class OnboardingViewController: UIViewController {
     
     var currentPage = 0 {
         didSet {
-            if currentPage == 1 {
+            if currentPage == 1 || currentPage == 3 {
                 collectionView.layer.backgroundColor = UIColor.black.cgColor
             } else {
                 collectionView.layer.backgroundColor = UIColor(named: "Primary")?.cgColor
@@ -47,7 +47,7 @@ extension OnboardingViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return 4
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -66,10 +66,9 @@ extension OnboardingViewController: UICollectionViewDelegate, UICollectionViewDa
             return cell
         }
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FirstOnboardingCollectionViewCell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PermissionOnboardingCollectionViewCell", for: indexPath)
             
-            return cell
-        
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
