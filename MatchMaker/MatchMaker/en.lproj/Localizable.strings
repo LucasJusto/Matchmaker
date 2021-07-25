@@ -7,3 +7,9 @@
 */
 
 "titleLabel" = "Hello World";
+
+// MARK:- Platforms
+"PlatformPC" = "PC"
+"PlatformPS" = "PlayStation"
+"PlatformXbox" = "Xbox"
+"PlatformMobile" = "Mobile"
