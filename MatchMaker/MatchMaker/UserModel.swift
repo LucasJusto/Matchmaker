@@ -24,13 +24,13 @@ public class User {
     var description: String
     var behaviourRate: Double
     var skillRate: Double
-    //var selectedPlatforms: [Platforms]
+    var selectedPlatforms: [Platform]
     var languages: [String]
-    //var selectedGames: [Game]
-    //var friends: [Social]
-    //var blocked: [Social]
+    var selectedGames: [Game]
+    var friends: [Social]
+    var blocked: [Social]
     
-    init(id: String, name: String, nickname: String, photo: UIImage?, country: String, description: String, behaviourRate: Double, skillRate: Double,languages: [String]){
+    init(id: String, name: String, nickname: String, photo: UIImage?, country: String, description: String, behaviourRate: Double, skillRate: Double,languages: [String], selectedPlatforms: [Platform], selectedGames: [Game]){
         self.id = id
         self.name = name
         self.nickname = nickname
@@ -40,5 +40,9 @@ public class User {
         self.behaviourRate = behaviourRate
         self.skillRate = skillRate
         self.languages = languages
+        self.selectedPlatforms = selectedPlatforms
+        self.selectedGames = selectedGames
+        friends = [Social]()
+        blocked = [Social]()
     }
 }

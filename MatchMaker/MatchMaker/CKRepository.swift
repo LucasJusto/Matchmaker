@@ -13,7 +13,7 @@ public class CKRepository {
     static var user: User? //singleton user
     private static let container: CKContainer = CKContainer(identifier: "iCloud.MatchMaker")
     
-    public static func setOnboardingInfo(name: String, nickname: String, photo: UIImage?, country: String, description: String, languages: [String]){
+    static func setOnboardingInfo(name: String, nickname: String, photo: UIImage?, country: String, description: String, languages: [String], selectedPlatforms: [Platform], selectedGames: [Game]){
         //asks iCloud Permission
         let permission = iCloudPermission()
         
@@ -21,7 +21,7 @@ public class CKRepository {
         if permission {
             //getUserId
             let id = getUserId()
-            user = User(id: id, name: name, nickname: nickname, photo: photo ?? nil, country: country, description: description, behaviourRate: 0, skillRate: 0, languages: languages)
+            user = User(id: id, name: name, nickname: nickname, photo: photo ?? nil, country: country, description: description, behaviourRate: 0, skillRate: 0, languages: languages, selectedPlatforms: selectedPlatforms, selectedGames: selectedGames)
         }
     }
     
@@ -50,7 +50,7 @@ public class CKRepository {
         return id
     }
     
-    private static func storeUserData(id: String, name: String, nickname: String, country: String, description: String, photo: UIImage?, selectedPlatforms: [String], selectedGames: [Game]){
+    private static func storeUserData(id: String, name: String, nickname: String, country: String, description: String, photo: UIImage?, selectedPlatforms: [Platform], selectedGames: [Game]){
         
     }
 }
