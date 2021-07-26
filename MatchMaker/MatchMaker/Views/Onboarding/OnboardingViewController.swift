@@ -31,8 +31,8 @@ class OnboardingViewController: UIViewController {
               let img2 = UIImage(named: "chat") {
             
             onboardingScreens = [
-                OnboardingScreen(title: "Select games that you like to play", description: "We have the most popular games for you to choose and find players", image: img1, imageWidth: 186, imageHeight: 254),
-                OnboardingScreen(title: "Talk to players and schedule a match", description: "Use the internal chat to talk to players and schedule matches", image: img2, imageWidth: 293, imageHeight: 254),
+                OnboardingScreen(title: NSLocalizedString("onboarding2Title", comment: ""), description: NSLocalizedString("onboarding2Description", comment: ""), image: img1, imageWidth: 186, imageHeight: 254),
+                OnboardingScreen(title: NSLocalizedString("onboarding3Title", comment: ""), description: NSLocalizedString("onboarding3Description", comment: ""), image: img2, imageWidth: 293, imageHeight: 254),
             ]
             
         }

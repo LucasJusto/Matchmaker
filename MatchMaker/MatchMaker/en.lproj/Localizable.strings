@@ -7,3 +7,26 @@
 */
 
 "titleLabel" = "Hello World";
+
+//ONBOARDING 1
+"onboarding1Title" = "Welcome to";
+"onboarding1Description" = "Find players that correspond
+with a personalized filter";
+
+//ONBOARDING 2
+"onboarding2Title" = "Select games that you like to play";
+"onboarding2Description" = "We have the most popular games
+for you to choose and find players";
+
+//ONBOARDING 3
+"onboarding3Title" = "Talk to players and schedule a match";
+"onboarding3Description" = "Use the internal chat to talk
+to players and schedule matches";
+
+//ONBOARDING 4
+"onboarding4Description" = "We will need your authorization
+to identify you from iCloud";
+"onboarding4ButtonLabel" = "Got it!";
+
+//ONBOARDING 5
+"onboarding5ButtonLabel" = "Done";

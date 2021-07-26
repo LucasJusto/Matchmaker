@@ -15,7 +15,9 @@
 		489555EA26A76AC3005F88A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 489555E826A76AC3005F88A2 /* LaunchScreen.storyboard */; };
 		892FE5BF26A9E345004B4F7F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 892FE5C126A9E345004B4F7F /* Localizable.strings */; };
 		892FE5DD26AA010A004B4F7F /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 892FE5DC26AA010A004B4F7F /* Onboarding.storyboard */; };
-		895A604E26AB48C300BE18C9 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895A604D26AB48C300BE18C9 /* UIView+Extension.swift */; };
+		895A604E26AB48C300BE18C9 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895A604D26AB48C300BE18C9 /* UIView+Extensions.swift */; };
+		895A605026AB56A100BE18C9 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895A604F26AB56A100BE18C9 /* UILabel+Extensions.swift */; };
+		895A605226AB5D5200BE18C9 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895A605126AB5D5200BE18C9 /* UIButton+Extensions.swift */; };
 		89A912FF26AA677700D3B1D2 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A912FE26AA677700D3B1D2 /* OnboardingViewController.swift */; };
 		89A9130426AA6F0500D3B1D2 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A9130326AA6F0500D3B1D2 /* OnboardingCollectionViewCell.swift */; };
 		89A9130726AA6FEF00D3B1D2 /* OnboardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A9130626AA6FEF00D3B1D2 /* OnboardingScreen.swift */; };
@@ -32,7 +34,9 @@
 		489555EB26A76AC3005F88A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		892FE5C026A9E345004B4F7F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		892FE5DC26AA010A004B4F7F /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
-		895A604D26AB48C300BE18C9 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		895A604D26AB48C300BE18C9 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		895A604F26AB56A100BE18C9 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
+		895A605126AB5D5200BE18C9 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
 		89A912FE26AA677700D3B1D2 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		89A9130326AA6F0500D3B1D2 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
 		89A9130626AA6FEF00D3B1D2 /* OnboardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScreen.swift; sourceTree = "<group>"; };
@@ -94,7 +98,9 @@
 		895A604C26AB486A00BE18C9 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				895A604D26AB48C300BE18C9 /* UIView+Extension.swift */,
+				895A604D26AB48C300BE18C9 /* UIView+Extensions.swift */,
+				895A604F26AB56A100BE18C9 /* UILabel+Extensions.swift */,
+				895A605126AB5D5200BE18C9 /* UIButton+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -190,9 +196,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				489555E226A76AC1005F88A2 /* ViewController.swift in Sources */,
-				895A604E26AB48C300BE18C9 /* UIView+Extension.swift in Sources */,
+				895A604E26AB48C300BE18C9 /* UIView+Extensions.swift in Sources */,
 				489555DE26A76AC1005F88A2 /* AppDelegate.swift in Sources */,
 				89A9130726AA6FEF00D3B1D2 /* OnboardingScreen.swift in Sources */,
+				895A605226AB5D5200BE18C9 /* UIButton+Extensions.swift in Sources */,
+				895A605026AB56A100BE18C9 /* UILabel+Extensions.swift in Sources */,
 				89A9130426AA6F0500D3B1D2 /* OnboardingCollectionViewCell.swift in Sources */,
 				489555E026A76AC1005F88A2 /* SceneDelegate.swift in Sources */,
 				89A912FF26AA677700D3B1D2 /* OnboardingViewController.swift in Sources */,
