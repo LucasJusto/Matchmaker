@@ -22,31 +22,31 @@ enum Dota2Servers: Servers, CustomStringConvertible {
     var description: String {
         switch self {
             case .Australia:
-                return "Australia"
+                return NSLocalizedString("Australia", comment: "Australia")
                 
             case .EuropeEast:
-                return "Europe East"
+                return NSLocalizedString("Europe East", comment: "Europe East")
             
             case .EuropeWest:
-                return "Europe West"
+                return NSLocalizedString("Europe West", comment: "Europe West")
             
             case .Russia:
-                return "Russia"
+                return NSLocalizedString("Russia", comment: "Russia")
             
             case .SEAsia:
-                return "SE Asia"
-            
+                return NSLocalizedString("SE Asia", comment: "SE Asia")
+                
             case .SouthAfrica:
-                return "South Africa"
+                return NSLocalizedString("South Africa", comment: "South Africa")
                 
             case .SouthAmerica:
-                return "South America"
+                return NSLocalizedString("South America", comment: "South America")
             
             case .USEast:
-                return "US East"
+                return NSLocalizedString("US East", comment: "US East")
             
             case .USWest:
-                return "US West"
+                return NSLocalizedString("US West", comment: "US West")
         }
     }
 }
@@ -67,34 +67,44 @@ enum LeagueOfLegendsServers: Servers, CustomStringConvertible {
     
     var description: String {
         switch self {
-        
-        case .Brazil:
-            return "Brazil"
-        case .EuropeNordicEast:
-            return "Europe Nordic & East"
-        case .EuropeWest:
-            return "Europe West"
-        case .Japan:
-            return "Japan"
-        case .Korea:
-            return "Korea"
-        case .LatinAmericaNorth:
-            return "Lating America North"
-        case .LatinAmericaSouth:
-            return "Latin America South"
-        case .NorthAmerica:
-            return "North America"
-        case .Oceania:
-            return "Oceania"
-        case .Russia:
-            return "Russia"
-        case .Turkey:
-            return "Turkey"
+            case .Brazil:
+                return NSLocalizedString("Brazil", comment: "Brazil")
+                
+            case .EuropeNordicEast:
+                return NSLocalizedString("Europe Nordic & East", comment: "Europe Nordic & East")
+                
+            case .EuropeWest:
+                return NSLocalizedString("Europe West", comment: "Europe West")
+                
+            case .Japan:
+                return NSLocalizedString("Japan", comment: "Japan")
+                
+            case .Korea:
+                return NSLocalizedString("Korea", comment: "Korea")
+                
+            case .LatinAmericaNorth:
+                return NSLocalizedString("Latin America North", comment: "Latin America North")
+                
+            case .LatinAmericaSouth:
+                return NSLocalizedString("Latin America South", comment: "Latin America South")
+                
+            case .NorthAmerica:
+                return NSLocalizedString("North America", comment: "North America")
+                
+            case .Oceania:
+                return NSLocalizedString("Oceania", comment: "Oceania")
+                
+            case .Russia:
+                return NSLocalizedString("Russia", comment: "Russia")
+                
+            case .Turkey:
+                return NSLocalizedString("Turkey", comment: "Turkey")
         }
     }
 }
 
 enum CounterStrikeGOServers: Servers, CustomStringConvertible {
+    
     case EUNorth
     case PWTianjin
     case Singapore
@@ -122,54 +132,76 @@ enum CounterStrikeGOServers: Servers, CustomStringConvertible {
     
     var description: String {
         switch self {
-        case .EUNorth:
-            return "EU North"
-        case .Australia:
-            return "Australia"
-        case .Chile:
-            return "Chile"
-        case .Dubai:
-            return "Dubai"
-        case .EUEast:
-            return "EU East"
-        case .EUWest:
-            return "EU West"
-        case .HongKong:
-            return "Hong Kong"
-        case .IndiaEast:
-            return "India East"
-        case .IndiaWest:
-            return "India West"
-        case .Japan:
-            return "Japan"
-        case .PWGuangdong:
-            return "PW Guangdong"
-        case .PWShanghai:
-            return "PW Shanghai"
-        case .PWTianjin:
-            return "PW Tianjin"
-        case .Peru:
-            return "Peru"
-        case .Poland:
-            return "Poland"
-        case .Singapore:
-            return "Singapore"
-        case .SouthAfrica:
-            return "South Africa"
-        case .SouthAmerica:
-            return "South America"
-        case .Spain:
-            return "Spain"
-        case .USEast:
-            return "US East"
-        case .USNorthCentral:
-            return "US North Central"
-        case .USSouthEast:
-            return "US South East"
-        case .USSouthWest:
-            return "US South West"
-        case .USWest:
-            return "US West"
+            case .EUNorth:
+                return NSLocalizedString("EU North", comment: "EU North")
+                
+            case .Australia:
+                return NSLocalizedString("Australia", comment: "Australia")
+            case .Chile:
+                return NSLocalizedString("Chile", comment: "Chile")
+                
+            case .Dubai:
+                return NSLocalizedString("Dubai", comment: "Dubai")
+                
+            case .EUEast:
+                return NSLocalizedString("EU East", comment: "EU East")
+                
+            case .EUWest:
+                return NSLocalizedString("EU West", comment: "EU West")
+                
+            case .HongKong:
+                return NSLocalizedString("Hong Kong", comment: "Hong Kong")
+                
+            case .IndiaEast:
+                return NSLocalizedString("India East", comment: "India East")
+                
+            case .IndiaWest:
+                return NSLocalizedString("India West", comment: "India West")
+                
+            case .Japan:
+                return NSLocalizedString("Japan", comment: "Japan")
+                
+            case .PWGuangdong:
+                return NSLocalizedString("PW Guangdong", comment: "PW Guangdong")
+                
+            case .PWShanghai:
+                return NSLocalizedString("PW Shanghai", comment: "PW Shanghai")
+                
+            case .PWTianjin:
+                return NSLocalizedString("PW Tianjin", comment: "PW Tianjin")
+                
+            case .Peru:
+                return NSLocalizedString("Peru", comment: "Peru")
+                
+            case .Poland:
+                return NSLocalizedString("Poland", comment: "Poland")
+            
+            case .Singapore:
+                return NSLocalizedString("Singapore", comment: "Singapore")
+                
+            case .SouthAfrica:
+                return NSLocalizedString("South Africa", comment: "South Africa")
+                
+            case .SouthAmerica:
+                return NSLocalizedString("South America", comment: "South America")
+                
+            case .Spain:
+                return NSLocalizedString("Spain", comment: "Spain")
+                
+            case .USEast:
+                return NSLocalizedString("US East", comment: "US East")
+                
+            case .USNorthCentral:
+                return NSLocalizedString("US North Central", comment: "US North Central")
+                
+            case .USSouthEast:
+                return NSLocalizedString("US South East", comment: "US South East")
+                
+            case .USSouthWest:
+                return NSLocalizedString("US South West", comment: "US South West")
+                
+            case .USWest:
+                return NSLocalizedString("US West", comment: "US West")
         }
     }
 }
