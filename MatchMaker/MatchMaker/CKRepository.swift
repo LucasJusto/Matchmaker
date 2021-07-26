@@ -63,22 +63,6 @@ public class CKRepository {
         user = User(id: id, name: name, nickname: nickname, photo: (photo ?? UIImage(named: "photoDefault"))!, country: country, description: description, behaviourRate: 0, skillRate: 0, languages: languages, selectedPlatforms: selectedPlatforms, selectedGames: selectedGames)
     }
     
-    private static func iCloudPermission() -> Bool {
-        DispatchQueue.global().sync {
-            var hasICloudPermission = false
-            
-            container.requestApplicationPermission(.userDiscoverability) { status, error in
-                let cloudError = error as? CKError
-                switch cloudError?.code {
-                    case .notAuthenticated: break
-                    default: break
-                }
-                hasICloudPermission = status == .granted
-            }
-            return hasICloudPermission
-        }
-    }
-    
     private static func getUserId() -> String{
         var id: String = ""
         let semaphore = DispatchSemaphore(value: 0)
@@ -112,7 +96,6 @@ public class CKRepository {
         record.setObject(platformsIds as CKRecordValue?, forKey: UserTable.selectedPlatforms.description)
         
         publicDB.save(record) { savedRecord, error in
-            print(error)
             if error != nil {
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "couldnt store user data"), object: record)
             }
