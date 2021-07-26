@@ -66,7 +66,7 @@ public class CKRepository {
     private static func iCloudPermission() -> Bool {
         DispatchQueue.global().sync {
             var hasICloudPermission = false
-        
+
             container.requestApplicationPermission(.userDiscoverability) { status, error in
                 let cloudError = error as? CKError
                 switch cloudError?.code {
@@ -125,7 +125,7 @@ public class CKRepository {
         record.setObject(platformsIds as CKRecordValue?, forKey: UserTable.selectedPlatforms.description)
         
         publicDB.save(record) { savedRecord, error in
-
+            print(error)
             if error != nil {
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "couldnt store user data"), object: record)
             }
