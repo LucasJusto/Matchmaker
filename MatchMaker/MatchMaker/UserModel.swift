@@ -30,11 +30,11 @@ public class User {
     var friends: [Social]
     var blocked: [Social]
     
-    init(id: String, name: String, nickname: String, photo: UIImage?, country: String, description: String, behaviourRate: Double, skillRate: Double,languages: [String], selectedPlatforms: [Platform], selectedGames: [Game]){
+    init(id: String, name: String, nickname: String, photo: UIImage, country: String, description: String, behaviourRate: Double, skillRate: Double,languages: [String], selectedPlatforms: [Platform], selectedGames: [Game]){
         self.id = id
         self.name = name
         self.nickname = nickname
-        self.photo = photo ?? nil
+        self.photo = photo
         self.country = country
         self.description = description
         self.behaviourRate = behaviourRate
