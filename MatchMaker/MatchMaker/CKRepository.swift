@@ -81,24 +81,13 @@ public class CKRepository {
     
     private static func getUserId() -> String{
         var id: String = ""
-        DispatchQueue.global().sync {
-            container.requestApplicationPermission(.userDiscoverability) { status, error in
-                let cloudError = error as? CKError
-                switch cloudError?.code {
-                    case .notAuthenticated: print("usuario nao logado no icloud")
-                    default: break
-                }
-                if status == .granted {
-                    container.fetchUserRecordID { record, error in
-                        id = record?.recordName ?? ""
-                    }
-                }
-                else {
-                    //chama a tela dizendo q o app nao funciona sem a permissao.
-                    exit(0)
-                }
-            }
+        let semaphore = DispatchSemaphore(value: 0)
+        
+        container.fetchUserRecordID { record, error in
+            id = record?.recordName ?? ""
+            semaphore.signal()
         }
+        semaphore.wait()
         return "id\(id)"
     }
     
