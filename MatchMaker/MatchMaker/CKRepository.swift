@@ -66,7 +66,7 @@ public class CKRepository {
     private static func iCloudPermission() -> Bool {
         DispatchQueue.global().sync {
             var hasICloudPermission = false
-
+            
             container.requestApplicationPermission(.userDiscoverability) { status, error in
                 let cloudError = error as? CKError
                 switch cloudError?.code {
@@ -80,9 +80,8 @@ public class CKRepository {
     }
     
     private static func getUserId() -> String{
-        let permissionSemaphore = DispatchSemaphore(value: 0)
-        let idSemaphore = DispatchSemaphore(value: 0)
         var id: String = ""
+        let semaphore = DispatchSemaphore(value: 0)
         
         container.requestApplicationPermission(.userDiscoverability) { status, error in
             let cloudError = error as? CKError
@@ -91,16 +90,17 @@ public class CKRepository {
                 default: break
             }
             if status == .granted {
-                permissionSemaphore.signal()
+                container.fetchUserRecordID { record, error in
+                    id = record?.recordName ?? ""
+                    semaphore.signal()
+                }
+            }
+            else {
+                //chama a tela dizendo q o app nao funciona sem a permissao.
+                exit(0)
             }
         }
-        permissionSemaphore.wait()
-        container.fetchUserRecordID { record, error in
-            id = record?.recordName ?? ""
-            idSemaphore.signal()
-        }
-        
-        idSemaphore.wait()
+        semaphore.wait()
         return "id\(id)"
     }
     
