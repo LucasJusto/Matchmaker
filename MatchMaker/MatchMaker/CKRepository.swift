@@ -86,7 +86,7 @@ public class CKRepository {
         container.requestApplicationPermission(.userDiscoverability) { status, error in
             let cloudError = error as? CKError
             switch cloudError?.code {
-                case .notAuthenticated: break
+                case .notAuthenticated: print("usuario nao logado no icloud")
                 default: break
             }
             if status == .granted {
