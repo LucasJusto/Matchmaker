@@ -206,7 +206,7 @@ I just like to play for fun</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1041.5384615384614" y="113.74407582938387"/>
+            <point key="canvasLocation" x="1028" y="311"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="p0L-of-dbG">
