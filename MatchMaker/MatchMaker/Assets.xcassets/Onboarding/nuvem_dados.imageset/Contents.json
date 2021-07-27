@@ -1,16 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "LeagueOfLegends.png",
+      "filename" : "Nuvem_dados.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "LOL.png",
+      "filename" : "Nuvem_dados@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "Nuvem_dados@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

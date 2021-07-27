@@ -1,9 +1,3 @@
-//
-//  Games.swift
-//  MatchMaker
-//
-//  Created by João Brentano on 22/07/21.
-//
 import Foundation
 import UIKit
 

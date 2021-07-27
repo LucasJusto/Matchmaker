@@ -1,11 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "CS.png",
+      "filename" : "CounterStrikeGO.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "CS.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
