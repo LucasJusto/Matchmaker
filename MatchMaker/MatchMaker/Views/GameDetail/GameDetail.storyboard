@@ -25,149 +25,154 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LeagueOfLegends" translatesAutoresizingMaskIntoConstraints="NO" id="pce-lc-GXc" userLabel="GameImage">
-                                                <rect key="frame" x="0.0" y="0.0" width="390" height="520"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="390" height="800"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Degrade" translatesAutoresizingMaskIntoConstraints="NO" id="HSS-fq-jnI">
-                                                <rect key="frame" x="0.0" y="0.0" width="390" height="520"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="390" height="800"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="rQ8-va-uFp" userLabel="Game Info">
-                                                <rect key="frame" x="8.0000000000000071" y="376" width="114.66666666666667" height="50"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" alignment="top" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="82b-6Q-Ju2">
+                                                <rect key="frame" x="8" y="375.99999999999989" width="374" height="268.66666666666669"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFG-WF-c1t">
-                                                        <rect key="frame" x="0.0" y="0.0" width="114.66666666666667" height="27.666666666666668"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wc9-Zq-fxI">
-                                                        <rect key="frame" x="0.0" y="35.666666666666671" width="114.66666666666667" height="14.333333333333336"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                            </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="171" translatesAutoresizingMaskIntoConstraints="NO" id="nmt-yG-kPF" userLabel="Buttons">
-                                                <rect key="frame" x="8" y="483" width="374" height="37"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lqH-bf-PfT">
-                                                        <rect key="frame" x="0.0" y="0.0" width="83" height="37"/>
-                                                        <color key="backgroundColor" name="Primary"/>
-                                                        <state key="normal" title="Find players">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ngm-dr-XyX">
-                                                        <rect key="frame" x="254" y="0.0" width="120" height="37"/>
-                                                        <color key="backgroundColor" name="Gray"/>
-                                                        <state key="normal" title="Add to my games">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                    </button>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="37" id="bim-U4-kf9"/>
-                                                </constraints>
-                                            </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="2ni-dr-b5K" userLabel="Platforms">
-                                                <rect key="frame" x="8" y="528" width="155" height="82"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Platforms" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j55-wr-Biw" userLabel="Title">
-                                                        <rect key="frame" x="0.0" y="0.0" width="104.33333333333333" height="27.666666666666668"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="tVG-ga-ep9" userLabel="Platforms">
-                                                        <rect key="frame" x="0.0" y="35.666666666666671" width="155" height="46.333333333333329"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="rQ8-va-uFp" userLabel="Game Info">
+                                                        <rect key="frame" x="0.0" y="0.0" width="114.66666666666667" height="50"/>
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="eQ5-6L-thG" userLabel="Playstation">
-                                                                <rect key="frame" x="0.0" y="0.0" width="35" height="46.333333333333336"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFG-WF-c1t">
+                                                                <rect key="frame" x="0.0" y="0.0" width="114.66666666666667" height="27.666666666666668"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wc9-Zq-fxI">
+                                                                <rect key="frame" x="0.0" y="35.666666666666671" width="114.66666666666667" height="14.333333333333336"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="171" translatesAutoresizingMaskIntoConstraints="NO" id="nmt-yG-kPF" userLabel="Buttons">
+                                                        <rect key="frame" x="0.0" y="74" width="374" height="37"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lqH-bf-PfT">
+                                                                <rect key="frame" x="0.0" y="0.0" width="83" height="37"/>
+                                                                <color key="backgroundColor" name="Primary"/>
+                                                                <state key="normal" title="Find players">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ngm-dr-XyX">
+                                                                <rect key="frame" x="254" y="0.0" width="120" height="37"/>
+                                                                <color key="backgroundColor" name="Gray"/>
+                                                                <state key="normal" title="Add to my games">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                            </button>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="37" id="bim-U4-kf9"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="2ni-dr-b5K" userLabel="Platforms">
+                                                        <rect key="frame" x="0.0" y="135" width="155" height="82"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Platforms" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j55-wr-Biw" userLabel="Title">
+                                                                <rect key="frame" x="0.0" y="0.0" width="104.33333333333333" height="27.666666666666668"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="tVG-ga-ep9" userLabel="Platforms">
+                                                                <rect key="frame" x="0.0" y="35.666666666666686" width="155" height="46.333333333333343"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Play_selected" translatesAutoresizingMaskIntoConstraints="NO" id="TwD-Fn-4Fr">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="width" secondItem="TwD-Fn-4Fr" secondAttribute="height" multiplier="1:1" id="07n-g6-QRk"/>
-                                                                            <constraint firstAttribute="height" constant="35" id="hHi-6v-9r1"/>
-                                                                        </constraints>
-                                                                    </imageView>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Playstation" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qJd-cV-F5Z">
-                                                                        <rect key="frame" x="0.0" y="38.999999999999986" width="35" height="7.3333333333333357"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="6"/>
-                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                </subviews>
-                                                            </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="iOm-cu-jm7" userLabel="Xbox">
-                                                                <rect key="frame" x="40" y="0.0" width="35" height="46.333333333333336"/>
-                                                                <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Xbox_selected" translatesAutoresizingMaskIntoConstraints="NO" id="B2q-ce-fHm">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" constant="35" id="8KH-EZ-3dK"/>
-                                                                            <constraint firstAttribute="width" secondItem="B2q-ce-fHm" secondAttribute="height" multiplier="1:1" id="Sfi-di-W7S"/>
-                                                                        </constraints>
-                                                                    </imageView>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Xbox" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NH8-Ub-DpE" userLabel="Xbox">
-                                                                        <rect key="frame" x="0.0" y="38.999999999999986" width="35" height="7.3333333333333357"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="6"/>
-                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                </subviews>
-                                                            </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="SmR-r5-Qfa" userLabel="PC">
-                                                                <rect key="frame" x="80" y="0.0" width="35" height="46.333333333333336"/>
-                                                                <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PC_selected" translatesAutoresizingMaskIntoConstraints="NO" id="ki7-ek-YGi">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="width" secondItem="ki7-ek-YGi" secondAttribute="height" multiplier="1:1" id="21T-Qg-Pv8"/>
-                                                                            <constraint firstAttribute="height" constant="35" id="uJs-py-5o0"/>
-                                                                        </constraints>
-                                                                    </imageView>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MfM-pM-wBH" userLabel="PC">
-                                                                        <rect key="frame" x="0.0" y="38.999999999999986" width="35" height="7.3333333333333357"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="6"/>
-                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                </subviews>
-                                                            </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Sww-Gs-xlj" userLabel="Mobile">
-                                                                <rect key="frame" x="120" y="0.0" width="35" height="46.333333333333336"/>
-                                                                <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mobile_selected" translatesAutoresizingMaskIntoConstraints="NO" id="UHJ-bG-pch" userLabel="Mobile_selected">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="width" secondItem="UHJ-bG-pch" secondAttribute="height" multiplier="1:1" id="UWI-an-1Kt"/>
-                                                                            <constraint firstAttribute="height" constant="35" id="zA8-EP-qlL"/>
-                                                                        </constraints>
-                                                                    </imageView>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mobile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l04-91-mmW" userLabel="Mobile">
-                                                                        <rect key="frame" x="0.0" y="38.999999999999986" width="35" height="7.3333333333333357"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="6"/>
-                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="eQ5-6L-thG" userLabel="Playstation">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="35" height="46.333333333333336"/>
+                                                                        <subviews>
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Play_selected" translatesAutoresizingMaskIntoConstraints="NO" id="TwD-Fn-4Fr">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" secondItem="TwD-Fn-4Fr" secondAttribute="height" multiplier="1:1" id="07n-g6-QRk"/>
+                                                                                    <constraint firstAttribute="height" constant="35" id="hHi-6v-9r1"/>
+                                                                                </constraints>
+                                                                            </imageView>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Playstation" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qJd-cV-F5Z">
+                                                                                <rect key="frame" x="0.0" y="39" width="35" height="7.3333333333333357"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="6"/>
+                                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                    </stackView>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="iOm-cu-jm7" userLabel="Xbox">
+                                                                        <rect key="frame" x="40" y="0.0" width="35" height="46.333333333333336"/>
+                                                                        <subviews>
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Xbox_selected" translatesAutoresizingMaskIntoConstraints="NO" id="B2q-ce-fHm">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="height" constant="35" id="8KH-EZ-3dK"/>
+                                                                                    <constraint firstAttribute="width" secondItem="B2q-ce-fHm" secondAttribute="height" multiplier="1:1" id="Sfi-di-W7S"/>
+                                                                                </constraints>
+                                                                            </imageView>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Xbox" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NH8-Ub-DpE" userLabel="Xbox">
+                                                                                <rect key="frame" x="0.0" y="39" width="35" height="7.3333333333333357"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="6"/>
+                                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                    </stackView>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="SmR-r5-Qfa" userLabel="PC">
+                                                                        <rect key="frame" x="80" y="0.0" width="35" height="46.333333333333336"/>
+                                                                        <subviews>
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PC_selected" translatesAutoresizingMaskIntoConstraints="NO" id="ki7-ek-YGi">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" secondItem="ki7-ek-YGi" secondAttribute="height" multiplier="1:1" id="21T-Qg-Pv8"/>
+                                                                                    <constraint firstAttribute="height" constant="35" id="uJs-py-5o0"/>
+                                                                                </constraints>
+                                                                            </imageView>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MfM-pM-wBH" userLabel="PC">
+                                                                                <rect key="frame" x="0.0" y="39" width="35" height="7.3333333333333357"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="6"/>
+                                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                    </stackView>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Sww-Gs-xlj" userLabel="Mobile">
+                                                                        <rect key="frame" x="120" y="0.0" width="35" height="46.333333333333336"/>
+                                                                        <subviews>
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mobile_selected" translatesAutoresizingMaskIntoConstraints="NO" id="UHJ-bG-pch" userLabel="Mobile_selected">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" secondItem="UHJ-bG-pch" secondAttribute="height" multiplier="1:1" id="UWI-an-1Kt"/>
+                                                                                    <constraint firstAttribute="height" constant="35" id="zA8-EP-qlL"/>
+                                                                                </constraints>
+                                                                            </imageView>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mobile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l04-91-mmW" userLabel="Mobile">
+                                                                                <rect key="frame" x="0.0" y="39" width="35" height="7.3333333333333357"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="6"/>
+                                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                    </stackView>
                                                                 </subviews>
                                                             </stackView>
                                                         </subviews>
                                                     </stackView>
-                                                </subviews>
-                                            </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="bpv-eC-jlj" userLabel="Other Games">
-                                                <rect key="frame" x="8" y="618" width="141.66666666666666" height="27.666666666666668"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Other Games" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dmB-Cs-ghv" userLabel="Title">
-                                                        <rect key="frame" x="0.0" y="0.0" width="141.66666666666666" height="27.666666666666668"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="bpv-eC-jlj" userLabel="Other Games">
+                                                        <rect key="frame" x="0.0" y="241" width="141.66666666666666" height="27.666666666666686"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Other Games" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dmB-Cs-ghv" userLabel="Title">
+                                                                <rect key="frame" x="0.0" y="0.0" width="141.66666666666666" height="27.666666666666668"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
@@ -185,7 +190,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1028" y="311"/>
+            <point key="canvasLocation" x="1027.6923076923076" y="310.66350710900474"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="p0L-of-dbG">
