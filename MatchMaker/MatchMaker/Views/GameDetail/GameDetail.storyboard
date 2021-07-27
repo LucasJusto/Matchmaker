@@ -33,7 +33,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" alignment="top" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="82b-6Q-Ju2">
-                                                <rect key="frame" x="8" y="375.99999999999989" width="374" height="268.66666666666669"/>
+                                                <rect key="frame" x="8" y="676" width="374" height="268.66666666666669"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="rQ8-va-uFp" userLabel="Game Info">
                                                         <rect key="frame" x="0.0" y="0.0" width="114.66666666666667" height="50"/>
