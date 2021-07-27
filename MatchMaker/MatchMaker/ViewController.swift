@@ -6,14 +6,16 @@
 //
 
 import UIKit
+import CloudKit
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var label: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        let games = Games.buildGameArray()
+        CKRepository.setOnboardingInfo(name: "Lucas Justo", nickname: "lolzinho", photo: nil, photoURL: nil,country: "Brasil", description: "af", languages: ["tanto faz é teste"], selectedPlatforms: [Platform.PC], selectedGames: [games[1], games[2]])
         
         label.setLabelText(for: "titleLabel", comment: "Title label example")
     }
