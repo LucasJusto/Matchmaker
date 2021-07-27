@@ -88,7 +88,7 @@
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="eQ5-6L-thG" userLabel="Playstation">
                                                                         <rect key="frame" x="0.0" y="0.0" width="35" height="46.333333333333336"/>
                                                                         <subviews>
-                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Play_selected" translatesAutoresizingMaskIntoConstraints="NO" id="TwD-Fn-4Fr">
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Play" translatesAutoresizingMaskIntoConstraints="NO" id="TwD-Fn-4Fr">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" secondItem="TwD-Fn-4Fr" secondAttribute="height" multiplier="1:1" id="07n-g6-QRk"/>
@@ -106,7 +106,7 @@
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="iOm-cu-jm7" userLabel="Xbox">
                                                                         <rect key="frame" x="40" y="0.0" width="35" height="46.333333333333336"/>
                                                                         <subviews>
-                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Xbox_selected" translatesAutoresizingMaskIntoConstraints="NO" id="B2q-ce-fHm">
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Xbox" translatesAutoresizingMaskIntoConstraints="NO" id="B2q-ce-fHm">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="35" id="8KH-EZ-3dK"/>
@@ -124,7 +124,7 @@
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="SmR-r5-Qfa" userLabel="PC">
                                                                         <rect key="frame" x="80" y="0.0" width="35" height="46.333333333333336"/>
                                                                         <subviews>
-                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PC_selected" translatesAutoresizingMaskIntoConstraints="NO" id="ki7-ek-YGi">
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PC" translatesAutoresizingMaskIntoConstraints="NO" id="ki7-ek-YGi">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" secondItem="ki7-ek-YGi" secondAttribute="height" multiplier="1:1" id="21T-Qg-Pv8"/>
@@ -142,7 +142,7 @@
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Sww-Gs-xlj" userLabel="Mobile">
                                                                         <rect key="frame" x="120" y="0.0" width="35" height="46.333333333333336"/>
                                                                         <subviews>
-                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mobile_selected" translatesAutoresizingMaskIntoConstraints="NO" id="UHJ-bG-pch" userLabel="Mobile_selected">
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mobile" translatesAutoresizingMaskIntoConstraints="NO" id="UHJ-bG-pch">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" secondItem="UHJ-bG-pch" secondAttribute="height" multiplier="1:1" id="UWI-an-1Kt"/>
@@ -211,6 +211,15 @@
                     <navigationItem key="navigationItem" id="1Av-cg-meL"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="390" height="1400"/>
+                    <connections>
+                        <outlet property="GameDescription" destination="Wc9-Zq-fxI" id="UX8-xc-KYR"/>
+                        <outlet property="GameImage" destination="pce-lc-GXc" id="Dwf-ee-iRu"/>
+                        <outlet property="GameTitle" destination="IFG-WF-c1t" id="Lpy-UG-Eae"/>
+                        <outlet property="MobileImage" destination="UHJ-bG-pch" id="2BF-nw-6re"/>
+                        <outlet property="PCImage" destination="ki7-ek-YGi" id="cyK-LP-lRN"/>
+                        <outlet property="PlaystationImage" destination="TwD-Fn-4Fr" id="LT6-Mq-TfI"/>
+                        <outlet property="XboxImage" destination="B2q-ce-fHm" id="kj3-Ee-vC7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -237,11 +246,11 @@
     </scenes>
     <resources>
         <image name="Degrade" width="600" height="800"/>
-        <image name="LeagueOfLegends" width="600" height="840"/>
-        <image name="Mobile_selected" width="204.33332824707031" height="188.33332824707031"/>
-        <image name="PC_selected" width="204.33332824707031" height="188.66667175292969"/>
-        <image name="Play_selected" width="204.33332824707031" height="188.33332824707031"/>
-        <image name="Xbox_selected" width="204.33332824707031" height="188.33332824707031"/>
+        <image name="LeagueOfLegends" width="300" height="420"/>
+        <image name="Mobile" width="204" height="188.33332824707031"/>
+        <image name="PC" width="204" height="188.66667175292969"/>
+        <image name="Play" width="204" height="188.33332824707031"/>
+        <image name="Xbox" width="204" height="188.33332824707031"/>
         <namedColor name="Gray">
             <color red="0.43900001049041748" green="0.43900001049041748" blue="0.43900001049041748" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
