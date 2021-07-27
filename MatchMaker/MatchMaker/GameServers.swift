@@ -19,13 +19,13 @@ enum Dota2Servers: Servers, CustomStringConvertible {
                 
             case .EuropeEast:
                 return NSLocalizedString("Europe East", comment: "Europe East")
-            
+                
             case .EuropeWest:
                 return NSLocalizedString("Europe West", comment: "Europe West")
-            
+                
             case .Russia:
                 return NSLocalizedString("Russia", comment: "Russia")
-            
+                
             case .SEAsia:
                 return NSLocalizedString("SE Asia", comment: "SE Asia")
                 
@@ -34,12 +34,75 @@ enum Dota2Servers: Servers, CustomStringConvertible {
                 
             case .SouthAmerica:
                 return NSLocalizedString("South America", comment: "South America")
-            
+                
             case .USEast:
                 return NSLocalizedString("US East", comment: "US East")
-            
+                
             case .USWest:
                 return NSLocalizedString("US West", comment: "US West")
+        }
+    }
+    
+    var key: String {
+        switch self {
+            case .Australia:
+                return "Australia"
+                
+            case .EuropeEast:
+                return "Europe East"
+                
+            case .EuropeWest:
+                return "Europe West"
+                
+            case .Russia:
+                return "Russia"
+                
+            case .SEAsia:
+                return "SE Asia"
+                
+            case .SouthAfrica:
+                return "South Africa"
+                
+            case .SouthAmerica:
+                return "South America"
+                
+            case .USEast:
+                return "US East"
+                
+            case .USWest:
+                return "US West"
+        }
+    }
+    
+    static func getServer(server: String) -> Servers {
+        switch server {
+            case "Australia":
+                return self.Australia
+            case "Europe East":
+                return self.EuropeEast
+                
+            case "Europe West":
+                return self.EuropeWest
+                
+            case "Russia":
+                return self.Russia
+                
+            case "SE Asia":
+                return self.SEAsia
+                
+            case "South Africa":
+                return self.SouthAfrica
+                
+            case "South America":
+                return self.SouthAmerica
+                
+            case "US East":
+                return self.USEast
+                
+            case "US West":
+                return self.USWest
+            default:
+                return self.USWest
         }
     }
 }
@@ -92,6 +155,82 @@ enum LeagueOfLegendsServers: Servers, CustomStringConvertible {
                 
             case .Turkey:
                 return NSLocalizedString("Turkey", comment: "Turkey")
+        }
+    }
+    
+    var key: String {
+        switch self {
+            case .Brazil:
+                return "Brazil"
+                
+            case .EuropeNordicEast:
+                return "Europe Nordic & East"
+                
+            case .EuropeWest:
+                return "Europe West"
+                
+            case .Japan:
+                return "Japan"
+                
+            case .Korea:
+                return "Korea"
+                
+            case .LatinAmericaNorth:
+                return "Latin America North"
+                
+            case .LatinAmericaSouth:
+                return "Latin America South"
+                
+            case .NorthAmerica:
+                return "North America"
+                
+            case .Oceania:
+                return "Oceania"
+                
+            case .Russia:
+                return "Russia"
+                
+            case .Turkey:
+                return "Turkey"
+        }
+    }
+    
+    static func getServer(server: String) -> Servers {
+        switch server {
+            case "Brazil":
+                return self.Brazil
+                
+            case "Europe Nordic & East":
+                return self.EuropeNordicEast
+                
+            case "Europe West":
+                return self.EuropeWest
+                
+            case "Japan":
+                return self.Japan
+                
+            case "Korea":
+                return self.Korea
+                
+            case "Latin America North":
+                return self.LatinAmericaNorth
+                
+            case "Latin America South":
+                return self.LatinAmericaSouth
+                
+            case "North America":
+                return self.NorthAmerica
+                
+            case "Oceania":
+                return self.Oceania
+                
+            case "Russia":
+                return self.Russia
+                
+            case "Turkey":
+                return self.Turkey
+            default:
+                return self.NorthAmerica
         }
     }
 }
@@ -168,7 +307,7 @@ enum CounterStrikeGOServers: Servers, CustomStringConvertible {
                 
             case .Poland:
                 return NSLocalizedString("Poland", comment: "Poland")
-            
+                
             case .Singapore:
                 return NSLocalizedString("Singapore", comment: "Singapore")
                 
@@ -195,6 +334,161 @@ enum CounterStrikeGOServers: Servers, CustomStringConvertible {
                 
             case .USWest:
                 return NSLocalizedString("US West", comment: "US West")
+        }
+    }
+    
+    var key: String {
+        switch self {
+            case .EUNorth:
+                return "EU North"
+                
+            case .Australia:
+                return "Australia"
+                
+            case .Chile:
+                return "Chile"
+                
+            case .Dubai:
+                return "Dubai"
+                
+            case .EUEast:
+                return "EU East"
+                
+            case .EUWest:
+                return "EU West"
+                
+            case .HongKong:
+                return "Hong Kong"
+                
+            case .IndiaEast:
+                return "India East"
+                
+            case .IndiaWest:
+                return "India West"
+                
+            case .Japan:
+                return "Japan"
+                
+            case .PWGuangdong:
+                return "PW Guangdong"
+                
+            case .PWShanghai:
+                return "PW Shanghai"
+                
+            case .PWTianjin:
+                return "PW Tianjin"
+                
+            case .Peru:
+                return "Peru"
+                
+            case .Poland:
+                return "Poland"
+                
+            case .Singapore:
+                return "Singapore"
+                
+            case .SouthAfrica:
+                return "South Africa"
+                
+            case .SouthAmerica:
+                return "South America"
+                
+            case .Spain:
+                return "Spain"
+                
+            case .USEast:
+                return "US East"
+                
+            case .USNorthCentral:
+                return "US North Central"
+                
+            case .USSouthEast:
+                return "US South East"
+                
+            case .USSouthWest:
+                return "US South West"
+                
+            case .USWest:
+                return "US West"
+        }
+    }
+    
+    static func getServer(server: String) -> Servers {
+        switch server {
+            case "EU North":
+                return self.EUNorth
+                
+            case "Australia":
+                return self.Australia
+                
+            case "Chile":
+                return self.Chile
+                
+            case "Dubai":
+                return self.Dubai
+                
+            case "EU East":
+                return self.EUEast
+                
+            case "EU West":
+                return self.EUWest
+                
+            case "Hong Kong":
+                return self.HongKong
+                
+            case "India East":
+                return self.IndiaEast
+                
+            case "India West":
+                return self.IndiaWest
+                
+            case "Japan":
+                return self.Japan
+                
+            case "PW Guangdong":
+                return self.PWGuangdong
+                
+            case "PW Shanghai":
+                return self.PWShanghai
+                
+            case "PW Tianjin":
+                return self.PWTianjin
+                
+            case "Peru":
+                return self.Peru
+                
+            case "Poland":
+                return self.Poland
+                
+            case "Singapore":
+                return self.Singapore
+                
+            case "South Africa":
+                return self.SouthAfrica
+                
+            case "South America":
+                return self.SouthAmerica
+                
+            case "Spain":
+                return self.Spain
+                
+            case "US East":
+                return self.USEast
+                
+            case "US North Central":
+                return self.USNorthCentral
+                
+            case "US South East":
+                return self.USSouthEast
+                
+            case "US South West":
+                return self.USSouthWest
+                
+            case "US West":
+                return self.USWest
+                
+            default:
+                return self.USNorthCentral
         }
     }
 }
