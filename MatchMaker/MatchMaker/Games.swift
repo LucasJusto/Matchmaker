@@ -52,6 +52,10 @@ enum Platform: CustomStringConvertible {
 
 protocol Servers {
     var description: String { get }
+    
+    var key: String { get }
+    
+    static func getServer(server: String) -> Servers
 }
 
 // MARK:- Game Struct
@@ -103,5 +107,12 @@ public class Games {
         // Counter Strike: Global Offensive
         games.append(Game(id: "2", name: "Counter Strike: Global Offensive", description: NSLocalizedString("CounterStrikeGODescription", comment: "CSGO desc"), platforms: [Platform.PC], servers: [CounterStrikeGOServers.EUNorth, CounterStrikeGOServers.PWTianjin, CounterStrikeGOServers.Singapore, CounterStrikeGOServers.IndiaWest, CounterStrikeGOServers.Australia, CounterStrikeGOServers.EUWest, CounterStrikeGOServers.PWShanghai, CounterStrikeGOServers.Chile, CounterStrikeGOServers.USSouthEast, CounterStrikeGOServers.IndiaEast, CounterStrikeGOServers.EUEast, CounterStrikeGOServers.HongKong, CounterStrikeGOServers.Japan, CounterStrikeGOServers.Peru, CounterStrikeGOServers.USWest, CounterStrikeGOServers.Poland, CounterStrikeGOServers.USWest, CounterStrikeGOServers.Poland, CounterStrikeGOServers.PWGuangdong, CounterStrikeGOServers.USNorthCentral, CounterStrikeGOServers.USSouthWest, CounterStrikeGOServers.SouthAfrica, CounterStrikeGOServers.SouthAmerica, CounterStrikeGOServers.Spain, CounterStrikeGOServers.USEast, CounterStrikeGOServers.Dubai], image: UIImage(named: "CounterStrikeGO")!))
         return games
+    }
+    
+    static func getGameIdInt(id: String) -> Int{
+        if let intId = Int(id) {
+            return intId
+        }
+        return 0
     }
 }
