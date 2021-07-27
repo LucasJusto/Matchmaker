@@ -60,7 +60,7 @@ public class CKRepository {
         storeUserData(id: id, name: name, nickname: nickname, country: country, description: description, photo: photoURL, selectedPlatforms: selectedPlatforms, selectedGames: selectedGames)
         
         //creating user singleton
-        user = User(id: id, name: name, nickname: nickname, photo: (photo ?? UIImage(named: "photoDefault"))!, country: country, description: description, behaviourRate: 0, skillRate: 0, languages: languages, selectedPlatforms: selectedPlatforms, selectedGames: selectedGames)
+        user = User(id: id, name: name, nickname: nickname, photo: photo, country: country, description: description, behaviourRate: 0, skillRate: 0, languages: languages, selectedPlatforms: selectedPlatforms, selectedGames: selectedGames)
     }
     
     private static func getUserId() -> String{
