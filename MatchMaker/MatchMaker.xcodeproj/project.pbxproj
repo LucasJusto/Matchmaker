@@ -18,9 +18,12 @@
 		895A604E26AB48C300BE18C9 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895A604D26AB48C300BE18C9 /* UIView+Extensions.swift */; };
 		895A605026AB56A100BE18C9 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895A604F26AB56A100BE18C9 /* UILabel+Extensions.swift */; };
 		895A605226AB5D5200BE18C9 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895A605126AB5D5200BE18C9 /* UIButton+Extensions.swift */; };
+		895A605B26AF43B300BE18C9 /* OnboardingRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895A605A26AF43B300BE18C9 /* OnboardingRegisterViewController.swift */; };
+		895A605D26AF556400BE18C9 /* ProfileImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895A605C26AF556400BE18C9 /* ProfileImageTableViewCell.swift */; };
 		89A912FF26AA677700D3B1D2 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A912FE26AA677700D3B1D2 /* OnboardingViewController.swift */; };
 		89A9130426AA6F0500D3B1D2 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A9130326AA6F0500D3B1D2 /* OnboardingCollectionViewCell.swift */; };
 		89A9130726AA6FEF00D3B1D2 /* OnboardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A9130626AA6FEF00D3B1D2 /* OnboardingScreen.swift */; };
+		89AC95B426B076BF00EC92F6 /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AC95B326B076BF00EC92F6 /* TextFieldTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,9 +40,12 @@
 		895A604D26AB48C300BE18C9 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		895A604F26AB56A100BE18C9 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		895A605126AB5D5200BE18C9 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
+		895A605A26AF43B300BE18C9 /* OnboardingRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRegisterViewController.swift; sourceTree = "<group>"; };
+		895A605C26AF556400BE18C9 /* ProfileImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageTableViewCell.swift; sourceTree = "<group>"; };
 		89A912FE26AA677700D3B1D2 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		89A9130326AA6F0500D3B1D2 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
 		89A9130626AA6FEF00D3B1D2 /* OnboardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScreen.swift; sourceTree = "<group>"; };
+		89AC95B326B076BF00EC92F6 /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,9 +111,20 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		895A605926AF439000BE18C9 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				895A605A26AF43B300BE18C9 /* OnboardingRegisterViewController.swift */,
+				895A605C26AF556400BE18C9 /* ProfileImageTableViewCell.swift */,
+				89AC95B326B076BF00EC92F6 /* TextFieldTableViewCell.swift */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
 		89A912FD26AA675100D3B1D2 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				895A605926AF439000BE18C9 /* Register */,
 				89A9130326AA6F0500D3B1D2 /* OnboardingCollectionViewCell.swift */,
 				892FE5DC26AA010A004B4F7F /* Onboarding.storyboard */,
 				89A912FE26AA677700D3B1D2 /* OnboardingViewController.swift */,
@@ -198,7 +215,10 @@
 				489555E226A76AC1005F88A2 /* ViewController.swift in Sources */,
 				895A604E26AB48C300BE18C9 /* UIView+Extensions.swift in Sources */,
 				489555DE26A76AC1005F88A2 /* AppDelegate.swift in Sources */,
+				89AC95B426B076BF00EC92F6 /* TextFieldTableViewCell.swift in Sources */,
+				895A605D26AF556400BE18C9 /* ProfileImageTableViewCell.swift in Sources */,
 				89A9130726AA6FEF00D3B1D2 /* OnboardingScreen.swift in Sources */,
+				895A605B26AF43B300BE18C9 /* OnboardingRegisterViewController.swift in Sources */,
 				895A605226AB5D5200BE18C9 /* UIButton+Extensions.swift in Sources */,
 				895A605026AB56A100BE18C9 /* UILabel+Extensions.swift in Sources */,
 				89A9130426AA6F0500D3B1D2 /* OnboardingCollectionViewCell.swift in Sources */,

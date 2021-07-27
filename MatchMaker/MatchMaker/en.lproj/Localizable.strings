@@ -30,3 +30,10 @@ to identify you from iCloud";
 
 //ONBOARDING 5
 "onboarding5ButtonLabel" = "Done";
+"onboarding5ImageLabel" = "Profile image";
+"onboarding5NameLabel" = "Name";
+"onboarding5UsernameLabel" = "Username";
+"onboarding5DescriptionLabel" = "Description";
+"onboarding5LanguagesLabel" = "Languages";
+"onboarding5PlatformsLabel" = "Platforms";
+"onboarding5GamesLabel" = "Games";
