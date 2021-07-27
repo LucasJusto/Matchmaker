@@ -26,6 +26,8 @@ class OnboardingCollectionViewCell: UICollectionViewCell {
         onboardingImageView.translatesAutoresizingMaskIntoConstraints = false
         onboardingImageView.heightAnchor.constraint(equalToConstant: CGFloat(screen.imageHeight)).isActive = true
         onboardingImageView.widthAnchor.constraint(equalToConstant: CGFloat(screen.imageWidth)).isActive = true
+        let games = Games.buildGameArray()
+        CKRepository.setOnboardingInfo(name: "Lucas Justo", nickname: "lolzinho", photo: nil, photoURL: nil,country: "Brasil", description: "af", languages: ["tanto faz é teste"], selectedPlatforms: [Platform.PC], selectedGames: [games[1], games[2]])
     }
 
 }
