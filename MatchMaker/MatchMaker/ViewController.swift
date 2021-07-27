@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let games = Games.buildGameArray()
-        CKRepository.setOnboardingInfo(name: "Lucas Justo", nickname: "lolzinho", photo: nil, photoURL: nil,country: "Brasil", description: "af", languages: ["tanto faz é teste"], selectedPlatforms: [Platform.PC], selectedGames: [games[1], games[2]])
+        CKRepository.setOnboardingInfo(name: "Lucas Justo", nickname: "lolzinho", photo: nil, photoURL: nil,country: "Brasil", description: "af", languages: [Languages.portuguese, Languages.english], selectedPlatforms: [Platform.PC], selectedGames: [games[1], games[2]])
         
         label.setLabelText(for: "titleLabel", comment: "Title label example")
     }
