@@ -20,6 +20,34 @@ enum Platform: CustomStringConvertible {
                 return NSLocalizedString("PlatformMobile", comment: "Mobile")
         }
     }
+    
+    var key: String {
+        switch self {
+            case .PC:
+                return "PlatformPC"
+            case .PlayStation:
+                return "PlatformPS"
+            case .Xbox:
+                return "PlatformXbox"
+            case .Mobile:
+                return "PlatformMobile"
+        }
+    }
+    
+    static func getPlatform(key: String) -> Platform {
+        switch key {
+            case "PlatformPC":
+                return Platform.PC
+            case "PlatformPS":
+                return Platform.PlayStation
+            case "PlatformXbox":
+                return Platform.Xbox
+            case "PlatformMobile":
+                return Platform.Mobile
+            default:
+                return Platform.PC
+        }
+    }
 }
 
 protocol Servers {
