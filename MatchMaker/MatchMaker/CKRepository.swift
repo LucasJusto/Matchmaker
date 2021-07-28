@@ -183,17 +183,9 @@ public class CKRepository {
                         
                         //crime \/
                         for g in gameSelectedServersString {
-                            var add: Servers
-                            if gameId == 0 {
-                                add = Dota2Servers.getServer(server: g)
+                            if let sv = allGames[gameId].serverType?.getServer(server: g) {
+                                gameSelectedServers.append(sv)
                             }
-                            else if gameId == 1 {
-                                add = LeagueOfLegendsServers.getServer(server: g)
-                            }
-                            else {
-                                add = CounterStrikeGOServers.getServer(server: g)
-                            }
-                            gameSelectedServers.append(add)
                         }
                         
                         games.append(Game(id: "\(gameId)", name: allGames[gameId].name, description: allGames[gameId].description, platforms: allGames[gameId].platforms, servers: allGames[gameId].servers, selectedPlatforms: gameSelectedPlatforms, selectedServers: gameSelectedServers, image: allGames[gameId].image))
