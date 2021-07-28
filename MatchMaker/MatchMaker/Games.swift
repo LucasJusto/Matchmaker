@@ -34,6 +34,32 @@ enum Platform: CustomStringConvertible {
         }
     }
     
+    var imageSelected: String {
+        switch self {
+            case .PC:
+                return "PC_selected"
+            case .PlayStation:
+                return "Play_selected"
+            case .Xbox:
+                return "Xbox_selected"
+            case .Mobile:
+                return "Mobile_selected"
+        }
+    }
+    
+    var imageNotSelected: String {
+        switch self {
+            case .PC:
+                return "PC"
+            case .PlayStation:
+                return "Play"
+            case .Xbox:
+                return "Xbox"
+            case .Mobile:
+                return "Mobile"
+        }
+    }
+    
     static func getPlatform(key: String) -> Platform {
         switch key {
             case "PlatformPC":
