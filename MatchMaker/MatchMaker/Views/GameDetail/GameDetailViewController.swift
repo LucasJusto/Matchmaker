@@ -10,7 +10,7 @@ import UIKit
 class GameDetailViewController: UIViewController {
     
     // Game mock
-    let game = (Games.buildGameArray()[1])
+    let game = Games.games[1]
     
     // Game info
     @IBOutlet weak var GameImage: UIImageView!
@@ -40,13 +40,13 @@ class GameDetailViewController: UIViewController {
         for platform in game.platforms {
             switch(platform) {
                 case .PC:
-                    PCImage.image = UIImage(named: "PC_selected")
+                    PCImage.image = UIImage(named: platform.imageSelected)
                 case .PlayStation:
-                    PlaystationImage.image = UIImage(named: "Play_selected")
+                    PlaystationImage.image = UIImage(named: platform.imageSelected)
                 case .Xbox:
-                    XboxImage.image = UIImage(named: "Xbox_selected")
+                    XboxImage.image = UIImage(named: platform.imageSelected)
                 case .Mobile:
-                    MobileImage.image = UIImage(named: "Mobile_selected")
+                    MobileImage.image = UIImage(named: platform.imageSelected)
             }
         }
     }
