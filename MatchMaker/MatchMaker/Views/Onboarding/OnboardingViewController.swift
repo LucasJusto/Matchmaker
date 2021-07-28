@@ -26,19 +26,6 @@ class OnboardingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let games = Games.buildGameArray()
-        CKRepository.setOnboardingInfo(name: "Lucas Justo", nickname: "lolzinho", photo: nil, photoURL: nil,country: "Brasil", description: "af", languages: [Languages.portuguese, Languages.english], selectedPlatforms: [Platform.PC], selectedGames: [games[1], games[2]])
-        
-        CKRepository.getUserById(id: CKRepository.user!.id ) { user in
-            print(user.name)
-            print(user.nickname)
-            print(user.selectedGames)
-            print(user.selectedPlatforms)
-            print(user.description)
-            print(user.languages)
-            print(user.photo)
-            print(user.country)
-        }
         if let img1 = UIImage(named: "game"),
               let img2 = UIImage(named: "chat") {
             
