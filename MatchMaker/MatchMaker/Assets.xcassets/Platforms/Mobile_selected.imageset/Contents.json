@@ -1,10 +1,12 @@
 {
   "images" : [
     {
+      "filename" : "Mobile_selected.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "Mobile_selected@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
