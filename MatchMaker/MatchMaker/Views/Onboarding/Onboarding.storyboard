@@ -455,25 +455,61 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ilw-5q-DuU">
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nTd-gm-3Gg">
                                                     <rect key="frame" x="0.0" y="63" width="382" height="40"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="40" id="XMI-cK-Qeg"/>
+                                                        <constraint firstAttribute="height" constant="40" id="e4v-mu-aEv"/>
                                                     </constraints>
-                                                </view>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="UtO-CI-dmR">
+                                                        <size key="itemSize" width="110" height="40"/>
+                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    </collectionViewFlowLayout>
+                                                    <cells>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="selectable-tag-cell" id="OKP-H9-GIL" customClass="SelectableTagCollectionViewCell" customModule="MatchMaker" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="110" height="40"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="PTE-Q4-Rfn">
+                                                                <rect key="frame" x="0.0" y="0.0" width="110" height="40"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DdG-pn-KcG">
+                                                                        <rect key="frame" x="8" y="8" width="94" height="24"/>
+                                                                        <color key="backgroundColor" name="Primary"/>
+                                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstItem="DdG-pn-KcG" firstAttribute="leading" secondItem="PTE-Q4-Rfn" secondAttribute="leading" constant="8" id="FQJ-Ib-NyR"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="DdG-pn-KcG" secondAttribute="trailing" constant="8" id="MNA-by-V0w"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="DdG-pn-KcG" secondAttribute="bottom" constant="8" id="gSB-3e-1M3"/>
+                                                                    <constraint firstItem="DdG-pn-KcG" firstAttribute="top" secondItem="PTE-Q4-Rfn" secondAttribute="top" constant="8" id="v5d-fA-8bS"/>
+                                                                </constraints>
+                                                            </collectionViewCellContentView>
+                                                            <size key="customSize" width="110" height="40"/>
+                                                            <connections>
+                                                                <outlet property="labelView" destination="DdG-pn-KcG" id="nf0-GR-4Cb"/>
+                                                            </connections>
+                                                        </collectionViewCell>
+                                                    </cells>
+                                                </collectionView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="ilw-5q-DuU" firstAttribute="leading" secondItem="72e-jQ-faz" secondAttribute="leading" id="4sL-MY-6dg"/>
+                                                <constraint firstAttribute="trailing" secondItem="nTd-gm-3Gg" secondAttribute="trailing" id="Kwp-6i-zkq"/>
+                                                <constraint firstItem="nTd-gm-3Gg" firstAttribute="top" secondItem="AuA-lz-bMv" secondAttribute="bottom" constant="9" id="LWD-Tj-t0F"/>
                                                 <constraint firstItem="AuA-lz-bMv" firstAttribute="top" secondItem="72e-jQ-faz" secondAttribute="top" id="SHx-9R-Gqs"/>
-                                                <constraint firstItem="ilw-5q-DuU" firstAttribute="top" secondItem="AuA-lz-bMv" secondAttribute="bottom" constant="9" id="iDx-0R-iKH"/>
-                                                <constraint firstAttribute="trailing" secondItem="ilw-5q-DuU" secondAttribute="trailing" id="jiu-hQ-e1p"/>
-                                                <constraint firstAttribute="bottom" secondItem="ilw-5q-DuU" secondAttribute="bottom" constant="10" id="qfL-CV-vUf"/>
+                                                <constraint firstItem="nTd-gm-3Gg" firstAttribute="leading" secondItem="72e-jQ-faz" secondAttribute="leading" id="aM2-IJ-dKU"/>
+                                                <constraint firstAttribute="bottom" secondItem="nTd-gm-3Gg" secondAttribute="bottom" constant="10" id="qtR-78-UXC"/>
                                                 <constraint firstItem="AuA-lz-bMv" firstAttribute="leading" secondItem="72e-jQ-faz" secondAttribute="leading" id="vdv-84-6sF"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <outlet property="containerView" destination="ilw-5q-DuU" id="k3I-FM-Bpa"/>
+                                            <outlet property="collectionView" destination="nTd-gm-3Gg" id="yDC-hk-4lg"/>
                                             <outlet property="titleLabel" destination="AuA-lz-bMv" id="jP9-j0-qus"/>
                                         </connections>
                                     </tableViewCell>

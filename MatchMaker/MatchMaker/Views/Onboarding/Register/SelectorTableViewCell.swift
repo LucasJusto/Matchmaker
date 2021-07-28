@@ -14,8 +14,8 @@ protocol SelectorTableViewCellDelegate: AnyObject {
 class SelectorTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
-    
-    @IBOutlet weak var containerView: UIView!
+        
+    @IBOutlet weak var collectionView: UICollectionView!
     
     weak var delegate: SelectorTableViewCellDelegate?
     
@@ -25,7 +25,6 @@ class SelectorTableViewCell: UITableViewCell {
     
     func setUp(title: String) {
         titleLabel.text = title
-    
     }
     
     @objc func selectTag(sender: UIButton) {
