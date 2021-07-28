@@ -47,7 +47,7 @@ extension OnboardingViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -57,18 +57,14 @@ extension OnboardingViewController: UICollectionViewDelegate, UICollectionViewDa
                 
                 return cell
             
-        } else if indexPath.row == 1 || indexPath.row == 2 {
-        
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OnboardingCollectionViewCell.identifier, for: indexPath) as! OnboardingCollectionViewCell
-
-            cell.setup(onboardingScreens[indexPath.row-1])
-
-            return cell
         }
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PermissionOnboardingCollectionViewCell", for: indexPath)
-            
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OnboardingCollectionViewCell.identifier, for: indexPath) as! OnboardingCollectionViewCell
+
+        cell.setup(onboardingScreens[indexPath.row-1])
+
         return cell
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
