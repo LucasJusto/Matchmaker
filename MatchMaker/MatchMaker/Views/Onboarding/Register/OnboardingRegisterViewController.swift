@@ -21,7 +21,7 @@ class OnboardingRegisterViewController: UIViewController {
 
 extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 6
     }
 
 
@@ -55,47 +55,28 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
             return cell
         }
         
+        if indexPath.row == 4 || indexPath.row == 5 {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "language-cell") else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "selector-cell") as? SelectorTableViewCell else {
+                    return UITableViewCell()
+            }
+            
+            let stringId = indexPath.row == 4 ? "onboarding5LanguagesLabel" : "onboarding5PlatformsLabel"
+            
+            let items = indexPath.row == 4 ? ["English", "Spanish", "Portuguese"] : ["Playstation", "PC", "Xbox", "Mobile"]
+            
+            cell.setUp(title: NSLocalizedString(stringId, comment: "section title"), items: items)
+            
+            return cell
+        }
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "selector-cell") else {
                 return UITableViewCell()
         }
         
         return cell
-        
     }
 
 
 
-}
-
-@IBDesignable
-class FormTextField: UITextField {
-
-    @IBInspectable var borderColor: UIColor? {
-        didSet {
-            layer.borderColor = borderColor?.cgColor
-        }
-    }
-
-    @IBInspectable var borderWidth: CGFloat = 0 {
-        didSet {
-            layer.borderWidth = borderWidth
-        }
-    }
-}
-
-@IBDesignable
-class TextViewField: UITextView {
-
-    @IBInspectable var borderColor: UIColor? {
-        didSet {
-            layer.borderColor = borderColor?.cgColor
-        }
-    }
-
-    @IBInspectable var borderWidth: CGFloat = 0 {
-        didSet {
-            layer.borderWidth = borderWidth
-        }
-    }
 }

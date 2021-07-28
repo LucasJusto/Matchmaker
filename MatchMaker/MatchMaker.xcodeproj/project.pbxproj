@@ -24,6 +24,10 @@
 		89A9130426AA6F0500D3B1D2 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A9130326AA6F0500D3B1D2 /* OnboardingCollectionViewCell.swift */; };
 		89A9130726AA6FEF00D3B1D2 /* OnboardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A9130626AA6FEF00D3B1D2 /* OnboardingScreen.swift */; };
 		89AC95B426B076BF00EC92F6 /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AC95B326B076BF00EC92F6 /* TextFieldTableViewCell.swift */; };
+		89AC95B626B09B9C00EC92F6 /* SelectorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AC95B526B09B9C00EC92F6 /* SelectorTableViewCell.swift */; };
+		89AC95B926B09E0F00EC92F6 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AC95B826B09E0F00EC92F6 /* FormTextField.swift */; };
+		89AC95BB26B09E3300EC92F6 /* TextViewField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AC95BA26B09E3300EC92F6 /* TextViewField.swift */; };
+		89AC95BD26B0A79F00EC92F6 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AC95BC26B0A79F00EC92F6 /* String+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +50,10 @@
 		89A9130326AA6F0500D3B1D2 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
 		89A9130626AA6FEF00D3B1D2 /* OnboardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScreen.swift; sourceTree = "<group>"; };
 		89AC95B326B076BF00EC92F6 /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		89AC95B526B09B9C00EC92F6 /* SelectorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectorTableViewCell.swift; sourceTree = "<group>"; };
+		89AC95B826B09E0F00EC92F6 /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
+		89AC95BA26B09E3300EC92F6 /* TextViewField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewField.swift; sourceTree = "<group>"; };
+		89AC95BC26B0A79F00EC92F6 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +86,7 @@
 		489555DC26A76AC1005F88A2 /* MatchMaker */ = {
 			isa = PBXGroup;
 			children = (
+				89AC95B726B09DEC00EC92F6 /* IBDesignables */,
 				895A604C26AB486A00BE18C9 /* Extensions */,
 				89A9130526AA6FD600D3B1D2 /* Models */,
 				892FE5CD26A9EC8E004B4F7F /* Views */,
@@ -107,6 +116,7 @@
 				895A604D26AB48C300BE18C9 /* UIView+Extensions.swift */,
 				895A604F26AB56A100BE18C9 /* UILabel+Extensions.swift */,
 				895A605126AB5D5200BE18C9 /* UIButton+Extensions.swift */,
+				89AC95BC26B0A79F00EC92F6 /* String+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -117,6 +127,7 @@
 				895A605A26AF43B300BE18C9 /* OnboardingRegisterViewController.swift */,
 				895A605C26AF556400BE18C9 /* ProfileImageTableViewCell.swift */,
 				89AC95B326B076BF00EC92F6 /* TextFieldTableViewCell.swift */,
+				89AC95B526B09B9C00EC92F6 /* SelectorTableViewCell.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -138,6 +149,15 @@
 				89A9130626AA6FEF00D3B1D2 /* OnboardingScreen.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		89AC95B726B09DEC00EC92F6 /* IBDesignables */ = {
+			isa = PBXGroup;
+			children = (
+				89AC95B826B09E0F00EC92F6 /* FormTextField.swift */,
+				89AC95BA26B09E3300EC92F6 /* TextViewField.swift */,
+			);
+			path = IBDesignables;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,10 +233,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				489555E226A76AC1005F88A2 /* ViewController.swift in Sources */,
+				89AC95BB26B09E3300EC92F6 /* TextViewField.swift in Sources */,
 				895A604E26AB48C300BE18C9 /* UIView+Extensions.swift in Sources */,
 				489555DE26A76AC1005F88A2 /* AppDelegate.swift in Sources */,
+				89AC95BD26B0A79F00EC92F6 /* String+Extensions.swift in Sources */,
+				89AC95B926B09E0F00EC92F6 /* FormTextField.swift in Sources */,
 				89AC95B426B076BF00EC92F6 /* TextFieldTableViewCell.swift in Sources */,
 				895A605D26AF556400BE18C9 /* ProfileImageTableViewCell.swift in Sources */,
+				89AC95B626B09B9C00EC92F6 /* SelectorTableViewCell.swift in Sources */,
 				89A9130726AA6FEF00D3B1D2 /* OnboardingScreen.swift in Sources */,
 				895A605B26AF43B300BE18C9 /* OnboardingRegisterViewController.swift in Sources */,
 				895A605226AB5D5200BE18C9 /* UIButton+Extensions.swift in Sources */,
