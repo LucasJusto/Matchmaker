@@ -23,8 +23,15 @@ class GameDetailViewController: UIViewController {
     @IBOutlet weak var PCImage: UIImageView!
     @IBOutlet weak var MobileImage: UIImageView!
     
+    // Butttons
+    @IBOutlet weak var FindPlayersButton: UIButton!
+    @IBOutlet weak var AddToMyGamesButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        FindPlayersButton.cornerRadius = 10
+        AddToMyGamesButton.cornerRadius = 10
         
         // Game info
         GameImage.image = game.image
@@ -32,14 +39,14 @@ class GameDetailViewController: UIViewController {
         GameDescription.text = game.description
         for platform in game.platforms {
             switch(platform) {
-            case .PC:
-                PCImage.image = UIImage(named: "PC_selected")
-            case .PlayStation:
-                PlaystationImage.image = UIImage(named: "Play_selected")
-            case .Xbox:
-                XboxImage.image = UIImage(named: "Xbox_selected")
-            case .Mobile:
-                MobileImage.image = UIImage(named: "Mobile_selected")
+                case .PC:
+                    PCImage.image = UIImage(named: "PC_selected")
+                case .PlayStation:
+                    PlaystationImage.image = UIImage(named: "Play_selected")
+                case .Xbox:
+                    XboxImage.image = UIImage(named: "Xbox_selected")
+                case .Mobile:
+                    MobileImage.image = UIImage(named: "Mobile_selected")
             }
         }
     }

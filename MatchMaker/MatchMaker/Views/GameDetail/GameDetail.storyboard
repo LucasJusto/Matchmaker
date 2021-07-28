@@ -212,6 +212,8 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="390" height="1400"/>
                     <connections>
+                        <outlet property="AddToMyGamesButton" destination="Ngm-dr-XyX" id="MLf-Cn-RP7"/>
+                        <outlet property="FindPlayersButton" destination="lqH-bf-PfT" id="boU-or-bcQ"/>
                         <outlet property="GameDescription" destination="Wc9-Zq-fxI" id="UX8-xc-KYR"/>
                         <outlet property="GameImage" destination="pce-lc-GXc" id="Dwf-ee-iRu"/>
                         <outlet property="GameTitle" destination="IFG-WF-c1t" id="Lpy-UG-Eae"/>
