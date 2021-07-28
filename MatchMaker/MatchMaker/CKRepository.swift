@@ -181,7 +181,6 @@ public class CKRepository {
                         let gameSelectedServersString = userGame.value(forKey: UserGamesTable.selectedServers.description) as! [String]
                         var gameSelectedServers: [Servers] = [Servers]()
                         
-                        //crime \/
                         for g in gameSelectedServersString {
                             if let sv = allGames[gameId].serverType?.getServer(server: g) {
                                 gameSelectedServers.append(sv)
