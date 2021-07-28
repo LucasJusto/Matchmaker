@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -39,7 +38,7 @@
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.triangle.2.circlepath.camera" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Z5n-Jm-eBH">
                     <rect key="frame" x="98" y="95.5" width="15" height="15"/>
-                    <color key="tintColor" systemColor="labelColor"/>
+                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="17" id="KIr-ey-C5p"/>
                         <constraint firstAttribute="width" constant="15" id="qIo-xw-52i"/>
@@ -64,8 +63,5 @@
     </objects>
     <resources>
         <image name="arrow.triangle.2.circlepath.camera" catalog="system" width="128" height="94"/>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>
