@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		482505B726B081F900032C87 /* GameServers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4893E4B526B07E6400F3FEC1 /* GameServers.swift */; };
+		48763E1B26AB3BF4000618D8 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48763E1A26AB3BF4000618D8 /* UserModel.swift */; };
+		48763E1D26AB495B000618D8 /* CKRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48763E1C26AB495B000618D8 /* CKRepository.swift */; };
+		4893E4B426B07E2D00F3FEC1 /* Games.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4893E4B326B07E2D00F3FEC1 /* Games.swift */; };
 		489555DE26A76AC1005F88A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489555DD26A76AC1005F88A2 /* AppDelegate.swift */; };
 		489555E026A76AC1005F88A2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489555DF26A76AC1005F88A2 /* SceneDelegate.swift */; };
 		489555E226A76AC1005F88A2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489555E126A76AC1005F88A2 /* ViewController.swift */; };
@@ -14,6 +18,7 @@
 		489555E726A76AC3005F88A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 489555E626A76AC3005F88A2 /* Assets.xcassets */; };
 		489555EA26A76AC3005F88A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 489555E826A76AC3005F88A2 /* LaunchScreen.storyboard */; };
 		892A642C26B1D90D00B375CC /* SelectableTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892A642B26B1D90D00B375CC /* SelectableTagCollectionViewCell.swift */; };
+		489555F426A9F493005F88A2 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 489555F326A9F493005F88A2 /* CloudKit.framework */; };
 		892FE5BF26A9E345004B4F7F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 892FE5C126A9E345004B4F7F /* Localizable.strings */; };
 		892FE5DD26AA010A004B4F7F /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 892FE5DC26AA010A004B4F7F /* Onboarding.storyboard */; };
 		895A604E26AB48C300BE18C9 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895A604D26AB48C300BE18C9 /* UIView+Extensions.swift */; };
@@ -32,6 +37,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		48763E1A26AB3BF4000618D8 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		48763E1C26AB495B000618D8 /* CKRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKRepository.swift; sourceTree = "<group>"; };
+		4893E4B326B07E2D00F3FEC1 /* Games.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Games.swift; sourceTree = "<group>"; };
+		4893E4B526B07E6400F3FEC1 /* GameServers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameServers.swift; sourceTree = "<group>"; };
 		489555DA26A76AC1005F88A2 /* MatchMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MatchMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		489555DD26A76AC1005F88A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		489555DF26A76AC1005F88A2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +50,8 @@
 		489555E926A76AC3005F88A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		489555EB26A76AC3005F88A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		892A642B26B1D90D00B375CC /* SelectableTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableTagCollectionViewCell.swift; sourceTree = "<group>"; };
+		489555F126A9F47A005F88A2 /* MatchMaker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MatchMaker.entitlements; sourceTree = "<group>"; };
+		489555F326A9F493005F88A2 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		892FE5C026A9E345004B4F7F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		892FE5DC26AA010A004B4F7F /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		895A604D26AB48C300BE18C9 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
@@ -63,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				489555F426A9F493005F88A2 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +86,7 @@
 			children = (
 				489555DC26A76AC1005F88A2 /* MatchMaker */,
 				489555DB26A76AC1005F88A2 /* Products */,
+				489555F226A9F493005F88A2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -89,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				89AC95B726B09DEC00EC92F6 /* IBDesignables */,
+				489555F126A9F47A005F88A2 /* MatchMaker.entitlements */,
 				895A604C26AB486A00BE18C9 /* Extensions */,
 				89A9130526AA6FD600D3B1D2 /* Models */,
 				892FE5CD26A9EC8E004B4F7F /* Views */,
@@ -100,8 +114,20 @@
 				489555E826A76AC3005F88A2 /* LaunchScreen.storyboard */,
 				489555EB26A76AC3005F88A2 /* Info.plist */,
 				892FE5C126A9E345004B4F7F /* Localizable.strings */,
+				48763E1A26AB3BF4000618D8 /* UserModel.swift */,
+				48763E1C26AB495B000618D8 /* CKRepository.swift */,
+				4893E4B326B07E2D00F3FEC1 /* Games.swift */,
+				4893E4B526B07E6400F3FEC1 /* GameServers.swift */,
 			);
 			path = MatchMaker;
+			sourceTree = "<group>";
+		};
+		489555F226A9F493005F88A2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				489555F326A9F493005F88A2 /* CloudKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		892FE5CD26A9EC8E004B4F7F /* Views */ = {
@@ -245,6 +271,12 @@
 				89AC95B426B076BF00EC92F6 /* TextFieldTableViewCell.swift in Sources */,
 				895A605D26AF556400BE18C9 /* ProfileImageTableViewCell.swift in Sources */,
 				89AC95B626B09B9C00EC92F6 /* SelectorTableViewCell.swift in Sources */,
+				4893E4B426B07E2D00F3FEC1 /* Games.swift in Sources */,
+				895A604E26AB48C300BE18C9 /* UIView+Extension.swift in Sources */,
+				482505B726B081F900032C87 /* GameServers.swift in Sources */,
+				489555DE26A76AC1005F88A2 /* AppDelegate.swift in Sources */,
+				48763E1B26AB3BF4000618D8 /* UserModel.swift in Sources */,
+				48763E1D26AB495B000618D8 /* CKRepository.swift in Sources */,
 				89A9130726AA6FEF00D3B1D2 /* OnboardingScreen.swift in Sources */,
 				895A605B26AF43B300BE18C9 /* OnboardingRegisterViewController.swift in Sources */,
 				895A605226AB5D5200BE18C9 /* UIButton+Extensions.swift in Sources */,
@@ -406,8 +438,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MatchMaker/MatchMaker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7UW5874D4F;
+				DEVELOPMENT_TEAM = 6GD2RK7JQN;
 				INFOPLIST_FILE = MatchMaker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -425,8 +458,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MatchMaker/MatchMaker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7UW5874D4F;
+				DEVELOPMENT_TEAM = 6GD2RK7JQN;
 				INFOPLIST_FILE = MatchMaker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
