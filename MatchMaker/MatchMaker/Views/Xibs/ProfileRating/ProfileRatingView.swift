@@ -19,6 +19,21 @@ import UIKit
         contentView.layer.cornerCurve = .continuous
         contentView.layer.borderWidth = 2
         contentView.layer.borderColor = UIColor(named: "Primary")?.cgColor
+
+        contentView.accessibilityIgnoresInvertColors = true
+        
+        NotificationCenter.default.addObserver(forName: UIAccessibility.invertColorsStatusDidChangeNotification, object: nil, queue: OperationQueue.main) { [weak self] _ in
+            if UIAccessibility.isInvertColorsEnabled {
+                self?.ratingLabel.textColor = .black
+                self?.categoryOfRatingLabel.textColor = .black
+                self?.amountOfReviewsLabel.textColor = .black
+            }
+            else {
+                self?.ratingLabel.textColor = .white
+                self?.categoryOfRatingLabel.textColor = .white
+                self?.amountOfReviewsLabel.textColor = .white
+            }
+        }
     }
     
     override init (frame: CGRect) {

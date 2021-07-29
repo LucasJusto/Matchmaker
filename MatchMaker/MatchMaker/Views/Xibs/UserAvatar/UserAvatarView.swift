@@ -23,6 +23,9 @@ import UIKit
         buttonBackground.layer.masksToBounds = true
         buttonBackground.layer.cornerRadius = 13
         buttonBackground.layer.cornerCurve = .circular
+        
+        
+        contentImage.accessibilityIgnoresInvertColors = true
     }
     
     required init?(coder: NSCoder) {

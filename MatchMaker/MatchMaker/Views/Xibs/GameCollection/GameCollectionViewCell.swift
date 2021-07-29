@@ -11,4 +11,9 @@ class GameCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var contentImage: UIImageView!
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        contentImage.accessibilityIgnoresInvertColors = true
+    }
 }

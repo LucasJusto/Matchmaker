@@ -9,9 +9,12 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
+    @IBOutlet weak var backgroundCoverImage: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        backgroundCoverImage.accessibilityIgnoresInvertColors = true
     }
 
 }

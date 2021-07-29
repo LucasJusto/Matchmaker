@@ -197,6 +197,9 @@
                     <tabBarItem key="tabBarItem" title="Profile" image="person.circle.fill" catalog="system" id="sAw-ri-8XU"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <size key="freeformSize" width="414" height="1200"/>
+                    <connections>
+                        <outlet property="backgroundCoverImage" destination="wwI-PQ-nfS" id="LlN-Lk-vjM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
