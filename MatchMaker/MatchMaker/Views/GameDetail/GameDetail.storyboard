@@ -217,7 +217,9 @@
                         <outlet property="GameImage" destination="pce-lc-GXc" id="Dwf-ee-iRu"/>
                         <outlet property="GameTitle" destination="IFG-WF-c1t" id="Lpy-UG-Eae"/>
                         <outlet property="MobileImage" destination="UHJ-bG-pch" id="2BF-nw-6re"/>
+                        <outlet property="OtherGamesLabel" destination="dmB-Cs-ghv" id="OFE-AY-efr"/>
                         <outlet property="PCImage" destination="ki7-ek-YGi" id="cyK-LP-lRN"/>
+                        <outlet property="PlatformsLabel" destination="j55-wr-Biw" id="ank-4h-3MG"/>
                         <outlet property="PlaystationImage" destination="TwD-Fn-4Fr" id="LT6-Mq-TfI"/>
                         <outlet property="XboxImage" destination="B2q-ce-fHm" id="kj3-Ee-vC7"/>
                     </connections>
