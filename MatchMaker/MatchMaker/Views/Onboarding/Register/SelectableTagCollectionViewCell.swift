@@ -11,4 +11,6 @@ class SelectableTagCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var labelView: UILabel!
     
+    @IBOutlet weak var containerView: UIView!
+    
 }

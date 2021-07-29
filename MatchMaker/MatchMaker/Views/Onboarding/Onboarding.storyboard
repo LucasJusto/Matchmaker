@@ -145,24 +145,24 @@
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="PermissionOnboardingCollectionViewCell" id="9Ti-Ea-bjO">
                                         <rect key="frame" x="858" y="0.0" width="412" height="892"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="byR-Vf-Ya3">
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="byR-Vf-Ya3">
                                             <rect key="frame" x="0.0" y="0.0" width="412" height="892"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="57" translatesAutoresizingMaskIntoConstraints="NO" id="zke-br-M2d">
+                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="57" translatesAutoresizingMaskIntoConstraints="NO" id="zke-br-M2d">
                                                     <rect key="frame" x="91.5" y="299" width="229" height="294.5"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nuvem_dados" translatesAutoresizingMaskIntoConstraints="NO" id="Fpl-gM-CB2">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="nuvem_dados" translatesAutoresizingMaskIntoConstraints="NO" id="Fpl-gM-CB2">
                                                             <rect key="frame" x="0.0" y="0.0" width="229" height="150"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="229" id="haT-28-i1f"/>
                                                                 <constraint firstAttribute="height" constant="150" id="jb1-14-i1g"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="2z1-0v-kMa">
+                                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="2z1-0v-kMa">
                                                             <rect key="frame" x="0.0" y="207" width="229" height="87.5"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="onboarding4Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B2v-56-euU" customClass="LocalizableLabel" customModule="MatchMaker" customModuleProvider="target">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="onboarding4Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B2v-56-euU" customClass="LocalizableLabel" customModule="MatchMaker" customModuleProvider="target">
                                                                     <rect key="frame" x="26.5" y="0.0" width="176" height="19.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -172,7 +172,7 @@
                                                                         <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="onboarding4Description"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uV3-Qi-61W" customClass="LocalizableButtonLabel" customModule="MatchMaker" customModuleProvider="target">
+                                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uV3-Qi-61W" customClass="LocalizableButtonLabel" customModule="MatchMaker" customModuleProvider="target">
                                                                     <rect key="frame" x="34.5" y="49.5" width="160" height="38"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
@@ -457,7 +457,6 @@
                                                 </label>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nTd-gm-3Gg">
                                                     <rect key="frame" x="0.0" y="63" width="382" height="40"/>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="e4v-mu-aEv"/>
                                                     </constraints>
@@ -475,23 +474,42 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="110" height="40"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DdG-pn-KcG">
-                                                                        <rect key="frame" x="8" y="8" width="94" height="24"/>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A5D-ll-9Hx">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="110" height="40"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DdG-pn-KcG">
+                                                                                <rect key="frame" x="20" y="10" width="70" height="20"/>
+                                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
                                                                         <color key="backgroundColor" name="Primary"/>
-                                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
+                                                                        <constraints>
+                                                                            <constraint firstItem="DdG-pn-KcG" firstAttribute="top" secondItem="A5D-ll-9Hx" secondAttribute="top" constant="10" id="78i-kO-C9S"/>
+                                                                            <constraint firstItem="DdG-pn-KcG" firstAttribute="leading" secondItem="A5D-ll-9Hx" secondAttribute="leading" constant="20" id="GHq-rd-PPi"/>
+                                                                            <constraint firstItem="DdG-pn-KcG" firstAttribute="centerX" secondItem="A5D-ll-9Hx" secondAttribute="centerX" id="Rxm-sC-Qf9"/>
+                                                                            <constraint firstItem="DdG-pn-KcG" firstAttribute="centerY" secondItem="A5D-ll-9Hx" secondAttribute="centerY" id="cTk-av-x9s"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="DdG-pn-KcG" secondAttribute="bottom" constant="10" id="jPj-St-KDQ"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="DdG-pn-KcG" secondAttribute="trailing" constant="20" id="p8a-4o-41i"/>
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                                <real key="value" value="8"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </view>
                                                                 </subviews>
                                                                 <constraints>
-                                                                    <constraint firstItem="DdG-pn-KcG" firstAttribute="leading" secondItem="PTE-Q4-Rfn" secondAttribute="leading" constant="8" id="FQJ-Ib-NyR"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="DdG-pn-KcG" secondAttribute="trailing" constant="8" id="MNA-by-V0w"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="DdG-pn-KcG" secondAttribute="bottom" constant="8" id="gSB-3e-1M3"/>
-                                                                    <constraint firstItem="DdG-pn-KcG" firstAttribute="top" secondItem="PTE-Q4-Rfn" secondAttribute="top" constant="8" id="v5d-fA-8bS"/>
+                                                                    <constraint firstItem="A5D-ll-9Hx" firstAttribute="top" secondItem="PTE-Q4-Rfn" secondAttribute="top" id="ACf-yT-l2K"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="A5D-ll-9Hx" secondAttribute="bottom" id="Yx6-EH-ZtW"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="A5D-ll-9Hx" secondAttribute="trailing" id="bWN-ub-5SJ"/>
+                                                                    <constraint firstItem="A5D-ll-9Hx" firstAttribute="leading" secondItem="PTE-Q4-Rfn" secondAttribute="leading" id="idx-dF-boA"/>
                                                                 </constraints>
                                                             </collectionViewCellContentView>
                                                             <size key="customSize" width="110" height="40"/>
                                                             <connections>
+                                                                <outlet property="containerView" destination="A5D-ll-9Hx" id="7JP-gk-GoR"/>
                                                                 <outlet property="labelView" destination="DdG-pn-KcG" id="nf0-GR-4Cb"/>
                                                             </connections>
                                                         </collectionViewCell>

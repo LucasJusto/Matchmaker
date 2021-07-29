@@ -40,15 +40,14 @@ class OnboardingRegisterViewController: UIViewController {
     
     typealias TagOption = (option: String, isFavorite: Bool)
     
-    typealias TagCategory = (category: OnboardingTagCategory, tagOptions: [TagOption])
-    
     var selectedTags: [String] = [] {
         didSet {
             print(selectedTags)
         }
     }
     
-    var tagCategories: [TagCategory] = []
+    var tagLanguages: [TagOption] = []
+    var tagPlatforms: [TagOption] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,12 +69,12 @@ class OnboardingRegisterViewController: UIViewController {
             switch category {
                 
                 case .languages:
-                    let tagCategory = TagCategory(category: category, tagOptions: supportedLanguages.map { TagOption(option: $0, isFavorite: false) })
-                    tagCategories.append(tagCategory)
+                    let tagLanguages = supportedLanguages.map { TagOption(option: $0, isFavorite: false) }
+                    self.tagLanguages = tagLanguages
                     
                 case .platforms:
-                    let tagCategory = TagCategory(category: category, tagOptions: supportedPlatforms.map { TagOption(option: $0, isFavorite: false) })
-                    tagCategories.append(tagCategory)
+                    let tagPlatforms = supportedPlatforms.map { TagOption(option: $0, isFavorite: false) }
+                    self.tagPlatforms = tagPlatforms
             }
         }
     }
@@ -102,12 +101,9 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
                 
             case .descriptionField: return textViewCell()
                 
-            case .languages: return selectorCell(titleKey: "onboarding5LanguagesLabel", tag: onboardingField.rawValue) ?? defaultCell
+            case .languages: return selectorCell(titleKey: "onboarding5LanguagesLabel", tag: OnboardingTagCategory.languages.rawValue) ?? defaultCell
                     
-            case .platforms: return selectorCell(titleKey: "onboarding5PlatformsLabel", tag: onboardingField.rawValue) ?? defaultCell
-                
-            default:
-                return defaultCell
+            case .platforms: return selectorCell(titleKey: "onboarding5PlatformsLabel", tag: OnboardingTagCategory.platforms.rawValue) ?? defaultCell
         }
     }
     
@@ -143,7 +139,6 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "selector-cell") as? SelectorTableViewCell
         
-        cell?.delegate = self
         cell?.collectionView.delegate = self
         cell?.collectionView.dataSource = self
         cell?.collectionView.tag = tag
@@ -156,53 +151,39 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
     }
 }
 
-extension OnboardingRegisterViewController: SelectorTableViewCellDelegate {
-    
-    func didTapTag(button: UIButton, sender: UITableViewCell) {
-        
-        let indexPath = tableView.indexPath(for: sender)
-        tableView.reloadRows(at: [indexPath!], with: .fade)
-        
-        if let title = button.title(for: .normal) {
-        
-            if let index = selectedTags.firstIndex(of: title) {
-                selectedTags.remove(at: index)
-            } else {
-                selectedTags.append(title)
-            }
-        }
-    }
-    
-}
-
 extension OnboardingRegisterViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
+        guard let onboardingTagCategory = OnboardingTagCategory(rawValue: collectionView.tag) else {
+            return 0
+        }
         
-        
-//        switch tagCategories {
-//            case 0: return supportedLanguages.count
-//            case 1: return supportedPlatforms.count
-//            default: return 0
-//        }
-
+        switch onboardingTagCategory {
+            case .languages: return tagLanguages.count
+            case .platforms: return tagPlatforms.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "selectable-tag-cell", for: indexPath) as! SelectableTagCollectionViewCell
         
-        switch collectionView.tag {
-            case 0:
-                let supportedLanguage = supportedLanguages[indexPath.row]
-                collectionCell.labelView.text = supportedLanguage
+        guard let onboardingTagCategory = OnboardingTagCategory(rawValue: collectionView.tag) else {
+            return UICollectionViewCell()
+        }
+        
+        switch onboardingTagCategory {
+            case .languages:
+                let supportedLanguage = tagLanguages[indexPath.row]
+                collectionCell.labelView.text = supportedLanguage.option
+                collectionCell.containerView.backgroundColor = supportedLanguage.isFavorite ? UIColor(named: "Primary") : .clear
+
                 
-            case 1:
-                let supportedPlatform = supportedPlatforms[indexPath.row]
-                collectionCell.labelView.text = supportedPlatform
-            
-            default: break
+            case .platforms:
+                let supportedPlatform = tagPlatforms[indexPath.row]
+                collectionCell.labelView.text = supportedPlatform.option
+                collectionCell.containerView.backgroundColor = supportedPlatform.isFavorite ? UIColor(named: "Primary") : .clear
         }
                 
         return collectionCell
@@ -210,8 +191,21 @@ extension OnboardingRegisterViewController: UICollectionViewDelegate, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let model = "indexpath: \(indexPath.row)"
+        guard let onboardingTagCategory = OnboardingTagCategory(rawValue: collectionView.tag) else {
+            return CGSize(width: 0, height: 0)
+        }
         
+        var model: String
+        
+        switch onboardingTagCategory {
+            case .languages:
+                model = tagLanguages[indexPath.row].option
+
+            case .platforms:
+                model = tagPlatforms[indexPath.row].option
+        }
+        
+                
         let modelSize = model.size(withAttributes: nil)
         
         let size = CGSize(width: modelSize.width, height: collectionView.bounds.height)
@@ -219,5 +213,19 @@ extension OnboardingRegisterViewController: UICollectionViewDelegate, UICollecti
         return size
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        guard let onboardingTagCategory = OnboardingTagCategory(rawValue: collectionView.tag) else {
+            return
+        }
+        
+        switch onboardingTagCategory {
+            case .languages:
+                tagLanguages[indexPath.row].isFavorite.toggle()
+            case .platforms:
+                tagPlatforms[indexPath.row].isFavorite.toggle()
+        }
+        
+        collectionView.reloadItems(at: [indexPath])
+    }
 }
