@@ -9,31 +9,40 @@ import UIKit
 
 @IBDesignable class ProfileRatingView: UIView, NibLoadable {
     @IBOutlet var contentView: UIView!
+    
+    @IBOutlet weak var backgroundView: UIView!
+    
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var categoryOfRatingLabel: UILabel!
     @IBOutlet weak var amountOfReviewsLabel: UILabel!
     
     override func awakeFromNib() {
-        contentView.layer.masksToBounds = true
-        contentView.layer.cornerRadius = 10
-        contentView.layer.cornerCurve = .continuous
-        contentView.layer.borderWidth = 2
-        contentView.layer.borderColor = UIColor(named: "Primary")?.cgColor
+        backgroundView.layer.masksToBounds = true
+        backgroundView.layer.cornerRadius = 10
+        backgroundView.layer.cornerCurve = .continuous
+        backgroundView.layer.borderWidth = 2
+        backgroundView.layer.borderColor = UIColor(named: "Primary")?.cgColor
 
-        contentView.accessibilityIgnoresInvertColors = true
+        backgroundView.accessibilityIgnoresInvertColors = true
         
-        NotificationCenter.default.addObserver(forName: UIAccessibility.invertColorsStatusDidChangeNotification, object: nil, queue: OperationQueue.main) { [weak self] _ in
-            if UIAccessibility.isInvertColorsEnabled {
-                self?.ratingLabel.textColor = .black
-                self?.categoryOfRatingLabel.textColor = .black
-                self?.amountOfReviewsLabel.textColor = .black
-            }
-            else {
-                self?.ratingLabel.textColor = .white
-                self?.categoryOfRatingLabel.textColor = .white
-                self?.amountOfReviewsLabel.textColor = .white
-            }
-        }
+        setDynamicTypes()
+        
+    }
+    
+    func setDynamicTypes(){
+        let bodyMetrics = UIFontMetrics(forTextStyle: .body)
+        
+        let categoryLabelFont = UIFont.systemFont(ofSize: 13, weight: .regular)
+        let amountOfReviewsFont = UIFont.systemFont(ofSize: 8, weight: .regular)
+        
+        let scaledCategoryLabelFont = bodyMetrics.scaledFont(for: categoryLabelFont)
+        let scaledAmountOfReviewsFont = bodyMetrics.scaledFont(for: amountOfReviewsFont)
+        
+        categoryOfRatingLabel.font = scaledCategoryLabelFont
+        categoryOfRatingLabel.adjustsFontForContentSizeCategory = true
+        
+        amountOfReviewsLabel.font = scaledAmountOfReviewsFont
+        amountOfReviewsLabel.adjustsFontForContentSizeCategory = true
     }
     
     override init (frame: CGRect) {

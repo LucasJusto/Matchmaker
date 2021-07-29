@@ -11,10 +11,60 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var backgroundCoverImage: UIImageView!
     
+    
+    @IBOutlet weak var userProfileNameLabel: UILabel!
+    @IBOutlet weak var userProfileGamertagLabel: UILabel!
+    @IBOutlet weak var userProfileBioLabel: UILabel!
+    
+    @IBOutlet weak var ratingsTitleLabel: UILabel!
+    @IBOutlet weak var platformsTitleLabel: UILabel!
+    @IBOutlet weak var languagesTitleLabel: UILabel!
+    @IBOutlet weak var gamesTitleLabel: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         backgroundCoverImage.accessibilityIgnoresInvertColors = true
+        dynamicTypesFontConfig()
+    }
+    
+    func dynamicTypesFontConfig() {
+        let headlineMetrics = UIFontMetrics(forTextStyle: .headline)
+        let calloutMetrics = UIFontMetrics(forTextStyle: .callout)
+        let bodyMetrics = UIFontMetrics(forTextStyle: .body)
+        let title1Metrics = UIFontMetrics(forTextStyle: .title1)
+        
+        let userProfileNameFont = UIFont.systemFont(ofSize: 22, weight: .bold)
+        let userGamertagFont = UIFont.systemFont(ofSize: 9, weight: .light)
+        let userProfileBioFont = UIFont.systemFont(ofSize: 13, weight: .light)
+        let sectionTitlesFont = UIFont.systemFont(ofSize: 22, weight: .bold)
+        
+        let scaledUserProfileNameFont = headlineMetrics.scaledFont(for: userProfileNameFont)
+        let scaledUserGamertagFont = calloutMetrics.scaledFont(for: userGamertagFont)
+        let scaledProfileBioFont = bodyMetrics.scaledFont(for: userProfileBioFont)
+        let scaledSectionTitle1Font = title1Metrics.scaledFont(for: sectionTitlesFont)
+        
+        userProfileNameLabel.font = scaledUserProfileNameFont
+        userProfileNameLabel.adjustsFontForContentSizeCategory = true
+        
+        userProfileGamertagLabel.font = scaledUserGamertagFont
+        userProfileGamertagLabel.adjustsFontForContentSizeCategory = true
+        
+        userProfileBioLabel.font = scaledProfileBioFont
+        userProfileBioLabel.adjustsFontForContentSizeCategory = true
+        
+        ratingsTitleLabel.font = scaledSectionTitle1Font
+        ratingsTitleLabel.adjustsFontForContentSizeCategory = true
+        
+        platformsTitleLabel.font = scaledSectionTitle1Font
+        platformsTitleLabel.adjustsFontForContentSizeCategory = true
+        
+        languagesTitleLabel.font = scaledSectionTitle1Font
+        languagesTitleLabel.adjustsFontForContentSizeCategory = true
+        
+        gamesTitleLabel.font = scaledSectionTitle1Font
+        gamesTitleLabel.adjustsFontForContentSizeCategory = true
     }
 
 }
