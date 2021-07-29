@@ -79,17 +79,17 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="44" translatesAutoresizingMaskIntoConstraints="NO" id="fUF-2k-7o7">
-                                                <rect key="frame" x="20" y="370.5" width="374" height="123"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fUF-2k-7o7">
+                                                <rect key="frame" x="20" y="374.5" width="374" height="150"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CuB-pu-WlP" customClass="ProfileRatingView" customModule="MatchMaker" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="165" height="123"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="182" height="150"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="123" id="yXk-qO-9Ga"/>
+                                                            <constraint firstAttribute="height" constant="150" id="yXk-qO-9Ga"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u4L-27-qBv" customClass="ProfileRatingView" customModule="MatchMaker" customModuleProvider="target">
-                                                        <rect key="frame" x="209" y="0.0" width="165" height="123"/>
+                                                        <rect key="frame" x="192" y="0.0" width="182" height="150"/>
                                                     </view>
                                                 </subviews>
                                                 <constraints>
@@ -97,37 +97,37 @@
                                                 </constraints>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Platforms" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="thb-ZM-4ut">
-                                                <rect key="frame" x="20" y="509.5" width="108.5" height="29"/>
+                                                <rect key="frame" x="20" y="540.5" width="108.5" height="29"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E8i-Ta-eaW" customClass="PlatformCollectionView" customModule="MatchMaker" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="554.5" width="374" height="40"/>
+                                                <rect key="frame" x="20" y="585.5" width="374" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="ecn-5l-opr"/>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Languages" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Y3-gy-gw2">
-                                                <rect key="frame" x="20" y="610.5" width="124" height="29"/>
+                                                <rect key="frame" x="20" y="641.5" width="124" height="29"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0NT-h4-Gv2" customClass="LanguageCollectionView" customModule="MatchMaker" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="655.5" width="374" height="50"/>
+                                                <rect key="frame" x="20" y="686.5" width="374" height="20"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="d3f-cD-MHI"/>
+                                                    <constraint firstAttribute="height" constant="20" id="d3f-cD-MHI"/>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Games" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nlr-sj-B2L">
-                                                <rect key="frame" x="20" y="721.5" width="134.5" height="29"/>
+                                                <rect key="frame" x="20" y="722.5" width="134.5" height="29"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jpy-L5-jRJ" customClass="GameCollectionView" customModule="MatchMaker" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="766.5" width="414" height="165"/>
+                                                <rect key="frame" x="0.0" y="767.5" width="414" height="165"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="165" id="pUs-mv-27J"/>
@@ -169,7 +169,7 @@
                                             <constraint firstItem="thb-ZM-4ut" firstAttribute="top" secondItem="fUF-2k-7o7" secondAttribute="bottom" constant="16" id="sbi-uX-cqT"/>
                                             <constraint firstItem="jpy-L5-jRJ" firstAttribute="leading" secondItem="zxB-LB-83o" secondAttribute="leading" id="tNb-Ew-NZq"/>
                                             <constraint firstAttribute="trailing" secondItem="jpy-L5-jRJ" secondAttribute="trailing" id="uHb-91-Wmu"/>
-                                            <constraint firstItem="fUF-2k-7o7" firstAttribute="top" secondItem="Iri-UU-lvc" secondAttribute="bottom" constant="8" id="uzU-5i-H1v"/>
+                                            <constraint firstItem="fUF-2k-7o7" firstAttribute="top" secondItem="Iri-UU-lvc" secondAttribute="bottom" constant="12" id="uzU-5i-H1v"/>
                                             <constraint firstAttribute="trailing" secondItem="wwI-PQ-nfS" secondAttribute="trailing" id="vXE-IC-Wly"/>
                                         </constraints>
                                     </view>
