@@ -46,8 +46,6 @@ import UIKit
     //MARK: LanguageCollectionView - Accessibility Features: Reload CollectionView for DynamicTypes change
     
     @objc func dynamicTypeChanges(_ notification: Notification){
-        print(#function)
-        //collectionView.reloadData()
         collectionView.collectionViewLayout.invalidateLayout()
     }
 }
