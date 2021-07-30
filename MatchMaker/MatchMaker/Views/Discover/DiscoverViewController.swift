@@ -9,9 +9,12 @@ import UIKit
 
 class DiscoverViewController: UIViewController {
     
+    @IBOutlet weak var DiscoverTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        DiscoverTableView.delegate = self
+        DiscoverTableView.dataSource = self
         // Do any additional setup after loading the view.
     }
     
@@ -42,6 +45,5 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
         cell.setUp(profileImage: UIImage(named: "photoDefault")!, nameText: "João Brentano", nickText: "@shimmer")
         return cell
     }
-    
     
 }
