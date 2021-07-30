@@ -8,8 +8,6 @@
 import UIKit
 
 class DiscoverViewController: UIViewController {
-
-    @IBOutlet weak var navigationBar: UINavigationBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,4 +26,22 @@ class DiscoverViewController: UIViewController {
     }
     */
 
+}
+
+extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "profileCell", for: indexPath) as? DiscoverTableViewCell
+        else {
+            return UITableViewCell()
+        }
+        cell.setUp(profileImage: UIImage(named: "photoDefault")!, nameText: "João Brentano", nickText: "@shimmer")
+        return cell
+    }
+    
+    
 }
