@@ -60,7 +60,7 @@ enum UserGamesTable: CustomStringConvertible {
 }
 
 enum FriendsTable: CustomStringConvertible {
-    case recordType, id1, id2, isInvite, storeFailMessage
+    case recordType, id1, id2, isInvite, storeFailMessage, tableChanged
     
     var description: String {
         switch self {
@@ -74,7 +74,8 @@ enum FriendsTable: CustomStringConvertible {
                 return "isInvite"
             case .storeFailMessage:
                 return "couldntStoreFriendshipData"
-            
+            case .tableChanged:
+                return "FriendsTableChanged"
         }
     }
 }
@@ -223,14 +224,19 @@ public class CKRepository {
         
     }
     
-    static func storeFriendshipInvite(inviterUserId: String, receiverUserId: String) {
+    static func storeFriendship(inviterUserId: String, receiverUserId: String, isInvite: IsInvite) {
         let recordID = CKRecord.ID(recordName:"\(inviterUserId)\(receiverUserId)")
         let record = CKRecord(recordType: FriendsTable.recordType.description, recordID: recordID)
         let publicDB = container.publicCloudDatabase
         
         record.setObject(inviterUserId as CKRecordValue?, forKey: FriendsTable.id1.description)
         record.setObject(receiverUserId as CKRecordValue?, forKey: FriendsTable.id2.description)
-        record.setObject(IsInvite.yes.description as CKRecordValue?, forKey: FriendsTable.isInvite.description)
+        if isInvite == IsInvite.yes {
+            record.setObject(IsInvite.yes.description as CKRecordValue?, forKey: FriendsTable.isInvite.description)
+        }
+        else {
+            record.setObject(IsInvite.no.description as CKRecordValue?, forKey: FriendsTable.isInvite.description)
+        }
         
         publicDB.save(record) { record, error in
             if error != nil {
@@ -239,10 +245,6 @@ public class CKRepository {
         }
     }
     
-    static func storeFriendshipAcceptance(inviterUserId: String, receiverUserId: String) {
-        let publicDB = container.publicCloudDatabase
-        
-    }
 }
 
 extension CKAsset {
