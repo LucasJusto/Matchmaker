@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             // 1. Create a Query Subscription used on iCloud to filter what shoud be triggered when record type changes
             let newSubscription = CKQuerySubscription(recordType: FriendsTable.recordType.description,
-                                                      predicate: NSPredicate(format: "id2 == %@", "\(CKRepository.getUserId())"),
+                                                      predicate: NSPredicate(format: "(id2 == %@) OR (id1 == %@)", CKRepository.getUserId(), CKRepository.getUserId()),
                                                       options: [.firesOnRecordCreation,
                                                                 .firesOnRecordDeletion,
                                                                 .firesOnRecordUpdate])
@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             // 4. Save the new subscription to iCloud
             database.save(newSubscription) { subscription, error in
-                if let error = error {
+                if let _ = error {
                     return
                 }
                 
@@ -53,6 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
         if let _ = CKNotification(fromRemoteNotificationDictionary: userInfo) {
+            print("notificado")
             DispatchQueue.main.async {
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: FriendsTable.tableChanged.description), object: nil)
             }
