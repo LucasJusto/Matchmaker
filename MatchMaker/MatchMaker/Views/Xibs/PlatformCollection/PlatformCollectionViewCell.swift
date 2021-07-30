@@ -20,11 +20,9 @@ class PlatformCollectionViewCell: UICollectionViewCell {
     }
     
     func setDynamicTypes(){
-        contentImage.adjustsImageSizeForAccessibilityContentSizeCategory = true
-        
         let bodyMetrics = UIFontMetrics(forTextStyle: .body)
         
-        let titleFont = UIFont.systemFont(ofSize: 7, weight: .regular)
+        let titleFont = UIFont.systemFont(ofSize: 13, weight: .regular)
         
         let scaledTitleFont = bodyMetrics.scaledFont(for: titleFont)
         

@@ -22,6 +22,8 @@ import UIKit
         
         collectionView.dataSource = self
         collectionView.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(dynamicTypeChanges), name: UIContentSizeCategory.didChangeNotification, object: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -33,12 +35,27 @@ import UIKit
         super.init(frame: frame)
         setupFromNib()
     }
+    
+    @objc func dynamicTypeChanges(_ notification: Notification){
+        print(#function)
+        //collectionView.reloadData()
+        collectionView.collectionViewLayout.invalidateLayout()
+    }
 }
 
 extension LanguageCollectionView: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: 100, height: 200)
-//    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? LanguageCell,
+              let font = cell.titleLabel.font
+        else { fatalError("Error while fetching cell or font at @LanguageCollectionView.sizeForItemAt") }
+        
+        let language = languages[indexPath.row]
+        
+        let textWidth = ceil(language.widthOfString(usingFont: font))
+
+        return CGSize(width: textWidth, height: collectionView.bounds.height)
+    }
     
 }
 

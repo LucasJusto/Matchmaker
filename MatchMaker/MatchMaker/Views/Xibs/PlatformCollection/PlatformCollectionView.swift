@@ -32,9 +32,13 @@ import UIKit
         super.awakeFromNib()
         
         collectionView.dataSource = self
+        collectionView.delegate = self
         
         collectionView.register(UINib(nibName: "PlatformCollectionCell", bundle: .main), forCellWithReuseIdentifier: cellIdentifier)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(dynamicTypeChanges), name: UIContentSizeCategory.didChangeNotification, object: nil)
     }
+
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -45,7 +49,28 @@ import UIKit
         super.init(frame: frame)
         setupFromNib()
     }
+    
+    @objc func dynamicTypeChanges(_ notification: Notification){
+        print(#function)
+        //collectionView.reloadData()
+        collectionView.collectionViewLayout.invalidateLayout()
+    }
 }
+
+extension PlatformCollectionView: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? PlatformCollectionViewCell,
+              let font = cell.titleLabel.font
+        else { fatalError("Error while fetching cell or font at @PlatformCollectionView.sizeForItemAt") }
+        
+        let platform = platforms[indexPath.row]
+        
+        let textWidth = ceil(platform.name.widthOfString(usingFont: font))
+
+        return CGSize(width: textWidth > 30 ? textWidth : 30, height: collectionView.bounds.height)
+    }
+}
+
 
 //MARK: - CollectionView DataSource
 
@@ -61,5 +86,15 @@ extension PlatformCollectionView: UICollectionViewDataSource {
         cell.titleLabel.text = platforms[indexPath.row].name
         
         return cell
+    }
+}
+
+
+extension String {
+
+    func widthOfString(usingFont font: UIFont) -> CGFloat {
+        let fontAttributes = [NSAttributedString.Key.font: font]
+        let size = self.size(withAttributes: fontAttributes)
+        return size.width
     }
 }
