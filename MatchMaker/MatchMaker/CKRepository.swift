@@ -224,7 +224,7 @@ public class CKRepository {
         
     }
     
-    static func storeFriendship(inviterUserId: String, receiverUserId: String, isInvite: IsInvite) {
+    static func storeFriendship(inviterUserId: String, receiverUserId: String, isInvite: IsInvite, acceptance: Bool) {
         let recordID = CKRecord.ID(recordName:"\(inviterUserId)\(receiverUserId)")
         let record = CKRecord(recordType: FriendsTable.recordType.description, recordID: recordID)
         let publicDB = container.publicCloudDatabase
@@ -234,13 +234,35 @@ public class CKRepository {
         if isInvite == IsInvite.yes {
             record.setObject(IsInvite.yes.description as CKRecordValue?, forKey: FriendsTable.isInvite.description)
         }
-        else {
+        else if acceptance {
             record.setObject(IsInvite.no.description as CKRecordValue?, forKey: FriendsTable.isInvite.description)
+        }
+        else {
+            deleteFriendship(id1: inviterUserId, id2: receiverUserId)
+            return
         }
         
         publicDB.save(record) { record, error in
             if error != nil {
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: FriendsTable.storeFailMessage.description), object: record)
+            }
+        }
+    }
+    
+    static func deleteFriendship(id1: String, id2: String) {
+        let publicDB = container.publicCloudDatabase
+        let recordID = CKRecord.ID(recordName:"\(id1)\(id2)")
+        let recordID2 = CKRecord.ID(recordName:"\(id2)\(id1)")
+        
+        publicDB.delete(withRecordID: recordID) { id, error in
+            if error != nil {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: FriendsTable.storeFailMessage.description), object: id)
+            }
+        }
+        
+        publicDB.delete(withRecordID: recordID2) { id, error in
+            if error != nil {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: FriendsTable.storeFailMessage.description), object: id)
             }
         }
     }
