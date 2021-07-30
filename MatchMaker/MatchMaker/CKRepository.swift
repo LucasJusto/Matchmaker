@@ -223,7 +223,26 @@ public class CKRepository {
         
     }
     
+    static func storeFriendshipInvite(inviterUserId: String, receiverUserId: String) {
+        let recordID = CKRecord.ID(recordName:"\(inviterUserId)\(receiverUserId)")
+        let record = CKRecord(recordType: FriendsTable.recordType.description, recordID: recordID)
+        let publicDB = container.publicCloudDatabase
+        
+        record.setObject(inviterUserId as CKRecordValue?, forKey: FriendsTable.id1.description)
+        record.setObject(receiverUserId as CKRecordValue?, forKey: FriendsTable.id2.description)
+        record.setObject(IsInvite.yes.description as CKRecordValue?, forKey: FriendsTable.isInvite.description)
+        
+        publicDB.save(record) { record, error in
+            if error != nil {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: FriendsTable.storeFailMessage.description), object: record)
+            }
+        }
+    }
     
+    static func storeFriendshipAcceptance(inviterUserId: String, receiverUserId: String) {
+        let publicDB = container.publicCloudDatabase
+        
+    }
 }
 
 extension CKAsset {
