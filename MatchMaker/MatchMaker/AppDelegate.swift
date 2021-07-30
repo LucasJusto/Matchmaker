@@ -17,7 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if UserDefaults.standard.bool(forKey: "FriendsTableSubscription") {
             
-            print("TopicOnewSubscriptionToTopic is on UserDefaults")
         } else {
             
             // 1. Create a Query Subscription used on iCloud to filter what shoud be triggered when record type changes
@@ -39,12 +38,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // 4. Save the new subscription to iCloud
             database.save(newSubscription) { subscription, error in
                 if let error = error {
-                    print(error.localizedDescription)
                     return
                 }
                 
                 if let _ = subscription {
-                    print("We have a new subscription to iCloud")
                     UserDefaults.standard.set(true, forKey: "FriendsTableSubscription")
                 }
             }
