@@ -24,6 +24,8 @@
 		89A912FF26AA677700D3B1D2 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A912FE26AA677700D3B1D2 /* OnboardingViewController.swift */; };
 		89A9130426AA6F0500D3B1D2 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A9130326AA6F0500D3B1D2 /* OnboardingCollectionViewCell.swift */; };
 		89A9130726AA6FEF00D3B1D2 /* OnboardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A9130626AA6FEF00D3B1D2 /* OnboardingScreen.swift */; };
+		B4C9F30B26B321C60070991C /* Discover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4C9F30A26B321C60070991C /* Discover.storyboard */; };
+		B4C9F30D26B323670070991C /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C9F30C26B323670070991C /* DiscoverViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +49,8 @@
 		89A912FE26AA677700D3B1D2 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		89A9130326AA6F0500D3B1D2 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
 		89A9130626AA6FEF00D3B1D2 /* OnboardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScreen.swift; sourceTree = "<group>"; };
+		B4C9F30A26B321C60070991C /* Discover.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Discover.storyboard; sourceTree = "<group>"; };
+		B4C9F30C26B323670070991C /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +116,7 @@
 		892FE5CD26A9EC8E004B4F7F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B4C9F30926B321A40070991C /* Discover */,
 				89A912FD26AA675100D3B1D2 /* Onboarding */,
 			);
 			path = Views;
@@ -141,6 +146,15 @@
 				89A9130626AA6FEF00D3B1D2 /* OnboardingScreen.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		B4C9F30926B321A40070991C /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				B4C9F30A26B321C60070991C /* Discover.storyboard */,
+				B4C9F30C26B323670070991C /* DiscoverViewController.swift */,
+			);
+			path = Discover;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,6 +219,7 @@
 				892FE5BF26A9E345004B4F7F /* Localizable.strings in Resources */,
 				489555E726A76AC3005F88A2 /* Assets.xcassets in Resources */,
 				489555E526A76AC1005F88A2 /* Main.storyboard in Resources */,
+				B4C9F30B26B321C60070991C /* Discover.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,6 +239,7 @@
 				48763E1D26AB495B000618D8 /* CKRepository.swift in Sources */,
 				89A9130726AA6FEF00D3B1D2 /* OnboardingScreen.swift in Sources */,
 				89A9130426AA6F0500D3B1D2 /* OnboardingCollectionViewCell.swift in Sources */,
+				B4C9F30D26B323670070991C /* DiscoverViewController.swift in Sources */,
 				489555E026A76AC1005F88A2 /* SceneDelegate.swift in Sources */,
 				89A912FF26AA677700D3B1D2 /* OnboardingViewController.swift in Sources */,
 			);
