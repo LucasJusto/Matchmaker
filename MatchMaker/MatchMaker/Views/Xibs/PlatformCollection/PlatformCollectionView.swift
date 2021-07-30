@@ -7,7 +7,11 @@
 
 import UIKit
 
+//MARK: - PlatformCollectionView Class
+
 @IBDesignable class PlatformCollectionView: UIView, NibLoadable {
+    
+    //MARK: PlatformCollectionView - Variables and Outlets Setup
 
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -28,6 +32,8 @@ import UIKit
         return platforms
     }
     
+    //MARK: PlatformCollectionView - View Setup
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -39,6 +45,7 @@ import UIKit
         NotificationCenter.default.addObserver(self, selector: #selector(dynamicTypeChanges), name: UIContentSizeCategory.didChangeNotification, object: nil)
     }
 
+    //MARK: PlatformCollectionView - Nib Setup
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -50,14 +57,19 @@ import UIKit
         setupFromNib()
     }
     
-    @objc func dynamicTypeChanges(_ notification: Notification){
-        print(#function)
-        //collectionView.reloadData()
+    //MARK: PlatformCollectionView - Accessibility Features: Reload CollectionView for DynamicTypes change
+    
+    @objc func dynamicTypeChanges(_ notification: Notification) {
         collectionView.collectionViewLayout.invalidateLayout()
     }
 }
 
+//MARK: - UICollectionView DelegateFlowLayout
+
 extension PlatformCollectionView: UICollectionViewDelegateFlowLayout {
+    
+    //MARK: UICollectionViewDelegateFlowLayout - Content Setup: Item Size
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? PlatformCollectionViewCell,
               let font = cell.titleLabel.font
@@ -72,12 +84,17 @@ extension PlatformCollectionView: UICollectionViewDelegateFlowLayout {
 }
 
 
-//MARK: - CollectionView DataSource
+//MARK: - UICollectionView DataSource
 
 extension PlatformCollectionView: UICollectionViewDataSource {
+
+    //MARK: UICollectionViewDataSource - Content Setup: Number of Items per Section
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return platforms.count
     }
+    
+    //MARK: UICollectionViewDataSource - Cell Setup
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! PlatformCollectionViewCell
@@ -86,15 +103,5 @@ extension PlatformCollectionView: UICollectionViewDataSource {
         cell.titleLabel.text = platforms[indexPath.row].name
         
         return cell
-    }
-}
-
-
-extension String {
-
-    func widthOfString(usingFont font: UIFont) -> CGFloat {
-        let fontAttributes = [NSAttributedString.Key.font: font]
-        let size = self.size(withAttributes: fontAttributes)
-        return size.width
     }
 }

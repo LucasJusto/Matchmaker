@@ -6,14 +6,19 @@
 //
 
 import UIKit
+//MARK: - LanguageCollectionView Class
 
 @IBDesignable class LanguageCollectionView: UIView, NibLoadable {
+    //MARK: LanguageCollectionView - Variables and Outlets Setup
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
+    private let cellIdentifier: String = "LanguageViewCell"
+
     #warning("After merging master, change structure to Language enum")
     var languages: [String] = ["English", "Portuguese", "Russian"]
     
-    private let cellIdentifier: String = "LanguageViewCell"
+    //MARK: LanguageCollectionView - View Setup
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,6 +31,8 @@ import UIKit
         NotificationCenter.default.addObserver(self, selector: #selector(dynamicTypeChanges), name: UIContentSizeCategory.didChangeNotification, object: nil)
     }
     
+    //MARK: LanguageCollectionView - Nib Setup
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupFromNib()
@@ -36,14 +43,20 @@ import UIKit
         setupFromNib()
     }
     
+    //MARK: LanguageCollectionView - Accessibility Features: Reload CollectionView for DynamicTypes change
+    
     @objc func dynamicTypeChanges(_ notification: Notification){
         print(#function)
         //collectionView.reloadData()
         collectionView.collectionViewLayout.invalidateLayout()
     }
 }
+//MARK: - UICollectionView DelegateFlowLayout
 
 extension LanguageCollectionView: UICollectionViewDelegateFlowLayout {
+    
+    //MARK: UICollectionViewDelegateFlowLayout - Content Setup: Item Size
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? LanguageCell,
@@ -56,17 +69,19 @@ extension LanguageCollectionView: UICollectionViewDelegateFlowLayout {
 
         return CGSize(width: textWidth, height: collectionView.bounds.height)
     }
-    
 }
 
-//MARK: - CollectionView DataSource
+//MARK: - UICollectionView DataSource
 
 extension LanguageCollectionView: UICollectionViewDataSource {
     
+    //MARK: UICollectionViewDataSource - Content Setup: Number of Items per Section
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return languages.count
     }
+    
+    //MARK: UICollectionViewDataSource - Cell Setup
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! LanguageCell

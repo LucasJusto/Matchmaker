@@ -7,17 +7,24 @@
 
 import UIKit
 
+//MARK: - PlatformCollectionViewCell Class
+
 class PlatformCollectionViewCell: UICollectionViewCell {
+    
+    //MARK: PlatformCollectionViewCell - Variables and Outlets Setup
 
     @IBOutlet weak var contentImage: UIImageView!
-    
     @IBOutlet weak var titleLabel: UILabel!
+    
+    //MARK: PlatformCollectionViewCell - View Setup
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         setDynamicTypes()
     }
+    
+    //MARK: PlatformCollectionViewCell - Accessibility Features: Dynamic Types
     
     func setDynamicTypes(){
         let bodyMetrics = UIFontMetrics(forTextStyle: .body)

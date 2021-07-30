@@ -7,13 +7,13 @@
 
 import UIKit
 
-//MARK: - NibLoadable
+//MARK: - NibLoadable Protocol
 
 public protocol NibLoadable {
     static var nibName: String { get }
 }
 
-//MARK: - Nib setup and configuration
+//MARK: - NibLoadable Class
 
 public extension NibLoadable where Self: UIView {
     
@@ -25,6 +25,8 @@ public extension NibLoadable where Self: UIView {
         let bundle = Bundle(for: Self.self)
         return UINib(nibName: Self.nibName, bundle: bundle)
     }
+    
+    //MARK: NibLoadable - Nib Setup
     
     func setupFromNib() {
         guard let view = Self.nib.instantiate(withOwner: self, options: nil).first as? UIView else { fatalError("Error loading \(self) from nib") }

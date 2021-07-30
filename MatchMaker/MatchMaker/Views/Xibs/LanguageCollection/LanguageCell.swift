@@ -7,15 +7,23 @@
 
 import UIKit
 
+//MARK: - LanguageCell Class
+
 class LanguageCell: UICollectionViewCell {
+    
+    //MARK: LanguageCell - Variables and Outlets Setup
 
     @IBOutlet weak var titleLabel: UILabel!
+    
+    //MARK: LanguageCell - View Setup
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         setDynamicTypes()
     }
+    
+    //MARK: LanguageCell - Accessibility Features: Dynamic Types
     
     func setDynamicTypes(){
         let bodyMetrics = UIFontMetrics(forTextStyle: .body)

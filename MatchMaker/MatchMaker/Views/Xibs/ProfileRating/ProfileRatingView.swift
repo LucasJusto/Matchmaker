@@ -7,7 +7,12 @@
 
 import UIKit
 
+//MARK: - ProfileRatingView Class
+
 @IBDesignable class ProfileRatingView: UIView, NibLoadable {
+    
+    //MARK: ProfileRatingView - Variables and Outlets Setup
+    
     @IBOutlet var contentView: UIView!
     
     @IBOutlet weak var backgroundView: UIView!
@@ -15,6 +20,8 @@ import UIKit
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var categoryOfRatingLabel: UILabel!
     @IBOutlet weak var amountOfReviewsLabel: UILabel!
+    
+    //MARK: ProfileRatingView - View Setup
     
     override func awakeFromNib() {
         backgroundView.layer.masksToBounds = true
@@ -28,6 +35,20 @@ import UIKit
         setDynamicTypes()
         
     }
+    
+    //MARK: ProfileRatingView - Nib Setup
+    
+    override init (frame: CGRect) {
+        super.init(frame: frame)
+        setupFromNib()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupFromNib()
+    }
+    
+    //MARK: ProfileRatingView - Accessibility Features: Dynamic Types
     
     func setDynamicTypes(){
         let bodyMetrics = UIFontMetrics(forTextStyle: .body)
@@ -44,27 +65,4 @@ import UIKit
         amountOfReviewsLabel.font = scaledAmountOfReviewsFont
         amountOfReviewsLabel.adjustsFontForContentSizeCategory = true
     }
-    
-    override init (frame: CGRect) {
-        super.init(frame: frame)
-        setupFromNib()
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setupFromNib()
-    }
-    
-//    func commonInit() {
-//        let nib = UINib(nibName: "ProfileRatingView", bundle: .main)
-//        let contentView = nib.instantiate(withOwner: self, options: nil).first as! UIView
-//
-//        addSubview(contentView)
-//
-//        contentView.frame = bounds
-//        contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-//        contentView.translatesAutoresizingMaskIntoConstraints = true
-//
-//        self.contentView = contentView
-//    }
 }

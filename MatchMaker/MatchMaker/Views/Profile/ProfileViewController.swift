@@ -7,10 +7,13 @@
 
 import UIKit
 
+//MARK: - ProfileViewController Class
+
 class ProfileViewController: UIViewController {
     
-    @IBOutlet weak var backgroundCoverImage: UIImageView!
+    //MARK: ProfileViewController - Variables and Outlets Setup
     
+    @IBOutlet weak var backgroundCoverImage: UIImageView!
     
     @IBOutlet weak var userProfileNameLabel: UILabel!
     @IBOutlet weak var userProfileGamertagLabel: UILabel!
@@ -21,6 +24,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var languagesTitleLabel: UILabel!
     @IBOutlet weak var gamesTitleLabel: UILabel!
     
+    //MARK: ProfileViewController - View Setup
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +32,8 @@ class ProfileViewController: UIViewController {
         backgroundCoverImage.accessibilityIgnoresInvertColors = true
         dynamicTypesFontConfig()
     }
+    
+    //MARK: ProfileViewController - Accessibility Features: Dynamic Types
     
     func dynamicTypesFontConfig() {
         let headlineMetrics = UIFontMetrics(forTextStyle: .headline)

@@ -7,12 +7,18 @@
 
 import UIKit
 
+//MARK: - GameCollectionView Class
+
 @IBDesignable class GameCollectionView: UIView, NibLoadable {
+    
+    //MARK: GameCollectionView - Variables and Outlets Setup
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
+    private let cellIdentifier: String = "GameCollectionCell"
     private let games: [Game] = buildGameArray()
     
-    private let cellIdentifier: String = "GameCollectionCell"
+    //MARK: GameCollectionView - View Setup
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,6 +28,8 @@ import UIKit
         
         collectionView.register(UINib(nibName: "GameCollectionCell", bundle: .main), forCellWithReuseIdentifier: cellIdentifier)
     }
+    
+    //MARK: GameCollectionView - Nib Setup
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -39,20 +47,25 @@ import UIKit
 
 extension GameCollectionView: UICollectionViewDelegate {
     
+    //MARK: UICollectionViewDelegate - Interaction Setup
+    
     //this function will later on perfom the segue to the info screen of a game
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
     }
-    
 }
 
 //MARK: - UICollectionView DataSource
 
 extension GameCollectionView: UICollectionViewDataSource {
+    
+    //MARK: UICollectionViewDataSource - Content Setup
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return games.count
     }
+    
+    //MARK: UICollectionViewDataSource - Cell Setup
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! GameCollectionViewCell
