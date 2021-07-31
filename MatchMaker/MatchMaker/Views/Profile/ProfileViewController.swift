@@ -15,6 +15,8 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var backgroundCoverImage: UIImageView!
     
+    @IBOutlet weak var userAvatarView: UserAvatarView!
+    
     @IBOutlet weak var userProfileNameLabel: UILabel!
     @IBOutlet weak var userProfileGamertagLabel: UILabel!
     @IBOutlet weak var userProfileBioLabel: UILabel!
@@ -31,6 +33,8 @@ class ProfileViewController: UIViewController {
 
         backgroundCoverImage.accessibilityIgnoresInvertColors = true
         dynamicTypesFontConfig()
+        
+        userAvatarView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(chooseImage)))
     }
     
     //MARK: ProfileViewController - Accessibility Features: Dynamic Types
@@ -72,5 +76,13 @@ class ProfileViewController: UIViewController {
         gamesTitleLabel.font = scaledSectionTitle1Font
         gamesTitleLabel.adjustsFontForContentSizeCategory = true
     }
-
+    
+    @objc func chooseImage() {
+        ImagePickerManager().pickImage(self) { image in
+            DispatchQueue.main.async {
+                self.userAvatarView.contentImage.image = image
+                self.userAvatarView.contentImage.contentMode = .scaleAspectFill
+            }
+        }
+    }
 }

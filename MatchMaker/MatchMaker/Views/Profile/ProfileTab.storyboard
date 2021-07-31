@@ -213,6 +213,7 @@
                         <outlet property="languagesTitleLabel" destination="3Y3-gy-gw2" id="Bm1-Xx-Hk4"/>
                         <outlet property="platformsTitleLabel" destination="thb-ZM-4ut" id="gDw-cv-viQ"/>
                         <outlet property="ratingsTitleLabel" destination="Iri-UU-lvc" id="OlZ-Zb-8pZ"/>
+                        <outlet property="userAvatarView" destination="wyL-4I-PoK" id="fA0-FO-bP7"/>
                         <outlet property="userProfileBioLabel" destination="U58-xx-tEV" id="qjg-Qo-xjc"/>
                         <outlet property="userProfileGamertagLabel" destination="GGE-Ma-MJm" id="mSN-qP-rGS"/>
                         <outlet property="userProfileNameLabel" destination="Sjd-jp-NAW" id="FM8-ka-3Ae"/>

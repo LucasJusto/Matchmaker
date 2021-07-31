@@ -30,7 +30,7 @@ import UIKit
         buttonBackground.layer.cornerRadius = 13
         buttonBackground.layer.cornerCurve = .circular
         
-        
+        contentImage.image = UIImage(named: "avatar-default")
         contentImage.accessibilityIgnoresInvertColors = true
     }
     
