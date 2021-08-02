@@ -244,7 +244,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ri0-tv-Wfd">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ri0-tv-Wfd">
                                 <rect key="frame" x="16" y="44" width="382" height="760"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -352,7 +352,7 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rry-Pi-srA" customClass="FormTextField" customModule="MatchMaker" customModuleProvider="target">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rry-Pi-srA" customClass="FormTextField" customModule="MatchMaker" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="35" width="382" height="42"/>
                                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -392,7 +392,7 @@
                                             <outlet property="titleLabel" destination="cJP-xc-jvQ" id="DwQ-f0-XCD"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="text-view-cell" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="text-view-cell" rowHeight="113" id="FSa-wI-grB">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="text-view-cell" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="text-view-cell" rowHeight="113" id="FSa-wI-grB" customClass="TextViewTableViewCell" customModule="MatchMaker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="276.5" width="382" height="113"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FSa-wI-grB" id="ke4-sm-Q72">
@@ -411,10 +411,10 @@
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dFg-IO-aA7" customClass="TextViewField" customModule="MatchMaker" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="36" width="382" height="67"/>
                                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="67" id="woS-j9-WMd"/>
                                                     </constraints>
-                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -441,6 +441,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="textViewField" destination="dFg-IO-aA7" id="fmk-Wl-sQE"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="selector-cell" rowHeight="113" id="UJM-v2-XvZ" customClass="SelectorTableViewCell" customModule="MatchMaker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="389.5" width="382" height="113"/>
@@ -531,6 +534,113 @@
                                             <outlet property="titleLabel" destination="AuA-lz-bMv" id="jP9-j0-qus"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="game-selection-cell" rowHeight="200" id="fYo-cq-ZOE" customClass="GamesSelectionTableViewCell" customModule="MatchMaker" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="502.5" width="382" height="200"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fYo-cq-ZOE" id="Ie7-Bt-fPd">
+                                            <rect key="frame" x="0.0" y="0.0" width="382" height="200"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title section" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39J-lo-HYM" customClass="LocalizableLabel" customModule="MatchMaker" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="382" height="29"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="onboarding5GamesLabel"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wSy-gg-SdH">
+                                                    <rect key="frame" x="0.0" y="38" width="382" height="162"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="162" id="Xn1-md-I5u"/>
+                                                    </constraints>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FCv-iq-MJI">
+                                                        <size key="itemSize" width="110" height="151"/>
+                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    </collectionViewFlowLayout>
+                                                    <cells>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="selectable-image-cell" reuseIdentifier="selectable-image-cell" id="YfI-tB-Sla" customClass="SelectableImageCollectionViewCell" customModule="MatchMaker" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="110" height="151"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="5sI-sK-JgE">
+                                                                <rect key="frame" x="0.0" y="0.0" width="110" height="151"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CounterStrikeGO" translatesAutoresizingMaskIntoConstraints="NO" id="W2U-W5-PSU">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="110" height="151"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" secondItem="W2U-W5-PSU" secondAttribute="height" multiplier="11:15" id="m6R-f2-6Vd"/>
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                                <real key="value" value="6"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </imageView>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ePO-mN-OUr">
+                                                                        <rect key="frame" x="0.0" y="125" width="110" height="26"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Selected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nym-WQ-E5J" customClass="LocalizableLabel" customModule="MatchMaker" customModuleProvider="target">
+                                                                                <rect key="frame" x="31" y="6" width="50" height="14"/>
+                                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="onboarding5SelectedLabel"/>
+                                                                                </userDefinedRuntimeAttributes>
+                                                                            </label>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" name="Primary"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="26" id="gV0-c6-kpn"/>
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                                <real key="value" value="4"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </view>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstItem="W2U-W5-PSU" firstAttribute="leading" secondItem="5sI-sK-JgE" secondAttribute="leading" id="24l-hU-T3T"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="ePO-mN-OUr" secondAttribute="trailing" id="Lh0-eB-yBS"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="W2U-W5-PSU" secondAttribute="trailing" id="WAH-mR-5Sk"/>
+                                                                    <constraint firstItem="W2U-W5-PSU" firstAttribute="top" secondItem="5sI-sK-JgE" secondAttribute="top" id="WyY-VQ-Oo1"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="ePO-mN-OUr" secondAttribute="bottom" id="eeH-hn-fj6"/>
+                                                                    <constraint firstItem="ePO-mN-OUr" firstAttribute="leading" secondItem="5sI-sK-JgE" secondAttribute="leading" id="gbZ-gA-abM"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="W2U-W5-PSU" secondAttribute="bottom" id="zgJ-Bu-8jh"/>
+                                                                </constraints>
+                                                            </collectionViewCellContentView>
+                                                            <size key="customSize" width="110" height="151"/>
+                                                            <connections>
+                                                                <outlet property="imageView" destination="W2U-W5-PSU" id="key-o5-PWA"/>
+                                                                <outlet property="selectionTag" destination="ePO-mN-OUr" id="Y8I-di-Gyt"/>
+                                                            </connections>
+                                                        </collectionViewCell>
+                                                    </cells>
+                                                </collectionView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="39J-lo-HYM" firstAttribute="top" secondItem="Ie7-Bt-fPd" secondAttribute="top" id="4CX-jf-zsl"/>
+                                                <constraint firstAttribute="trailing" secondItem="39J-lo-HYM" secondAttribute="trailing" id="KNu-rS-nRW"/>
+                                                <constraint firstItem="wSy-gg-SdH" firstAttribute="leading" secondItem="Ie7-Bt-fPd" secondAttribute="leading" id="dx0-F2-C0c"/>
+                                                <constraint firstItem="wSy-gg-SdH" firstAttribute="top" secondItem="39J-lo-HYM" secondAttribute="bottom" constant="9" id="hdT-as-eP4"/>
+                                                <constraint firstItem="39J-lo-HYM" firstAttribute="leading" secondItem="Ie7-Bt-fPd" secondAttribute="leading" id="qgo-8a-Zwf"/>
+                                                <constraint firstAttribute="trailing" secondItem="wSy-gg-SdH" secondAttribute="trailing" id="rsZ-hr-84y"/>
+                                                <constraint firstAttribute="bottom" secondItem="wSy-gg-SdH" secondAttribute="bottom" id="yAB-y1-tju"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="collectionView" destination="wSy-gg-SdH" id="rla-9E-8FB"/>
+                                            <outlet property="collectionViewHeight" destination="Xn1-md-I5u" id="WZx-0C-FF1"/>
+                                            <outlet property="titleLabel" destination="39J-lo-HYM" id="Pqu-ao-P3D"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <sections/>
                             </tableView>
@@ -609,10 +719,11 @@
     </scenes>
     <designables>
         <designable name="rry-Pi-srA">
-            <size key="intrinsicContentSize" width="12" height="26.5"/>
+            <size key="intrinsicContentSize" width="32" height="34"/>
         </designable>
     </designables>
     <resources>
+        <image name="CounterStrikeGO" width="585" height="390"/>
         <image name="camera" catalog="system" width="128" height="94"/>
         <image name="logo" width="232" height="246"/>
         <image name="nuvem_dados" width="261" height="189"/>

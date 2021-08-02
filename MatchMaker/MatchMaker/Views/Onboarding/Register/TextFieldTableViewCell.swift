@@ -8,11 +8,11 @@
 import UIKit
 
 class TextFieldTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var textField: FormTextField!
     
     @IBOutlet weak var titleLabel: UILabel!
-    
+                
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -20,5 +20,4 @@ class TextFieldTableViewCell: UITableViewCell {
     func setUp(title: String) {
         titleLabel.text = title
     }
-
 }

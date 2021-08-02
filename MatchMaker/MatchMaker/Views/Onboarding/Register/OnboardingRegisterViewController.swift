@@ -8,12 +8,18 @@
 import UIKit
 
 class OnboardingRegisterViewController: UIViewController {
-
+    
     @IBOutlet weak var tableView: UITableView!
     
     enum OnboardingTagCategory: Int, CaseIterable {
         case languages
         case platforms
+        case games
+    }
+    
+    enum OnboardingTextFields: Int, CaseIterable {
+        case nameField
+        case usernameField
     }
     
     enum OnboardingFields: Int, CaseIterable {
@@ -23,6 +29,7 @@ class OnboardingRegisterViewController: UIViewController {
         case descriptionField
         case languages
         case platforms
+        case games
     
         var description: String {
             switch self {
@@ -32,6 +39,7 @@ class OnboardingRegisterViewController: UIViewController {
                 case .descriptionField: return "Description"
                 case .languages: return "Languages"
                 case .platforms: return "Platforms"
+                case .games: return "Games"
             }
         }
     }
@@ -40,28 +48,54 @@ class OnboardingRegisterViewController: UIViewController {
     
     typealias TagOption = (option: String, isFavorite: Bool)
     
-    var selectedTags: [String] = [] {
+    typealias GameOption = (option: Game, isFavorite: Bool)
+    
+    var tagLanguages: [TagOption] = [] {
         didSet {
-            print(selectedTags)
+            print(tagLanguages)
         }
     }
-    
-    var tagLanguages: [TagOption] = []
-    var tagPlatforms: [TagOption] = []
+    var tagPlatforms: [TagOption] = [] {
+        didSet {
+            print(tagPlatforms)
+        }
+    }
+    var tagGames: [GameOption] = [] {
+        didSet {
+            print(tagGames)
+        }
+    }
+    var nameField: String = "" {
+        didSet {
+            print(nameField)
+        }
+    }
+    var usernameField: String = "" {
+        didSet {
+            print(usernameField)
+        }
+    }
+    var descriptionField: String = "" {
+        didSet {
+            print(descriptionField)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.dataSource = self
         tableView.delegate = self
-        
+                
         setUpTagCategories()
     }
     
     private func setUpTagCategories() {
-        let supportedLanguages = ["English", "Spanish", "Portuguese"]
+        let supportedLanguages = Languages.allCases.map { $0.description }
         
-        let supportedPlatforms = ["Playstation", "PC", "Xbox", "Mobile"]
+        let supportedPlatforms = Platform.allCases.map { $0.description }
+        
+        let supportedGames = Games.buildGameArray()
         
         let allTagCategories = OnboardingTagCategory.allCases
         
@@ -75,6 +109,10 @@ class OnboardingRegisterViewController: UIViewController {
                 case .platforms:
                     let tagPlatforms = supportedPlatforms.map { TagOption(option: $0, isFavorite: false) }
                     self.tagPlatforms = tagPlatforms
+                    
+                case .games:
+                    let tagGames = supportedGames.map { GameOption(option: $0, isFavorite: false) }
+                    self.tagGames = tagGames
             }
         }
     }
@@ -95,15 +133,17 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
         switch onboardingField {
             case .profileImage: return profileImageCell()
                 
-            case .nameField: return textFieldCell(titleKey: "onboarding5NameLabel")
+            case .nameField: return textFieldCell(titleKey: "onboarding5NameLabel", tag: OnboardingTextFields.nameField.rawValue)
                 
-            case .usernameField: return textFieldCell(titleKey: "onboarding5UsernameLabel")
+            case .usernameField: return textFieldCell(titleKey: "onboarding5UsernameLabel", tag: OnboardingTextFields.usernameField.rawValue)
                 
             case .descriptionField: return textViewCell()
                 
             case .languages: return selectorCell(titleKey: "onboarding5LanguagesLabel", tag: OnboardingTagCategory.languages.rawValue) ?? defaultCell
                     
             case .platforms: return selectorCell(titleKey: "onboarding5PlatformsLabel", tag: OnboardingTagCategory.platforms.rawValue) ?? defaultCell
+                
+            case .games: return gameCell() ?? defaultCell
         }
     }
     
@@ -112,26 +152,33 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
                 return UITableViewCell()
         }
         
+        cell.tag = OnboardingFields.profileImage.rawValue
+        
         return cell
     }
     
-    func textFieldCell(titleKey: String) -> UITableViewCell {
+    func textFieldCell(titleKey: String, tag: Int) -> UITableViewCell {
         let string = NSLocalizedString(titleKey, comment: "text field label")
                     
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "text-field-cell") as? TextFieldTableViewCell else {
                 return UITableViewCell()
         }
         
+        cell.textField.delegate = self
+        cell.textField.tag = tag
+                
         cell.setUp(title: string)
         
         return cell
     }
     
     func textViewCell() -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "text-view-cell") else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "text-view-cell") as? TextViewTableViewCell else {
                 return UITableViewCell()
         }
         
+        cell.textViewField.delegate = self
+                
         return cell
     }
 
@@ -149,6 +196,27 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
         
         return cell
     }
+    
+    func gameCell() -> GamesSelectionTableViewCell? {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "game-selection-cell") as? GamesSelectionTableViewCell
+        
+        cell?.collectionView.delegate = self
+        cell?.collectionView.dataSource = self
+        cell?.collectionView.tag = OnboardingTagCategory.games.rawValue
+                
+        let lines = tagGames.count/3
+        
+        let width = UIScreen.main.bounds.width * 0.28
+        
+        let cellHeight = Double(width) * 1.37
+        
+        let height = CGFloat(cellHeight * Double(lines))
+        
+        cell?.collectionViewHeight.constant = height
+        
+        return cell
+    }
 }
 
 extension OnboardingRegisterViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -162,31 +230,47 @@ extension OnboardingRegisterViewController: UICollectionViewDelegate, UICollecti
         switch onboardingTagCategory {
             case .languages: return tagLanguages.count
             case .platforms: return tagPlatforms.count
+            case .games: return tagGames.count
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "selectable-tag-cell", for: indexPath) as! SelectableTagCollectionViewCell
-        
+                
         guard let onboardingTagCategory = OnboardingTagCategory(rawValue: collectionView.tag) else {
             return UICollectionViewCell()
         }
-        
+    
         switch onboardingTagCategory {
             case .languages:
+                let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "selectable-tag-cell", for: indexPath) as! SelectableTagCollectionViewCell
+                
                 let supportedLanguage = tagLanguages[indexPath.row]
                 collectionCell.labelView.text = supportedLanguage.option
                 collectionCell.containerView.backgroundColor = supportedLanguage.isFavorite ? UIColor(named: "Primary") : .clear
+                return collectionCell
 
                 
             case .platforms:
+                
+                let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "selectable-tag-cell", for: indexPath) as! SelectableTagCollectionViewCell
+                
                 let supportedPlatform = tagPlatforms[indexPath.row]
                 collectionCell.labelView.text = supportedPlatform.option
                 collectionCell.containerView.backgroundColor = supportedPlatform.isFavorite ? UIColor(named: "Primary") : .clear
+                return collectionCell
+
+            case .games:
+                let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "selectable-image-cell", for: indexPath) as! SelectableImageCollectionViewCell
+                
+                let game = tagGames[indexPath.row]
+                
+                collectionCell.imageView.image = game.option.image
+                collectionCell.selectionTag.isHidden = !game.isFavorite
+                
+                return collectionCell
+
         }
                 
-        return collectionCell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -194,7 +278,7 @@ extension OnboardingRegisterViewController: UICollectionViewDelegate, UICollecti
         guard let onboardingTagCategory = OnboardingTagCategory(rawValue: collectionView.tag) else {
             return CGSize(width: 0, height: 0)
         }
-        
+                
         var model: String
         
         switch onboardingTagCategory {
@@ -203,8 +287,12 @@ extension OnboardingRegisterViewController: UICollectionViewDelegate, UICollecti
 
             case .platforms:
                 model = tagPlatforms[indexPath.row].option
+                
+            case .games:
+                let width = collectionView.bounds.width * 0.28
+                
+                return CGSize(width: width, height: width * 1.37)
         }
-        
                 
         let modelSize = model.size(withAttributes: nil)
         
@@ -222,10 +310,46 @@ extension OnboardingRegisterViewController: UICollectionViewDelegate, UICollecti
         switch onboardingTagCategory {
             case .languages:
                 tagLanguages[indexPath.row].isFavorite.toggle()
+                
             case .platforms:
                 tagPlatforms[indexPath.row].isFavorite.toggle()
+                
+            case .games:
+                tagGames[indexPath.row].isFavorite.toggle()
         }
         
         collectionView.reloadItems(at: [indexPath])
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+
+}
+
+extension OnboardingRegisterViewController: UITextFieldDelegate {
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        guard let onboardingTextFieldTag = OnboardingTextFields(rawValue: textField.tag) else {
+            return
+        }
+        
+        switch onboardingTextFieldTag {
+            case .nameField:
+                self.nameField = textField.text ?? ""
+            case .usernameField:
+                self.usernameField = textField.text ?? ""
+        }
+        
+    }
+    
+}
+
+extension OnboardingRegisterViewController: UITextViewDelegate {
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        self.descriptionField = textView.text ?? ""
+    }
+    
 }

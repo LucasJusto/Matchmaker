@@ -1,23 +1,22 @@
 //
-//  SelectorTableViewCell.swift
+//  GamesSelectionTableViewCell.swift
 //  MatchMaker
 //
-//  Created by Thaís Fernandes on 27/07/21.
+//  Created by Thaís Fernandes on 29/07/21.
 //
 
 import UIKit
 
-class SelectorTableViewCell: UITableViewCell {
+class GamesSelectionTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
-        
+    
     @IBOutlet weak var collectionView: UICollectionView!
-        
+    
+    @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
-    func setUp(title: String) {
-        titleLabel.text = title
-    }
 }

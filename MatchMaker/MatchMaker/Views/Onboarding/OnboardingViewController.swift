@@ -63,7 +63,7 @@ extension OnboardingViewController: UICollectionViewDelegate, UICollectionViewDa
         cell.setup(onboardingScreens[indexPath.row-1])
 
         return cell
-        
+
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -79,5 +79,11 @@ extension OnboardingViewController: UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+}
+
+extension UIImage {
+    func getCropRatio() -> CGFloat {
+        return self.size.width / self.size.height
     }
 }

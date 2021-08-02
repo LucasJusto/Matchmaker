@@ -37,6 +37,7 @@ to identify you from iCloud";
 "onboarding5LanguagesLabel" = "Languages";
 "onboarding5PlatformsLabel" = "Platforms";
 "onboarding5GamesLabel" = "Games";
+"onboarding5SelectedLabel" = "Selected";
 
 // MARK:- Platforms
 "PlatformPC" = "PC";

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-enum Languages: CustomStringConvertible {
+enum Languages: CustomStringConvertible, CaseIterable {
     case portuguese, english, russian, chinese, japanese, german, spanish
     
     var description: String {
