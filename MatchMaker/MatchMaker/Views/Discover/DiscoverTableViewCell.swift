@@ -16,6 +16,8 @@ class DiscoverTableViewCell: UITableViewCell {
     @IBOutlet weak var addToFriendsButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var userGames: [Games]
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -27,10 +29,23 @@ class DiscoverTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setUp(profileImage: UIImage, nameText: String, nickText: String) {
+    func setUp(profileImage: UIImage, nameText: String, nickText: String, userGames: [Games]) {
         self.profileImage.image = profileImage
+        self.userGames = userGames
         nameLabel.text = nameText
         nickLabel.text = nickText
     }
 
+}
+
+extension DiscoverTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return userGames.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+    }
+    
 }

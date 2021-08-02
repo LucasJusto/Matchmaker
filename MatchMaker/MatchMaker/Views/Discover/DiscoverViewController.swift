@@ -9,12 +9,20 @@ import UIKit
 
 class DiscoverViewController: UIViewController {
     
+    let user1: User = User(id: "0", name: "name", nickname: "nick", photo: nil, country: "Brazil", description: "Description", behaviourRate: 10.0, skillRate: 10.0, languages: [Languages.english, Languages.portuguese], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: Games.buildGameArray())
+    
+    var users: [User] = []
+    
     @IBOutlet weak var DiscoverTableView: UITableView!
     
     override func viewDidLoad() {
+        
+        users.append(user1)
+        
         super.viewDidLoad()
         DiscoverTableView.delegate = self
         DiscoverTableView.dataSource = self
+        
         // Do any additional setup after loading the view.
     }
     
