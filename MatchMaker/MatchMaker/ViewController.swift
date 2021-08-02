@@ -15,14 +15,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        label.setLabelText(for: "titleLabel", comment: "Title label example")
+        //label.setLabelText(for: "titleLabel", comment: "Title label example")
     }
 }
 
 extension UILabel {
     
-    func setLabelText(for key: String, comment: String) {
-        self.text = NSLocalizedString(key, comment: comment)
-    }
+//    func setLabelText(for key: String, comment: String) {
+//        self.text = NSLocalizedString(key, comment: comment)
+//    }
     
 }
