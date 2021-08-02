@@ -10,7 +10,7 @@ import CloudKit
 import UIKit
 
 enum UserTable: CustomStringConvertible {
-    case recordType, id, name, nickname, country, description, photo, selectedPlatforms, languages
+    case recordType, id, name, nickname, country, description, photo, selectedPlatforms, languages, storeFailMessage
     
     var description: String {
         switch self {
@@ -32,12 +32,14 @@ enum UserTable: CustomStringConvertible {
                 return "selectedPlatforms"
             case .languages:
                 return "languages"
+            case .storeFailMessage:
+                return "couldntStoreUserData"
         }
     }
 }
 
 enum UserGamesTable: CustomStringConvertible {
-    case recordType,userId, gameId, selectedPlatforms, selectedServers
+    case recordType,userId, gameId, selectedPlatforms, selectedServers, storeFailMessage
     
     var description: String {
         switch self {
@@ -51,13 +53,37 @@ enum UserGamesTable: CustomStringConvertible {
                 return "selectedPlatforms"
             case .selectedServers:
                 return "selectedServers"
+            case .storeFailMessage:
+                return "couldntStoreUserGameData"
+        }
+    }
+}
+
+enum FriendsTable: CustomStringConvertible {
+    case recordType, id1, id2, isInvite, storeFailMessage, tableChanged
+    
+    var description: String {
+        switch self {
+            case .recordType:
+                return "Friends"
+            case .id1:
+                return "id1"
+            case .id2:
+                return "id2"
+            case .isInvite:
+                return "isInvite"
+            case .storeFailMessage:
+                return "couldntStoreFriendshipData"
+            case .tableChanged:
+                return "FriendsTableChanged"
         }
     }
 }
 
 public class CKRepository {
     static var user: User? //singleton user
-    private static let container: CKContainer = CKContainer(identifier: "iCloud.MatchMaker")
+    public static let container: CKContainer = CKContainer(identifier: "iCloud.MatchMaker")
+    static var isUserSeted: DispatchSemaphore = DispatchSemaphore(value: 0)
     
     static func setOnboardingInfo(name: String, nickname: String, photo: UIImage?, photoURL: URL?, country: String, description: String, languages: [Languages], selectedPlatforms: [Platform], selectedGames: [Game]){
         
@@ -69,9 +95,17 @@ public class CKRepository {
         
         //creating user singleton
         user = User(id: id, name: name, nickname: nickname, photo: photo, country: country, description: description, behaviourRate: 0, skillRate: 0, languages: languages, selectedPlatforms: selectedPlatforms, selectedGames: selectedGames)
+        isUserSeted.signal()
     }
     
-    private static func getUserId() -> String{
+    static func setUserFromCloudKit() {
+        CKRepository.getUserById(id: CKRepository.getUserId()) { user in
+            CKRepository.user = user
+            isUserSeted.signal()
+        }
+    }
+    
+    public static func getUserId() -> String{
         var id: String = ""
         let semaphore = DispatchSemaphore(value: 0)
         
@@ -81,6 +115,20 @@ public class CKRepository {
         }
         semaphore.wait()
         return "id\(id)"
+    }
+    
+    public static func isUserRegistered(completion: @escaping (Bool) -> Void) {
+        let publicDB = container.publicCloudDatabase
+        let predicate = NSPredicate(format: "id == %@", getUserId())
+        let query = CKQuery(recordType: UserTable.recordType.description, predicate: predicate)
+        
+        publicDB.perform(query, inZoneWith: nil) { result, error in
+            if result?.count == 0 {
+                completion(false)
+                return
+            }
+            completion(true)
+        }
     }
     
     private static func storeUserData(id: String, name: String, nickname: String, country: String, description: String, photo: URL?, selectedPlatforms: [Platform], selectedGames: [Game], languages: [Languages]){
@@ -109,7 +157,7 @@ public class CKRepository {
         
         publicDB.save(record) { savedRecord, error in
             if error != nil {
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "couldnt store user data"), object: record)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: UserTable.storeFailMessage.description), object: record)
             }
         }
         
@@ -137,7 +185,7 @@ public class CKRepository {
             
             publicDB.save(record) { savedRecord, error in
                 if error != nil {
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "couldnt store userGames data"), object: record)
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: UserGamesTable.storeFailMessage.description), object: record)
                 }
             }
         }
@@ -181,7 +229,6 @@ public class CKRepository {
                         let gameSelectedServersString = userGame.value(forKey: UserGamesTable.selectedServers.description) as! [String]
                         var gameSelectedServers: [Servers] = [Servers]()
                         
-                        //crime \/
                         for g in gameSelectedServersString {
                             if let sv = allGames[gameId].serverType?.getServer(server: g) {
                                 gameSelectedServers.append(sv)
@@ -199,6 +246,50 @@ public class CKRepository {
         }
         
     }
+    
+    static func storeFriendship(inviterUserId: String, receiverUserId: String, isInvite: IsInvite, acceptance: Bool) {
+        let recordID = CKRecord.ID(recordName:"\(inviterUserId)\(receiverUserId)")
+        let record = CKRecord(recordType: FriendsTable.recordType.description, recordID: recordID)
+        let publicDB = container.publicCloudDatabase
+        
+        record.setObject(inviterUserId as CKRecordValue?, forKey: FriendsTable.id1.description)
+        record.setObject(receiverUserId as CKRecordValue?, forKey: FriendsTable.id2.description)
+        if isInvite == IsInvite.yes {
+            record.setObject(IsInvite.yes.description as CKRecordValue?, forKey: FriendsTable.isInvite.description)
+        }
+        else if acceptance {
+            record.setObject(IsInvite.no.description as CKRecordValue?, forKey: FriendsTable.isInvite.description)
+        }
+        else {
+            deleteFriendship(id1: inviterUserId, id2: receiverUserId)
+            return
+        }
+        
+        publicDB.save(record) { record, error in
+            if error != nil {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: FriendsTable.storeFailMessage.description), object: record)
+            }
+        }
+    }
+    
+    static func deleteFriendship(id1: String, id2: String) {
+        let publicDB = container.publicCloudDatabase
+        let recordID = CKRecord.ID(recordName:"\(id1)\(id2)")
+        let recordID2 = CKRecord.ID(recordName:"\(id2)\(id1)")
+        
+        publicDB.delete(withRecordID: recordID) { id, error in
+            if error != nil {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: FriendsTable.storeFailMessage.description), object: id)
+            }
+        }
+        
+        publicDB.delete(withRecordID: recordID2) { id, error in
+            if error != nil {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: FriendsTable.storeFailMessage.description), object: id)
+            }
+        }
+    }
+    
 }
 
 extension CKAsset {
