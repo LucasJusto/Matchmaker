@@ -16,7 +16,7 @@ import UIKit
     @IBOutlet weak var collectionView: UICollectionView!
     
     private let cellIdentifier: String = "GameCollectionCell"
-    private let games: [Game] = buildGameArray()
+    private let games: [Game] = Games.buildGameArray()
     
     //MARK: GameCollectionView - View Setup
     
