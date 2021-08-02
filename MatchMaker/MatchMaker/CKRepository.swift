@@ -83,6 +83,7 @@ enum FriendsTable: CustomStringConvertible {
 public class CKRepository {
     static var user: User? //singleton user
     public static let container: CKContainer = CKContainer(identifier: "iCloud.MatchMaker")
+    static var isUserSeted: DispatchSemaphore = DispatchSemaphore(value: 0)
     
     static func setOnboardingInfo(name: String, nickname: String, photo: UIImage?, photoURL: URL?, country: String, description: String, languages: [Languages], selectedPlatforms: [Platform], selectedGames: [Game]){
         
@@ -94,6 +95,14 @@ public class CKRepository {
         
         //creating user singleton
         user = User(id: id, name: name, nickname: nickname, photo: photo, country: country, description: description, behaviourRate: 0, skillRate: 0, languages: languages, selectedPlatforms: selectedPlatforms, selectedGames: selectedGames)
+        isUserSeted.signal()
+    }
+    
+    static func setUserFromCloudKit() {
+        CKRepository.getUserById(id: CKRepository.getUserId()) { user in
+            CKRepository.user = user
+            isUserSeted.signal()
+        }
     }
     
     public static func getUserId() -> String{
@@ -106,6 +115,20 @@ public class CKRepository {
         }
         semaphore.wait()
         return "id\(id)"
+    }
+    
+    public static func isUserRegistered(completion: @escaping (Bool) -> Void) {
+        let publicDB = container.publicCloudDatabase
+        let predicate = NSPredicate(format: "id == %@", getUserId())
+        let query = CKQuery(recordType: UserTable.recordType.description, predicate: predicate)
+        
+        publicDB.perform(query, inZoneWith: nil) { result, error in
+            if result?.count == 0 {
+                completion(false)
+                return
+            }
+            completion(true)
+        }
     }
     
     private static func storeUserData(id: String, name: String, nickname: String, country: String, description: String, photo: URL?, selectedPlatforms: [Platform], selectedGames: [Game], languages: [Languages]){

@@ -46,7 +46,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         }
-        
+        CKRepository.isUserRegistered { bool in
+            if bool {
+                CKRepository.setUserFromCloudKit()
+            }
+            else {
+                //CKRepository.setOnboardingInfo(name: <#T##String#>, nickname: <#T##String#>, photo: <#T##UIImage?#>, photoURL: <#T##URL?#>, country: <#T##String#>, description: <#T##String#>, languages: <#T##[Languages]#>, selectedPlatforms: <#T##[Platform]#>, selectedGames: <#T##[Game]#>)
+            }
+        }
+        CKRepository.isUserSeted.wait()
         return true
     }
     
