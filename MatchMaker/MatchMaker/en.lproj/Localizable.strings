@@ -8,13 +8,18 @@
 
 "titleLabel" = "Hello World";
 
-// MARK:- Platforms
+//MARK: - User
+"UserBehaviour" = "Behaviour";
+"UserSkills" = "Skills";
+"UserReviews" = "Reviews";
+
+// MARK: - Platforms
 "PlatformPC" = "PC";
 "PlatformPS" = "PlayStation";
 "PlatformXbox" = "Xbox";
 "PlatformMobile" = "Mobile";
 
-// MARK:- Languages
+// MARK: - Languages
 "LanguagesPortuguese" = "Portuguese";
 "LanguagesEnglish" = "English";
 "LanguagesChinese" = "Chinese";
@@ -23,9 +28,12 @@
 "LanguagesRussian" = "Russian";
 "LanguagesGerman" = "German";
 
+//MARK: - Games
 "Dota2Description" = "This is the description of Dota 2";
 "LeagueOfLegendsDescription" = "This is the description of League of Legends";
 "CounterStrikeGODescription" = "This is the description of Counter Strike: Global Offensive";
+
+//MARK: - Servers
 "Australia" = "Australia";
 "Europe East" = "Europe East";
 "Europe West" = "Europe West";

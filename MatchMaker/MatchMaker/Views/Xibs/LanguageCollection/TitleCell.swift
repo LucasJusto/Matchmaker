@@ -1,5 +1,5 @@
 //
-//  PlatformCollectionViewCell.swift
+//  TitleCell.swift
 //  MatchMaker
 //
 //  Created by Marina De Pazzi on 28/07/21.
@@ -7,16 +7,15 @@
 
 import UIKit
 
-//MARK: - PlatformCollectionViewCell Class
+//MARK: - TitleCell Class
 
-class PlatformCollectionViewCell: UICollectionViewCell {
+class TitleCell: UICollectionViewCell {
     
-    //MARK: PlatformCollectionViewCell - Variables and Outlets Setup
+    //MARK: TitleCell - Variables and Outlets Setup
 
-    @IBOutlet weak var contentImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     
-    //MARK: PlatformCollectionViewCell - View Setup
+    //MARK: TitleCell - View Setup
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,12 +23,12 @@ class PlatformCollectionViewCell: UICollectionViewCell {
         setDynamicTypes()
     }
     
-    //MARK: PlatformCollectionViewCell - Accessibility Features: Dynamic Types
+    //MARK: TitleCell - Accessibility Features: Dynamic Types
     
     func setDynamicTypes(){
         let bodyMetrics = UIFontMetrics(forTextStyle: .body)
         
-        let titleFont = UIFont.systemFont(ofSize: 13, weight: .regular)
+        let titleFont = UIFont.systemFont(ofSize: 13, weight: .light)
         
         let scaledTitleFont = bodyMetrics.scaledFont(for: titleFont)
         

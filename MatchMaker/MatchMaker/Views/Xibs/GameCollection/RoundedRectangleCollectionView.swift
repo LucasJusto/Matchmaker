@@ -1,5 +1,5 @@
 //
-//  GameCollectionView.swift
+//  RoundedRectangleCollectionView.swift
 //  MatchMaker
 //
 //  Created by Marina De Pazzi on 27/07/21.
@@ -7,18 +7,23 @@
 
 import UIKit
 
-//MARK: - GameCollectionView Class
+protocol RoundedRectangleModel {
+    var image: UIImage { get }
+}
 
-@IBDesignable class GameCollectionView: UIView, NibLoadable {
+//MARK: - RoundedRectangleCollectionView Class
+
+@IBDesignable class RoundedRectangleCollectionView: UIView, NibLoadable {
     
-    //MARK: GameCollectionView - Variables and Outlets Setup
+    //MARK: RoundedRectangleCollectionView - Variables and Outlets Setup
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    private let cellIdentifier: String = "GameCollectionCell"
-    private let games: [Game] = Games.buildGameArray()
+    private let cellIdentifier: String = "RoundedRectangleCell"
     
-    //MARK: GameCollectionView - View Setup
+    var RoundedRectangleImageModels: [RoundedRectangleModel] = []
+    
+    //MARK: RoundedRectangleCollectionView - View Setup
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,10 +31,10 @@ import UIKit
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        collectionView.register(UINib(nibName: "GameCollectionCell", bundle: .main), forCellWithReuseIdentifier: cellIdentifier)
+        collectionView.register(UINib(nibName: "RoundedRectangleCollectionCell", bundle: .main), forCellWithReuseIdentifier: cellIdentifier)
     }
     
-    //MARK: GameCollectionView - Nib Setup
+    //MARK: RoundedRectangleCollectionView - Nib Setup
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -45,7 +50,7 @@ import UIKit
 
 //MARK: - UICollectionView Delegate
 
-extension GameCollectionView: UICollectionViewDelegate {
+extension RoundedRectangleCollectionView: UICollectionViewDelegate {
     
     //MARK: UICollectionViewDelegate - Interaction Setup
     
@@ -57,20 +62,20 @@ extension GameCollectionView: UICollectionViewDelegate {
 
 //MARK: - UICollectionView DataSource
 
-extension GameCollectionView: UICollectionViewDataSource {
+extension RoundedRectangleCollectionView: UICollectionViewDataSource {
     
     //MARK: UICollectionViewDataSource - Content Setup
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return games.count
+        return RoundedRectangleImageModels.count
     }
     
     //MARK: UICollectionViewDataSource - Cell Setup
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! GameCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! RoundedRectangleViewCell
         
-        cell.contentImage.image = games[indexPath.row].image
+        cell.contentImage.image = RoundedRectangleImageModels[indexPath.row].image
         cell.contentImage.layer.cornerRadius = 10
         
         return cell

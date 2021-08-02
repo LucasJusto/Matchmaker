@@ -1,5 +1,5 @@
 //
-//  GameCollectionViewCell.swift
+//  RoundedRectangleViewCell.swift
 //  MatchMaker
 //
 //  Created by Marina De Pazzi on 27/07/21.
@@ -7,15 +7,15 @@
 
 import UIKit
 
-//MARK: - GameCollectionViewCell Class
+//MARK: - RoundedRectangleViewCell Class
 
-class GameCollectionViewCell: UICollectionViewCell {
+class RoundedRectangleViewCell: UICollectionViewCell {
     
-    //MARK: GameCollectionViewCell - Variables and Outlets Setup
+    //MARK: RoundedRectangleViewCell - Variables and Outlets Setup
     
     @IBOutlet weak var contentImage: UIImageView!
     
-    //MARK: GameCollectionViewCell - View Setup
+    //MARK: RoundedRectangleViewCell - View Setup
 
     override func awakeFromNib() {
         super.awakeFromNib()

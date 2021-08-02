@@ -26,15 +26,51 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var languagesTitleLabel: UILabel!
     @IBOutlet weak var gamesTitleLabel: UILabel!
     
+    @IBOutlet weak var behaviourRatingView: ProfileRatingView!
+    @IBOutlet weak var skillsRatingView: ProfileRatingView!
+    @IBOutlet weak var platformsView: SmallLabeledImageCollectionView!
+    @IBOutlet weak var languagesView: TitleCollectionView!
+    @IBOutlet weak var gameCollectionView: RoundedRectangleCollectionView!
+    
+    private var user: User?
+    
+    var marinaGames: [Game] = Games.buildGameArray()
+    
     //MARK: ProfileViewController - View Setup
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        CKRepository.setOnboardingInfo(name: "Marina de Pazzi", nickname: "Prolene", photo: nil, photoURL: nil, country: "Brasil", description: "fala fellas, voce que curte um cszinho, bora fazer um projetinho na mansao arromba", languages: [Languages.english, Languages.portuguese, Languages.russian], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: [marinaGames[1], marinaGames[2]])
+        
+        setupUserProfile()
 
         backgroundCoverImage.accessibilityIgnoresInvertColors = true
         dynamicTypesFontConfig()
         
         userAvatarView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(chooseImage)))
+    }
+    
+    private func setupUserProfile() {
+        user = CKRepository.user
+        guard let unwrappedUser = user else { return }
+        
+        userProfileNameLabel.text = unwrappedUser.name
+        userProfileGamertagLabel.text = "@" + unwrappedUser.nickname
+        userProfileBioLabel.text = unwrappedUser.description
+        
+        behaviourRatingView.ratingLabel.text = String(unwrappedUser.behaviourRate)
+        behaviourRatingView.categoryOfRatingLabel.text = NSLocalizedString("UserBehaviour", comment: "This is the key for 'behaviour' translation")
+        behaviourRatingView.amountOfReviewsLabel.text = "0 " + NSLocalizedString("UserReviews", comment: "This is the key for 'reviews' translation")
+        skillsRatingView.ratingLabel.text = String(unwrappedUser.skillRate)
+        skillsRatingView.categoryOfRatingLabel.text = NSLocalizedString("UserSkills", comment: "This is the key for 'skills' translation")
+        skillsRatingView.amountOfReviewsLabel.text = "0 " + NSLocalizedString("UserReviews", comment: "This is the key for 'reviews' translation")
+        
+        platformsView.smallLabeledImageModels = unwrappedUser.selectedPlatforms
+        
+        languagesView.titleModels = unwrappedUser.languages
+        
+        gameCollectionView.RoundedRectangleImageModels = unwrappedUser.selectedGames
     }
     
     //MARK: ProfileViewController - Accessibility Features: Dynamic Types
@@ -76,6 +112,8 @@ class ProfileViewController: UIViewController {
         gamesTitleLabel.font = scaledSectionTitle1Font
         gamesTitleLabel.adjustsFontForContentSizeCategory = true
     }
+    
+    //MARK: ProfileViewController - Setting User Profile Picture
     
     @objc func chooseImage() {
         ImagePickerManager().pickImage(self) { image in

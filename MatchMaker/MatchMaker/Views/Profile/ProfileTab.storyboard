@@ -14,7 +14,7 @@
             <objects>
                 <viewController id="Y6W-OH-hqX" customClass="ProfileViewController" customModule="MatchMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lQM-yi-rgY">
@@ -111,7 +111,7 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E8i-Ta-eaW" customClass="PlatformCollectionView" customModule="MatchMaker" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E8i-Ta-eaW" customClass="SmallLabeledImageCollectionView" customModule="MatchMaker" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="586.5" width="414" height="70"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="70" id="ecn-5l-opr"/>
@@ -123,7 +123,7 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0NT-h4-Gv2" customClass="LanguageCollectionView" customModule="MatchMaker" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0NT-h4-Gv2" customClass="TitleCollectionView" customModule="MatchMaker" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="706.5" width="414" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="d3f-cD-MHI"/>
@@ -135,7 +135,7 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jpy-L5-jRJ" customClass="GameCollectionView" customModule="MatchMaker" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jpy-L5-jRJ" customClass="RoundedRectangleCollectionView" customModule="MatchMaker" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="801.5" width="414" height="165"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -209,10 +209,15 @@
                     <size key="freeformSize" width="414" height="1200"/>
                     <connections>
                         <outlet property="backgroundCoverImage" destination="wwI-PQ-nfS" id="LlN-Lk-vjM"/>
+                        <outlet property="behaviourRatingView" destination="CuB-pu-WlP" id="z97-1k-A23"/>
+                        <outlet property="gameCollectionView" destination="jpy-L5-jRJ" id="qZ1-d4-qxE"/>
                         <outlet property="gamesTitleLabel" destination="Nlr-sj-B2L" id="g3C-fb-4aq"/>
                         <outlet property="languagesTitleLabel" destination="3Y3-gy-gw2" id="Bm1-Xx-Hk4"/>
+                        <outlet property="languagesView" destination="0NT-h4-Gv2" id="4Qo-ce-taO"/>
                         <outlet property="platformsTitleLabel" destination="thb-ZM-4ut" id="gDw-cv-viQ"/>
+                        <outlet property="platformsView" destination="E8i-Ta-eaW" id="adR-c5-YmU"/>
                         <outlet property="ratingsTitleLabel" destination="Iri-UU-lvc" id="OlZ-Zb-8pZ"/>
+                        <outlet property="skillsRatingView" destination="u4L-27-qBv" id="TuN-Rh-PIY"/>
                         <outlet property="userAvatarView" destination="wyL-4I-PoK" id="fA0-FO-bP7"/>
                         <outlet property="userProfileBioLabel" destination="U58-xx-tEV" id="qjg-Qo-xjc"/>
                         <outlet property="userProfileGamertagLabel" destination="GGE-Ma-MJm" id="mSN-qP-rGS"/>

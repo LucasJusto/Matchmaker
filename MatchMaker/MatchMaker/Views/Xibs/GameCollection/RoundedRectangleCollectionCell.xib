@@ -9,7 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GameCollectionCell" id="mpP-rJ-Vq3" customClass="GameCollectionViewCell" customModule="MatchMaker" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RoundedRectangleCell" id="mpP-rJ-Vq3" customClass="RoundedRectangleViewCell" customModule="MatchMaker" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="120" height="165"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Yrp-OW-ouj">
@@ -39,6 +39,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="CounterStrikeGO" width="1170" height="780"/>
+        <image name="CounterStrikeGO" width="585" height="390"/>
     </resources>
 </document>

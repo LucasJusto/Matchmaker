@@ -1,5 +1,5 @@
 //
-//  LanguageCell.swift
+//  SmallLabeledImageCollectionViewCell.swift
 //  MatchMaker
 //
 //  Created by Marina De Pazzi on 28/07/21.
@@ -7,15 +7,16 @@
 
 import UIKit
 
-//MARK: - LanguageCell Class
+//MARK: - SmallLabeledImageCollectionViewCell Class
 
-class LanguageCell: UICollectionViewCell {
+class SmallLabeledImageCollectionViewCell: UICollectionViewCell {
     
-    //MARK: LanguageCell - Variables and Outlets Setup
+    //MARK: SmallLabeledImageCollectionViewCell - Variables and Outlets Setup
 
+    @IBOutlet weak var contentImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     
-    //MARK: LanguageCell - View Setup
+    //MARK: SmallLabeledImageCollectionViewCell - View Setup
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,12 +24,12 @@ class LanguageCell: UICollectionViewCell {
         setDynamicTypes()
     }
     
-    //MARK: LanguageCell - Accessibility Features: Dynamic Types
+    //MARK: SmallLabeledImageCollectionViewCell - Accessibility Features: Dynamic Types
     
     func setDynamicTypes(){
         let bodyMetrics = UIFontMetrics(forTextStyle: .body)
         
-        let titleFont = UIFont.systemFont(ofSize: 13, weight: .light)
+        let titleFont = UIFont.systemFont(ofSize: 13, weight: .regular)
         
         let scaledTitleFont = bodyMetrics.scaledFont(for: titleFont)
         

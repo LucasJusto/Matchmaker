@@ -95,6 +95,8 @@ enum Languages: CustomStringConvertible {
     }
 }
 
+extension Languages: TitleModel { }
+
 public struct Social {
     let id: String //iCloud ID
     let name: String //real name
