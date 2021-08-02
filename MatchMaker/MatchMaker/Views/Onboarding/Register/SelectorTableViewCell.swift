@@ -13,6 +13,8 @@ class SelectorTableViewCell: UITableViewCell {
         
     @IBOutlet weak var collectionView: UICollectionView!
         
+    @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }

@@ -453,15 +453,15 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title section" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AuA-lz-bMv">
-                                                    <rect key="frame" x="0.0" y="0.0" width="137" height="54"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="137" height="29"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nTd-gm-3Gg">
-                                                    <rect key="frame" x="0.0" y="63" width="382" height="40"/>
+                                                    <rect key="frame" x="0.0" y="38" width="382" height="65"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="40" id="e4v-mu-aEv"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="wqy-gE-Gwr"/>
                                                     </constraints>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="UtO-CI-dmR">
                                                         <size key="itemSize" width="110" height="40"/>
@@ -471,7 +471,7 @@
                                                     </collectionViewFlowLayout>
                                                     <cells>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="selectable-tag-cell" id="OKP-H9-GIL" customClass="SelectableTagCollectionViewCell" customModule="MatchMaker" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="110" height="40"/>
+                                                            <rect key="frame" x="0.0" y="12.5" width="110" height="40"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="PTE-Q4-Rfn">
                                                                 <rect key="frame" x="0.0" y="0.0" width="110" height="40"/>
@@ -531,6 +531,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="collectionView" destination="nTd-gm-3Gg" id="yDC-hk-4lg"/>
+                                            <outlet property="collectionViewHeight" destination="wqy-gE-Gwr" id="JkS-zw-orP"/>
                                             <outlet property="titleLabel" destination="AuA-lz-bMv" id="jP9-j0-qus"/>
                                         </connections>
                                     </tableViewCell>
@@ -663,6 +664,9 @@
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="onboarding5ButtonLabel"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="didTapDone:" destination="klZ-7b-DD7" eventType="touchUpInside" id="sKH-8h-Xw0"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

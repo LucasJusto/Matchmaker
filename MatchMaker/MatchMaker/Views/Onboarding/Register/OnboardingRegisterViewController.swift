@@ -11,6 +11,10 @@ class OnboardingRegisterViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBAction func didTapDone(_ sender: UIButton) {
+        print("foi")
+    }
+    
     enum OnboardingTagCategory: Int, CaseIterable {
         case languages
         case platforms
@@ -30,18 +34,6 @@ class OnboardingRegisterViewController: UIViewController {
         case languages
         case platforms
         case games
-    
-        var description: String {
-            switch self {
-                case .profileImage: return "Profile image"
-                case .nameField: return "Name"
-                case .usernameField: return "Username"
-                case .descriptionField: return "Description"
-                case .languages: return "Languages"
-                case .platforms: return "Platforms"
-                case .games: return "Games"
-            }
-        }
     }
     
     let onboardingFields = OnboardingFields.allCases
@@ -101,7 +93,6 @@ class OnboardingRegisterViewController: UIViewController {
         
         allTagCategories.forEach { category in
             switch category {
-                
                 case .languages:
                     let tagLanguages = supportedLanguages.map { TagOption(option: $0, isFavorite: false) }
                     self.tagLanguages = tagLanguages
@@ -193,7 +184,7 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
         let string = NSLocalizedString(titleKey, comment: "selector cell label")
 
         cell?.setUp(title: string)
-        
+                
         return cell
     }
     
@@ -297,7 +288,7 @@ extension OnboardingRegisterViewController: UICollectionViewDelegate, UICollecti
         let modelSize = model.size(withAttributes: nil)
         
         let size = CGSize(width: modelSize.width, height: collectionView.bounds.height)
-        
+                
         return size
     }
     
