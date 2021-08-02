@@ -26,7 +26,6 @@ class OnboardingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
         if let img1 = UIImage(named: "game"),
               let img2 = UIImage(named: "chat") {
             

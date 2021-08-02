@@ -7,6 +7,22 @@
 */
 
 "titleLabel" = "Hello World";
+
+// MARK:- Platforms
+"PlatformPC" = "PC";
+"PlatformPS" = "PlayStation";
+"PlatformXbox" = "Xbox";
+"PlatformMobile" = "Mobile";
+
+// MARK:- Languages
+"LanguagesPortuguese" = "Portuguese";
+"LanguagesEnglish" = "English";
+"LanguagesChinese" = "Chinese";
+"LanguagesJapanese" = "Japanese";
+"LanguagesSpanish" = "Spanish";
+"LanguagesRussian" = "Russian";
+"LanguagesGerman" = "German";
+
 "Dota2Description" = "This is the description of Dota 2";
 "LeagueOfLegendsDescription" = "This is the description of League of Legends";
 "CounterStrikeGODescription" = "This is the description of Counter Strike: Global Offensive";
