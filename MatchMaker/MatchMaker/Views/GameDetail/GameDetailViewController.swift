@@ -10,7 +10,7 @@ import UIKit
 class GameDetailViewController: UIViewController {
     
     // Game mock
-    let game = Games.games[0]
+    let game = Games.games[1]
     
     // Game info
     @IBOutlet weak var GameImage: UIImageView!
