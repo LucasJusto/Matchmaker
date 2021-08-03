@@ -201,7 +201,7 @@ public class User {
     var name: String //real name
     var nickname: String //in game name
     var photo: UIImage //profile picture
-    var country: String //where the user is playing from
+    var location: Locations //where the user is playing from
     var description: String
     var behaviourRate: Double
     var skillRate: Double
@@ -211,12 +211,12 @@ public class User {
     var friends: [Social]
     var blocked: [Social]
     
-    init(id: String, name: String, nickname: String, photo: UIImage?, country: String, description: String, behaviourRate: Double, skillRate: Double,languages: [Languages], selectedPlatforms: [Platform], selectedGames: [Game]){
+    init(id: String, name: String, nickname: String, photo: UIImage?, location: Locations, description: String, behaviourRate: Double, skillRate: Double,languages: [Languages], selectedPlatforms: [Platform], selectedGames: [Game]){
         self.id = id
         self.name = name
         self.nickname = nickname
         self.photo = photo ?? UIImage(named: "photoDefault")!
-        self.country = country
+        self.location = location
         self.description = description
         self.behaviourRate = behaviourRate
         self.skillRate = skillRate
