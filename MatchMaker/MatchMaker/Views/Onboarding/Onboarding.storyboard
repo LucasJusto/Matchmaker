@@ -145,25 +145,35 @@
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="PermissionOnboardingCollectionViewCell" id="9Ti-Ea-bjO">
                                         <rect key="frame" x="858" y="0.0" width="412" height="892"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="byR-Vf-Ya3">
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="byR-Vf-Ya3">
                                             <rect key="frame" x="0.0" y="0.0" width="412" height="892"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="57" translatesAutoresizingMaskIntoConstraints="NO" id="zke-br-M2d">
-                                                    <rect key="frame" x="91.5" y="299" width="229" height="294.5"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="57" translatesAutoresizingMaskIntoConstraints="NO" id="zke-br-M2d">
+                                                    <rect key="frame" x="91.5" y="255" width="229" height="382"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="nuvem_dados" translatesAutoresizingMaskIntoConstraints="NO" id="Fpl-gM-CB2">
-                                                            <rect key="frame" x="0.0" y="0.0" width="229" height="150"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.icloud" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Fpl-gM-CB2">
+                                                            <rect key="frame" x="0.0" y="1" width="229" height="146.5"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="229" id="haT-28-i1f"/>
                                                                 <constraint firstAttribute="height" constant="150" id="jb1-14-i1g"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="2z1-0v-kMa">
-                                                            <rect key="frame" x="0.0" y="207" width="229" height="87.5"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="2z1-0v-kMa">
+                                                            <rect key="frame" x="0.0" y="207" width="229" height="175"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="onboarding4Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B2v-56-euU" customClass="LocalizableLabel" customModule="MatchMaker" customModuleProvider="target">
-                                                                    <rect key="frame" x="26.5" y="0.0" width="176" height="19.5"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="onboarding4TitleLabel" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B2v-56-euU" customClass="LocalizableLabel" customModule="MatchMaker" customModuleProvider="target">
+                                                                    <rect key="frame" x="5" y="0.0" width="219.5" height="57.5"/>
+                                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="localisedKey" value="onboarding4Description"/>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="onboarding4TitleLabel"/>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="onboarding4Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fNX-V1-abc" customClass="LocalizableLabel" customModule="MatchMaker" customModuleProvider="target">
+                                                                    <rect key="frame" x="26.5" y="87.5" width="176" height="19.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
@@ -172,8 +182,8 @@
                                                                         <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="onboarding4Description"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
-                                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uV3-Qi-61W" customClass="LocalizableButtonLabel" customModule="MatchMaker" customModuleProvider="target">
-                                                                    <rect key="frame" x="34.5" y="49.5" width="160" height="38"/>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uV3-Qi-61W" customClass="LocalizableButtonLabel" customModule="MatchMaker" customModuleProvider="target">
+                                                                    <rect key="frame" x="34.5" y="137" width="160" height="38"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="160" id="CEC-BY-f1d"/>
@@ -730,7 +740,7 @@
         <image name="CounterStrikeGO" width="585" height="390"/>
         <image name="camera" catalog="system" width="128" height="94"/>
         <image name="logo" width="232" height="246"/>
-        <image name="nuvem_dados" width="261" height="189"/>
+        <image name="person.icloud" catalog="system" width="128" height="88"/>
         <image name="profile_default" width="500" height="500"/>
         <namedColor name="Primary">
             <color red="0.38823529411764707" green="0.090196078431372548" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

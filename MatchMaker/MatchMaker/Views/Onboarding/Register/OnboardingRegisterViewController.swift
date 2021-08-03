@@ -12,7 +12,12 @@ class OnboardingRegisterViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     @IBAction func didTapDone(_ sender: UIButton) {
-        print("foi")
+        let languages = tagLanguages.filter { $0.isFavorite }.map { Languages.getLanguage(language: $0.option) }
+        let platforms = tagPlatforms.filter { $0.isFavorite }.map { Platform.getPlatform(key: $0.option) }
+        
+        CKRepository.setOnboardingInfo(name: self.nameField, nickname: self.usernameField, photo: nil, photoURL: nil, country: "", description: self.descriptionField, languages: languages, selectedPlatforms: platforms, selectedGames: tagGames.map { $0.option })
+        
+        CKRepository.isUserSeted.wait()
     }
     
     enum OnboardingTagCategory: Int, CaseIterable {
