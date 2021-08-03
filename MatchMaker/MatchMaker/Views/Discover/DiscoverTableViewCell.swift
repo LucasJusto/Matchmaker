@@ -16,7 +16,7 @@ class DiscoverTableViewCell: UITableViewCell {
     @IBOutlet weak var addToFriendsButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var userGames: [Games]
+    var userGames: [Game] = Games.games
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,7 +29,7 @@ class DiscoverTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setUp(profileImage: UIImage, nameText: String, nickText: String, userGames: [Games]) {
+    func setup(profileImage: UIImage, nameText: String, nickText: String, userGames: [Game]) {
         self.profileImage.image = profileImage
         self.userGames = userGames
         nameLabel.text = nameText
@@ -41,11 +41,20 @@ class DiscoverTableViewCell: UITableViewCell {
 extension DiscoverTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return userGames.count
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DiscoverCollectionCell", for: indexPath) as? DiscoverCollectionViewCell
+        else {
+            return UICollectionViewCell()
+        }
         
+        let game: Game = userGames[indexPath.row]
+        
+        cell.setup(GameImage: game.image, GameTitle: game.name, isPlaystation: true, isXbox: true, isPC: true, isMobile: true)
+        
+        return cell
     }
     
 }

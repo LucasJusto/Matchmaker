@@ -36,7 +36,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="profileCell" rowHeight="223" id="ZzG-1O-w5n" customClass="DiscoverTableViewCell" customModule="MatchMaker" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DiscoverProfileCell" rowHeight="223" id="ZzG-1O-w5n" customClass="DiscoverTableViewCell" customModule="MatchMaker" customModuleProvider="target">
                                         <rect key="frame" x="20" y="49.5" width="374" height="223"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZzG-1O-w5n" id="rOV-ws-jyC">
@@ -56,13 +56,13 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="hsx-3B-B9b" userLabel="UserInfo">
                                                             <rect key="frame" x="80" y="13.5" width="105" height="33.5"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Marselo da Silva" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="od5-bB-aed" userLabel="Name">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Marselo da Silva" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="od5-bB-aed" userLabel="Name">
                                                                     <rect key="frame" x="0.0" y="0.0" width="105" height="20.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="@gl4ss3s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MjN-ub-148" userLabel="@">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@gl4ss3s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MjN-ub-148" userLabel="@">
                                                                     <rect key="frame" x="0.0" y="22.5" width="105" height="11"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="9"/>
                                                                     <nil key="textColor"/>
@@ -110,7 +110,7 @@
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="fCP-Sz-UvL">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DiscoverCollectionCell" id="fCP-Sz-UvL" customClass="DiscoverCollectionViewCell" customModule="MatchMaker" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="6" width="71" height="83"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="zYx-PZ-Q9c">
@@ -132,19 +132,19 @@
                                                                     <stackView autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="AeI-sf-4bs" userLabel="Platforms">
                                                                         <rect key="frame" x="8" y="66.5" width="55" height="13.5"/>
                                                                         <subviews>
-                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WmY-xR-5Bl">
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Play" translatesAutoresizingMaskIntoConstraints="NO" id="WmY-xR-5Bl" userLabel="Playstation">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="14" height="13.5"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" secondItem="WmY-xR-5Bl" secondAttribute="height" multiplier="1:1" id="XKm-pc-cl1"/>
                                                                                 </constraints>
                                                                             </imageView>
-                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pCz-WD-FYl">
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Xbox" translatesAutoresizingMaskIntoConstraints="NO" id="pCz-WD-FYl" userLabel="Xbox">
                                                                                 <rect key="frame" x="14" y="0.0" width="13.5" height="13.5"/>
                                                                             </imageView>
-                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eZ4-7S-1qJ">
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PC" translatesAutoresizingMaskIntoConstraints="NO" id="eZ4-7S-1qJ" userLabel="PC">
                                                                                 <rect key="frame" x="27.5" y="0.0" width="14" height="13.5"/>
                                                                             </imageView>
-                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8Zu-6Q-J7f">
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mobile" translatesAutoresizingMaskIntoConstraints="NO" id="8Zu-6Q-J7f" userLabel="Mobile">
                                                                                 <rect key="frame" x="41.5" y="0.0" width="13.5" height="13.5"/>
                                                                             </imageView>
                                                                         </subviews>
@@ -164,6 +164,14 @@
                                                                 </constraints>
                                                             </collectionViewCellContentView>
                                                             <size key="customSize" width="71" height="83"/>
+                                                            <connections>
+                                                                <outlet property="MobileImage" destination="8Zu-6Q-J7f" id="gds-AM-iMj"/>
+                                                                <outlet property="PCImage" destination="eZ4-7S-1qJ" id="M3H-sc-oA1"/>
+                                                                <outlet property="PlaystationImage" destination="WmY-xR-5Bl" id="JKP-W2-9OO"/>
+                                                                <outlet property="XboxImage" destination="pCz-WD-FYl" id="bpA-cN-ees"/>
+                                                                <outlet property="gameImage" destination="7uI-JM-3WR" id="U4q-4v-ilM"/>
+                                                                <outlet property="gameTitleLabel" destination="5vX-PQ-YKT" id="R8a-W0-xiw"/>
+                                                            </connections>
                                                         </collectionViewCell>
                                                     </cells>
                                                 </collectionView>
@@ -235,6 +243,10 @@
     </scenes>
     <resources>
         <image name="Dota2" width="300" height="400"/>
+        <image name="Mobile" width="204" height="188.5"/>
+        <image name="PC" width="204" height="189"/>
+        <image name="Play" width="204" height="188.5"/>
+        <image name="Xbox" width="204" height="188.5"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
         <namedColor name="Primary">
             <color red="0.38823529411764707" green="0.090196078431372548" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

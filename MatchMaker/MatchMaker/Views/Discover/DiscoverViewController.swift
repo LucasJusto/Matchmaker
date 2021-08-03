@@ -42,15 +42,15 @@ class DiscoverViewController: UIViewController {
 extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "profileCell", for: indexPath) as? DiscoverTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "DiscoverProfileCell", for: indexPath) as? DiscoverTableViewCell
         else {
             return UITableViewCell()
         }
-        cell.setUp(profileImage: UIImage(named: "photoDefault")!, nameText: "João Brentano", nickText: "@shimmer")
+        cell.setup(profileImage: UIImage(named: "photoDefault")!, nameText: "João Brentano", nickText: "@shimmer", userGames: Games.games)
         return cell
     }
     

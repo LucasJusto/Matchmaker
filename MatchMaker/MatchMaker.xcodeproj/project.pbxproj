@@ -24,6 +24,7 @@
 		89A912FF26AA677700D3B1D2 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A912FE26AA677700D3B1D2 /* OnboardingViewController.swift */; };
 		89A9130426AA6F0500D3B1D2 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A9130326AA6F0500D3B1D2 /* OnboardingCollectionViewCell.swift */; };
 		89A9130726AA6FEF00D3B1D2 /* OnboardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A9130626AA6FEF00D3B1D2 /* OnboardingScreen.swift */; };
+		B4573E3026B9B7B900456EC8 /* DiscoverCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4573E2F26B9B7B900456EC8 /* DiscoverCollectionViewCell.swift */; };
 		B4ABF2E226B4845200679F82 /* DiscoverTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ABF2E126B4845200679F82 /* DiscoverTableViewCell.swift */; };
 		B4C9F30B26B321C60070991C /* Discover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4C9F30A26B321C60070991C /* Discover.storyboard */; };
 		B4C9F30D26B323670070991C /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C9F30C26B323670070991C /* DiscoverViewController.swift */; };
@@ -50,6 +51,7 @@
 		89A912FE26AA677700D3B1D2 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		89A9130326AA6F0500D3B1D2 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
 		89A9130626AA6FEF00D3B1D2 /* OnboardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScreen.swift; sourceTree = "<group>"; };
+		B4573E2F26B9B7B900456EC8 /* DiscoverCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCollectionViewCell.swift; sourceTree = "<group>"; };
 		B4ABF2E126B4845200679F82 /* DiscoverTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverTableViewCell.swift; sourceTree = "<group>"; };
 		B4C9F30A26B321C60070991C /* Discover.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Discover.storyboard; sourceTree = "<group>"; };
 		B4C9F30C26B323670070991C /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				B4C9F30A26B321C60070991C /* Discover.storyboard */,
 				B4C9F30C26B323670070991C /* DiscoverViewController.swift */,
 				B4ABF2E126B4845200679F82 /* DiscoverTableViewCell.swift */,
+				B4573E2F26B9B7B900456EC8 /* DiscoverCollectionViewCell.swift */,
 			);
 			path = Discover;
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 				895A604E26AB48C300BE18C9 /* UIView+Extension.swift in Sources */,
 				482505B726B081F900032C87 /* GameServers.swift in Sources */,
 				489555DE26A76AC1005F88A2 /* AppDelegate.swift in Sources */,
+				B4573E3026B9B7B900456EC8 /* DiscoverCollectionViewCell.swift in Sources */,
 				48763E1B26AB3BF4000618D8 /* UserModel.swift in Sources */,
 				48763E1D26AB495B000618D8 /* CKRepository.swift in Sources */,
 				89A9130726AA6FEF00D3B1D2 /* OnboardingScreen.swift in Sources */,
