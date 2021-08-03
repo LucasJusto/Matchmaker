@@ -19,8 +19,8 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S6c-OK-7we">
                                 <rect key="frame" x="0.0" y="88" width="390" height="1312"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mF2-2Y-1I1">
-                                        <rect key="frame" x="0.0" y="0.0" width="272" height="870"/>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mF2-2Y-1I1">
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="870"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LeagueOfLegends" translatesAutoresizingMaskIntoConstraints="NO" id="pce-lc-GXc" userLabel="GameImage">
                                                 <rect key="frame" x="0.0" y="0.0" width="390" height="520"/>
