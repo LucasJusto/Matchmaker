@@ -8,30 +8,6 @@
 import Foundation
 import UIKit
 
-enum IsInvite: CustomStringConvertible {
-    case yes, no
-    
-    var description: String {
-        switch self {
-            case .yes:
-                return "yes"
-            case .no:
-                return "no"
-        }
-    }
-    
-    static func getIsInvite(string: String) -> IsInvite {
-        switch string {
-            case "yes":
-                return IsInvite.yes
-            case "no":
-                return IsInvite.no
-            default:
-                return IsInvite.no
-        }
-    }
-}
-
 enum Languages: CustomStringConvertible, CaseIterable {
     case portuguese, english, russian, chinese, japanese, german, spanish
     
@@ -100,7 +76,6 @@ public struct Social {
     let name: String //real name
     let nickname: String //in game name
     let photo: UIImage //profile picture
-    var isInvite: IsInvite?
 }
 
 public class User {
