@@ -20,6 +20,10 @@ class DiscoverTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        
         // Initialization code
     }
 
@@ -38,21 +42,30 @@ class DiscoverTableViewCell: UITableViewCell {
 
 }
 
-extension DiscoverTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
+extension DiscoverTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 71, height: 95)
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        print("trying to compose collection view cell")
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DiscoverCollectionCell", for: indexPath) as? DiscoverCollectionViewCell
         else {
             return UICollectionViewCell()
         }
         
-        let game: Game = userGames[indexPath.row]
+        let game: Game = userGames[0]
         
-        cell.setup(GameImage: game.image, GameTitle: game.name, isPlaystation: true, isXbox: true, isPC: true, isMobile: true)
+        cell.setup(GameImage: game.image, GameTitle: game.name, isPlaystation: false, isXbox: false, isPC: true, isMobile: true)
         
         return cell
     }
