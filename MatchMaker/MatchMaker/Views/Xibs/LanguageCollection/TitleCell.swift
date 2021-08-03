@@ -14,6 +14,9 @@ class TitleCell: UICollectionViewCell {
     //MARK: TitleCell - Variables and Outlets Setup
 
     @IBOutlet weak var titleLabel: UILabel!
+    static var titleFont: UIFont {
+        AccessibilityManager.forCustomFont(forTextStyle: .body, forFontSize: 13, forFontWeight: .light)
+    }
     
     //MARK: TitleCell - View Setup
     
@@ -26,13 +29,7 @@ class TitleCell: UICollectionViewCell {
     //MARK: TitleCell - Accessibility Features: Dynamic Types
     
     func setDynamicTypes(){
-        let bodyMetrics = UIFontMetrics(forTextStyle: .body)
-        
-        let titleFont = UIFont.systemFont(ofSize: 13, weight: .light)
-        
-        let scaledTitleFont = bodyMetrics.scaledFont(for: titleFont)
-        
-        titleLabel.font = scaledTitleFont
+        titleLabel.font = Self.titleFont
         titleLabel.adjustsFontForContentSizeCategory = true
     }
 }

@@ -15,7 +15,7 @@ protocol SmallLabeledImageModel {
 
 //MARK: - SmallLabeledImageCollectionView Class
 
-@IBDesignable class SmallLabeledImageCollectionView: UIView, NibLoadable {
+class SmallLabeledImageCollectionView: UIView, NibLoadable {
     
     //MARK: SmallLabeledImageCollectionView - Variables and Outlets Setup
 
@@ -64,10 +64,9 @@ extension SmallLabeledImageCollectionView: UICollectionViewDelegateFlowLayout {
     //MARK: UICollectionViewDelegateFlowLayout - Content Setup: Item Size
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? SmallLabeledImageCollectionViewCell,
-              let font = cell.titleLabel.font
-        else { fatalError("Error while fetching cell or font at @SmallLabeledImageCollectionView.sizeForItemAt") }
         
+        let font = SmallLabeledImageCollectionViewCell.titleFont
+
         let platform = smallLabeledImageModels[indexPath.row]
         
         let textWidth = ceil(platform.description.widthOfString(usingFont: font))

@@ -7,15 +7,23 @@
 
 import UIKit
 
+protocol UserAvatarViewDelegate: AnyObject {
+    func didChooseImage()
+}
+
 //MARK: - UserAvatarView Class
 
-@IBDesignable class UserAvatarView: UIView, NibLoadable {
+class UserAvatarView: UIView, NibLoadable {
     
     //MARK: UserAvatarView - Variables and Outlets Setup
 
     @IBOutlet weak var contentImage: UIImageView!
     @IBOutlet weak var buttonBackground: UIImageView!
-    @IBOutlet weak var photoButton: UIImageView!
+    @IBOutlet weak var photoButton: UIButton!
+    
+    weak var delegate: UserAvatarViewDelegate?
+    
+    //var didChooseImage: (() -> Void)?
     
     //MARK: UserAvatarView - View Setup
     
@@ -44,5 +52,11 @@ import UIKit
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupFromNib()
+    }
+    
+    //MARK: UserAvatarView - Capturing user photo
+    @IBAction func chooseImage(_ sender: UIButton) {
+        delegate?.didChooseImage()
+        //didChooseImage?()
     }
 }

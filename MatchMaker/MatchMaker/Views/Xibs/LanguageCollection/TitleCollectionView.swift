@@ -12,7 +12,7 @@ protocol TitleModel {
 import UIKit
 //MARK: - TitleCollectionView Class
 
-@IBDesignable class TitleCollectionView: UIView, NibLoadable {
+class TitleCollectionView: UIView, NibLoadable {
     //MARK: TitleCollectionView - Variables and Outlets Setup
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -60,10 +60,7 @@ extension TitleCollectionView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? TitleCell,
-              let font = cell.titleLabel.font
-        else { fatalError("Error while fetching cell or font at @TitleCollectionView.sizeForItemAt") }
-        
+        let font = TitleCell.titleFont
         let language = titleModels[indexPath.row]
         
         let textWidth = ceil(language.description.widthOfString(usingFont: font))

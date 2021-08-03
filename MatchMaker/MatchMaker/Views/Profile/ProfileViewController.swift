@@ -41,6 +41,19 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        userAvatarView.delegate = self
+            
+        //2 maneira de capturar a imagem do usuario, mas usando closures
+//        userAvatarView.didChooseImage = { [weak self] in
+//            guard let self = self else { return }
+//            ImagePickerManager().pickImage(self) { image in
+//                DispatchQueue.main.async {
+//                    self.userAvatarView.contentImage.image = image
+//                    self.userAvatarView.contentImage.contentMode = .scaleAspectFill
+//                }
+//            }
+//        }
+        
         CKRepository.setOnboardingInfo(name: "Marina de Pazzi", nickname: "Prolene", photo: nil, photoURL: nil, country: "Brasil", description: "fala fellas, voce que curte um cszinho, bora fazer um projetinho na mansao arromba", languages: [Languages.english, Languages.portuguese, Languages.russian], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: [marinaGames[1], marinaGames[2]])
         
         setupUserProfile()
@@ -48,7 +61,6 @@ class ProfileViewController: UIViewController {
         backgroundCoverImage.accessibilityIgnoresInvertColors = true
         dynamicTypesFontConfig()
         
-        userAvatarView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(chooseImage)))
     }
     
     private func setupUserProfile() {
@@ -67,29 +79,21 @@ class ProfileViewController: UIViewController {
         skillsRatingView.amountOfReviewsLabel.text = "0 " + NSLocalizedString("UserReviews", comment: "This is the key for 'reviews' translation")
         
         platformsView.smallLabeledImageModels = unwrappedUser.selectedPlatforms
-        
         languagesView.titleModels = unwrappedUser.languages
-        
         gameCollectionView.RoundedRectangleImageModels = unwrappedUser.selectedGames
     }
     
     //MARK: ProfileViewController - Accessibility Features: Dynamic Types
     
     func dynamicTypesFontConfig() {
-        let headlineMetrics = UIFontMetrics(forTextStyle: .headline)
-        let calloutMetrics = UIFontMetrics(forTextStyle: .callout)
-        let bodyMetrics = UIFontMetrics(forTextStyle: .body)
-        let title1Metrics = UIFontMetrics(forTextStyle: .title1)
-        
-        let userProfileNameFont = UIFont.systemFont(ofSize: 22, weight: .bold)
-        let userGamertagFont = UIFont.systemFont(ofSize: 9, weight: .light)
-        let userProfileBioFont = UIFont.systemFont(ofSize: 13, weight: .light)
-        let sectionTitlesFont = UIFont.systemFont(ofSize: 22, weight: .bold)
-        
-        let scaledUserProfileNameFont = headlineMetrics.scaledFont(for: userProfileNameFont)
-        let scaledUserGamertagFont = calloutMetrics.scaledFont(for: userGamertagFont)
-        let scaledProfileBioFont = bodyMetrics.scaledFont(for: userProfileBioFont)
-        let scaledSectionTitle1Font = title1Metrics.scaledFont(for: sectionTitlesFont)
+        let scaledUserProfileNameFont = AccessibilityManager
+            .forCustomFont(forTextStyle: .headline, forFontSize: 22, forFontWeight: .bold)
+        let scaledUserGamertagFont = AccessibilityManager
+            .forCustomFont(forTextStyle: .callout, forFontSize: 9, forFontWeight: .light)
+        let scaledProfileBioFont = AccessibilityManager
+            .forCustomFont(forTextStyle: .body, forFontSize: 13, forFontWeight: .light)
+        let scaledSectionTitle1Font = AccessibilityManager
+            .forCustomFont(forTextStyle: .title1, forFontSize: 22, forFontWeight: .bold)
         
         userProfileNameLabel.font = scaledUserProfileNameFont
         userProfileNameLabel.adjustsFontForContentSizeCategory = true
@@ -113,9 +117,12 @@ class ProfileViewController: UIViewController {
         gamesTitleLabel.adjustsFontForContentSizeCategory = true
     }
     
-    //MARK: ProfileViewController - Setting User Profile Picture
-    
-    @objc func chooseImage() {
+}
+
+//MARK: - ProfileViewController - Setting User Profile Picture
+
+extension ProfileViewController: UserAvatarViewDelegate {
+    func didChooseImage() {
         ImagePickerManager().pickImage(self) { image in
             DispatchQueue.main.async {
                 self.userAvatarView.contentImage.image = image

@@ -13,7 +13,7 @@ protocol RoundedRectangleModel {
 
 //MARK: - RoundedRectangleCollectionView Class
 
-@IBDesignable class RoundedRectangleCollectionView: UIView, NibLoadable {
+class RoundedRectangleCollectionView: UIView, NibLoadable {
     
     //MARK: RoundedRectangleCollectionView - Variables and Outlets Setup
     

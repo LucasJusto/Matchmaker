@@ -15,6 +15,9 @@ class SmallLabeledImageCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var contentImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
+    static var titleFont: UIFont {
+        AccessibilityManager.forCustomFont(forTextStyle: .body, forFontSize: 13, forFontWeight: .regular)
+    }
     
     //MARK: SmallLabeledImageCollectionViewCell - View Setup
     
@@ -27,13 +30,7 @@ class SmallLabeledImageCollectionViewCell: UICollectionViewCell {
     //MARK: SmallLabeledImageCollectionViewCell - Accessibility Features: Dynamic Types
     
     func setDynamicTypes(){
-        let bodyMetrics = UIFontMetrics(forTextStyle: .body)
-        
-        let titleFont = UIFont.systemFont(ofSize: 13, weight: .regular)
-        
-        let scaledTitleFont = bodyMetrics.scaledFont(for: titleFont)
-        
-        titleLabel.font = scaledTitleFont
+        titleLabel.font = Self.titleFont
         titleLabel.adjustsFontForContentSizeCategory = true
     }
 }

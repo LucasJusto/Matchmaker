@@ -17,6 +17,7 @@
 		1B4E87CE26B0829800A51AF1 /* RoundedRectangleCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B4E87CD26B0829800A51AF1 /* RoundedRectangleCollectionCell.xib */; };
 		1B5F81A826B4DF7B00D19747 /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5F81A726B4DF7B00D19747 /* ImagePickerManager.swift */; };
 		1B5F81AC26B85AF100D19747 /* Games.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5F81AA26B85AC900D19747 /* Games.swift */; };
+		1B5F81AE26B9B6B300D19747 /* AccessibilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5F81AD26B9B6B300D19747 /* AccessibilityManager.swift */; };
 		1B767CB526B0864900EA4588 /* RoundedRectangleViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B767CB426B0864900EA4588 /* RoundedRectangleViewCell.swift */; };
 		1B767CB826B0AE4600EA4588 /* UserAvatarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B767CB726B0AE4600EA4588 /* UserAvatarView.xib */; };
 		1B767CBA26B0AFBD00EA4588 /* UserAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B767CB926B0AFBD00EA4588 /* UserAvatarView.swift */; };
@@ -57,6 +58,7 @@
 		1B4E87CD26B0829800A51AF1 /* RoundedRectangleCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoundedRectangleCollectionCell.xib; sourceTree = "<group>"; };
 		1B5F81A726B4DF7B00D19747 /* ImagePickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
 		1B5F81AA26B85AC900D19747 /* Games.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Games.swift; sourceTree = "<group>"; };
+		1B5F81AD26B9B6B300D19747 /* AccessibilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityManager.swift; sourceTree = "<group>"; };
 		1B767CB426B0864900EA4588 /* RoundedRectangleViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectangleViewCell.swift; sourceTree = "<group>"; };
 		1B767CB726B0AE4600EA4588 /* UserAvatarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserAvatarView.xib; sourceTree = "<group>"; };
 		1B767CB926B0AFBD00EA4588 /* UserAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAvatarView.swift; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 			children = (
 				89A9130626AA6FEF00D3B1D2 /* OnboardingScreen.swift */,
 				1B5F81A726B4DF7B00D19747 /* ImagePickerManager.swift */,
+				1B5F81AD26B9B6B300D19747 /* AccessibilityManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 				1B767CC526B1B94A00EA4588 /* SmallLabeledImageCollectionViewCell.swift in Sources */,
 				48763E1B26AB3BF4000618D8 /* UserModel.swift in Sources */,
 				48763E1D26AB495B000618D8 /* CKRepository.swift in Sources */,
+				1B5F81AE26B9B6B300D19747 /* AccessibilityManager.swift in Sources */,
 				89A9130726AA6FEF00D3B1D2 /* OnboardingScreen.swift in Sources */,
 				1B5F81A826B4DF7B00D19747 /* ImagePickerManager.swift in Sources */,
 				1B767CCE26B1D80100EA4588 /* TitleCell.swift in Sources */,
