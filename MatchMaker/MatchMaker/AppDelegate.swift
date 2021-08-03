@@ -52,8 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 CKRepository.setUserFromCloudKit()
             }
             else {
-                let games = Games.buildGameArray()
-                CKRepository.setOnboardingInfo(name: "Lucas Justo", nickname: "lolzinho", photo: nil, photoURL: nil,country: "Brasil", description: "af", languages: [Languages.english, Languages.portuguese], selectedPlatforms: [Platform.PC], selectedGames: [games[1], games[2]])
+            
             }
         }
         CKRepository.isUserSeted.wait()
