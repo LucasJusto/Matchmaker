@@ -55,6 +55,20 @@ to identify you from iCloud";
 "LanguagesRussian" = "Russian";
 "LanguagesGerman" = "German";
 
+// MARK:- Locations
+"LocationNorthAmerica" = "North America";
+"LocationBrazil" = "Brazil";
+"LocationLatinAmericaSouth" = "Latin America South";
+"LocationLatinAmericaNorth" = "Latin America North";
+"LocationEuropeEast" = "Europe East";
+"LocationEuropeWest" = "Europe West";
+"LocationChina" = "China";
+"LocationOceania" = "Oceania";
+"LocationAsiaEast" = "Asia East";
+"LocationAsiaWest" = "Asia West";
+"LocationAfricaNorth" = "Africa North";
+"LocationAfricaSouth" = "Africa South";
+
 "Dota2Description" = "This is the description of Dota 2";
 "LeagueOfLegendsDescription" = "This is the description of League of Legends";
 "CounterStrikeGODescription" = "This is the description of Counter Strike: Global Offensive";
