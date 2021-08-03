@@ -156,7 +156,7 @@ enum Locations: CustomStringConvertible {
         }
     }
     
-    static func getLanguage(location: String) -> Locations {
+    static func getLocation(location: String) -> Locations {
         switch location {
             case "LocationNorthAmerica":
                 return Locations.northAmerica
