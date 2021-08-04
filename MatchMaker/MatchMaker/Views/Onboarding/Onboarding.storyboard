@@ -30,7 +30,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FirstOnboardingCollectionViewCell" id="wU8-R2-6DJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="894"/>
+                                        <rect key="frame" x="10" y="0.0" width="414" height="894"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="bMF-2H-H1j">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="894"/>
@@ -423,6 +423,13 @@
                                                         <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="onboarding5DescriptionLabel"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/300" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ljg-5I-clL">
+                                                    <rect key="frame" x="348.5" y="10" width="26.5" height="16"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dFg-IO-aA7" customClass="TextViewField" customModule="MatchMaker" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="36" width="382" height="67"/>
                                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -447,16 +454,20 @@
                                                 </textView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="dFg-IO-aA7" firstAttribute="top" secondItem="ljg-5I-clL" secondAttribute="bottom" constant="10" id="6Lt-lf-agI"/>
                                                 <constraint firstItem="KCo-Mh-YKj" firstAttribute="top" secondItem="ke4-sm-Q72" secondAttribute="top" id="A9R-Io-Cf9"/>
                                                 <constraint firstItem="dFg-IO-aA7" firstAttribute="leading" secondItem="ke4-sm-Q72" secondAttribute="leading" id="CbV-3e-Y4B"/>
                                                 <constraint firstAttribute="bottom" secondItem="dFg-IO-aA7" secondAttribute="bottom" constant="10" id="J8v-Qm-Rmc"/>
                                                 <constraint firstItem="KCo-Mh-YKj" firstAttribute="leading" secondItem="ke4-sm-Q72" secondAttribute="leading" id="LP2-hg-Nym"/>
+                                                <constraint firstAttribute="trailing" secondItem="ljg-5I-clL" secondAttribute="trailing" constant="7" id="dvh-18-GJt"/>
                                                 <constraint firstItem="dFg-IO-aA7" firstAttribute="top" secondItem="KCo-Mh-YKj" secondAttribute="bottom" constant="9" id="dzF-zF-RRI"/>
                                                 <constraint firstAttribute="trailing" secondItem="dFg-IO-aA7" secondAttribute="trailing" id="nCS-k2-dM5"/>
+                                                <constraint firstItem="ljg-5I-clL" firstAttribute="top" secondItem="ke4-sm-Q72" secondAttribute="top" constant="10" id="t0D-uI-E7H"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
+                                            <outlet property="counterLabelView" destination="ljg-5I-clL" id="R6g-wZ-ueP"/>
                                             <outlet property="textViewField" destination="dFg-IO-aA7" id="fmk-Wl-sQE"/>
                                         </connections>
                                     </tableViewCell>
@@ -550,6 +561,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
+                                            <outlet property="buttonView" destination="BXz-We-Ki3" id="QsG-BP-3fu"/>
                                             <outlet property="currentSelectionLabel" destination="j2Z-X3-Rgu" id="hoe-OM-Zgl"/>
                                         </connections>
                                     </tableViewCell>
@@ -626,20 +638,31 @@
                                                         </collectionViewCell>
                                                     </cells>
                                                 </collectionView>
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Required" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yej-2V-RYa">
+                                                    <rect key="frame" x="147" y="9" width="43" height="12"/>
+                                                    <color key="tintColor" systemColor="systemRedColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" systemColor="systemRedColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="nTd-gm-3Gg" firstAttribute="top" secondItem="yej-2V-RYa" secondAttribute="bottom" constant="17" id="7sh-cB-erX"/>
                                                 <constraint firstAttribute="trailing" secondItem="nTd-gm-3Gg" secondAttribute="trailing" id="Kwp-6i-zkq"/>
                                                 <constraint firstItem="nTd-gm-3Gg" firstAttribute="top" secondItem="AuA-lz-bMv" secondAttribute="bottom" constant="9" id="LWD-Tj-t0F"/>
                                                 <constraint firstItem="AuA-lz-bMv" firstAttribute="top" secondItem="72e-jQ-faz" secondAttribute="top" id="SHx-9R-Gqs"/>
+                                                <constraint firstItem="yej-2V-RYa" firstAttribute="top" secondItem="72e-jQ-faz" secondAttribute="top" constant="9" id="aJ6-gM-Xvq"/>
                                                 <constraint firstItem="nTd-gm-3Gg" firstAttribute="leading" secondItem="72e-jQ-faz" secondAttribute="leading" id="aM2-IJ-dKU"/>
                                                 <constraint firstAttribute="bottom" secondItem="nTd-gm-3Gg" secondAttribute="bottom" constant="10" id="qtR-78-UXC"/>
                                                 <constraint firstItem="AuA-lz-bMv" firstAttribute="leading" secondItem="72e-jQ-faz" secondAttribute="leading" id="vdv-84-6sF"/>
+                                                <constraint firstItem="yej-2V-RYa" firstAttribute="leading" secondItem="AuA-lz-bMv" secondAttribute="trailing" constant="10" id="xN2-eE-0hs"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="collectionView" destination="nTd-gm-3Gg" id="yDC-hk-4lg"/>
                                             <outlet property="collectionViewHeight" destination="wqy-gE-Gwr" id="JkS-zw-orP"/>
+                                            <outlet property="requiredLabel" destination="yej-2V-RYa" id="BGg-Dp-ZaG"/>
                                             <outlet property="titleLabel" destination="AuA-lz-bMv" id="jP9-j0-qus"/>
                                         </connections>
                                     </tableViewCell>
@@ -885,6 +908,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

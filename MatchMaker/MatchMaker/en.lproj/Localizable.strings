@@ -42,6 +42,11 @@ to identify you from iCloud";
 "onboarding5GamesLabel" = "Games";
 "onboarding5SelectedLabel" = "Selected";
 
+// MARK:- ONBOARDING 5 - Warning
+"onboarding5AlertTitleLabel" = "Empty Fields";
+"onboarding5AlertTextLabel" = "You need to fill the required fields to create your profile";
+"onboarding5AlertButtonLabel" = "Ok";
+
 // MARK:- Platforms
 "PlatformPC" = "PC";
 "PlatformPS" = "PlayStation";

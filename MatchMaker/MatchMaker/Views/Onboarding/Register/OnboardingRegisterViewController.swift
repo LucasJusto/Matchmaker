@@ -12,13 +12,53 @@ class OnboardingRegisterViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     @IBAction func didTapDone(_ sender: UIButton) {
+        
+        let isIncomplete = nameField.isEmpty || usernameField.isEmpty || selectedLocation.isEmpty || tagLanguages.filter { $0.isFavorite }.count < 1 || tagPlatforms.filter { $0.isFavorite }.count < 1
+        
+        didTapDone = true
+                
+        if isIncomplete {
+            self.present(alertEmptyFields(), animated: true, completion: nil)
+        }
+        
         let languages = tagLanguages.filter { $0.isFavorite }.map { Languages.getLanguage(language: $0.option) }
         let platforms = tagPlatforms.filter { $0.isFavorite }.map { Platform.getPlatform(key: $0.option) }
-        
-        CKRepository.setOnboardingInfo(name: self.nameField, nickname: self.usernameField, photo: nil, photoURL: nil, location: Locations.africaNorth, description: self.descriptionField, languages: languages, selectedPlatforms: platforms, selectedGames: tagGames.map { $0.option })
+        let games = tagGames.filter { $0.isFavorite } .map { $0.option }
 
-        CKRepository.isUserSeted.wait()
+//        print("name", nameField)
+//        print("nickname", usernameField)
+////        print("photo", nil)
+////        print("photoURL", nil)
+//        print("location", selectedLocation)
+//        print("description", descriptionField)
+//        print("languages", languages)
+//        print("selectedPlatforms", platforms)
+//        print("selectedGames", games)
+        
+//        CKRepository.setOnboardingInfo(name: self.nameField, nickname: self.usernameField, photo: nil, photoURL: nil, location: Locations.africaNorth, description: self.descriptionField, languages: languages, selectedPlatforms: platforms, selectedGames: tagGames.map { $0.option })
+//
+//        CKRepository.isUserSeted.wait()
     }
+    
+    func alertEmptyFields() -> UIAlertController {
+        let title = NSLocalizedString("onboarding5AlertTitleLabel", comment: "alert title")
+        
+        let message = NSLocalizedString("onboarding5AlertTextLabel", comment: "alert text")
+        
+        let buttonLabel = NSLocalizedString("onboarding5AlertButtonLabel", comment: "alert text")
+        
+        let dialogMessage = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let ok = UIAlertAction(title: buttonLabel, style: .default, handler: { (action) -> Void in
+            self.tableView.reloadData()
+          })
+        
+        dialogMessage.addAction(ok)
+        
+        return dialogMessage
+    }
+    
+    var didTapDone = false
     
     enum OnboardingTagCategory: Int, CaseIterable {
         case languages
@@ -45,45 +85,15 @@ class OnboardingRegisterViewController: UIViewController {
     let onboardingFields = OnboardingFields.allCases
     
     typealias TagOption = (option: String, isFavorite: Bool)
-    
     typealias GameOption = (option: Game, isFavorite: Bool)
     
-    var tagLanguages: [TagOption] = [] {
-        didSet {
-            print(tagLanguages)
-        }
-    }
-    var tagPlatforms: [TagOption] = [] {
-        didSet {
-            print(tagPlatforms)
-        }
-    }
-    var tagGames: [GameOption] = [] {
-        didSet {
-            print(tagGames)
-        }
-    }
-    var nameField: String = "" {
-        didSet {
-            print(nameField)
-        }
-    }
-    var usernameField: String = "" {
-        didSet {
-            print(usernameField)
-        }
-    }
-    var descriptionField: String = "" {
-        didSet {
-            print(descriptionField)
-        }
-    }
-    
-    var location: String = "" {
-        didSet {
-            print(location)
-        }
-    }
+    var tagLanguages: [TagOption] = []
+    var tagPlatforms: [TagOption] = []
+    var tagGames: [GameOption] = []
+    var nameField: String = ""
+    var usernameField: String = ""
+    var descriptionField: String = ""
+    var selectedLocation: String = Locations.africaNorth.description
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -163,9 +173,11 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
     }
     
     func textFieldCell(titleKey: String, tag: Int) -> UITableViewCell {
+        
         let string = NSLocalizedString(titleKey, comment: "text field label")
                     
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "text-field-cell") as? TextFieldTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "text-field-cell") as? TextFieldTableViewCell
+              else {
                 return UITableViewCell()
         }
         
@@ -173,6 +185,23 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
         cell.textField.tag = tag
                 
         cell.setUp(title: string)
+        
+        var text = ""
+        
+        if let onboardingTextField = OnboardingTextFields(rawValue: tag) {
+            
+            switch onboardingTextField {
+                case .nameField: text = nameField
+                case .usernameField: text = usernameField
+            }
+        }
+        
+        if didTapDone && text.isEmpty {
+            cell.textField.borderColor = .red
+            
+        } else {
+            cell.textField.borderColor = UIColor(named: "Primary")
+        }
         
         return cell
     }
@@ -183,7 +212,9 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
         }
         
         cell.textViewField.delegate = self
-                
+        cell.textViewField.text = descriptionField
+        cell.counterLabelView.text = "\(descriptionField.count)/300"
+
         return cell
     }
     
@@ -193,7 +224,13 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
         }
         
         cell.currentSelectionLabel.text = Locations.africaNorth.description
-                
+        
+        if didTapDone && selectedLocation.isEmpty {
+            cell.buttonView.borderColor = .red
+        } else {
+            cell.buttonView.borderColor = UIColor(named: "Primary")
+        }
+        
         return cell
     }
 
@@ -208,6 +245,24 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
         let string = NSLocalizedString(titleKey, comment: "selector cell label")
 
         cell?.setUp(title: string)
+        
+        var selections = 0
+        
+        if let onboardingTags = OnboardingTagCategory(rawValue: tag) {
+            
+            switch onboardingTags {
+                case .languages: selections = tagLanguages.filter { $0.isFavorite }.count
+                case .platforms: selections = tagPlatforms.filter { $0.isFavorite }.count
+                default: return cell
+            }
+        }
+        
+        if didTapDone && selections == 0 {
+            cell?.requiredLabel.isHidden = false
+            
+        } else {
+            cell?.requiredLabel.isHidden = true
+        }
                 
         return cell
     }
@@ -359,12 +414,27 @@ extension OnboardingRegisterViewController: UITextFieldDelegate {
         
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
 }
 
 extension OnboardingRegisterViewController: UITextViewDelegate {
-    
+
     func textViewDidEndEditing(_ textView: UITextView) {
         self.descriptionField = textView.text ?? ""
     }
-    
+
+    func textViewDidChange(_ textView: UITextView) {
+        let cell = tableView.cellForRow(at: IndexPath(row: OnboardingFields.descriptionField.rawValue, section: 0)) as? TextViewTableViewCell
+        
+        cell?.counterLabelView.text = "\(textView.text.count)/300"
+    }
+
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        return textView.text.count + (text.count - range.length) <= 300
+    }
+
 }
