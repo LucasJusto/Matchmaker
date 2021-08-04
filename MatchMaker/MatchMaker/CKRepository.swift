@@ -112,7 +112,7 @@ public class CKRepository {
     
     public static func getUserId(completion: @escaping (String?) -> Void) {
         container.fetchUserRecordID { record, error in
-            completion(record?.recordName)
+            completion("id\(record?.recordName ?? "")")
         }
     }
     
@@ -204,51 +204,55 @@ public class CKRepository {
         let query = CKQuery(recordType: UserTable.recordType.description, predicate: predicate)
         
         publicDB.perform(query, inZoneWith: nil) { result, error in
-            let id = result?[0].value(forKey: UserTable.id.description) as! String
-            let name = result?[0].value(forKey: UserTable.name.description) as! String
-            let nickname = result?[0].value(forKey: UserTable.nickname.description) as! String
-            var photoURL: URL? = nil
-            if let ckAsset = result?[0].value(forKey: UserTable.photo.description) as? CKAsset {
-                photoURL = ckAsset.fileURL
-            }
-            
-            let description = result?[0].value(forKey: UserTable.description.description) as! String
-            let location = Locations.getLocation(location: result?[0].value(forKey: UserTable.location.description) as! String)
-            let selectedPlatforms = (result?[0].value(forKey: UserTable.selectedPlatforms.description) as! [String]).map { platform in
-                Platform.getPlatform(key: platform)
-            }
-            let languages = (result?[0].value(forKey: UserTable.languages.description) as! [String]).map { language in
-                Languages.getLanguage(language: language)
-            }
-            
-            let gamesPredicate = NSPredicate(format: "userId == %@", id)
-            let gamesQuery = CKQuery(recordType: UserGamesTable.recordType.description, predicate: gamesPredicate)
-            
-            publicDB.perform(gamesQuery, inZoneWith: nil) { results, error in
-                var games: [Game] = [Game]()
-                let allGames = Games.buildGameArray()
-                if let userGames = results {
-                    for userGame in userGames {
-                        let gameId = Games.getGameIdInt(id: (userGame.value(forKey: UserGamesTable.gameId.description) as! String))
-                        let gameSelectedPlatforms = (userGame.value(forKey: UserGamesTable.selectedPlatforms.description) as! [String]).map { platform in
-                            Platform.getPlatform(key: platform)
-                        }
-                        let gameSelectedServersString = userGame.value(forKey: UserGamesTable.selectedServers.description) as! [String]
-                        var gameSelectedServers: [Servers] = [Servers]()
-                        
-                        for g in gameSelectedServersString {
-                            if let sv = allGames[gameId].serverType?.getServer(server: g) {
-                                gameSelectedServers.append(sv)
+            if let resultNotNull = result {
+                if resultNotNull.count > 0 {
+                    let id = result?[0].value(forKey: UserTable.id.description) as! String
+                    let name = result?[0].value(forKey: UserTable.name.description) as! String
+                    let nickname = result?[0].value(forKey: UserTable.nickname.description) as! String
+                    var photoURL: URL? = nil
+                    if let ckAsset = result?[0].value(forKey: UserTable.photo.description) as? CKAsset {
+                        photoURL = ckAsset.fileURL
+                    }
+                    
+                    let description = result?[0].value(forKey: UserTable.description.description) as! String
+                    let location = Locations.getLocation(location: result?[0].value(forKey: UserTable.location.description) as! String)
+                    let selectedPlatforms = (result?[0].value(forKey: UserTable.selectedPlatforms.description) as! [String]).map { platform in
+                        Platform.getPlatform(key: platform)
+                    }
+                    let languages = (result?[0].value(forKey: UserTable.languages.description) as! [String]).map { language in
+                        Languages.getLanguage(language: language)
+                    }
+                    
+                    let gamesPredicate = NSPredicate(format: "userId == %@", id)
+                    let gamesQuery = CKQuery(recordType: UserGamesTable.recordType.description, predicate: gamesPredicate)
+                    
+                    publicDB.perform(gamesQuery, inZoneWith: nil) { results, error in
+                        var games: [Game] = [Game]()
+                        let allGames = Games.buildGameArray()
+                        if let userGames = results {
+                            for userGame in userGames {
+                                let gameId = Games.getGameIdInt(id: (userGame.value(forKey: UserGamesTable.gameId.description) as! String))
+                                let gameSelectedPlatforms = (userGame.value(forKey: UserGamesTable.selectedPlatforms.description) as! [String]).map { platform in
+                                    Platform.getPlatform(key: platform)
+                                }
+                                let gameSelectedServersString = userGame.value(forKey: UserGamesTable.selectedServers.description) as! [String]
+                                var gameSelectedServers: [Servers] = [Servers]()
+                                
+                                for g in gameSelectedServersString {
+                                    if let sv = allGames[gameId].serverType?.getServer(server: g) {
+                                        gameSelectedServers.append(sv)
+                                    }
+                                }
+                                
+                                games.append(Game(id: "\(gameId)", name: allGames[gameId].name, description: allGames[gameId].description, platforms: allGames[gameId].platforms, servers: allGames[gameId].servers, selectedPlatforms: gameSelectedPlatforms, selectedServers: gameSelectedServers, image: allGames[gameId].image))
+                                
                             }
                         }
+                        let user = User(id: id, name: name, nickname: nickname, photoURL: photoURL, location: location, description: description, behaviourRate: 0, skillRate: 0, languages: languages, selectedPlatforms: selectedPlatforms, selectedGames: games)
                         
-                        games.append(Game(id: "\(gameId)", name: allGames[gameId].name, description: allGames[gameId].description, platforms: allGames[gameId].platforms, servers: allGames[gameId].servers, selectedPlatforms: gameSelectedPlatforms, selectedServers: gameSelectedServers, image: allGames[gameId].image))
-                        
+                        completion(user)
                     }
                 }
-                let user = User(id: id, name: name, nickname: nickname, photoURL: photoURL, location: location, description: description, behaviourRate: 0, skillRate: 0, languages: languages, selectedPlatforms: selectedPlatforms, selectedGames: games)
-                
-                completion(user)
             }
         }
         
