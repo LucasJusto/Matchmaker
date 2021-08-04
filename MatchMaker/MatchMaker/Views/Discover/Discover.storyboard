@@ -200,28 +200,38 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="71" height="95"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zs4-y4-v1o">
-                                                                        <rect key="frame" x="0.0" y="8" width="71" height="57"/>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KH5-6J-cdt">
+                                                                        <rect key="frame" x="0.0" y="8" width="71" height="71"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show more" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="utR-m6-KOr">
+                                                                                <rect key="frame" x="5" y="0.0" width="61" height="71"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
                                                                         <color key="backgroundColor" name="Primary"/>
                                                                         <constraints>
-                                                                            <constraint firstAttribute="width" secondItem="Zs4-y4-v1o" secondAttribute="height" multiplier="1:1" id="ydV-dp-gT1"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="utR-m6-KOr" secondAttribute="bottom" id="8Y8-m6-1w3"/>
+                                                                            <constraint firstItem="utR-m6-KOr" firstAttribute="leading" secondItem="KH5-6J-cdt" secondAttribute="leading" constant="5" id="QMA-dl-Jyg"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="utR-m6-KOr" secondAttribute="trailing" constant="5" id="T4r-Zr-azV"/>
+                                                                            <constraint firstAttribute="height" priority="999" constant="71" id="Zo2-Eh-g6F"/>
+                                                                            <constraint firstAttribute="width" priority="999" constant="71" id="aqO-2Z-ryr"/>
+                                                                            <constraint firstItem="utR-m6-KOr" firstAttribute="top" secondItem="KH5-6J-cdt" secondAttribute="top" id="qg5-vM-Hu3"/>
+                                                                            <constraint firstAttribute="width" secondItem="KH5-6J-cdt" secondAttribute="height" multiplier="1:1" id="sbH-yw-T4I"/>
                                                                         </constraints>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                                        <state key="normal" title="Show more">
-                                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        </state>
-                                                                    </button>
+                                                                    </view>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
-                                                                    <constraint firstItem="Zs4-y4-v1o" firstAttribute="leading" secondItem="pIH-KB-DMu" secondAttribute="leading" id="VYD-Lg-hXF"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="Zs4-y4-v1o" secondAttribute="bottom" constant="30" id="fZe-NL-8O6"/>
-                                                                    <constraint firstItem="Zs4-y4-v1o" firstAttribute="top" secondItem="pIH-KB-DMu" secondAttribute="top" constant="8" id="fcm-b0-IKd"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="Zs4-y4-v1o" secondAttribute="trailing" id="uDJ-1j-YxT"/>
+                                                                    <constraint firstItem="KH5-6J-cdt" firstAttribute="leading" secondItem="pIH-KB-DMu" secondAttribute="leading" id="3Yj-g7-h8H"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="KH5-6J-cdt" secondAttribute="trailing" id="Cms-VR-sEb"/>
+                                                                    <constraint firstItem="KH5-6J-cdt" firstAttribute="top" secondItem="pIH-KB-DMu" secondAttribute="top" constant="8" id="ZFH-dt-abP"/>
                                                                 </constraints>
                                                             </collectionViewCellContentView>
                                                             <connections>
-                                                                <outlet property="ShowMoreButton" destination="Zs4-y4-v1o" id="bB0-QV-XoA"/>
+                                                                <outlet property="ShowMoreLabel" destination="utR-m6-KOr" id="cR1-qS-aJk"/>
+                                                                <outlet property="ShowMoreView" destination="KH5-6J-cdt" id="Jna-qA-mcT"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>

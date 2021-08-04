@@ -65,3 +65,6 @@
 "US North Central" = "US North Central";
 "US South East" = "US South East";
 "US South West" = "US South West";
+
+// MARK:- Discover Screen
+"ShowMoreButton" = "Show more";

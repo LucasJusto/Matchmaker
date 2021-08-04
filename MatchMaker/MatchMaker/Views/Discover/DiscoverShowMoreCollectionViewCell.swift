@@ -9,10 +9,12 @@ import UIKit
 
 class DiscoverShowMoreCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var ShowMoreButton: UIButton!
+    @IBOutlet weak var ShowMoreView: UIView!
+    @IBOutlet weak var ShowMoreLabel: UILabel!
     
     func setup() {
-        ShowMoreButton.cornerRadius = 10
+        ShowMoreView.cornerRadius = 10
+        ShowMoreLabel.text = NSLocalizedString("ShowMoreButton", comment: "Show more button in discover screen")
         // TO DO
     }
     
