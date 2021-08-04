@@ -69,6 +69,8 @@
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstItem="od5-bB-aed" firstAttribute="top" secondItem="hsx-3B-B9b" secondAttribute="top" id="Ktg-gW-PKX"/>
+                                                                <constraint firstItem="MjN-ub-148" firstAttribute="top" secondItem="od5-bB-aed" secondAttribute="bottom" constant="2" id="QSR-J3-CUN"/>
+                                                                <constraint firstItem="od5-bB-aed" firstAttribute="top" secondItem="hsx-3B-B9b" secondAttribute="top" id="art-R8-fyC"/>
                                                                 <constraint firstItem="MjN-ub-148" firstAttribute="top" secondItem="od5-bB-aed" secondAttribute="bottom" constant="2" id="yMW-dk-KGP"/>
                                                             </constraints>
                                                         </stackView>
@@ -131,14 +133,14 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="71" height="95"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" misplaced="YES" image="Dota2" translatesAutoresizingMaskIntoConstraints="NO" id="7uI-JM-3WR">
-                                                                        <rect key="frame" x="8" y="8" width="55" height="55"/>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" image="Dota2" translatesAutoresizingMaskIntoConstraints="NO" id="7uI-JM-3WR">
+                                                                        <rect key="frame" x="0.0" y="8" width="71" height="71"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="7uI-JM-3WR" secondAttribute="height" multiplier="1:1" id="tEp-P6-ZcM"/>
                                                                         </constraints>
                                                                     </imageView>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Dota 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5vX-PQ-YKT">
-                                                                        <rect key="frame" x="0.0" y="66" width="71" height="9"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dota 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5vX-PQ-YKT">
+                                                                        <rect key="frame" x="0.0" y="79" width="71" height="10"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
