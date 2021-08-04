@@ -67,6 +67,7 @@ to identify you from iCloud";
 "LocationAsiaWest" = "Asia West";
 "LocationAfricaNorth" = "Africa North";
 "LocationAfricaSouth" = "Africa South";
+"LocationDontKnow" = "I don't know";
 
 "Dota2Description" = "This is the description of Dota 2";
 "LeagueOfLegendsDescription" = "This is the description of League of Legends";

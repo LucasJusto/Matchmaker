@@ -96,7 +96,7 @@ enum Languages: CustomStringConvertible, CaseIterable {
 }
 
 enum Locations: CustomStringConvertible {
-    case northAmerica, brazil, latinAmericaSouth, latinAmericaNorth, europeEast, europeWest, china, oceania, asiaEast, asiaWest, africaNorth, africaSouth
+    case northAmerica, brazil, latinAmericaSouth, latinAmericaNorth, europeEast, europeWest, china, oceania, asiaEast, asiaWest, africaNorth, africaSouth, dontKnow
          
     var description: String {
         switch self {
@@ -124,6 +124,8 @@ enum Locations: CustomStringConvertible {
                 return NSLocalizedString("LocationAfricaNorth", comment: "Africa North")
             case .africaSouth:
                 return NSLocalizedString("LocationAfricaSouth", comment: "Africa South")
+            case .dontKnow:
+                return NSLocalizedString("LocationDontKnow", comment: "I don't know")
         }
     }
     
@@ -153,6 +155,8 @@ enum Locations: CustomStringConvertible {
                 return "LocationAfricaNorth"
             case .africaSouth:
                 return "LocationAfricaSouth"
+            case .dontKnow:
+                return "LocationDontKnow"
         }
     }
     
@@ -182,6 +186,8 @@ enum Locations: CustomStringConvertible {
                 return Locations.africaNorth
             case "LocationAfricaSouth":
                 return Locations.africaSouth
+            case "LocationDontKnow":
+                return Locations.dontKnow
             default:
                 return Locations.northAmerica
         }
