@@ -88,38 +88,45 @@ public class CKRepository {
     static func setOnboardingInfo(name: String, nickname: String, photoURL: URL?, location: Locations, description: String, languages: [Languages], selectedPlatforms: [Platform], selectedGames: [Game]){
         
         //getUserId
-        let id = getUserId()
-        
-        //storing user data at CloudKit
-        storeUserData(id: id, name: name, nickname: nickname, location: location, description: description, photo: photoURL, selectedPlatforms: selectedPlatforms, selectedGames: selectedGames, languages: languages)
-        
-        //creating user singleton
-        user = User(id: id, name: name, nickname: nickname, photoURL: photoURL, location: location, description: description, behaviourRate: 0, skillRate: 0, languages: languages, selectedPlatforms: selectedPlatforms, selectedGames: selectedGames)
-        isUserSeted.signal()
+        CKRepository.getUserId { id in
+            if let idNotNull = id {
+                //storing user data at CloudKit
+                storeUserData(id: idNotNull, name: name, nickname: nickname, location: location, description: description, photo: photoURL, selectedPlatforms: selectedPlatforms, selectedGames: selectedGames, languages: languages)
+                
+                //creating user singleton
+                user = User(id: idNotNull, name: name, nickname: nickname, photoURL: photoURL, location: location, description: description, behaviourRate: 0, skillRate: 0, languages: languages, selectedPlatforms: selectedPlatforms, selectedGames: selectedGames)
+                isUserSeted.signal()
+            }
+        }
     }
     
     static func setUserFromCloudKit() {
-        CKRepository.getUserById(id: CKRepository.getUserId()) { user in
-            CKRepository.user = user
-            isUserSeted.signal()
+        CKRepository.getUserId { id in
+            if let idNotNull = id {
+                CKRepository.getUserById(id: idNotNull) { user in
+                    CKRepository.user = user
+                }
+            }
         }
     }
     
-    public static func getUserId() -> String{
-        var id: String = ""
-        let semaphore = DispatchSemaphore(value: 0)
-        
+    public static func getUserId(completion: @escaping (String?) -> Void) {
         container.fetchUserRecordID { record, error in
-            id = record?.recordName ?? ""
-            semaphore.signal()
+            completion(record?.recordName)
         }
-        semaphore.wait()
-        return "id\(id)"
     }
     
     public static func isUserRegistered(completion: @escaping (Bool) -> Void) {
+        var userID: String = ""
+        
+        CKRepository.getUserId { id in
+            if let idNotNull = id {
+                userID = idNotNull
+            }
+        }
+        
         let publicDB = container.publicCloudDatabase
-        let predicate = NSPredicate(format: "id == %@", getUserId())
+        let predicate = NSPredicate(format: "id == %@", userID)
         let query = CKQuery(recordType: UserTable.recordType.description, predicate: predicate)
         
         publicDB.perform(query, inZoneWith: nil) { result, error in

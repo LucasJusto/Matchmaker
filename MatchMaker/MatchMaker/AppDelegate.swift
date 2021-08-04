@@ -19,40 +19,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if UserDefaults.standard.bool(forKey: "FriendsTableSubscription") {
             
         } else {
-            
-            // 1. Create a Query Subscription used on iCloud to filter what shoud be triggered when record type changes
-            let newSubscription = CKQuerySubscription(recordType: FriendsTable.recordType.description,
-                                                      predicate: NSPredicate(format: "(id2 == %@) OR (id1 == %@)", CKRepository.getUserId(), CKRepository.getUserId()),
-                                                      options: [.firesOnRecordCreation,
-                                                                .firesOnRecordDeletion,
-                                                                .firesOnRecordUpdate])
-            
-            // 2. Creating a Subscription which will be sent to iCloud as a wrapper
-            let notification = CKSubscription.NotificationInfo()
-            notification.shouldSendContentAvailable = true
-            
-            newSubscription.notificationInfo = notification
-            
-            // 3. Create a public database where it is going to be placed at
-            let database = CKRepository.container.publicCloudDatabase
-            
-            // 4. Save the new subscription to iCloud
-            database.save(newSubscription) { subscription, error in
-                if let _ = error {
-                    return
-                }
-                
-                if let _ = subscription {
-                    UserDefaults.standard.set(true, forKey: "FriendsTableSubscription")
+            CKRepository.getUserId { id in
+                if let idNotNull = id {
+                    // 1. Create a Query Subscription used on iCloud to filter what shoud be triggered when record type changes
+                    let newSubscription = CKQuerySubscription(recordType: FriendsTable.recordType.description,
+                                                              predicate: NSPredicate(format: "(id2 == %@) OR (id1 == %@)", idNotNull, idNotNull),
+                                                              options: [.firesOnRecordCreation,
+                                                                        .firesOnRecordDeletion,
+                                                                        .firesOnRecordUpdate])
+                    
+                    // 2. Creating a Subscription which will be sent to iCloud as a wrapper
+                    let notification = CKSubscription.NotificationInfo()
+                    notification.shouldSendContentAvailable = true
+                    
+                    newSubscription.notificationInfo = notification
+                    
+                    // 3. Create a public database where it is going to be placed at
+                    let database = CKRepository.container.publicCloudDatabase
+                    
+                    // 4. Save the new subscription to iCloud
+                    database.save(newSubscription) { subscription, error in
+                        if let _ = error {
+                            return
+                        }
+                        
+                        if let _ = subscription {
+                            UserDefaults.standard.set(true, forKey: "FriendsTableSubscription")
+                        }
+                    }
                 }
             }
+            
+            
         }
         CKRepository.isUserRegistered { bool in
             if bool {
                 CKRepository.setUserFromCloudKit()
             }
             else {
-            
+                
             }
         }
         CKRepository.isUserSeted.wait()
