@@ -52,8 +52,8 @@ extension DiscoverTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if userGames.count >= 6 {
-            return 6
+        if userGames.count >= 4 {
+            return 4
         }
         return userGames.count
     }
@@ -63,9 +63,20 @@ extension DiscoverTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if indexPath.row == 3 {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DiscoverCollectionShowMoreButton", for: indexPath) as? DiscoverShowMoreCollectionViewCell
+            else {
+                    return UICollectionViewCell()
+            }
+            
+            cell.setup()
+            return cell
+        }
+        
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DiscoverCollectionCell", for: indexPath) as? DiscoverCollectionViewCell
         else {
-            return UICollectionViewCell()
+                return UICollectionViewCell()
         }
         
         let game: Game = userGames[indexPath.row]

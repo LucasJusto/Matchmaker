@@ -9,7 +9,7 @@ import UIKit
 
 class DiscoverViewController: UIViewController {
     
-    let user1: User = User(id: "0", name: "marselo difenbeck", nickname: "@shechello", photo: nil, country: "Brazil", description: "Description", behaviourRate: 10.0, skillRate: 10.0, languages: [Languages.english, Languages.portuguese], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: Games.buildGameArray())
+    
     
     var users: [User] = []
     
@@ -17,9 +17,16 @@ class DiscoverViewController: UIViewController {
     
     override func viewDidLoad() {
         
-        users.append(user1)
+        var selectedGames = Games.games
+        selectedGames.append(contentsOf: Games.games)
+        
+        let user1: User = User(id: "0", name: "marselo difenbeck", nickname: "@shechello", photo: nil, country: "Brazil", description: "Description", behaviourRate: 10.0, skillRate: 10.0, languages: [Languages.english, Languages.portuguese], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: Games.games)
         
         users.append(user1)
+        
+        let user2: User = User(id: "0", name: "marselo difenbeck", nickname: "@shechello", photo: nil, country: "Brazil", description: "Description", behaviourRate: 10.0, skillRate: 10.0, languages: [Languages.english, Languages.portuguese], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: selectedGames)
+        
+        users.append(user2)
         
         super.viewDidLoad()
         
