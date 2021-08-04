@@ -35,6 +35,8 @@ to identify you from iCloud";
 "onboarding5NameLabel" = "Name";
 "onboarding5UsernameLabel" = "Username";
 "onboarding5DescriptionLabel" = "Description";
+"onboarding5LocationLabel" = "Location";
+"onboarding5ChangePickerLabel" = "Change";
 "onboarding5LanguagesLabel" = "Languages";
 "onboarding5PlatformsLabel" = "Platforms";
 "onboarding5GamesLabel" = "Games";

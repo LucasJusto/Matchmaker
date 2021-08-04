@@ -15,8 +15,8 @@ class OnboardingRegisterViewController: UIViewController {
         let languages = tagLanguages.filter { $0.isFavorite }.map { Languages.getLanguage(language: $0.option) }
         let platforms = tagPlatforms.filter { $0.isFavorite }.map { Platform.getPlatform(key: $0.option) }
         
-        CKRepository.setOnboardingInfo(name: self.nameField, nickname: self.usernameField, photo: nil, photoURL: nil, country: "", description: self.descriptionField, languages: languages, selectedPlatforms: platforms, selectedGames: tagGames.map { $0.option })
-        
+        CKRepository.setOnboardingInfo(name: self.nameField, nickname: self.usernameField, photo: nil, photoURL: nil, location: Locations.africaNorth, description: self.descriptionField, languages: languages, selectedPlatforms: platforms, selectedGames: tagGames.map { $0.option })
+
         CKRepository.isUserSeted.wait()
     }
     
@@ -36,6 +36,7 @@ class OnboardingRegisterViewController: UIViewController {
         case nameField
         case usernameField
         case descriptionField
+        case locations
         case languages
         case platforms
         case games
@@ -75,6 +76,12 @@ class OnboardingRegisterViewController: UIViewController {
     var descriptionField: String = "" {
         didSet {
             print(descriptionField)
+        }
+    }
+    
+    var location: String = "" {
+        didSet {
+            print(location)
         }
     }
     
@@ -135,6 +142,8 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
                 
             case .descriptionField: return textViewCell()
                 
+            case .locations: return pickerCell()
+                
             case .languages: return selectorCell(titleKey: "onboarding5LanguagesLabel", tag: OnboardingTagCategory.languages.rawValue) ?? defaultCell
                     
             case .platforms: return selectorCell(titleKey: "onboarding5PlatformsLabel", tag: OnboardingTagCategory.platforms.rawValue) ?? defaultCell
@@ -174,6 +183,16 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
         }
         
         cell.textViewField.delegate = self
+                
+        return cell
+    }
+    
+    func pickerCell() -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "picker-cell") as? PickerTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        cell.currentSelectionLabel.text = Locations.africaNorth.description
                 
         return cell
     }

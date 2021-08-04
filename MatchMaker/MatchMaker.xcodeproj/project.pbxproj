@@ -49,6 +49,7 @@
 		895A605D26AF556400BE18C9 /* ProfileImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895A605C26AF556400BE18C9 /* ProfileImageTableViewCell.swift */; };
 		89971AEB26B325FB00A421C1 /* GamesSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89971AEA26B325FB00A421C1 /* GamesSelectionTableViewCell.swift */; };
 		89971AED26B3279C00A421C1 /* SelectableImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89971AEC26B3279C00A421C1 /* SelectableImageCollectionViewCell.swift */; };
+		8998785426BAFF1C0042DF4C /* PickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8998785326BAFF1C0042DF4C /* PickerTableViewCell.swift */; };
 		89A912FF26AA677700D3B1D2 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A912FE26AA677700D3B1D2 /* OnboardingViewController.swift */; };
 		89A9130426AA6F0500D3B1D2 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A9130326AA6F0500D3B1D2 /* OnboardingCollectionViewCell.swift */; };
 		89A9130726AA6FEF00D3B1D2 /* OnboardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A9130626AA6FEF00D3B1D2 /* OnboardingScreen.swift */; };
@@ -57,6 +58,7 @@
 		89AC95B926B09E0F00EC92F6 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AC95B826B09E0F00EC92F6 /* FormTextField.swift */; };
 		89AC95BB26B09E3300EC92F6 /* TextViewField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AC95BA26B09E3300EC92F6 /* TextViewField.swift */; };
 		89AC95BD26B0A79F00EC92F6 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AC95BC26B0A79F00EC92F6 /* String+Extensions.swift */; };
+		89CC467726B9DF69001B7C13 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CC467626B9DF69001B7C13 /* ButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -106,6 +108,7 @@
 		897A147126B9BA5F005DEAE0 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		89971AEA26B325FB00A421C1 /* GamesSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		89971AEC26B3279C00A421C1 /* SelectableImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		8998785326BAFF1C0042DF4C /* PickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTableViewCell.swift; sourceTree = "<group>"; };
 		89A912FE26AA677700D3B1D2 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		89A9130326AA6F0500D3B1D2 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
 		89A9130626AA6FEF00D3B1D2 /* OnboardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScreen.swift; sourceTree = "<group>"; };
@@ -114,6 +117,7 @@
 		89AC95B826B09E0F00EC92F6 /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
 		89AC95BA26B09E3300EC92F6 /* TextViewField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewField.swift; sourceTree = "<group>"; };
 		89AC95BC26B0A79F00EC92F6 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		89CC467626B9DF69001B7C13 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -282,6 +286,7 @@
 				89971AEA26B325FB00A421C1 /* GamesSelectionTableViewCell.swift */,
 				89971AEC26B3279C00A421C1 /* SelectableImageCollectionViewCell.swift */,
 				8906588726B8749D00E1B5D4 /* TextViewTableViewCell.swift */,
+				8998785326BAFF1C0042DF4C /* PickerTableViewCell.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -311,6 +316,7 @@
 			children = (
 				89AC95B826B09E0F00EC92F6 /* FormTextField.swift */,
 				89AC95BA26B09E3300EC92F6 /* TextViewField.swift */,
+				89CC467626B9DF69001B7C13 /* ButtonView.swift */,
 			);
 			path = IBDesignables;
 			sourceTree = "<group>";
@@ -406,6 +412,7 @@
 				89AC95BD26B0A79F00EC92F6 /* String+Extensions.swift in Sources */,
 				89AC95B926B09E0F00EC92F6 /* FormTextField.swift in Sources */,
 				89AC95B426B076BF00EC92F6 /* TextFieldTableViewCell.swift in Sources */,
+				8998785426BAFF1C0042DF4C /* PickerTableViewCell.swift in Sources */,
 				895A605D26AF556400BE18C9 /* ProfileImageTableViewCell.swift in Sources */,
 				89AC95B626B09B9C00EC92F6 /* SelectorTableViewCell.swift in Sources */,
 				8906588826B8749D00E1B5D4 /* TextViewTableViewCell.swift in Sources */,
@@ -423,6 +430,7 @@
 				895A605B26AF43B300BE18C9 /* OnboardingRegisterViewController.swift in Sources */,
 				895A605226AB5D5200BE18C9 /* UIButton+Extensions.swift in Sources */,
 				895A605026AB56A100BE18C9 /* UILabel+Extensions.swift in Sources */,
+				89CC467726B9DF69001B7C13 /* ButtonView.swift in Sources */,
 				1B5F81A826B4DF7B00D19747 /* ImagePickerManager.swift in Sources */,
 				1B767CCE26B1D80100EA4588 /* LanguageCell.swift in Sources */,
 				89A9130426AA6F0500D3B1D2 /* OnboardingCollectionViewCell.swift in Sources */,
@@ -591,13 +599,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = MatchMaker/MatchMaker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GYMDP69744;
+				DEVELOPMENT_TEAM = 7UW5874D4F;
 				INFOPLIST_FILE = MatchMaker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = LucasJusto.MatchMaker;
+				PRODUCT_BUNDLE_IDENTIFIER = thaisrfernandes.MatchMaker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -611,13 +619,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = MatchMaker/MatchMaker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GYMDP69744;
+				DEVELOPMENT_TEAM = 7UW5874D4F;
 				INFOPLIST_FILE = MatchMaker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = LucasJusto.MatchMaker;
+				PRODUCT_BUNDLE_IDENTIFIER = thaisrfernandes.MatchMaker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
