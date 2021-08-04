@@ -9,7 +9,7 @@ import UIKit
 
 class DiscoverViewController: UIViewController {
     
-    let user1: User = User(id: "0", name: "name", nickname: "nick", photo: nil, country: "Brazil", description: "Description", behaviourRate: 10.0, skillRate: 10.0, languages: [Languages.english, Languages.portuguese], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: Games.buildGameArray())
+    let user1: User = User(id: "0", name: "marselo difenbeck", nickname: "@shechello", photo: nil, country: "Brazil", description: "Description", behaviourRate: 10.0, skillRate: 10.0, languages: [Languages.english, Languages.portuguese], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: Games.buildGameArray())
     
     var users: [User] = []
     
@@ -19,11 +19,15 @@ class DiscoverViewController: UIViewController {
         
         users.append(user1)
         
+        users.append(user1)
+        
         super.viewDidLoad()
+        
+        // Do any additional setup after loading the view.
+        
         DiscoverTableView.delegate = self
         DiscoverTableView.dataSource = self
         
-        // Do any additional setup after loading the view.
     }
     
 
@@ -46,13 +50,8 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return users.count
     }
-    
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let view = UIView()
-//        return view
-//    }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 5
@@ -68,9 +67,11 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        //indexPath.section
+        // Using sections to have a "rounded cell" which is actually a section
+        let user = users[indexPath.section]
         
-        cell.setup(profileImage: UIImage(named: "photoDefault")!, nameText: "João Brentano", nickText: "@shimmer", userGames: Games.games)
+        cell.setup(profileImage: user.photo, nameText: user.name, nickText: user.nickname, userGames: user.selectedGames)
+        
         return cell
     }
     

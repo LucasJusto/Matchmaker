@@ -19,6 +19,7 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
     func setup(GameImage: UIImage, GameTitle: String, isPlaystation: Bool, isXbox: Bool, isPC: Bool, isMobile: Bool) {
         
         self.GameImage.image = GameImage
+        self.GameImage.cornerRadius = 10
         self.GameTitleLabel.text = GameTitle
         
         if(isPlaystation) {

@@ -16,7 +16,7 @@ class DiscoverTableViewCell: UITableViewCell {
     @IBOutlet weak var addToFriendsButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var userGames: [Game] = Games.games
+    var userGames: [Game] = []
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,6 +25,9 @@ class DiscoverTableViewCell: UITableViewCell {
         collectionView.delegate = self
         
         // Initialization code
+        
+        addToFriendsButton.cornerRadius = 10
+        profileImage.cornerRadius = 10
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -45,11 +48,14 @@ class DiscoverTableViewCell: UITableViewCell {
 extension DiscoverTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 71, height: 95)
+        return CGSize(width: 71, height: 110)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        if userGames.count >= 6 {
+            return 6
+        }
+        return userGames.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -57,15 +63,32 @@ extension DiscoverTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print("trying to compose collection view cell")
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DiscoverCollectionCell", for: indexPath) as? DiscoverCollectionViewCell
         else {
             return UICollectionViewCell()
         }
         
-        let game: Game = userGames[0]
+        let game: Game = userGames[indexPath.row]
         
-        cell.setup(GameImage: game.image, GameTitle: game.name, isPlaystation: false, isXbox: false, isPC: true, isMobile: true)
+        var playstation: Bool = false
+        var xbox: Bool = false
+        var pc: Bool = false
+        var mobile: Bool = false
+        
+        for platform in game.selectedPlatforms {
+            switch platform {
+            case Platform.PlayStation:
+                playstation = true
+            case Platform.Xbox:
+                xbox = true
+            case Platform.PC:
+                pc = true
+            case Platform.Mobile:
+                mobile = true
+            }
+        }
+        
+        cell.setup(GameImage: game.image, GameTitle: game.name, isPlaystation: playstation, isXbox: xbox, isPC: pc, isMobile: mobile)
         
         return cell
     }
