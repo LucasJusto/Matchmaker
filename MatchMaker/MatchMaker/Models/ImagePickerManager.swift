@@ -12,17 +12,27 @@ import UIKit
 
 //MARK: - ImagePickerManager Class
 
+/**
+ ImagePickerManager is a class created to abstract and facilitate the process of accessing the users camera and gallery in order to upload photos to the App.
+ 
+ **Important: In order to use this class you must call inside an UIViewController**
+ 
+ How to use: ```ImagePickerManager().pickImage(self) { image, url
+    //your implementation goes here
+ }```
+ 
+ */
 class ImagePickerManager: NSObject, UINavigationControllerDelegate {
     
     //MARK: ImagePickerManager - Variables Setup
 
-    var picker = UIImagePickerController()
-    var alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
-    var viewController: UIViewController?
-    var pickImageCallback : ((UIImage, URL) -> ())?
+    private var picker = UIImagePickerController()
+    private var alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
+    private var viewController: UIViewController?
+    private var pickImageCallback : ((UIImage, URL) -> ())?
     
     private let galleryAccessMessage: String = "In order to set a profile image, you must grant access to your gallery. Go to Settings > Matchmaker > Photos."
-    private let cameraAccessMessage: String = "In order to set a profile image, you must grant access to your gallery. Go to Settings > Matchmaker > Camera."
+    private let cameraAccessMessage: String = "In order to set a profile image, you must grant access to your camera. Go to Settings > Matchmaker > Camera."
 
     //MARK: ImagePickerManager - Class init
     
@@ -31,7 +41,6 @@ class ImagePickerManager: NSObject, UINavigationControllerDelegate {
         
         let cameraAction = UIAlertAction(title: "Camera", style: .default){ UIAlertAction in
             self.requestUserPermissionForCamera()
-            
         }
         
         let galleryAction = UIAlertAction(title: "Gallery", style: .default){ UIAlertAction in
@@ -49,6 +58,8 @@ class ImagePickerManager: NSObject, UINavigationControllerDelegate {
         alert.addAction(galleryAction)
         alert.addAction(cancelAction)
     }
+    
+    //MARK: ImagePickerManager - Class functions
     
     /**
      Sets up an image either from the gallery or the camera given by the user.
@@ -75,7 +86,7 @@ class ImagePickerManager: NSObject, UINavigationControllerDelegate {
      
      - returns: Void
      */
-    func openCamera(){
+    private func openCamera(){
         alert.dismiss(animated: true, completion: nil)
         
         if(UIImagePickerController .isSourceTypeAvailable(.camera)){
@@ -106,7 +117,7 @@ class ImagePickerManager: NSObject, UINavigationControllerDelegate {
      
      - returns: Void
      */
-    func openGallery(){
+    private func openGallery(){
         DispatchQueue.main.async {
             self.alert.dismiss(animated: true, completion: nil)
             self.picker.sourceType = .photoLibrary
@@ -121,10 +132,10 @@ class ImagePickerManager: NSObject, UINavigationControllerDelegate {
      
      - returns: Void
      */
-    func openLimitedGallery(){
-        let actionSheet = UIAlertController(title: "Select an option", message: "Select more photos or go to Settings to allow access to all photos.", preferredStyle: .actionSheet)
+    private func openLimitedGallery(){
+        let actionSheet = UIAlertController(title: "Avatar upload", message: "Select one photo as your profile picture or Allow more photos from your gallery or go to Settings to allow access to all photos.", preferredStyle: .actionSheet)
         
-        let selectProfileImage = UIAlertAction(title: "Select a photo from gallery", style: .default) { [unowned self] (_) in
+        let selectProfileImage = UIAlertAction(title: "Select a profile picture", style: .default) { [unowned self] (_) in
             DispatchQueue.main.async {
                 self.alert.dismiss(animated: true, completion: nil)
                 self.picker.sourceType = .photoLibrary
@@ -133,7 +144,7 @@ class ImagePickerManager: NSObject, UINavigationControllerDelegate {
         }
         actionSheet.addAction(selectProfileImage)
 
-        let selectPhotosAction = UIAlertAction(title: "Select more photos", style: .default) { [unowned self] (_) in
+        let selectPhotosAction = UIAlertAction(title: "Allow more photos", style: .default) { [unowned self] (_) in
             // Show limited library picker
             PHPhotoLibrary.shared().presentLimitedLibraryPicker(from: viewController!)
         }
@@ -158,7 +169,7 @@ class ImagePickerManager: NSObject, UINavigationControllerDelegate {
      
      - returns: Void
      */
-    func gotoAppPrivacySettings() {
+    private func gotoAppPrivacySettings() {
         guard let url = URL(string: UIApplication.openSettingsURLString),
             UIApplication.shared.canOpenURL(url) else {
                 assertionFailure("Not able to open App privacy settings")
@@ -175,17 +186,20 @@ class ImagePickerManager: NSObject, UINavigationControllerDelegate {
      
      - Returns: Void
      */
-    func requestPermissionForPhotoLibrary(){
+    private func requestPermissionForPhotoLibrary(){
         switch PHPhotoLibrary.authorizationStatus(for: .readWrite) {
             case .authorized:
                 self.openGallery()
                 return
             case .notDetermined:
                 PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
-                    if status == .authorized {
-                        self.openGallery()
-                    }
-                    else {
+                    switch status {
+                    case .authorized:
+                        DispatchQueue.main.async {
+                            self.openGallery()
+                        }
+                        return
+                    case .denied:
                         DispatchQueue.main.async {
                             let alertController: UIAlertController = {
                                 let controller = UIAlertController(title: "Warning", message: self.galleryAccessMessage, preferredStyle: .alert)
@@ -197,6 +211,40 @@ class ImagePickerManager: NSObject, UINavigationControllerDelegate {
                             
                             self.viewController?.present(alertController, animated: true)
                         }
+                        return
+                    case .limited:
+                        DispatchQueue.main.async {
+                            self.openLimitedGallery()
+                        }
+                        return
+                    case .notDetermined:
+                        DispatchQueue.main.async {
+                            let alertController: UIAlertController = {
+                                let controller = UIAlertController(title: "Warning", message: self.galleryAccessMessage, preferredStyle: .alert)
+                                let action = UIAlertAction(title: "OK", style: .default)
+                                controller.addAction(action)
+                                
+                                return controller
+                            }()
+                            
+                            self.viewController?.present(alertController, animated: true)
+                        }
+                        return
+                    case .restricted:
+                        DispatchQueue.main.async {
+                            let alertController: UIAlertController = {
+                                let controller = UIAlertController(title: "Warning", message: self.galleryAccessMessage, preferredStyle: .alert)
+                                let action = UIAlertAction(title: "OK", style: .default)
+                                controller.addAction(action)
+                                
+                                return controller
+                            }()
+                            
+                            self.viewController?.present(alertController, animated: true)
+                        }
+                        return
+                    @unknown default:
+                        fatalError("An Error occurred while trying to access the gallery")
                     }
                 }
                 
@@ -230,7 +278,6 @@ class ImagePickerManager: NSObject, UINavigationControllerDelegate {
                 
                 return
             case .limited:
-                // FIXME: Wrong denied alert showing even when an image is selected
                 openLimitedGallery()
                 return
             @unknown default:
@@ -245,7 +292,7 @@ class ImagePickerManager: NSObject, UINavigationControllerDelegate {
      
      - Returns: Void
      */
-    func requestUserPermissionForCamera() {
+    private func requestUserPermissionForCamera() {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .authorized:
             self.openCamera()
@@ -301,10 +348,6 @@ class ImagePickerManager: NSObject, UINavigationControllerDelegate {
             fatalError("An Error occurred while trying to access the camera")
         }
     }
-
-//    @objc func imagePickerController(_ picker: UIImagePickerController, pickedImage: UIImage?) {
-//
-//    }
 }
 
 //MARK: - UIImagePickerControllerDelegate Extension
