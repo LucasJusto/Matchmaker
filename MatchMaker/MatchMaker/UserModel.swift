@@ -198,7 +198,8 @@ public struct Social {
     let id: String //iCloud ID
     let name: String //real name
     let nickname: String //in game name
-    let photo: UIImage //profile picture
+    let photoURL: URL? //profile picture
+    let games: [Game]? //games played by this user
     var isInvite: IsInvite?
 }
 
