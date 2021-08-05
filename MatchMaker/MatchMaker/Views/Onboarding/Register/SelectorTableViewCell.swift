@@ -15,6 +15,8 @@ class SelectorTableViewCell: UITableViewCell {
         
     @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
     
+    @IBOutlet weak var requiredLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
