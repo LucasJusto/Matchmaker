@@ -83,43 +83,48 @@ enum FriendsTable: CustomStringConvertible {
 public class CKRepository {
     static var user: User? //singleton user
     public static let container: CKContainer = CKContainer(identifier: "iCloud.MatchMaker")
-    static var isUserSeted: DispatchSemaphore = DispatchSemaphore(value: 0)
     
-    static func setOnboardingInfo(name: String, nickname: String, photo: UIImage?, photoURL: URL?, location: Locations, description: String, languages: [Languages], selectedPlatforms: [Platform], selectedGames: [Game]){
+    static func setOnboardingInfo(name: String, nickname: String, photoURL: URL?, location: Locations, description: String, languages: [Languages], selectedPlatforms: [Platform], selectedGames: [Game]){
         
         //getUserId
-        let id = getUserId()
-        
-        //storing user data at CloudKit
-        storeUserData(id: id, name: name, nickname: nickname, location: location, description: description, photo: photoURL, selectedPlatforms: selectedPlatforms, selectedGames: selectedGames, languages: languages)
-        
-        //creating user singleton
-        user = User(id: id, name: name, nickname: nickname, photo: photo, location: location, description: description, behaviourRate: 0, skillRate: 0, languages: languages, selectedPlatforms: selectedPlatforms, selectedGames: selectedGames)
-        isUserSeted.signal()
+        CKRepository.getUserId { id in
+            if let idNotNull = id {
+                //storing user data at CloudKit
+                storeUserData(id: idNotNull, name: name, nickname: nickname, location: location, description: description, photo: photoURL, selectedPlatforms: selectedPlatforms, selectedGames: selectedGames, languages: languages)
+                
+                //creating user singleton
+                user = User(id: idNotNull, name: name, nickname: nickname, photoURL: photoURL, location: location, description: description, behaviourRate: 0, skillRate: 0, languages: languages, selectedPlatforms: selectedPlatforms, selectedGames: selectedGames)
+            }
+        }
     }
     
     static func setUserFromCloudKit() {
-        CKRepository.getUserById(id: CKRepository.getUserId()) { user in
-            CKRepository.user = user
-            isUserSeted.signal()
+        CKRepository.getUserId { id in
+            if let idNotNull = id {
+                CKRepository.getUserById(id: idNotNull) { user in
+                    CKRepository.user = user
+                }
+            }
         }
     }
     
-    public static func getUserId() -> String{
-        var id: String = ""
-        let semaphore = DispatchSemaphore(value: 0)
-        
+    public static func getUserId(completion: @escaping (String?) -> Void) {
         container.fetchUserRecordID { record, error in
-            id = record?.recordName ?? ""
-            semaphore.signal()
+            completion("id\(record?.recordName ?? "")")
         }
-        semaphore.wait()
-        return "id\(id)"
     }
     
     public static func isUserRegistered(completion: @escaping (Bool) -> Void) {
+        var userID: String = ""
+        
+        CKRepository.getUserId { id in
+            if let idNotNull = id {
+                userID = idNotNull
+            }
+        }
+        
         let publicDB = container.publicCloudDatabase
-        let predicate = NSPredicate(format: "id == %@", getUserId())
+        let predicate = NSPredicate(format: "id == %@", userID)
         let query = CKQuery(recordType: UserTable.recordType.description, predicate: predicate)
         
         publicDB.perform(query, inZoneWith: nil) { result, error in
@@ -197,51 +202,55 @@ public class CKRepository {
         let query = CKQuery(recordType: UserTable.recordType.description, predicate: predicate)
         
         publicDB.perform(query, inZoneWith: nil) { result, error in
-            let id = result?[0].value(forKey: UserTable.id.description) as! String
-            let name = result?[0].value(forKey: UserTable.name.description) as! String
-            let nickname = result?[0].value(forKey: UserTable.nickname.description) as! String
-            var photo: UIImage? = nil
-            if let ckAsset = result?[0].value(forKey: UserTable.photo.description) as? CKAsset {
-                photo = ckAsset.toUIImage()
-            }
-            
-            let description = result?[0].value(forKey: UserTable.description.description) as! String
-            let location = Locations.getLocation(location: result?[0].value(forKey: UserTable.location.description) as! String)
-            let selectedPlatforms = (result?[0].value(forKey: UserTable.selectedPlatforms.description) as! [String]).map { platform in
-                Platform.getPlatform(key: platform)
-            }
-            let languages = (result?[0].value(forKey: UserTable.languages.description) as! [String]).map { language in
-                Languages.getLanguage(language: language)
-            }
-            
-            let gamesPredicate = NSPredicate(format: "userId == %@", id)
-            let gamesQuery = CKQuery(recordType: UserGamesTable.recordType.description, predicate: gamesPredicate)
-            
-            publicDB.perform(gamesQuery, inZoneWith: nil) { results, error in
-                var games: [Game] = [Game]()
-                let allGames = Games.buildGameArray()
-                if let userGames = results {
-                    for userGame in userGames {
-                        let gameId = Games.getGameIdInt(id: (userGame.value(forKey: UserGamesTable.gameId.description) as! String))
-                        let gameSelectedPlatforms = (userGame.value(forKey: UserGamesTable.selectedPlatforms.description) as! [String]).map { platform in
-                            Platform.getPlatform(key: platform)
-                        }
-                        let gameSelectedServersString = userGame.value(forKey: UserGamesTable.selectedServers.description) as! [String]
-                        var gameSelectedServers: [Servers] = [Servers]()
-                        
-                        for g in gameSelectedServersString {
-                            if let sv = allGames[gameId].serverType?.getServer(server: g) {
-                                gameSelectedServers.append(sv)
+            if let resultNotNull = result {
+                if resultNotNull.count > 0 {
+                    let id = result?[0].value(forKey: UserTable.id.description) as! String
+                    let name = result?[0].value(forKey: UserTable.name.description) as! String
+                    let nickname = result?[0].value(forKey: UserTable.nickname.description) as! String
+                    var photoURL: URL? = nil
+                    if let ckAsset = result?[0].value(forKey: UserTable.photo.description) as? CKAsset {
+                        photoURL = ckAsset.fileURL
+                    }
+                    
+                    let description = result?[0].value(forKey: UserTable.description.description) as! String
+                    let location = Locations.getLocation(location: result?[0].value(forKey: UserTable.location.description) as! String)
+                    let selectedPlatforms = (result?[0].value(forKey: UserTable.selectedPlatforms.description) as! [String]).map { platform in
+                        Platform.getPlatform(key: platform)
+                    }
+                    let languages = (result?[0].value(forKey: UserTable.languages.description) as! [String]).map { language in
+                        Languages.getLanguage(language: language)
+                    }
+                    
+                    let gamesPredicate = NSPredicate(format: "userId == %@", id)
+                    let gamesQuery = CKQuery(recordType: UserGamesTable.recordType.description, predicate: gamesPredicate)
+                    
+                    publicDB.perform(gamesQuery, inZoneWith: nil) { results, error in
+                        var games: [Game] = [Game]()
+                        let allGames = Games.buildGameArray()
+                        if let userGames = results {
+                            for userGame in userGames {
+                                let gameId = Games.getGameIdInt(id: (userGame.value(forKey: UserGamesTable.gameId.description) as! String))
+                                let gameSelectedPlatforms = (userGame.value(forKey: UserGamesTable.selectedPlatforms.description) as! [String]).map { platform in
+                                    Platform.getPlatform(key: platform)
+                                }
+                                let gameSelectedServersString = userGame.value(forKey: UserGamesTable.selectedServers.description) as! [String]
+                                var gameSelectedServers: [Servers] = [Servers]()
+                                
+                                for g in gameSelectedServersString {
+                                    if let sv = allGames[gameId].serverType?.getServer(server: g) {
+                                        gameSelectedServers.append(sv)
+                                    }
+                                }
+                                
+                                games.append(Game(id: "\(gameId)", name: allGames[gameId].name, description: allGames[gameId].description, platforms: allGames[gameId].platforms, servers: allGames[gameId].servers, selectedPlatforms: gameSelectedPlatforms, selectedServers: gameSelectedServers, image: allGames[gameId].image))
+                                
                             }
                         }
+                        let user = User(id: id, name: name, nickname: nickname, photoURL: photoURL, location: location, description: description, behaviourRate: 0, skillRate: 0, languages: languages, selectedPlatforms: selectedPlatforms, selectedGames: games)
                         
-                        games.append(Game(id: "\(gameId)", name: allGames[gameId].name, description: allGames[gameId].description, platforms: allGames[gameId].platforms, servers: allGames[gameId].servers, selectedPlatforms: gameSelectedPlatforms, selectedServers: gameSelectedServers, image: allGames[gameId].image))
-                        
+                        completion(user)
                     }
                 }
-                let user = User(id: id, name: name, nickname: nickname, photo: photo, location: location, description: description, behaviourRate: 0, skillRate: 0, languages: languages, selectedPlatforms: selectedPlatforms, selectedGames: games)
-                
-                completion(user)
             }
         }
         
@@ -290,13 +299,4 @@ public class CKRepository {
         }
     }
     
-}
-
-extension CKAsset {
-    func toUIImage() -> UIImage? {
-        if let data = NSData(contentsOf: self.fileURL!) {
-            return UIImage(data: data as Data)
-        }
-        return nil
-    }
 }

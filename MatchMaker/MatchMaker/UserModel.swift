@@ -200,7 +200,7 @@ public class User {
     let id: String //iCloud ID
     var name: String //real name
     var nickname: String //in game name
-    var photo: UIImage //profile picture
+    var photoURL: URL? //profile picture
     var location: Locations //where the user is playing from
     var description: String
     var behaviourRate: Double
@@ -211,11 +211,11 @@ public class User {
     var friends: [Social]
     var blocked: [Social]
     
-    init(id: String, name: String, nickname: String, photo: UIImage?, location: Locations, description: String, behaviourRate: Double, skillRate: Double,languages: [Languages], selectedPlatforms: [Platform], selectedGames: [Game]){
+    init(id: String, name: String, nickname: String, photoURL: URL?, location: Locations, description: String, behaviourRate: Double, skillRate: Double,languages: [Languages], selectedPlatforms: [Platform], selectedGames: [Game]){
         self.id = id
         self.name = name
         self.nickname = nickname
-        self.photo = photo ?? UIImage(named: "photoDefault")!
+        self.photoURL = photoURL
         self.location = location
         self.description = description
         self.behaviourRate = behaviourRate
