@@ -95,7 +95,7 @@ extension OnboardingViewController: UICollectionViewDelegate, UICollectionViewDa
                 
                 if let img = UIImage(named: "chat"){
 
-                    let chatScreen = OnboardingScreen(title: NSLocalizedString("onboarding2Title", comment: "title onboarding 2"), description: NSLocalizedString("onboarding2Description", comment: "description onboarding 2"), image: img, imageWidth: 293, imageHeight: 254)
+                    let chatScreen = OnboardingScreen(title: NSLocalizedString("onboarding2Title", comment: "title onboarding 2"), description: NSLocalizedString("onboarding2Description", comment: "description onboarding 2"), image: img, imageWidth: 293, imageHeight: 254, color: UIColor(named: "Primary") ?? .black)
                     
                     cell.setup(chatScreen)
                 }
@@ -104,7 +104,7 @@ extension OnboardingViewController: UICollectionViewDelegate, UICollectionViewDa
                 
                 if let img = UIImage(named: "game") {
 
-                    let gameScreen = OnboardingScreen(title: NSLocalizedString("onboarding2Title", comment: "title onboarding 2"), description: NSLocalizedString("onboarding2Description", comment: "description onboarding 2"), image: img, imageWidth: 186, imageHeight: 254)
+                    let gameScreen = OnboardingScreen(title: NSLocalizedString("onboarding2Title", comment: "title onboarding 2"), description: NSLocalizedString("onboarding2Description", comment: "description onboarding 2"), image: img, imageWidth: 186, imageHeight: 254, color: .black)
                     
                     cell.setup(gameScreen)
                 }

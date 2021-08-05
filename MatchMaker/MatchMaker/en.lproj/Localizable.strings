@@ -47,6 +47,9 @@ to identify you from iCloud";
 "onboarding5AlertTextLabel" = "You need to fill the required fields to create your profile";
 "onboarding5AlertButtonLabel" = "Ok";
 
+// MARK:- ONBOARDING 5 - Keyboard
+"onboarding5KeyboardButton" = "Done";
+
 // MARK:- Platforms
 "PlatformPC" = "PC";
 "PlatformPS" = "PlayStation";

@@ -38,6 +38,7 @@
 		489555E726A76AC3005F88A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 489555E626A76AC3005F88A2 /* Assets.xcassets */; };
 		489555EA26A76AC3005F88A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 489555E826A76AC3005F88A2 /* LaunchScreen.storyboard */; };
 		489555F426A9F493005F88A2 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 489555F326A9F493005F88A2 /* CloudKit.framework */; };
+		89015F8426BC6F43009C70B1 /* UITextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89015F8326BC6F43009C70B1 /* UITextView+Extensions.swift */; };
 		8906588826B8749D00E1B5D4 /* TextViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8906588726B8749D00E1B5D4 /* TextViewTableViewCell.swift */; };
 		892A642C26B1D90D00B375CC /* SelectableTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892A642B26B1D90D00B375CC /* SelectableTagCollectionViewCell.swift */; };
 		892FE5BF26A9E345004B4F7F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 892FE5C126A9E345004B4F7F /* Localizable.strings */; };
@@ -96,6 +97,7 @@
 		489555EB26A76AC3005F88A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		489555F126A9F47A005F88A2 /* MatchMaker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MatchMaker.entitlements; sourceTree = "<group>"; };
 		489555F326A9F493005F88A2 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		89015F8326BC6F43009C70B1 /* UITextView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extensions.swift"; sourceTree = "<group>"; };
 		8906588726B8749D00E1B5D4 /* TextViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewTableViewCell.swift; sourceTree = "<group>"; };
 		892A642B26B1D90D00B375CC /* SelectableTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		892FE5C026A9E345004B4F7F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 				895A604F26AB56A100BE18C9 /* UILabel+Extensions.swift */,
 				895A605126AB5D5200BE18C9 /* UIButton+Extensions.swift */,
 				89AC95BC26B0A79F00EC92F6 /* String+Extensions.swift */,
+				89015F8326BC6F43009C70B1 /* UITextView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 				89AC95B426B076BF00EC92F6 /* TextFieldTableViewCell.swift in Sources */,
 				8998785426BAFF1C0042DF4C /* PickerTableViewCell.swift in Sources */,
 				895A605D26AF556400BE18C9 /* ProfileImageTableViewCell.swift in Sources */,
+				89015F8426BC6F43009C70B1 /* UITextView+Extensions.swift in Sources */,
 				89AC95B626B09B9C00EC92F6 /* SelectorTableViewCell.swift in Sources */,
 				8906588826B8749D00E1B5D4 /* TextViewTableViewCell.swift in Sources */,
 				1B5F81AC26B85AF100D19747 /* Games.swift in Sources */,
@@ -606,7 +610,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = thaisrfernandes.MatchMaker;
+				PRODUCT_BUNDLE_IDENTIFIER = LucasJusto.MatchMaker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = MatchMakerBuild;
 				SWIFT_VERSION = 5.0;
@@ -628,7 +632,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = thaisrfernandes.MatchMaker;
+				PRODUCT_BUNDLE_IDENTIFIER = LucasJusto.MatchMaker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = MatchMakerBuild;
 				SWIFT_VERSION = 5.0;

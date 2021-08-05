@@ -58,6 +58,10 @@ class OnboardingRegisterViewController: UIViewController {
         return dialogMessage
     }
     
+    @objc func closeKeyboard(sender: Any) {
+        self.view.endEditing(true)
+    }
+    
     var didTapDone = false
     
     enum OnboardingTagCategory: Int, CaseIterable {
@@ -214,6 +218,7 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
         cell.textViewField.delegate = self
         cell.textViewField.text = descriptionField
         cell.counterLabelView.text = "\(descriptionField.count)/300"
+        cell.textViewField.addDoneButton(title: NSLocalizedString("onboarding5KeyboardButton", comment: "Keyboard done Button"), target: self, selector: #selector(closeKeyboard(sender:)))
 
         return cell
     }
@@ -434,6 +439,9 @@ extension OnboardingRegisterViewController: UITextViewDelegate {
     }
 
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        
+        
         return textView.text.count + (text.count - range.length) <= 300
     }
 

@@ -17,6 +17,8 @@ class TextViewTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        textViewField.tintColor = .white
+        textViewField.textColor = .white
     }
-
 }
