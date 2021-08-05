@@ -83,7 +83,6 @@ enum FriendsTable: CustomStringConvertible {
 public class CKRepository {
     static var user: User? //singleton user
     public static let container: CKContainer = CKContainer(identifier: "iCloud.MatchMaker")
-    static var isUserSeted: DispatchSemaphore = DispatchSemaphore(value: 0)
     
     static func setOnboardingInfo(name: String, nickname: String, photoURL: URL?, location: Locations, description: String, languages: [Languages], selectedPlatforms: [Platform], selectedGames: [Game]){
         
@@ -95,7 +94,6 @@ public class CKRepository {
                 
                 //creating user singleton
                 user = User(id: idNotNull, name: name, nickname: nickname, photoURL: photoURL, location: location, description: description, behaviourRate: 0, skillRate: 0, languages: languages, selectedPlatforms: selectedPlatforms, selectedGames: selectedGames)
-                isUserSeted.signal()
             }
         }
     }
@@ -223,31 +221,7 @@ public class CKRepository {
                         Languages.getLanguage(language: language)
                     }
                     
-                    let gamesPredicate = NSPredicate(format: "userId == %@", id)
-                    let gamesQuery = CKQuery(recordType: UserGamesTable.recordType.description, predicate: gamesPredicate)
-                    
-                    publicDB.perform(gamesQuery, inZoneWith: nil) { results, error in
-                        var games: [Game] = [Game]()
-                        let allGames = Games.buildGameArray()
-                        if let userGames = results {
-                            for userGame in userGames {
-                                let gameId = Games.getGameIdInt(id: (userGame.value(forKey: UserGamesTable.gameId.description) as! String))
-                                let gameSelectedPlatforms = (userGame.value(forKey: UserGamesTable.selectedPlatforms.description) as! [String]).map { platform in
-                                    Platform.getPlatform(key: platform)
-                                }
-                                let gameSelectedServersString = userGame.value(forKey: UserGamesTable.selectedServers.description) as! [String]
-                                var gameSelectedServers: [Servers] = [Servers]()
-                                
-                                for g in gameSelectedServersString {
-                                    if let sv = allGames[gameId].serverType?.getServer(server: g) {
-                                        gameSelectedServers.append(sv)
-                                    }
-                                }
-                                
-                                games.append(Game(id: "\(gameId)", name: allGames[gameId].name, description: allGames[gameId].description, platforms: allGames[gameId].platforms, servers: allGames[gameId].servers, selectedPlatforms: gameSelectedPlatforms, selectedServers: gameSelectedServers, image: allGames[gameId].image))
-                                
-                            }
-                        }
+                    CKRepository.getUserGamesById(id: id) { games in
                         let user = User(id: id, name: name, nickname: nickname, photoURL: photoURL, location: location, description: description, behaviourRate: 0, skillRate: 0, languages: languages, selectedPlatforms: selectedPlatforms, selectedGames: games)
                         
                         completion(user)
@@ -301,4 +275,74 @@ public class CKRepository {
         }
     }
     
+    static func searchUsers(languages: [Languages], platforms: [Platform], behaviourRate: Double, skillRate: Double, locations: [Locations], games: [Game], completion: @escaping ([Social]) -> Void) {
+        //creating user array to be returned
+        var usersFound: [Social] = [Social]()
+        
+        //creating string to predicate (filtering the search)
+        #warning("this is working this way, but I still need to test for multiple languages, also needs to add more data to cloudkit to test.")
+        var languagesPredicate = "'\(Languages.portuguese.key)'"
+        
+        //creating necessary variables to use cloudkit
+        let publicDB = container.publicCloudDatabase
+        let predicate = NSPredicate(format: "\(languagesPredicate) IN \(UserTable.languages.description)")
+        let query = CKQuery(recordType: UserTable.recordType.description, predicate: predicate)
+        
+        //filling the array with results to the search (filtered)
+        publicDB.perform(query, inZoneWith: nil) { results, error in
+            if let resultsNotNull = results {
+                let isUsersArrayFilled = DispatchSemaphore(value: 0)
+                for r in resultsNotNull {
+                    let id = r.value(forKey: UserTable.id.description) as! String
+                    let name = r.value(forKey: UserTable.name.description) as! String
+                    let nickName = r.value(forKey: UserTable.nickname.description) as! String
+                    var photoURL: URL? = nil
+                    if let ckAsset = r.value(forKey: UserTable.photo.description) as? CKAsset {
+                        photoURL = ckAsset.fileURL
+                    }
+                    CKRepository.getUserGamesById(id: id) { userGames in
+                        usersFound.append(Social(id: id, name: name, nickname: nickName, photoURL: photoURL, games: userGames, isInvite: nil))
+                        if usersFound.count == resultsNotNull.count {
+                            isUsersArrayFilled.signal()
+                        }
+                    }
+                }
+                isUsersArrayFilled.wait()
+                completion(usersFound)
+            }
+            else {
+                completion(usersFound)
+            }
+        }
+    }
+    
+    private static func getUserGamesById(id: String, completion: @escaping ([Game]) -> Void) {
+        let publicDB = container.publicCloudDatabase
+        let gamesPredicate = NSPredicate(format: "userId == %@", id)
+        let gamesQuery = CKQuery(recordType: UserGamesTable.recordType.description, predicate: gamesPredicate)
+        
+        publicDB.perform(gamesQuery, inZoneWith: nil) { results, error in
+            var games: [Game] = [Game]()
+            let allGames = Games.buildGameArray()
+            if let userGames = results {
+                for userGame in userGames {
+                    let gameId = Games.getGameIdInt(id: (userGame.value(forKey: UserGamesTable.gameId.description) as! String))
+                    let gameSelectedPlatforms = (userGame.value(forKey: UserGamesTable.selectedPlatforms.description) as! [String]).map { platform in
+                        Platform.getPlatform(key: platform)
+                    }
+                    let gameSelectedServersString = userGame.value(forKey: UserGamesTable.selectedServers.description) as! [String]
+                    var gameSelectedServers: [Servers] = [Servers]()
+                    
+                    for g in gameSelectedServersString {
+                        if let sv = allGames[gameId].serverType?.getServer(server: g) {
+                            gameSelectedServers.append(sv)
+                        }
+                    }
+                    
+                    games.append(Game(id: "\(gameId)", name: allGames[gameId].name, description: allGames[gameId].description, platforms: allGames[gameId].platforms, servers: allGames[gameId].servers, selectedPlatforms: gameSelectedPlatforms, selectedServers: gameSelectedServers, image: allGames[gameId].image))
+                }
+            }
+            completion(games)
+        }
+    }
 }
