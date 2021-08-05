@@ -11,12 +11,19 @@ class OnboardingViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
+        
+    enum OnboardingPages: Int, CaseIterable {
+        case welcome
+        case games
+        case chat
+        case icloud
+    }
     
-    var onboardingScreens: [OnboardingScreen] = []
-    
-    var currentPage = 0 {
+    let onboardingPages = OnboardingPages.allCases
+
+    var currentPage = OnboardingPages.welcome {
         didSet {
-            if currentPage == 1 || currentPage == 3 {
+            if currentPage == .games || currentPage == .icloud {
                 collectionView.layer.backgroundColor = UIColor.black.cgColor
             } else {
                 collectionView.layer.backgroundColor = UIColor(named: "Primary")?.cgColor
@@ -26,48 +33,30 @@ class OnboardingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let img1 = UIImage(named: "game"),
-              let img2 = UIImage(named: "chat") {
-            
-            onboardingScreens = [
-                OnboardingScreen(title: "Select games that you like to play", description: "We have the most popular games for you to choose and find players", image: img1, imageWidth: 186, imageHeight: 254),
-                OnboardingScreen(title: "Talk to players and schedule a match", description: "Use the internal chat to talk to players and schedule matches", image: img2, imageWidth: 293, imageHeight: 254),
-            ]
-            
-        }
-        
     }
 }
 
+//MARK: - onboarding collection view configs
+
 extension OnboardingViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    func getIdentifier(page: Int) -> String {
-        return "FirstOnboardingCollectionViewCell"
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return onboardingPages.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if indexPath.row == 0 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FirstOnboardingCollectionViewCell", for: indexPath)
+        let onboardingPage = onboardingPages[indexPath.row]
+        
+        switch onboardingPage {
+            case .welcome: return setUpBasicCell(indexPath: indexPath, identifier: "FirstOnboardingCollectionViewCell")
                 
-                return cell
-            
-        } else if indexPath.row == 1 || indexPath.row == 2 {
-        
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OnboardingCollectionViewCell.identifier, for: indexPath) as! OnboardingCollectionViewCell
-
-            cell.setup(onboardingScreens[indexPath.row-1])
-
-            return cell
+            case .games: return setUpCustomCell(indexPath: indexPath, tag: OnboardingPages.games.rawValue)
+                
+            case .chat: return setUpCustomCell(indexPath: indexPath, tag: OnboardingPages.chat.rawValue)
+                
+            case .icloud: return setUpBasicCell(indexPath: indexPath, identifier: "PermissionOnboardingCollectionViewCell")
         }
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PermissionOnboardingCollectionViewCell", for: indexPath)
-            
-        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -77,11 +66,54 @@ extension OnboardingViewController: UICollectionViewDelegate, UICollectionViewDa
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let width = scrollView.frame.width
-        currentPage = Int(scrollView.contentOffset.x / width)
-        pageControl.currentPage = currentPage
+        currentPage = OnboardingPages(rawValue: Int(scrollView.contentOffset.x / width)) ?? .welcome
+        pageControl.currentPage = currentPage.rawValue
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
+    
+    //MARK: - cells setup
+    
+    func setUpBasicCell(indexPath: IndexPath, identifier: String) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
+       
+        return cell
+    }
+    
+    func setUpCustomCell(indexPath: IndexPath, tag: Int) -> OnboardingCollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OnboardingCollectionViewCell.identifier, for: indexPath) as! OnboardingCollectionViewCell
+        
+        guard let onboardingPage = OnboardingPages(rawValue: tag) else {
+            return cell
+        }
+        
+        switch onboardingPage {
+            case .chat:
+                
+                if let img = UIImage(named: "chat"){
+
+                    let chatScreen = OnboardingScreen(title: NSLocalizedString("onboarding2Title", comment: "title onboarding 2"), description: NSLocalizedString("onboarding2Description", comment: "description onboarding 2"), image: img, imageWidth: 293, imageHeight: 254, color: UIColor(named: "Primary") ?? .black)
+                    
+                    cell.setup(chatScreen)
+                }
+                
+            case .games:
+                
+                if let img = UIImage(named: "game") {
+
+                    let gameScreen = OnboardingScreen(title: NSLocalizedString("onboarding2Title", comment: "title onboarding 2"), description: NSLocalizedString("onboarding2Description", comment: "description onboarding 2"), image: img, imageWidth: 186, imageHeight: 254, color: .black)
+                    
+                    cell.setup(gameScreen)
+                }
+                
+            default: return cell
+        }
+        
+        return cell
+    }
+    
+    
 }
