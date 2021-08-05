@@ -83,7 +83,6 @@ enum FriendsTable: CustomStringConvertible {
 public class CKRepository {
     static var user: User? //singleton user
     public static let container: CKContainer = CKContainer(identifier: "iCloud.MatchMaker")
-    static var isUserSeted: DispatchSemaphore = DispatchSemaphore(value: 0)
     
     static func setOnboardingInfo(name: String, nickname: String, photoURL: URL?, location: Locations, description: String, languages: [Languages], selectedPlatforms: [Platform], selectedGames: [Game]){
         
@@ -95,7 +94,6 @@ public class CKRepository {
                 
                 //creating user singleton
                 user = User(id: idNotNull, name: name, nickname: nickname, photoURL: photoURL, location: location, description: description, behaviourRate: 0, skillRate: 0, languages: languages, selectedPlatforms: selectedPlatforms, selectedGames: selectedGames)
-                isUserSeted.signal()
             }
         }
     }

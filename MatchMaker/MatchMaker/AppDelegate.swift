@@ -60,7 +60,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
             }
         }
-        CKRepository.isUserSeted.wait()
         return true
     }
     
