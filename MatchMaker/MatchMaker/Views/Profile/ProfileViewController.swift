@@ -32,6 +32,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var languagesView: TitleCollectionView!
     @IBOutlet weak var gameCollectionView: RoundedRectangleCollectionView!
     
+    var customPicker: ImagePickerManager = ImagePickerManager()
+    
     private var user: User?
     
     var marinaGames: [Game] = Games.buildGameArray()
@@ -54,7 +56,7 @@ class ProfileViewController: UIViewController {
 //            }
 //        }
         
-        CKRepository.setOnboardingInfo(name: "Marina de Pazzi", nickname: "Prolene", photo: nil, photoURL: nil, country: "Brasil", description: "fala fellas, voce que curte um cszinho, bora fazer um projetinho na mansao arromba", languages: [Languages.english, Languages.portuguese, Languages.russian], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: [marinaGames[1], marinaGames[2]])
+//        CKRepository.setOnboardingInfo(name: "Marina de Pazzi", nickname: "Prolene", photoURL: nil, location: Locations.brazil, description: "fala fellas, voce que curte um cszinho, bora fazer um projetinho na mansao arromba", languages: [Languages.english, Languages.portuguese, Languages.russian], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: [marinaGames[1], marinaGames[2]])
         
         setupUserProfile()
 
@@ -64,7 +66,8 @@ class ProfileViewController: UIViewController {
     }
     
     private func setupUserProfile() {
-        user = CKRepository.user
+        user = User(id: "teste", name: "Marina de Pazzi", nickname: "Prolene", photoURL: nil, location: Locations.brazil, description: "fala fellas, voce que curte um cszinho, bora fazer um projetinho na mansao arromba", behaviourRate: 5.0, skillRate: 5.0, languages: [Languages.english, Languages.portuguese, Languages.russian, Languages.german], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: [marinaGames[1], marinaGames[2]])
+        
         guard let unwrappedUser = user else { return }
         
         userProfileNameLabel.text = unwrappedUser.name
@@ -123,7 +126,7 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController: UserAvatarViewDelegate {
     func didChooseImage() {
-        ImagePickerManager().pickImage(self) { [unowned self] image, url in
+        customPicker.pickImage(self) { [unowned self] image, url in
             DispatchQueue.main.async {
                 print(url)
                 self.userAvatarView.imageURL = url
