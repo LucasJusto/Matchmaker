@@ -17,16 +17,23 @@ class DiscoverViewController: UIViewController {
     
     override func viewDidLoad() {
         
-        var selectedGames = Games.games
-        selectedGames.append(contentsOf: Games.games)
+        var selectedGames1 = Games.games
+        var selectedGames2 = Games.games
+        
+        selectedGames1.append(contentsOf: Games.games)
+        selectedGames2.append(Games.games[0])
         
         let user1: User = User(id: "0", name: "marselo difenbeck", nickname: "@shechello", photo: nil, country: "Brazil", description: "Description", behaviourRate: 10.0, skillRate: 10.0, languages: [Languages.english, Languages.portuguese], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: Games.games)
         
         users.append(user1)
         
-        let user2: User = User(id: "0", name: "marselo difenbeck", nickname: "@shechello", photo: nil, country: "Brazil", description: "Description", behaviourRate: 10.0, skillRate: 10.0, languages: [Languages.english, Languages.portuguese], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: selectedGames)
+        let user2: User = User(id: "0", name: "marselo difenbeck", nickname: "@shechello", photo: nil, country: "Brazil", description: "Description", behaviourRate: 10.0, skillRate: 10.0, languages: [Languages.english, Languages.portuguese], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: selectedGames1)
         
         users.append(user2)
+        
+        let user3: User = User(id: "0", name: "marselo difenbeck", nickname: "@shechello", photo: nil, country: "Brazil", description: "Description", behaviourRate: 10.0, skillRate: 10.0, languages: [Languages.english, Languages.portuguese], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: selectedGames2)
+        
+        users.append(user3)
         
         super.viewDidLoad()
         
