@@ -9,25 +9,26 @@ import UIKit
 
 class DiscoverTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var profileImage: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var nickLabel: UILabel!
-    @IBOutlet weak var profileButton: UIButton!
-    @IBOutlet weak var addToFriendsButton: UIButton!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var ProfileImage: UIImageView!
+    @IBOutlet weak var NameLabel: UILabel!
+    @IBOutlet weak var NickLabel: UILabel!
+    @IBOutlet weak var ProfileButton: UIButton!
+    @IBOutlet weak var AddToFriendsButton: UIButton!
+    @IBOutlet weak var CollectionView: UICollectionView!
     
     var userGames: [Game] = []
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        collectionView.dataSource = self
-        collectionView.delegate = self
+        CollectionView.dataSource = self
+        CollectionView.delegate = self
         
         // Initialization code
         
-        addToFriendsButton.cornerRadius = 10
-        profileImage.cornerRadius = 10
+        AddToFriendsButton.setTitle(NSLocalizedString("DiscoverScreenAddToFriendsButton", comment: "Add to friends button text in the Discover Screen."), for: .normal)
+        AddToFriendsButton.cornerRadius = 10
+        ProfileImage.cornerRadius = 10
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -37,10 +38,10 @@ class DiscoverTableViewCell: UITableViewCell {
     }
     
     func setup(profileImage: UIImage, nameText: String, nickText: String, userGames: [Game]) {
-        self.profileImage.image = profileImage
+        self.ProfileImage.image = profileImage
         self.userGames = userGames
-        nameLabel.text = nameText
-        nickLabel.text = nickText
+        NameLabel.text = nameText
+        NickLabel.text = nickText
     }
 
 }

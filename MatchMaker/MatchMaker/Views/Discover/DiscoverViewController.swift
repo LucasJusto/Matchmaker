@@ -12,26 +12,29 @@ class DiscoverViewController: UIViewController {
     var users: [User] = []
     
     @IBOutlet weak var DiscoverTableView: UITableView!
+    @IBOutlet weak var FiltersButton: UIButton!
     
     override func viewDidLoad() {
         
+        //START MOCKED DATA
         var selectedGames1 = Games.games
         var selectedGames2 = Games.games
         
         selectedGames1.append(contentsOf: Games.games)
         selectedGames2.append(Games.games[0])
         
-        let user1: User = User(id: "0", name: "marselo difenbeck", nickname: "@shechello", photo: nil, country: "Brazil", description: "Description", behaviourRate: 10.0, skillRate: 10.0, languages: [Languages.english, Languages.portuguese], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: Games.games)
+        let user1: User = User(id: "0", name: "1arselo difenbeck", nickname: "@shechello", photo: nil, country: "Brazil", description: "Description", behaviourRate: 10.0, skillRate: 10.0, languages: [Languages.english, Languages.portuguese], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: Games.games)
         
         users.append(user1)
         
-        let user2: User = User(id: "0", name: "marselo difenbeck", nickname: "@shechello", photo: nil, country: "Brazil", description: "Description", behaviourRate: 10.0, skillRate: 10.0, languages: [Languages.english, Languages.portuguese], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: selectedGames1)
+        let user2: User = User(id: "0", name: "2arselo difenbeck", nickname: "@shechello", photo: nil, country: "Brazil", description: "Description", behaviourRate: 10.0, skillRate: 10.0, languages: [Languages.english, Languages.portuguese], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: selectedGames1)
         
         users.append(user2)
         
-        let user3: User = User(id: "0", name: "marselo difenbeck", nickname: "@shechello", photo: nil, country: "Brazil", description: "Description", behaviourRate: 10.0, skillRate: 10.0, languages: [Languages.english, Languages.portuguese], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: selectedGames2)
+        let user3: User = User(id: "0", name: "3arselo difenbeck", nickname: "@shechello", photo: nil, country: "Brazil", description: "Description", behaviourRate: 10.0, skillRate: 10.0, languages: [Languages.english, Languages.portuguese], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: selectedGames2)
         
         users.append(user3)
+        //END MOCKED DATA
         
         super.viewDidLoad()
         
@@ -39,6 +42,8 @@ class DiscoverViewController: UIViewController {
         
         DiscoverTableView.delegate = self
         DiscoverTableView.dataSource = self
+        
+        FiltersButton.setTitle(NSLocalizedString("DiscoverFiltersButton", comment: "Filters button in Discover Screen"), for: .normal)
         
     }
 

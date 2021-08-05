@@ -241,18 +241,18 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.14117647058823529" green="0.14117647058823529" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <outlet property="addToFriendsButton" destination="gEM-jJ-AMW" id="xiW-Ue-Ln9"/>
-                                            <outlet property="collectionView" destination="Zja-IG-i2R" id="fQ9-Sj-9w1"/>
-                                            <outlet property="nameLabel" destination="od5-bB-aed" id="xtP-Q8-OCP"/>
-                                            <outlet property="nickLabel" destination="MjN-ub-148" id="OOi-ra-sua"/>
-                                            <outlet property="profileButton" destination="lm6-bp-ybe" id="dsL-va-leP"/>
-                                            <outlet property="profileImage" destination="v7L-Hr-GrY" id="FfO-zd-Y65"/>
+                                            <outlet property="AddToFriendsButton" destination="gEM-jJ-AMW" id="VL9-9u-bN0"/>
+                                            <outlet property="CollectionView" destination="Zja-IG-i2R" id="fQ9-Sj-9w1"/>
+                                            <outlet property="NameLabel" destination="od5-bB-aed" id="xtP-Q8-OCP"/>
+                                            <outlet property="NickLabel" destination="MjN-ub-148" id="OOi-ra-sua"/>
+                                            <outlet property="ProfileButton" destination="lm6-bp-ybe" id="dsL-va-leP"/>
+                                            <outlet property="ProfileImage" destination="v7L-Hr-GrY" id="FfO-zd-Y65"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jqh-hW-AC6">
-                                <rect key="frame" x="348" y="8" width="48" height="35"/>
+                                <rect key="frame" x="351.5" y="8" width="44.5" height="35"/>
                                 <color key="backgroundColor" name="Primary"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="dua-tZ-NkZ"/>
@@ -261,7 +261,7 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Filters">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <imageReference key="image" image="line.horizontal.3.decrease.circle" catalog="system" renderingMode="template"/>
+                                    <imageReference key="image" image="line.horizontal.3.decrease.circle" catalog="system" symbolScale="small" renderingMode="template"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -270,7 +270,7 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="VD0-ee-r2R">
-                                <rect key="frame" x="10" y="0.0" width="338" height="51"/>
+                                <rect key="frame" x="10" y="0.0" width="341.5" height="51"/>
                                 <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
@@ -295,6 +295,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="DiscoverTableView" destination="gP6-Wi-hBP" id="7dB-48-5b8"/>
+                        <outlet property="FiltersButton" destination="jqh-hW-AC6" id="gnd-Pb-JPc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

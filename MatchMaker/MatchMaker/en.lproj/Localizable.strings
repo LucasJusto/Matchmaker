@@ -67,4 +67,6 @@
 "US South West" = "US South West";
 
 // MARK:- Discover Screen
-"ShowMoreButton" = "Show more";
+"DiscoverShowMoreButton" = "Show more";
+"DiscoverScreenAddToFriendsButton" = "Add to friends";
+"DiscoverFiltersButton" = "filters";

@@ -14,7 +14,7 @@ class DiscoverShowMoreCollectionViewCell: UICollectionViewCell {
     
     func setup() {
         ShowMoreView.cornerRadius = 10
-        ShowMoreLabel.text = NSLocalizedString("ShowMoreButton", comment: "Show more button in discover screen")
+        ShowMoreLabel.text = NSLocalizedString("DiscoverShowMoreButton", comment: "Show more button in discover screen")
         // TO DO
     }
     
