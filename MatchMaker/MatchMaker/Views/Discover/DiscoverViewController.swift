@@ -9,8 +9,6 @@ import UIKit
 
 class DiscoverViewController: UIViewController {
     
-    
-    
     var users: [User] = []
     
     @IBOutlet weak var DiscoverTableView: UITableView!
@@ -43,7 +41,6 @@ class DiscoverViewController: UIViewController {
         DiscoverTableView.dataSource = self
         
     }
-    
 
     /*
     // MARK: - Navigation
