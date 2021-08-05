@@ -123,8 +123,10 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController: UserAvatarViewDelegate {
     func didChooseImage() {
-        ImagePickerManager().pickImage(self) { image in
+        ImagePickerManager().pickImage(self) { image, url in
             DispatchQueue.main.async {
+                print(url)
+                self.userAvatarView.imageURL = url
                 self.userAvatarView.contentImage.image = image
                 self.userAvatarView.contentImage.contentMode = .scaleAspectFill
             }

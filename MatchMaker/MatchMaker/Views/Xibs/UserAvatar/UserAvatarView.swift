@@ -20,8 +20,10 @@ class UserAvatarView: UIView, NibLoadable {
     @IBOutlet weak var contentImage: UIImageView!
     @IBOutlet weak var buttonBackground: UIImageView!
     @IBOutlet weak var photoButton: UIButton!
-    
+        
     weak var delegate: UserAvatarViewDelegate?
+    
+    var imageURL: URL?
     
     //var didChooseImage: (() -> Void)?
     
@@ -55,7 +57,8 @@ class UserAvatarView: UIView, NibLoadable {
     }
     
     //MARK: UserAvatarView - Capturing user photo
-    @IBAction func chooseImage(_ sender: UIButton) {
+    
+    @IBAction func didTapButton(_ sender: Any) {
         delegate?.didChooseImage()
         //didChooseImage?()
     }
