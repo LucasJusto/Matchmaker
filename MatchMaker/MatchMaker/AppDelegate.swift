@@ -55,7 +55,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         CKRepository.isUserRegistered { bool in
             if bool {
                 CKRepository.setUserFromCloudKit()
-                //CKRepository.isUserSeted.wait()
             }
             else {
                 
