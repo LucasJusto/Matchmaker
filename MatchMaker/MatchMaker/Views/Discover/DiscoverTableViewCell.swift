@@ -64,7 +64,7 @@ extension DiscoverTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if indexPath.row == 3 {
+        if indexPath.row == 3 && userGames.count > 4{
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DiscoverCollectionShowMoreButton", for: indexPath) as? DiscoverShowMoreCollectionViewCell
             else {
                     return UICollectionViewCell()
