@@ -76,6 +76,10 @@ enum Platform: CustomStringConvertible, CaseIterable {
     }
 }
 
+extension Platform: SmallLabeledImageModel { }
+
+//MARK: - Servers: Protocol
+
 protocol Servers {
     var description: String { get }
     
@@ -84,7 +88,7 @@ protocol Servers {
     static func getServer(server: String) -> Servers
 }
 
-// MARK:- Game Struct
+// MARK: - Game: Struct
 struct Game {
     let id: String
     let name: String
@@ -121,6 +125,9 @@ struct Game {
         self.image = image
     }
 }
+
+extension Game: RoundedRectangleModel { }
+
 
 // MARK:- Game Array Mocking
 public class Games {
