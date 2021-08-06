@@ -8,13 +8,61 @@
 
 "titleLabel" = "Hello World";
 
+//MARK: - User
+"UserBehaviour" = "Behaviour";
+"UserSkills" = "Skills";
+"UserReviews" = "Reviews";
+
+// MARK: - Platforms
+// MARK:- ONBOARDING 1
+"onboarding1Title" = "Welcome to";
+"onboarding1Description" = "Find players that correspond
+with a personalized filter";
+
+// MARK:- ONBOARDING 2
+"onboarding2Title" = "Select games that you like to play";
+"onboarding2Description" = "We have the most popular games
+for you to choose and find players";
+
+// MARK:- ONBOARDING 3
+"onboarding3Title" = "Talk to players and schedule a match";
+"onboarding3Description" = "Use the internal chat to talk
+to players and schedule matches";
+
+// MARK:- ONBOARDING 4
+"onboarding4TitleLabel" = "Sync with iCloud";
+"onboarding4Description" = "We will need your authorization
+to identify you from iCloud";
+"onboarding4ButtonLabel" = "Got it!";
+
+// MARK:- ONBOARDING 5
+"onboarding5ButtonLabel" = "Done";
+"onboarding5ImageLabel" = "Profile image";
+"onboarding5NameLabel" = "Name";
+"onboarding5UsernameLabel" = "Username";
+"onboarding5DescriptionLabel" = "Description";
+"onboarding5LocationLabel" = "Location";
+"onboarding5ChangePickerLabel" = "Change";
+"onboarding5LanguagesLabel" = "Languages";
+"onboarding5PlatformsLabel" = "Platforms";
+"onboarding5GamesLabel" = "Games";
+"onboarding5SelectedLabel" = "Selected";
+
+// MARK:- ONBOARDING 5 - Warning
+"onboarding5AlertTitleLabel" = "Empty Fields";
+"onboarding5AlertTextLabel" = "You need to fill the required fields to create your profile";
+"onboarding5AlertButtonLabel" = "Ok";
+
+// MARK:- ONBOARDING 5 - Keyboard
+"onboarding5KeyboardButton" = "Done";
+
 // MARK:- Platforms
 "PlatformPC" = "PC";
 "PlatformPS" = "PlayStation";
 "PlatformXbox" = "Xbox";
 "PlatformMobile" = "Mobile";
 
-// MARK:- Languages
+// MARK: - Languages
 "LanguagesPortuguese" = "Portuguese";
 "LanguagesEnglish" = "English";
 "LanguagesChinese" = "Chinese";
@@ -23,9 +71,25 @@
 "LanguagesRussian" = "Russian";
 "LanguagesGerman" = "German";
 
+// MARK:- Locations
+"LocationNorthAmerica" = "North America";
+"LocationBrazil" = "Brazil";
+"LocationLatinAmericaSouth" = "Latin America South";
+"LocationLatinAmericaNorth" = "Latin America North";
+"LocationEuropeEast" = "Europe East";
+"LocationEuropeWest" = "Europe West";
+"LocationChina" = "China";
+"LocationOceania" = "Oceania";
+"LocationAsiaEast" = "Asia East";
+"LocationAsiaWest" = "Asia West";
+"LocationAfricaNorth" = "Africa North";
+"LocationAfricaSouth" = "Africa South";
+
 "Dota2Description" = "This is the description of Dota 2";
 "LeagueOfLegendsDescription" = "This is the description of League of Legends";
 "CounterStrikeGODescription" = "This is the description of Counter Strike: Global Offensive";
+
+//MARK: - Servers
 "Australia" = "Australia";
 "Europe East" = "Europe East";
 "Europe West" = "Europe West";

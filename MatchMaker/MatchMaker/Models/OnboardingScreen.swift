@@ -13,4 +13,5 @@ struct OnboardingScreen {
     let image: UIImage
     let imageWidth: CGFloat
     let imageHeight: CGFloat
+    let color: UIColor
 }
