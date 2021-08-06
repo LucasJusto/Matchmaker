@@ -10,7 +10,7 @@ import CloudKit
 import UIKit
 
 enum UserTable: CustomStringConvertible {
-    case recordType, id, name, nickname, location, description, photo, selectedPlatforms, languages, storeFailMessage
+    case recordType, id, name, nickname, location, description, photo, selectedPlatforms, languages, averageBehaviourRate, averageSkillRate, storeFailMessage
     
     var description: String {
         switch self {
@@ -34,6 +34,10 @@ enum UserTable: CustomStringConvertible {
                 return "languages"
             case .storeFailMessage:
                 return "couldntStoreUserData"
+            case .averageBehaviourRate:
+                return "averageBehaviourRate"
+            case .averageSkillRate:
+                return "averageSkillRate"
         }
     }
 }
@@ -211,7 +215,14 @@ public class CKRepository {
                     if let ckAsset = result?[0].value(forKey: UserTable.photo.description) as? CKAsset {
                         photoURL = ckAsset.fileURL
                     }
-                    
+                    var behaviourRate: Double?
+                    if let bRate = result?[0].value(forKey: UserTable.averageBehaviourRate.description) as? Double {
+                        behaviourRate = bRate
+                    }
+                    var skillRate: Double?
+                    if let sRate = result?[0].value(forKey: UserTable.averageSkillRate.description) as? Double {
+                        skillRate = sRate
+                    }
                     let description = result?[0].value(forKey: UserTable.description.description) as! String
                     let location = Locations.getLocation(location: result?[0].value(forKey: UserTable.location.description) as! String)
                     let selectedPlatforms = (result?[0].value(forKey: UserTable.selectedPlatforms.description) as! [String]).map { platform in
@@ -222,7 +233,7 @@ public class CKRepository {
                     }
                     
                     CKRepository.getUserGamesById(id: id) { games in
-                        let user = User(id: id, name: name, nickname: nickname, photoURL: photoURL, location: location, description: description, behaviourRate: 0, skillRate: 0, languages: languages, selectedPlatforms: selectedPlatforms, selectedGames: games)
+                        let user = User(id: id, name: name, nickname: nickname, photoURL: photoURL, location: location, description: description, behaviourRate: behaviourRate ?? 0, skillRate: skillRate ?? 0, languages: languages, selectedPlatforms: selectedPlatforms, selectedGames: games)
                         
                         completion(user)
                     }
