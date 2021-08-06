@@ -280,12 +280,62 @@ public class CKRepository {
         var usersFound: [Social] = [Social]()
         
         //creating string to predicate (filtering the search)
-        #warning("this is working this way, but I still need to test for multiple languages, also needs to add more data to cloudkit to test.")
-        var languagesPredicate = "'\(Languages.portuguese.key)'"
+        var fullPredicate = ""
+        //if there is filters for languages: builds its predicate
+        if languages.count > 0 {
+            var languagesPredicate = "ANY { "
+            for i in 0...languages.count-1 {
+                if i < languages.count-1 {
+                    languagesPredicate += "'\(languages[i].key)', "
+                }
+                else {
+                    languagesPredicate += "'\(languages[i].key)' } IN \(UserTable.languages.description)"
+                }
+            }
+            fullPredicate += "(\(languagesPredicate))"
+            if platforms.count > 0 || locations.count > 0 {
+                fullPredicate += " AND "
+            }
+        }
+        
+        //if there is filters for platforms: builds its predicate
+        if platforms.count > 0 {
+            var platformsPredicate = "ANY { "
+            for i in 0...platforms.count-1 {
+                if i < platforms.count-1 {
+                    platformsPredicate += "'\(platforms[i].key)', "
+                }
+                else {
+                    platformsPredicate += "'\(platforms[i].key)' } IN \(UserTable.selectedPlatforms.description)"
+                }
+            }
+            fullPredicate += "(\(platformsPredicate))"
+            if locations.count > 0 {
+                fullPredicate += " AND "
+            }
+        }
+        
+        //if there is filters for locations: builds its predicate
+        if locations.count > 0 {
+            var locationsPredicate = "ANY { "
+            for i in 0...locations.count-1 {
+                if i < locations.count-1 {
+                    locationsPredicate += "'\(locations[i].key)', "
+                }
+                else {
+                    locationsPredicate += "'\(locations[i].key)' }"
+                }
+            }
+            fullPredicate += "(\(locationsPredicate) = \(UserTable.location.description))"
+        }
         
         //creating necessary variables to use cloudkit
         let publicDB = container.publicCloudDatabase
-        let predicate = NSPredicate(format: "\(languagesPredicate) IN \(UserTable.languages.description)")
+        var predicate = NSPredicate(value: true)
+        if languages.count > 0 || platforms.count > 0 || behaviourRate > 0 || skillRate > 0 || locations.count > 0 || games.count > 0 {
+            //there is at least one filter
+            predicate = NSPredicate(format: fullPredicate)
+        }
         let query = CKQuery(recordType: UserTable.recordType.description, predicate: predicate)
         
         //filling the array with results to the search (filtered)
@@ -345,4 +395,6 @@ public class CKRepository {
             completion(games)
         }
     }
+    
+
 }
