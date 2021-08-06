@@ -304,7 +304,7 @@ public class CKRepository {
                 }
             }
             fullPredicate += "(\(languagesPredicate))"
-            if platforms.count > 0 || locations.count > 0 {
+            if platforms.count > 0 || locations.count > 0 || behaviourRate > 0 || skillRate > 0{
                 fullPredicate += " AND "
             }
         }
@@ -321,7 +321,7 @@ public class CKRepository {
                 }
             }
             fullPredicate += "(\(platformsPredicate))"
-            if locations.count > 0 {
+            if locations.count > 0 || behaviourRate > 0 || skillRate > 0{
                 fullPredicate += " AND "
             }
         }
@@ -338,6 +338,20 @@ public class CKRepository {
                 }
             }
             fullPredicate += "(\(locationsPredicate) = \(UserTable.location.description))"
+            if behaviourRate > 0 || skillRate > 0 {
+                fullPredicate += " AND "
+            }
+        }
+        
+        if behaviourRate > 0 {
+            fullPredicate += "(\(UserTable.averageBehaviourRate.description) >= \(behaviourRate))"
+            if skillRate > 0 {
+                fullPredicate += " AND "
+            }
+        }
+        
+        if skillRate > 0 {
+            fullPredicate += "(\(UserTable.averageSkillRate.description) >= \(skillRate))"
         }
         
         //creating necessary variables to use cloudkit
