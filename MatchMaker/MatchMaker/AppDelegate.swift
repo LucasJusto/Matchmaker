@@ -52,6 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             
         }
+        
         CKRepository.isUserRegistered { bool in
             if bool {
                 CKRepository.setUserFromCloudKit()
@@ -60,6 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
             }
         }
+        
         return true
     }
     

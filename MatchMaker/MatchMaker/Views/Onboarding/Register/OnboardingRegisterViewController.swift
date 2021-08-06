@@ -19,6 +19,8 @@ class OnboardingRegisterViewController: UIViewController {
                 
         if isIncomplete {
             self.present(alertEmptyFields(), animated: true, completion: nil)
+        } else {
+            self.tableView.reloadData()
         }
         
         let languages = tagLanguages.filter { $0.isFavorite }.map { Languages.getLanguage(language: $0.option) }
