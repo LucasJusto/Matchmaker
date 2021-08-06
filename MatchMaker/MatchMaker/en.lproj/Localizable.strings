@@ -8,6 +8,12 @@
 
 "titleLabel" = "Hello World";
 
+//MARK: - User
+"UserBehaviour" = "Behaviour";
+"UserSkills" = "Skills";
+"UserReviews" = "Reviews";
+
+// MARK: - Platforms
 // MARK:- ONBOARDING 1
 "onboarding1Title" = "Welcome to";
 "onboarding1Description" = "Find players that correspond
@@ -56,7 +62,7 @@ to identify you from iCloud";
 "PlatformXbox" = "Xbox";
 "PlatformMobile" = "Mobile";
 
-// MARK:- Languages
+// MARK: - Languages
 "LanguagesPortuguese" = "Portuguese";
 "LanguagesEnglish" = "English";
 "LanguagesChinese" = "Chinese";
@@ -82,6 +88,8 @@ to identify you from iCloud";
 "Dota2Description" = "This is the description of Dota 2";
 "LeagueOfLegendsDescription" = "This is the description of League of Legends";
 "CounterStrikeGODescription" = "This is the description of Counter Strike: Global Offensive";
+
+//MARK: - Servers
 "Australia" = "Australia";
 "Europe East" = "Europe East";
 "Europe West" = "Europe West";
