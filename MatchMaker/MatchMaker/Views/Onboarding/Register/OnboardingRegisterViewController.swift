@@ -23,23 +23,11 @@ class OnboardingRegisterViewController: UIViewController {
             self.tableView.reloadData()
         }
         
-        let languages = tagLanguages.filter { $0.isFavorite }.map { Languages.getLanguage(language: $0.option) }
-        let platforms = tagPlatforms.filter { $0.isFavorite }.map { Platform.getPlatform(key: $0.option) }
-        let games = tagGames.filter { $0.isFavorite } .map { $0.option }
-
-//        print("name", nameField)
-//        print("nickname", usernameField)
-////        print("photo", nil)
-////        print("photoURL", nil)
-//        print("location", selectedLocation)
-//        print("description", descriptionField)
-//        print("languages", languages)
-//        print("selectedPlatforms", platforms)
-//        print("selectedGames", games)
-        
-//        CKRepository.setOnboardingInfo(name: self.nameField, nickname: self.usernameField, photo: nil, photoURL: nil, location: Locations.africaNorth, description: self.descriptionField, languages: languages, selectedPlatforms: platforms, selectedGames: tagGames.map { $0.option })
-//
-//        CKRepository.isUserSeted.wait()
+        let languages = tagLanguages.filter { $0.isFavorite }.map { Languages.getLanguage(language: "Languages\($0.option)") }
+        let platforms = tagPlatforms.filter { $0.isFavorite }.map { Platform.getPlatform(key: "Platform\($0.option == "PlayStation" ? "PS" : $0.option)") }
+        let games = tagGames.filter { $0.isFavorite }.map { $0.option }
+                
+        CKRepository.setOnboardingInfo(name: self.nameField, nickname: self.usernameField, photoURL: nil, location: Locations.africaNorth, description: self.descriptionField, languages: languages, selectedPlatforms: platforms, selectedGames: games)
     }
     
     func alertEmptyFields() -> UIAlertController {
@@ -93,13 +81,27 @@ class OnboardingRegisterViewController: UIViewController {
     typealias TagOption = (option: String, isFavorite: Bool)
     typealias GameOption = (option: Game, isFavorite: Bool)
     
-    var tagLanguages: [TagOption] = []
-    var tagPlatforms: [TagOption] = []
-    var tagGames: [GameOption] = []
+    var tagLanguages: [TagOption] = [] {
+        didSet {
+            print(tagLanguages)
+        }
+    }
+    var tagPlatforms: [TagOption] = [] {
+        didSet {
+            print(tagPlatforms)
+        }
+    }
+    var tagGames: [GameOption] = [] {
+        didSet {
+            print(tagGames)
+        }
+    }
     var nameField: String = ""
     var usernameField: String = ""
     var descriptionField: String = ""
     var selectedLocation: String = Locations.africaNorth.description
+    var imagePicker: ImagePickerManager = ImagePickerManager()
+    var profileImageUrl: URL?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -172,6 +174,8 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "profile-image-cell") as? ProfileImageTableViewCell else {
                 return UITableViewCell()
         }
+        
+        cell.userAvatarView.delegate = self
         
         cell.tag = OnboardingFields.profileImage.rawValue
         
@@ -442,9 +446,19 @@ extension OnboardingRegisterViewController: UITextViewDelegate {
 
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
-        
-        
         return textView.text.count + (text.count - range.length) <= 300
     }
+}
 
+extension OnboardingRegisterViewController: UserAvatarViewDelegate {
+    func didChooseImage() {
+        let cell = tableView.cellForRow(at: IndexPath(row: OnboardingFields.profileImage.rawValue, section: 0)) as? ProfileImageTableViewCell
+    
+        imagePicker.pickImage(self) { [unowned self] image, url in
+            DispatchQueue.main.async {
+                cell?.userAvatarView.contentImage.image = image
+                self.profileImageUrl = url
+            }
+        }
+    }
 }

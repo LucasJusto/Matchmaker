@@ -18,7 +18,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 CKRepository.setUserFromCloudKit()
             }
             else {
-                
                 DispatchQueue.main.async {
                     let storyboard = UIStoryboard.init(name: "Onboarding", bundle: nil)
 

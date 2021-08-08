@@ -161,6 +161,7 @@ public class CKRepository {
         record.setObject(platformsIds as CKRecordValue?, forKey: UserTable.selectedPlatforms.description)
         
         publicDB.save(record) { savedRecord, error in
+            print(error)
             if error != nil {
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: UserTable.storeFailMessage.description), object: record)
             }
