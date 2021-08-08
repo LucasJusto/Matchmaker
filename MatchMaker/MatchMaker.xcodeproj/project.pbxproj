@@ -60,6 +60,7 @@
 		89AC95B926B09E0F00EC92F6 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AC95B826B09E0F00EC92F6 /* FormTextField.swift */; };
 		89AC95BB26B09E3300EC92F6 /* TextViewField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AC95BA26B09E3300EC92F6 /* TextViewField.swift */; };
 		89AC95BD26B0A79F00EC92F6 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AC95BC26B0A79F00EC92F6 /* String+Extensions.swift */; };
+		89BF1B3D26C091450088CC5D /* GameDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BF1B3C26C091450088CC5D /* GameDetailsViewController.swift */; };
 		89CC467726B9DF69001B7C13 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CC467626B9DF69001B7C13 /* ButtonView.swift */; };
 /* End PBXBuildFile section */
 
@@ -121,6 +122,7 @@
 		89AC95B826B09E0F00EC92F6 /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
 		89AC95BA26B09E3300EC92F6 /* TextViewField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewField.swift; sourceTree = "<group>"; };
 		89AC95BC26B0A79F00EC92F6 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		89BF1B3C26C091450088CC5D /* GameDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailsViewController.swift; sourceTree = "<group>"; };
 		89CC467626B9DF69001B7C13 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -299,6 +301,7 @@
 		89A912FD26AA675100D3B1D2 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				89BF1B3B26C0911A0088CC5D /* GameDetails */,
 				895A605926AF439000BE18C9 /* Register */,
 				89A9130326AA6F0500D3B1D2 /* OnboardingCollectionViewCell.swift */,
 				892FE5DC26AA010A004B4F7F /* Onboarding.storyboard */,
@@ -325,6 +328,14 @@
 				89CC467626B9DF69001B7C13 /* ButtonView.swift */,
 			);
 			path = IBDesignables;
+			sourceTree = "<group>";
+		};
+		89BF1B3B26C0911A0088CC5D /* GameDetails */ = {
+			isa = PBXGroup;
+			children = (
+				89BF1B3C26C091450088CC5D /* GameDetailsViewController.swift */,
+			);
+			path = GameDetails;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -430,6 +441,7 @@
 				482505B726B081F900032C87 /* GameServers.swift in Sources */,
 				1B4E87C326AF630C00A51AF1 /* ProfileRatingView.swift in Sources */,
 				1B767CBA26B0AFBD00EA4588 /* UserAvatarView.swift in Sources */,
+				89BF1B3D26C091450088CC5D /* GameDetailsViewController.swift in Sources */,
 				1B767CC526B1B94A00EA4588 /* SmallLabeledImageCollectionViewCell.swift in Sources */,
 				48763E1B26AB3BF4000618D8 /* UserModel.swift in Sources */,
 				48763E1D26AB495B000618D8 /* CKRepository.swift in Sources */,

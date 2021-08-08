@@ -125,6 +125,33 @@ class OnboardingRegisterViewController: UIViewController {
             }
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "selectedGame" {
+            
+            if let navController = segue.destination as? UINavigationController {
+                
+                if let childVC = navController.topViewController as? GameDetailsViewController {
+                    
+                    if let image = UIImage(named: "LOL_vertical") {
+                        childVC.image = image
+                    }
+                    
+                }
+                
+            }
+            
+            
+//            let destinationNavigationController = segue.destination as? UINavigationController
+//
+//            let destinationController = destinationNavigationController?.topViewController as? GameDetailsViewController
+//
+//            if let image = UIImage(named: "LOL_vertical") {
+//                destinationController?.image = image
+//            }
+            
+        }
+    }
 }
 
 extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDelegate {
