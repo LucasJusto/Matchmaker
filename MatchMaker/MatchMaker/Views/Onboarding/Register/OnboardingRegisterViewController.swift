@@ -81,21 +81,9 @@ class OnboardingRegisterViewController: UIViewController {
     typealias TagOption = (option: String, isFavorite: Bool)
     typealias GameOption = (option: Game, isFavorite: Bool)
     
-    var tagLanguages: [TagOption] = [] {
-        didSet {
-            print(tagLanguages)
-        }
-    }
-    var tagPlatforms: [TagOption] = [] {
-        didSet {
-            print(tagPlatforms)
-        }
-    }
-    var tagGames: [GameOption] = [] {
-        didSet {
-            print(tagGames)
-        }
-    }
+    var tagLanguages: [TagOption] = []
+    var tagPlatforms: [TagOption] = []
+    var tagGames: [GameOption] = []
     var nameField: String = ""
     var usernameField: String = ""
     var descriptionField: String = ""
