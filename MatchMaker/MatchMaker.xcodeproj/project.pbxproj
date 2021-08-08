@@ -42,7 +42,6 @@
 		89015F8426BC6F43009C70B1 /* UITextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89015F8326BC6F43009C70B1 /* UITextView+Extensions.swift */; };
 		8906588826B8749D00E1B5D4 /* TextViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8906588726B8749D00E1B5D4 /* TextViewTableViewCell.swift */; };
 		892A642C26B1D90D00B375CC /* SelectableTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892A642B26B1D90D00B375CC /* SelectableTagCollectionViewCell.swift */; };
-		892B78FE26BDCDC30048F67A /* AssetExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892B78FD26BDCDC30048F67A /* AssetExtractor.swift */; };
 		892FE5BF26A9E345004B4F7F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 892FE5C126A9E345004B4F7F /* Localizable.strings */; };
 		892FE5DD26AA010A004B4F7F /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 892FE5DC26AA010A004B4F7F /* Onboarding.storyboard */; };
 		895A604E26AB48C300BE18C9 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895A604D26AB48C300BE18C9 /* UIView+Extensions.swift */; };
@@ -103,7 +102,6 @@
 		89015F8326BC6F43009C70B1 /* UITextView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extensions.swift"; sourceTree = "<group>"; };
 		8906588726B8749D00E1B5D4 /* TextViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewTableViewCell.swift; sourceTree = "<group>"; };
 		892A642B26B1D90D00B375CC /* SelectableTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableTagCollectionViewCell.swift; sourceTree = "<group>"; };
-		892B78FD26BDCDC30048F67A /* AssetExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetExtractor.swift; sourceTree = "<group>"; };
 		892FE5C026A9E345004B4F7F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		892FE5DC26AA010A004B4F7F /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		895A604D26AB48C300BE18C9 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
@@ -315,7 +313,6 @@
 				89A9130626AA6FEF00D3B1D2 /* OnboardingScreen.swift */,
 				1B5F81A726B4DF7B00D19747 /* ImagePickerManager.swift */,
 				1B5F81AD26B9B6B300D19747 /* AccessibilityManager.swift */,
-				892B78FD26BDCDC30048F67A /* AssetExtractor.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -419,7 +416,6 @@
 				89AC95BB26B09E3300EC92F6 /* TextViewField.swift in Sources */,
 				892A642C26B1D90D00B375CC /* SelectableTagCollectionViewCell.swift in Sources */,
 				895A604E26AB48C300BE18C9 /* UIView+Extensions.swift in Sources */,
-				892B78FE26BDCDC30048F67A /* AssetExtractor.swift in Sources */,
 				489555DE26A76AC1005F88A2 /* AppDelegate.swift in Sources */,
 				89AC95BD26B0A79F00EC92F6 /* String+Extensions.swift in Sources */,
 				89AC95B926B09E0F00EC92F6 /* FormTextField.swift in Sources */,
