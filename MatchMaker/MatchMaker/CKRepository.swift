@@ -367,28 +367,82 @@ public class CKRepository {
         publicDB.perform(query, inZoneWith: nil) { results, error in
             if let resultsNotNull = results {
                 let isUsersArrayFilled = DispatchSemaphore(value: 0)
-                for r in resultsNotNull {
-                    let id = r.value(forKey: UserTable.id.description) as! String
-                    let name = r.value(forKey: UserTable.name.description) as! String
-                    let nickName = r.value(forKey: UserTable.nickname.description) as! String
-                    var photoURL: URL? = nil
-                    if let ckAsset = r.value(forKey: UserTable.photo.description) as? CKAsset {
-                        photoURL = ckAsset.fileURL
-                    }
-                    CKRepository.getUserGamesById(id: id) { userGames in
-                        usersFound.append(Social(id: id, name: name, nickname: nickName, photoURL: photoURL, games: userGames, isInvite: nil))
-                        if usersFound.count == resultsNotNull.count {
-                            isUsersArrayFilled.signal()
+                if resultsNotNull.count > 0 {
+                    for i in 0...resultsNotNull.count - 1 {
+                        let id = resultsNotNull[i].value(forKey: UserTable.id.description) as! String
+                        let name = resultsNotNull[i].value(forKey: UserTable.name.description) as! String
+                        let nickName = resultsNotNull[i].value(forKey: UserTable.nickname.description) as! String
+                        var photoURL: URL? = nil
+                        if let ckAsset = resultsNotNull[i].value(forKey: UserTable.photo.description) as? CKAsset {
+                            photoURL = ckAsset.fileURL
+                        }
+                        CKRepository.getUserGamesById(id: id) { userGames in
+                            if filterPerGames(filterBy: games, userGames: userGames) {
+                                usersFound.append(Social(id: id, name: name, nickname: nickName, photoURL: photoURL, games: userGames, isInvite: nil))
+                            }
+                            if i == resultsNotNull.count - 1 {
+                                isUsersArrayFilled.signal()
+                            }
                         }
                     }
+                    isUsersArrayFilled.wait()
+                    completion(usersFound)
                 }
-                isUsersArrayFilled.wait()
-                completion(usersFound)
             }
             else {
                 completion(usersFound)
             }
         }
+    }
+    
+    private static func filterPerGames(filterBy: [Game], userGames: [Game]) -> Bool{
+        if filterBy.count == 0 {
+            //if there is no filter, return true for any comparison
+            return true
+        }
+        
+        let serversBool: Bool = false
+        var platformsBool: Bool = false
+        var idBool: Bool = false
+        
+        //check if each game has same id, servers or platforms
+        for game in userGames {
+            //checking if there is at least one equal game in both lists
+            var currentFilterGame: Game?
+            if filterBy.contains(where: { filterGame in
+                if filterGame.id == game.id {
+                    currentFilterGame = filterGame
+                    return true
+                }
+                return false
+            }) {
+                idBool = true
+                //if it has same game, check if it is played at same platform
+                for platform in game.selectedPlatforms {
+                    if currentFilterGame!.selectedPlatforms.contains(where: { filterPlatform in
+                        filterPlatform.key == platform.key
+                    }) {
+                        platformsBool = true
+                        break
+                    }
+                }
+                if platformsBool {
+                    //if at same game it is at same platform, checks if it is played at same server.
+                    for server in game.selectedServers {
+                        if currentFilterGame!.selectedServers.contains(where: { filterServer in
+                            filterServer.key == server.key
+                        }) {
+                            //if it is same game played in same platforms and servers, return true (because it has to be included).
+                            return true
+                        }
+                    }
+                }
+            }
+            idBool = false
+            platformsBool = false
+        }
+        
+        return idBool && platformsBool && serversBool
     }
     
     private static func getUserGamesById(id: String, completion: @escaping ([Game]) -> Void) {
