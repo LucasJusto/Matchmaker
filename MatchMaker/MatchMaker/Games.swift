@@ -107,8 +107,8 @@ struct Game {
         self.description = description
         self.platforms = platforms
         self.servers = servers
-        self.selectedServers = servers
-        self.selectedPlatforms = platforms
+        self.selectedServers = []
+        self.selectedPlatforms = []
         self.image = image
         self.serverType = serverType
     }
@@ -137,13 +137,21 @@ public class Games {
         var games: [Game] = []
         
         // Dota 2
-        games.append(Game(id: "0", name: "Dota 2", description: NSLocalizedString("Dota2Description", comment: "dota 2 desc"), platforms: [Platform.PC], servers: [Dota2Servers.USWest, Dota2Servers.USEast, Dota2Servers.EuropeWest, Dota2Servers.EuropeEast, Dota2Servers.SEAsia, Dota2Servers.SouthAmerica, Dota2Servers.Russia, Dota2Servers.Australia, Dota2Servers.SouthAfrica], image: UIImage(named: "Dota2")!, serverType: Dota2Servers.self))
+        let dota2 = Game(id: "0", name: "Dota 2", description: NSLocalizedString("Dota2Description", comment: "dota 2 desc"), platforms: [Platform.PC], servers: Dota2Servers.allCases, image: UIImage(named: "Dota2")!, serverType: Dota2Servers.self)
         
         // League Of Legends
-        games.append(Game(id: "1", name: "League of Legends", description: NSLocalizedString("LeagueOfLegendsDescription", comment: "LOL desc"), platforms: [Platform.PC, Platform.Mobile], servers: [LeagueOfLegendsServers.Brazil, LeagueOfLegendsServers.EuropeNordicEast, LeagueOfLegendsServers.EuropeWest, LeagueOfLegendsServers.LatinAmericaNorth, LeagueOfLegendsServers.LatinAmericaSouth, LeagueOfLegendsServers.NorthAmerica, LeagueOfLegendsServers.Oceania, LeagueOfLegendsServers.Russia, LeagueOfLegendsServers.Turkey, LeagueOfLegendsServers.Japan, LeagueOfLegendsServers.Korea], image: UIImage(named: "LeagueOfLegends")!, serverType: LeagueOfLegendsServers.self))
+        let lol = Game(id: "1", name: "League of Legends", description: NSLocalizedString("LeagueOfLegendsDescription", comment: "LOL desc"), platforms: [Platform.PC], servers: LeagueOfLegendsServers.allCases, image: UIImage(named: "LeagueOfLegends")!, serverType: LeagueOfLegendsServers.self)
         
         // Counter Strike: Global Offensive
-        games.append(Game(id: "2", name: "Counter Strike: Global Offensive", description: NSLocalizedString("CounterStrikeGODescription", comment: "CSGO desc"), platforms: [Platform.PC], servers: [CounterStrikeGOServers.EUNorth, CounterStrikeGOServers.PWTianjin, CounterStrikeGOServers.Singapore, CounterStrikeGOServers.IndiaWest, CounterStrikeGOServers.Australia, CounterStrikeGOServers.EUWest, CounterStrikeGOServers.PWShanghai, CounterStrikeGOServers.Chile, CounterStrikeGOServers.USSouthEast, CounterStrikeGOServers.IndiaEast, CounterStrikeGOServers.EUEast, CounterStrikeGOServers.HongKong, CounterStrikeGOServers.Japan, CounterStrikeGOServers.Peru, CounterStrikeGOServers.USWest, CounterStrikeGOServers.Poland, CounterStrikeGOServers.USWest, CounterStrikeGOServers.Poland, CounterStrikeGOServers.PWGuangdong, CounterStrikeGOServers.USNorthCentral, CounterStrikeGOServers.USSouthWest, CounterStrikeGOServers.SouthAfrica, CounterStrikeGOServers.SouthAmerica, CounterStrikeGOServers.Spain, CounterStrikeGOServers.USEast, CounterStrikeGOServers.Dubai], image: UIImage(named: "CounterStrikeGO")!, serverType: CounterStrikeGOServers.self))
+        let cs = Game(id: "2", name: "Counter Strike: Global Offensive", description: NSLocalizedString("CounterStrikeGODescription", comment: "CSGO desc"), platforms: [Platform.PC], servers: CounterStrikeGOServers.allCases, image: UIImage(named: "CounterStrikeGO")!, serverType: CounterStrikeGOServers.self)
+        
+        // Wild Rift
+        let wildRift = Game(id: "3", name: "League of Legends: Wild Rift", description: "Mergulhe no Wild Rift: a experiência de MOBA 5v5 cheia de habilidades e estratégias de League of Legends (e tudo feito do zero para dispositivos móveis e consoles!). Com controles novos e partidas aceleradas, jogadores de todos os níveis podem se unir aos amigos, escolher seus Campeões e fazer grandes jogadas.", platforms: [Platform.Mobile], servers: WildRiftServers.allCases, image: UIImage(named: "WildRift")!, serverType: WildRiftServers.self)
+        
+        games.append(dota2)
+        games.append(lol)
+        games.append(cs)
+        games.append(wildRift)
         
         return games
     }

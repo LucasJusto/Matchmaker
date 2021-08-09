@@ -25,13 +25,14 @@ class GameDetailsViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        
+                
         setUpData()
     }
     
     typealias TagOption = (option: String, isFavorite: Bool)
 
     var platformTags: [TagOption] = []
+    
     var serverTags: [TagOption] = []
     
     enum GameDetailsSections: Int, CaseIterable {
@@ -49,35 +50,55 @@ class GameDetailsViewController: UIViewController {
     func setUpData() {
         
         if let game = game {
+            
             GameDetailsSections.allCases.forEach { section in
+                
                 switch section {
+                    
                     case .platforms:
-                        self.platformTags = game.platforms.map { TagOption(option: $0.description, isFavorite: game.platforms.count == 1) }
+                        self.platformTags = game.platforms.map { TagOption(option: $0.description, isFavorite: game.platforms.count == 1 ? true : isPlatformSelected(platform: $0)) }
+                        
                     case .servers:
-                        self.serverTags = game.servers.map { TagOption(option: $0.description, isFavorite: game.servers.count == 1) }
+                        self.serverTags = game.servers.map { TagOption(option: $0.description, isFavorite: game.servers.count == 1 ? true : isServerSelected(server: $0)) }
                 }
             }
         }
     }
     
+    func isPlatformSelected(platform: Platform) -> Bool {
+        if let game = game {
+            return game.selectedPlatforms.contains { $0 == platform }
+        }
+        
+        return false
+    }
+    
+    func isServerSelected(server: Servers) -> Bool {
+        if let game = game {
+            return game.selectedServers.contains { $0.description == server.description }
+        }
+        
+        return false
+    }
+    
     @IBAction func didTapBarButton(_ sender: UIBarButtonItem) {
-        closeModal()
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func didTapDone(_ sender: UIButton) {
-        closeModal()
+        self.dismiss(animated: true, completion: nil)
     }
     
-    func closeModal() {
-        self.dismiss(animated: true, completion: {
-            if var game = self.game {
-                game.selectedServers = self.getSelectedServers()
-                
-                game.selectedPlatforms = self.getSelectedPlatforms()
-                
+    override func viewWillDisappear(_ animated: Bool) {
+        if var game = self.game {
+            game.selectedServers = self.getSelectedServers()
+            
+            game.selectedPlatforms = self.getSelectedPlatforms()
+                            
+            if game.selectedPlatforms.count > 0 && game.selectedServers.count > 0 {
                 self.delegate?.updateGame(game)
             }
-        })
+        }
     }
     
     func getSelectedServers() -> [Servers] {

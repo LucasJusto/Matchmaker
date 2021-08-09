@@ -30,8 +30,8 @@ class OnboardingRegisterViewController: UIViewController {
         let languages = tagLanguages.filter { $0.isFavorite }.map { Languages.getLanguage(language: "Languages\($0.option)") }
         let platforms = tagPlatforms.filter { $0.isFavorite }.map { Platform.getPlatform(key: "Platform\($0.option == "PlayStation" ? "PS" : $0.option)") }
         let games = tagGames.filter { $0.isFavorite }.map { $0.option }
-                
-        CKRepository.setOnboardingInfo(name: self.nameField, nickname: self.usernameField, photoURL: nil, location: Locations.africaNorth, description: self.descriptionField, languages: languages, selectedPlatforms: platforms, selectedGames: games)
+            
+//        CKRepository.setOnboardingInfo(name: self.nameField, nickname: self.usernameField, photoURL: nil, location: Locations.africaNorth, description: self.descriptionField, languages: languages, selectedPlatforms: platforms, selectedGames: games)
     }
     
     func alertEmptyFields() -> UIAlertController {
@@ -87,11 +87,7 @@ class OnboardingRegisterViewController: UIViewController {
     
     var tagLanguages: [TagOption] = []
     var tagPlatforms: [TagOption] = []
-    var tagGames: [GameOption] = [] {
-        didSet {
-            print(tagGames)
-        }
-    }
+    var tagGames: [GameOption] = []
     var nameField: String = ""
     var usernameField: String = ""
     var descriptionField: String = ""
@@ -468,14 +464,13 @@ extension OnboardingRegisterViewController: UserAvatarViewDelegate {
 
 extension OnboardingRegisterViewController: GameSelectionDelegate {
     func updateGame(_ game: Game) {
-        
         let indexPath = IndexPath(row: OnboardingFields.games.rawValue, section: 0)
+
+        let cell = tableView.cellForRow(at: indexPath) as? SelectorTableViewCell
         
         if let gameIndex = tagGames.firstIndex(where: { $0.option.id == game.id }) {
             tagGames[gameIndex] = GameOption(option: game, isFavorite: true)
         }
-        
-        let cell = tableView.cellForRow(at: indexPath) as? SelectorTableViewCell
         
         cell?.collectionView.reloadItems(at: [indexPath])
     }
