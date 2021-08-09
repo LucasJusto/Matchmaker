@@ -13,7 +13,7 @@ class OnboardingRegisterViewController: UIViewController {
     
     @IBAction func didTapDone(_ sender: UIButton) {
         
-        let isIncomplete = nameField.isEmpty || usernameField.isEmpty || selectedLocation.isEmpty || tagLanguages.filter { $0.isFavorite }.count < 1 || tagPlatforms.filter { $0.isFavorite }.count < 1
+        let isIncomplete = nameField.isEmpty || usernameField.isEmpty || selectedLocation2.string.isEmpty || tagLanguages.filter { $0.isFavorite }.count < 1 || tagPlatforms.filter { $0.isFavorite }.count < 1
         
         didTapDone = true
                 
@@ -98,6 +98,9 @@ class OnboardingRegisterViewController: UIViewController {
     var usernameField: String = ""
     var descriptionField: String = ""
     var selectedLocation: String = Locations.africaNorth.description
+    
+    typealias UserLocation = (string: String, enum: Locations)
+    var selectedLocation2: UserLocation = UserLocation(string: Locations.africaNorth.description, enum: Locations.africaNorth)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -228,9 +231,10 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
             return UITableViewCell()
         }
         
+        cell.delegate = self
         cell.currentSelectionLabel.text = Locations.africaNorth.description
         
-        if didTapDone && selectedLocation.isEmpty {
+        if didTapDone && selectedLocation2.string.isEmpty {
             cell.buttonView.borderColor = .red
         } else {
             cell.buttonView.borderColor = UIColor(named: "Primary")
@@ -445,4 +449,31 @@ extension OnboardingRegisterViewController: UITextViewDelegate {
         return textView.text.count + (text.count - range.length) <= 300
     }
 
+}
+
+extension OnboardingRegisterViewController: PickerCellDelegate, UserLocationDelegate {
+    
+    func didSelect(with location: Locations) {
+        print("modal: \(location)")
+        selectedLocation2.string = location.description
+        selectedLocation2.enum = location
+        
+        tableView.reloadData()
+    }
+    
+    func didChooseLocation(_ sender: UITableViewCell) {
+        performSegue(withIdentifier: "toUserLocations", sender: sender)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toUserLocations" {
+            let rootVC = segue.destination as! UINavigationController
+            let destination = rootVC.topViewController as! UserLocationViewController
+            
+            print("Onboarding: \(selectedLocation)")
+            destination.delegate = self
+            destination.selectedLocation = selectedLocation2.enum
+        }
+    }
+    
 }
