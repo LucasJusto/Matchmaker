@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol GameSelectionDelegate: AnyObject {
+    func updateGame(_ game: Game)
+}
+
 class OnboardingRegisterViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
@@ -83,13 +87,22 @@ class OnboardingRegisterViewController: UIViewController {
     
     var tagLanguages: [TagOption] = []
     var tagPlatforms: [TagOption] = []
-    var tagGames: [GameOption] = []
+    var tagGames: [GameOption] = [] {
+        didSet {
+            print(tagGames)
+        }
+    }
     var nameField: String = ""
     var usernameField: String = ""
     var descriptionField: String = ""
     var selectedLocation: String = Locations.africaNorth.description
     var imagePicker: ImagePickerManager = ImagePickerManager()
     var profileImageUrl: URL?
+    var selectedGame: Game? {
+        didSet {
+            print(selectedGame?.name ?? "nope")
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -126,32 +139,6 @@ class OnboardingRegisterViewController: UIViewController {
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "selectedGame" {
-            
-            if let navController = segue.destination as? UINavigationController {
-                
-                if let childVC = navController.topViewController as? GameDetailsViewController {
-                    
-                    if let image = UIImage(named: "LOL_vertical") {
-                        childVC.image = image
-                    }
-                    
-                }
-                
-            }
-            
-            
-//            let destinationNavigationController = segue.destination as? UINavigationController
-//
-//            let destinationController = destinationNavigationController?.topViewController as? GameDetailsViewController
-//
-//            if let image = UIImage(named: "LOL_vertical") {
-//                destinationController?.image = image
-//            }
-            
-        }
-    }
 }
 
 extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDelegate {
@@ -303,7 +290,7 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
                 
         let lines = tagGames.count/3
         
-        let width = UIScreen.main.bounds.width * 0.28
+        let width = UIScreen.main.bounds.width * 0.31
         
         let cellHeight = Double(width) * 1.37
         
@@ -385,7 +372,7 @@ extension OnboardingRegisterViewController: UICollectionViewDelegate, UICollecti
                 model = tagPlatforms[indexPath.row].option
                 
             case .games:
-                let width = collectionView.bounds.width * 0.28
+                let width = collectionView.bounds.width * 0.31
                 
                 return CGSize(width: width, height: width * 1.37)
         }
@@ -411,7 +398,8 @@ extension OnboardingRegisterViewController: UICollectionViewDelegate, UICollecti
                 tagPlatforms[indexPath.row].isFavorite.toggle()
                 
             case .games:
-                tagGames[indexPath.row].isFavorite.toggle()
+                self.selectedGame = tagGames[indexPath.row].option
+                performSegue(withIdentifier: "selectedGame", sender: nil)
         }
         
         collectionView.reloadItems(at: [indexPath])
@@ -473,6 +461,38 @@ extension OnboardingRegisterViewController: UserAvatarViewDelegate {
             DispatchQueue.main.async {
                 cell?.userAvatarView.contentImage.image = image
                 self.profileImageUrl = url
+            }
+        }
+    }
+}
+
+extension OnboardingRegisterViewController: GameSelectionDelegate {
+    func updateGame(_ game: Game) {
+        
+        let indexPath = IndexPath(row: OnboardingFields.games.rawValue, section: 0)
+        
+        if let gameIndex = tagGames.firstIndex(where: { $0.option.id == game.id }) {
+            tagGames[gameIndex] = GameOption(option: game, isFavorite: true)
+        }
+        
+        let cell = tableView.cellForRow(at: indexPath) as? SelectorTableViewCell
+        
+        cell?.collectionView.reloadItems(at: [indexPath])
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "selectedGame" {
+
+            if let navController = segue.destination as? UINavigationController {
+
+                if let childVC = navController.topViewController as? GameDetailsViewController {
+
+                    if let game = selectedGame {
+                        childVC.game = game
+                    }
+                    
+                    childVC.delegate = self
+                }
             }
         }
     }

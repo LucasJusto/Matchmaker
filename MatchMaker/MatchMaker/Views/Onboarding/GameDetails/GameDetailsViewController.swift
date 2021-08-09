@@ -9,16 +9,203 @@ import UIKit
 
 class GameDetailsViewController: UIViewController {
     
+    weak var delegate: GameSelectionDelegate?
+    
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var gameCoverView: UIImageView!
     
-    var image = UIImage()
+    var game: Game?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        gameCoverView.image = image
+        if let game = game {
+            gameCoverView.image = game.image
+        }
         
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        setUpData()
+    }
+    
+    typealias TagOption = (option: String, isFavorite: Bool)
+
+    var platformTags: [TagOption] = []
+    var serverTags: [TagOption] = []
+    
+    enum GameDetailsSections: Int, CaseIterable {
+        case platforms
+        case servers
+        
+        var description: String {
+            switch self {
+                case .platforms: return NSLocalizedString("onboarding5PlatformsLabel", comment: "Platforms label")
+                case .servers: return NSLocalizedString("onboardingGameServersLabel", comment: "Servers label")
+            }
+        }
+    }
+    
+    func setUpData() {
+        
+        if let game = game {
+            GameDetailsSections.allCases.forEach { section in
+                switch section {
+                    case .platforms:
+                        self.platformTags = game.platforms.map { TagOption(option: $0.description, isFavorite: game.platforms.count == 1) }
+                    case .servers:
+                        self.serverTags = game.servers.map { TagOption(option: $0.description, isFavorite: game.servers.count == 1) }
+                }
+            }
+        }
+    }
+    
+    @IBAction func didTapBarButton(_ sender: UIBarButtonItem) {
+        closeModal()
+    }
+    
+    @IBAction func didTapDone(_ sender: UIButton) {
+        closeModal()
+    }
+    
+    func closeModal() {
+        self.dismiss(animated: true, completion: {
+            if var game = self.game {
+                game.selectedServers = self.getSelectedServers()
+                
+                game.selectedPlatforms = self.getSelectedPlatforms()
+                
+                self.delegate?.updateGame(game)
+            }
+        })
+    }
+    
+    func getSelectedServers() -> [Servers] {
+        let gameServerType = game?.serverType
+        
+        let selected = serverTags.filter { $0.isFavorite }.map { $0.option }
+        
+        let servers = selected.map { gameServerType?.getServer(server: $0) }
+    
+        return servers.compactMap { $0 }
+    }
+    
+    func getSelectedPlatforms() -> [Platform] {
+        let selected = platformTags.filter { $0.isFavorite }.map { $0.option }
+        
+        return selected.map { Platform.getPlatform(key: "Platform\($0 == "PlayStation" ? "PS" : $0)") }
     }
     
 }
 
+extension GameDetailsViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let gameDetailsSection = GameDetailsSections.allCases[indexPath.row]
+        
+        let defaultCell = UITableViewCell()
+        
+        switch gameDetailsSection {
+            case .platforms: return selectorCell(tag: GameDetailsSections.platforms.rawValue) ?? defaultCell
+                
+            case .servers: return selectorCell(tag: GameDetailsSections.servers.rawValue) ?? defaultCell
+        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return GameDetailsSections.allCases.count
+    }
+    
+    func selectorCell(tag: Int) -> SelectorTableViewCell? {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "selector-cell") as? SelectorTableViewCell
+        
+        if let gameDetailsSection = GameDetailsSections(rawValue: tag) {
+            cell?.setUp(title: gameDetailsSection.description)
+        }
+        
+        cell?.collectionView.delegate = self
+        cell?.collectionView.dataSource = self
+        cell?.collectionView.tag = tag
+        
+        return cell
+    }
+}
+
+extension GameDetailsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        let gameDetailsSection = GameDetailsSections.allCases[collectionView.tag]
+
+        switch gameDetailsSection {
+            case .platforms: return platformTags.count
+            case .servers: return serverTags.count
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let gameDetailsSection = GameDetailsSections.allCases[collectionView.tag]
+        
+        let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "selectable-tag-cell", for: indexPath) as! SelectableTagCollectionViewCell
+        
+        var tag: TagOption
+        
+        switch gameDetailsSection {
+            case .platforms: tag = platformTags[indexPath.row]
+            case .servers: tag = serverTags[indexPath.row]
+        }
+        
+        collectionCell.labelView.text = tag.option
+        
+        collectionCell.containerView.backgroundColor = tag.isFavorite ? UIColor(named: "Primary") : .clear
+                
+        return collectionCell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let gameDetailsSection = GameDetailsSections.allCases[collectionView.tag]
+        
+        switch gameDetailsSection {
+            case .platforms:
+                
+                if platformTags.count != 1 {
+                    platformTags[indexPath.row].isFavorite.toggle()
+                }
+                
+            case .servers:
+                
+                if serverTags.count != 1 {
+                    serverTags[indexPath.row].isFavorite.toggle()
+                }
+        }
+                
+        collectionView.reloadItems(at: [indexPath])
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let gameDetailsSection = GameDetailsSections.allCases[collectionView.tag]
+                
+        var model: String
+        
+        switch gameDetailsSection {
+            case .platforms:
+                model = platformTags[indexPath.row].option
+                
+            case .servers:
+                model = serverTags[indexPath.row].option
+        }
+                
+        let modelSize = model.size(withAttributes: nil)
+        
+        let size = CGSize(width: modelSize.width, height: collectionView.bounds.height)
+                
+        return size
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+}

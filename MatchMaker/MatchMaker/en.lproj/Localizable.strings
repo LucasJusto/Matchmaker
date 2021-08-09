@@ -56,6 +56,9 @@ to identify you from iCloud";
 // MARK:- ONBOARDING 5 - Keyboard
 "onboarding5KeyboardButton" = "Done";
 
+// MARK:- ONBOARDING GAME
+"onboardingGameServersLabel" = "Servers";
+
 // MARK:- Platforms
 "PlatformPC" = "PC";
 "PlatformPS" = "PlayStation";

@@ -107,7 +107,7 @@ enum Dota2Servers: Servers, CustomStringConvertible {
     }
 }
 
-enum LeagueOfLegendsServers: Servers, CustomStringConvertible {
+enum LeagueOfLegendsServers: Servers, CustomStringConvertible, CaseIterable {
     
     case Brazil
     case EuropeNordicEast
