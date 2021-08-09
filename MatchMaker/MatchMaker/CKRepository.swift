@@ -84,6 +84,21 @@ enum FriendsTable: CustomStringConvertible {
     }
 }
 
+enum BlockedTable: CustomStringConvertible {
+    case recordType, userId, blockedId
+    
+    var description: String {
+        switch self {
+            case .recordType:
+                return "Blocked"
+            case .userId:
+                return "userId"
+            case .blockedId:
+                return "blockedId"
+        }
+    }
+}
+
 public class CKRepository {
     static var user: User? //singleton user
     public static let container: CKContainer = CKContainer(identifier: "iCloud.MatchMaker")
@@ -289,108 +304,126 @@ public class CKRepository {
     static func searchUsers(languages: [Languages], platforms: [Platform], behaviourRate: Double, skillRate: Double, locations: [Locations], games: [Game], completion: @escaping ([Social]) -> Void) {
         //creating user array to be returned
         var usersFound: [Social] = [Social]()
-        
-        //creating string to predicate (filtering the search)
-        var fullPredicate = ""
-        //if there is filters for languages: builds its predicate
-        if languages.count > 0 {
-            var languagesPredicate = "ANY { "
-            for i in 0...languages.count-1 {
-                if i < languages.count-1 {
-                    languagesPredicate += "'\(languages[i].key)', "
+        getBlockedUsersId { blockedUsersId in
+            
+            //creating string to predicate (filtering the search)
+            var fullPredicate = ""
+            
+            //if there is filters for languages: builds its predicate
+            if languages.count > 0 {
+                var languagesPredicate = "ANY { "
+                for i in 0...languages.count-1 {
+                    if i < languages.count-1 {
+                        languagesPredicate += "'\(languages[i].key)', "
+                    }
+                    else {
+                        languagesPredicate += "'\(languages[i].key)' } IN \(UserTable.languages.description)"
+                    }
                 }
-                else {
-                    languagesPredicate += "'\(languages[i].key)' } IN \(UserTable.languages.description)"
-                }
-            }
-            fullPredicate += "(\(languagesPredicate))"
-            if platforms.count > 0 || locations.count > 0 || behaviourRate > 0 || skillRate > 0{
-                fullPredicate += " AND "
-            }
-        }
-        
-        //if there is filters for platforms: builds its predicate
-        if platforms.count > 0 {
-            var platformsPredicate = "ANY { "
-            for i in 0...platforms.count-1 {
-                if i < platforms.count-1 {
-                    platformsPredicate += "'\(platforms[i].key)', "
-                }
-                else {
-                    platformsPredicate += "'\(platforms[i].key)' } IN \(UserTable.selectedPlatforms.description)"
+                fullPredicate += "(\(languagesPredicate))"
+                if platforms.count > 0 || locations.count > 0 || behaviourRate > 0 || skillRate > 0{
+                    fullPredicate += " AND "
                 }
             }
-            fullPredicate += "(\(platformsPredicate))"
-            if locations.count > 0 || behaviourRate > 0 || skillRate > 0{
-                fullPredicate += " AND "
-            }
-        }
-        
-        //if there is filters for locations: builds its predicate
-        if locations.count > 0 {
-            var locationsPredicate = "ANY { "
-            for i in 0...locations.count-1 {
-                if i < locations.count-1 {
-                    locationsPredicate += "'\(locations[i].key)', "
+            
+            //if there is filters for platforms: builds its predicate
+            if platforms.count > 0 {
+                var platformsPredicate = "ANY { "
+                for i in 0...platforms.count-1 {
+                    if i < platforms.count-1 {
+                        platformsPredicate += "'\(platforms[i].key)', "
+                    }
+                    else {
+                        platformsPredicate += "'\(platforms[i].key)' } IN \(UserTable.selectedPlatforms.description)"
+                    }
                 }
-                else {
-                    locationsPredicate += "'\(locations[i].key)' }"
+                fullPredicate += "(\(platformsPredicate))"
+                if locations.count > 0 || behaviourRate > 0 || skillRate > 0{
+                    fullPredicate += " AND "
                 }
             }
-            fullPredicate += "(\(locationsPredicate) = \(UserTable.location.description))"
-            if behaviourRate > 0 || skillRate > 0 {
-                fullPredicate += " AND "
+            
+            //if there is filters for locations: builds its predicate
+            if locations.count > 0 {
+                var locationsPredicate = "ANY { "
+                for i in 0...locations.count-1 {
+                    if i < locations.count-1 {
+                        locationsPredicate += "'\(locations[i].key)', "
+                    }
+                    else {
+                        locationsPredicate += "'\(locations[i].key)' }"
+                    }
+                }
+                fullPredicate += "(\(locationsPredicate) = \(UserTable.location.description))"
+                if behaviourRate > 0 || skillRate > 0 {
+                    fullPredicate += " AND "
+                }
             }
-        }
-        
-        if behaviourRate > 0 {
-            fullPredicate += "(\(UserTable.averageBehaviourRate.description) >= \(behaviourRate))"
+            
+            if behaviourRate > 0 {
+                fullPredicate += "(\(UserTable.averageBehaviourRate.description) >= \(behaviourRate))"
+                if skillRate > 0 {
+                    fullPredicate += " AND "
+                }
+            }
+            
             if skillRate > 0 {
-                fullPredicate += " AND "
+                fullPredicate += "(\(UserTable.averageSkillRate.description) >= \(skillRate))"
             }
-        }
-        
-        if skillRate > 0 {
-            fullPredicate += "(\(UserTable.averageSkillRate.description) >= \(skillRate))"
-        }
-        
-        //creating necessary variables to use cloudkit
-        let publicDB = container.publicCloudDatabase
-        var predicate = NSPredicate(value: true)
-        if languages.count > 0 || platforms.count > 0 || behaviourRate > 0 || skillRate > 0 || locations.count > 0 || games.count > 0 {
-            //there is at least one filter
-            predicate = NSPredicate(format: fullPredicate)
-        }
-        let query = CKQuery(recordType: UserTable.recordType.description, predicate: predicate)
-        
-        //filling the array with results to the search (filtered)
-        publicDB.perform(query, inZoneWith: nil) { results, error in
-            if let resultsNotNull = results {
-                let isUsersArrayFilled = DispatchSemaphore(value: 0)
-                if resultsNotNull.count > 0 {
-                    for i in 0...resultsNotNull.count - 1 {
-                        let id = resultsNotNull[i].value(forKey: UserTable.id.description) as! String
-                        let name = resultsNotNull[i].value(forKey: UserTable.name.description) as! String
-                        let nickName = resultsNotNull[i].value(forKey: UserTable.nickname.description) as! String
-                        var photoURL: URL? = nil
-                        if let ckAsset = resultsNotNull[i].value(forKey: UserTable.photo.description) as? CKAsset {
-                            photoURL = ckAsset.fileURL
-                        }
-                        CKRepository.getUserGamesById(id: id) { userGames in
-                            if filterPerGames(filterBy: games, userGames: userGames) {
-                                usersFound.append(Social(id: id, name: name, nickname: nickName, photoURL: photoURL, games: userGames, isInvite: nil))
+            
+            //creating necessary variables to use cloudkit
+            let publicDB = container.publicCloudDatabase
+            var predicate = NSPredicate(value: true)
+            if languages.count > 0 || platforms.count > 0 || behaviourRate > 0 || skillRate > 0 || locations.count > 0 || games.count > 0 {
+                //there is at least one filter
+                predicate = NSPredicate(format: fullPredicate)
+            }
+            let query = CKQuery(recordType: UserTable.recordType.description, predicate: predicate)
+            
+            //filling the array with results to the search (filtered)
+            publicDB.perform(query, inZoneWith: nil) { results, error in
+                if let resultsNotNull = results {
+                    if resultsNotNull.count > 0 {
+                        for i in 0...resultsNotNull.count - 1 {
+                            let id = resultsNotNull[i].value(forKey: UserTable.id.description) as! String
+                            let name = resultsNotNull[i].value(forKey: UserTable.name.description) as! String
+                            let nickName = resultsNotNull[i].value(forKey: UserTable.nickname.description) as! String
+                            var photoURL: URL? = nil
+                            if let ckAsset = resultsNotNull[i].value(forKey: UserTable.photo.description) as? CKAsset {
+                                photoURL = ckAsset.fileURL
                             }
-                            if i == resultsNotNull.count - 1 {
-                                isUsersArrayFilled.signal()
+                            CKRepository.getUserGamesById(id: id) { userGames in
+                                usersFound.append(Social(id: id, name: name, nickname: nickName, photoURL: photoURL, games: userGames, isInvite: nil))
+                                if usersFound.count == resultsNotNull.count {
+                                    //if usersFound is completlty filled
+                                    
+                                    //remove users that do not conform to the filter games
+                                    usersFound = usersFound.filter { user in
+                                        filterPerGames(filterBy: games, userGames: user.games ?? [])
+                                    }
+                                    
+                                    if blockedUsersId.count > 0 {
+                                        //if the user has blocked users
+                                        //remove them from the search
+                                        usersFound = usersFound.filter({ user in
+                                            !blockedUsersId.contains(user.id)
+                                        })
+                                    }
+                                    
+                                    completion(usersFound)
+                                }
                             }
                         }
                     }
-                    isUsersArrayFilled.wait()
+                    else {
+                        //if not results return empty array
+                        completion(usersFound)
+                    }
+                }
+                else {
+                    //if not results return empty array
                     completion(usersFound)
                 }
-            }
-            else {
-                completion(usersFound)
             }
         }
     }
@@ -418,6 +451,9 @@ public class CKRepository {
             }) {
                 idBool = true
                 //if it has same game, check if it is played at same platform
+                if currentFilterGame?.selectedPlatforms.count == 0 {
+                    platformsBool = true
+                }
                 for platform in game.selectedPlatforms {
                     if currentFilterGame!.selectedPlatforms.contains(where: { filterPlatform in
                         filterPlatform.key == platform.key
@@ -427,6 +463,9 @@ public class CKRepository {
                     }
                 }
                 if platformsBool {
+                    if currentFilterGame?.selectedServers.count == 0 {
+                        return true
+                    }
                     //if at same game it is at same platform, checks if it is played at same server.
                     for server in game.selectedServers {
                         if currentFilterGame!.selectedServers.contains(where: { filterServer in
@@ -475,5 +514,33 @@ public class CKRepository {
         }
     }
     
-
+    static func getBlockedUsersId(completion: @escaping ([String]) -> Void) {
+        var blockedUsersIds = [String]()
+        
+        let publicDB = container.publicCloudDatabase
+        getUserId { id in
+            if let idNotNull = id {
+                let blockedPredicate = NSPredicate(format: "userId == %@", idNotNull)
+                let blockedQuery = CKQuery(recordType: BlockedTable.recordType.description, predicate: blockedPredicate)
+                publicDB.perform(blockedQuery, inZoneWith: nil) { results, error in
+                    if let resultsNotNull = results {
+                        for result in resultsNotNull {
+                            if let blockedUserId = result.value(forKey: BlockedTable.blockedId.description) as? String {
+                                blockedUsersIds.append(blockedUserId)
+                            }
+                        }
+                        completion(blockedUsersIds)
+                    }
+                    else {
+                        //if there isnt results, return empty list
+                        completion(blockedUsersIds)
+                    }
+                }
+            }
+            else {
+                //if there isnt id, return empty list
+                completion(blockedUsersIds)
+            }
+        }
+    }
 }
