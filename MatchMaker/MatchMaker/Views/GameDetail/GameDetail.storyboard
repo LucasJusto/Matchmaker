@@ -14,14 +14,14 @@
             <objects>
                 <viewController title="GameDetail" id="Y6W-OH-hqX" customClass="GameDetailViewController" customModule="MatchMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="1400"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="960"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S6c-OK-7we">
-                                <rect key="frame" x="0.0" y="88" width="390" height="1312"/>
+                                <rect key="frame" x="0.0" y="88" width="390" height="838"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mF2-2Y-1I1">
-                                        <rect key="frame" x="0.0" y="0.0" width="390" height="870"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="960"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LeagueOfLegends" translatesAutoresizingMaskIntoConstraints="NO" id="pce-lc-GXc" userLabel="GameImage">
                                                 <rect key="frame" x="0.0" y="0.0" width="390" height="520"/>
@@ -41,13 +41,13 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="rQ8-va-uFp" userLabel="Game Info">
                                                         <rect key="frame" x="0.0" y="0.0" width="350" height="50"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFG-WF-c1t">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFG-WF-c1t">
                                                                 <rect key="frame" x="0.0" y="0.0" width="350" height="27.666666666666668"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wc9-Zq-fxI">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wc9-Zq-fxI">
                                                                 <rect key="frame" x="0.0" y="35.666666666666629" width="350" height="14.333333333333336"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -179,7 +179,7 @@
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yx6-EQ-Lay" userLabel="OtherGamesXIb" customClass="RoundedRectangleCollectionView" customModule="MatchMaker" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="684.66666666666663" width="390" height="177.33333333333337"/>
+                                                <rect key="frame" x="0.0" y="684.66666666666663" width="390" height="275.33333333333337"/>
                                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                             </view>
                                         </subviews>
@@ -188,10 +188,8 @@
                                             <constraint firstItem="pce-lc-GXc" firstAttribute="top" secondItem="mF2-2Y-1I1" secondAttribute="top" id="Hut-3M-pt9"/>
                                             <constraint firstAttribute="trailing" secondItem="yx6-EQ-Lay" secondAttribute="trailing" id="Tcj-KH-5fH"/>
                                             <constraint firstItem="82b-6Q-Ju2" firstAttribute="leading" secondItem="mF2-2Y-1I1" secondAttribute="leading" constant="20" id="VWB-HL-UAm"/>
-                                            <constraint firstAttribute="height" constant="870" id="XkA-h2-gw7"/>
                                             <constraint firstItem="HSS-fq-jnI" firstAttribute="trailing" secondItem="pce-lc-GXc" secondAttribute="trailing" id="YE6-4J-PQu"/>
                                             <constraint firstItem="HSS-fq-jnI" firstAttribute="leading" secondItem="pce-lc-GXc" secondAttribute="leading" id="bBI-JT-u5N"/>
-                                            <constraint firstAttribute="bottom" secondItem="yx6-EQ-Lay" secondAttribute="bottom" constant="8" id="cgC-rW-dOp"/>
                                             <constraint firstItem="yx6-EQ-Lay" firstAttribute="leading" secondItem="mF2-2Y-1I1" secondAttribute="leading" id="d4a-mq-YjZ"/>
                                             <constraint firstAttribute="trailing" secondItem="82b-6Q-Ju2" secondAttribute="trailing" constant="20" id="dEh-tP-qPN"/>
                                             <constraint firstItem="HSS-fq-jnI" firstAttribute="bottom" secondItem="pce-lc-GXc" secondAttribute="bottom" id="jZi-W2-NK7"/>
@@ -199,30 +197,32 @@
                                             <constraint firstItem="yx6-EQ-Lay" firstAttribute="top" secondItem="82b-6Q-Ju2" secondAttribute="bottom" constant="5" id="oHD-tE-XKK"/>
                                             <constraint firstItem="HSS-fq-jnI" firstAttribute="top" secondItem="pce-lc-GXc" secondAttribute="top" id="rZb-N9-SWT"/>
                                             <constraint firstItem="82b-6Q-Ju2" firstAttribute="top" secondItem="pce-lc-GXc" secondAttribute="bottom" constant="-100" id="uLJ-Qu-3ey"/>
+                                            <constraint firstAttribute="bottom" secondItem="yx6-EQ-Lay" secondAttribute="bottom" id="zLZ-dg-XVK"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="mF2-2Y-1I1" secondAttribute="bottom" constant="442" id="GaD-BA-yfz"/>
                                     <constraint firstItem="mF2-2Y-1I1" firstAttribute="leading" secondItem="S6c-OK-7we" secondAttribute="leading" id="Vve-Xx-1W9"/>
                                     <constraint firstAttribute="trailing" secondItem="mF2-2Y-1I1" secondAttribute="trailing" id="dCk-Ra-nb6"/>
                                     <constraint firstItem="mF2-2Y-1I1" firstAttribute="top" secondItem="S6c-OK-7we" secondAttribute="top" id="sLu-l9-QFs"/>
+                                    <constraint firstAttribute="bottom" secondItem="mF2-2Y-1I1" secondAttribute="bottom" id="uGt-Ek-uEg"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="S6c-OK-7we" secondAttribute="bottom" id="4gY-wa-wAJ"/>
                             <constraint firstItem="S6c-OK-7we" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="NjJ-2G-Uhl"/>
                             <constraint firstItem="S6c-OK-7we" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="YFy-uX-KAb"/>
                             <constraint firstItem="S6c-OK-7we" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="kgv-BN-z6O"/>
                             <constraint firstItem="mF2-2Y-1I1" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" id="s8C-UA-XQu"/>
+                            <constraint firstItem="mF2-2Y-1I1" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" id="uLe-s6-Un3"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="S6c-OK-7we" secondAttribute="bottom" id="yRO-0F-Eur"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1Av-cg-meL"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="390" height="1400"/>
+                    <size key="freeformSize" width="390" height="960"/>
                     <connections>
                         <outlet property="AddToMyGamesButton" destination="Ngm-dr-XyX" id="MLf-Cn-RP7"/>
                         <outlet property="FindPlayersButton" destination="lqH-bf-PfT" id="boU-or-bcQ"/>
