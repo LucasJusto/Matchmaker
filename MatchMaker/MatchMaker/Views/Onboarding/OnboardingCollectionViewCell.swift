@@ -31,5 +31,4 @@ class OnboardingCollectionViewCell: UICollectionViewCell {
         
         colorView.backgroundColor = screen.color
     }
-
 }
