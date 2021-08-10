@@ -304,8 +304,8 @@ public class CKRepository {
     static func searchUsers(languages: [Languages], platforms: [Platform], behaviourRate: Double, skillRate: Double, locations: [Locations], games: [Game], completion: @escaping ([Social]) -> Void) {
         //creating user array to be returned
         var usersFound: [Social] = [Social]()
-        getBlockedUsersId { blockedUsersId in
-            
+        getBlockedUsersId { blockedUsers in
+            var blockedUsersId = blockedUsers
             //creating string to predicate (filtering the search)
             var fullPredicate = ""
             
@@ -402,8 +402,11 @@ public class CKRepository {
                                         filterPerGames(filterBy: games, userGames: user.games ?? [])
                                     }
                                     
+                                    if let u = CKRepository.user {
+                                        blockedUsersId.append(u.id)
+                                    }
+                                    //if the user has blocked users
                                     if blockedUsersId.count > 0 {
-                                        //if the user has blocked users
                                         //remove them from the search
                                         usersFound = usersFound.filter({ user in
                                             !blockedUsersId.contains(user.id)
