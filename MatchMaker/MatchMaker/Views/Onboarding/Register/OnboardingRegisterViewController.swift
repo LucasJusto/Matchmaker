@@ -31,7 +31,15 @@ class OnboardingRegisterViewController: UIViewController {
         let platforms = tagPlatforms.filter { $0.isFavorite }.map { Platform.getPlatform(key: "Platform\($0.option == "PlayStation" ? "PS" : $0.option)") }
         let games = tagGames.filter { $0.isFavorite }.map { $0.option }
             
-//        CKRepository.setOnboardingInfo(name: self.nameField, nickname: self.usernameField, photoURL: nil, location: Locations.africaNorth, description: self.descriptionField, languages: languages, selectedPlatforms: platforms, selectedGames: games)
+//        print("name", nameField)
+//        print("nickname", usernameField)
+//        print("location", selectedLocation.enum)
+//        print("description", descriptionField)
+//        print("languages", languages)
+//        print("selectedPlatforms", platforms)
+//        print("selectedGames", games)
+        
+        CKRepository.setOnboardingInfo(name: self.nameField, nickname: self.usernameField, photoURL: nil, location: Locations.africaNorth, description: self.descriptionField, languages: languages, selectedPlatforms: platforms, selectedGames: games)
     }
     
     func alertEmptyFields() -> UIAlertController {
@@ -261,11 +269,24 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
                 return UITableViewCell()
         }
         
+        cell.placeholder = "Put a description about yourself and also provide a contact for other players."
+        
+        if descriptionField.isEmpty {
+            descriptionField = cell.placeholder
+        }
+        
         cell.textViewField.delegate = self
         cell.textViewField.text = descriptionField
         cell.counterLabelView.text = "\(descriptionField.count)/300"
         cell.textViewField.addDoneButton(title: NSLocalizedString("onboarding5KeyboardButton", comment: "Keyboard done Button"), target: self, selector: #selector(closeKeyboard(sender:)))
-
+        cell.textViewField.textColor = UIColor.lightGray
+        
+        if didTapDone && (descriptionField.isEmpty || descriptionField == cell.placeholder) {
+            cell.textViewField.borderColor = .red
+        } else {
+            cell.textViewField.borderColor = UIColor(named: "Primary")
+        }
+        
         return cell
     }
     
@@ -486,11 +507,23 @@ extension OnboardingRegisterViewController: UITextViewDelegate {
 
     func textViewDidEndEditing(_ textView: UITextView) {
         self.descriptionField = textView.text ?? ""
+        
+        if textView.text.isEmpty {
+            textView.text = "Put a description about yourself and also provide a contact for other players."
+            textView.textColor = .lightGray
+        }
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = ""
+            textView.textColor = .white
+        }
     }
 
     func textViewDidChange(_ textView: UITextView) {
         let cell = tableView.cellForRow(at: IndexPath(row: OnboardingFields.descriptionField.rawValue, section: 0)) as? TextViewTableViewCell
-        
+    
         cell?.counterLabelView.text = "\(textView.text.count)/300"
     }
 
