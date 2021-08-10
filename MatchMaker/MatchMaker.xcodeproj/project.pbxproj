@@ -244,7 +244,6 @@
 			isa = PBXGroup;
 			children = (
 				89AC95B726B09DEC00EC92F6 /* IBDesignables */,
-				1B5F81AA26B85AC900D19747 /* Games.swift */,
 				489555F126A9F47A005F88A2 /* MatchMaker.entitlements */,
 				895A604C26AB486A00BE18C9 /* Extensions */,
 				89A9130526AA6FD600D3B1D2 /* Models */,
@@ -259,6 +258,7 @@
 				892FE5C126A9E345004B4F7F /* Localizable.strings */,
 				48763E1A26AB3BF4000618D8 /* UserModel.swift */,
 				48763E1C26AB495B000618D8 /* CKRepository.swift */,
+				1B5F81AA26B85AC900D19747 /* Games.swift */,
 				4893E4B526B07E6400F3FEC1 /* GameServers.swift */,
 			);
 			path = MatchMaker;
@@ -348,9 +348,9 @@
 			isa = PBXGroup;
 			children = (
 				B44F62F126C3178500AD3E8A /* Discover.storyboard */,
-				B44F62ED26C3178500AD3E8A /* DiscoverCollectionViewCell.swift */,
-				B44F62EE26C3178500AD3E8A /* DiscoverTableViewCell.swift */,
 				B44F62EF26C3178500AD3E8A /* DiscoverViewController.swift */,
+				B44F62EE26C3178500AD3E8A /* DiscoverTableViewCell.swift */,
+				B44F62ED26C3178500AD3E8A /* DiscoverCollectionViewCell.swift */,
 				B44F62F026C3178500AD3E8A /* DiscoverShowMoreCollectionViewCell.swift */,
 			);
 			path = Discover;

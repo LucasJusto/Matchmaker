@@ -9,11 +9,19 @@ import UIKit
 
 class DiscoverViewController: UIViewController {
     
+    // User data and searching
     var users: [User] = []
     var filteredUsers: [User] = []
     
+    let searchController = UISearchController(searchResultsController: nil)
+    var isSearchBarEmpty: Bool {
+      return searchController.searchBar.text?.isEmpty ?? true
+    }
+    var isFiltering: Bool {
+      return searchController.isActive && !isSearchBarEmpty
+    }
+    
     @IBOutlet weak var discoverTableView: UITableView!
-    @IBOutlet weak var filtersButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         
@@ -25,26 +33,23 @@ class DiscoverViewController: UIViewController {
         selectedGames2.append(Games.games[0])
         
         let user1: User = User(id: "0", name: "1arselo difenbeck", nickname: "@shechello", photoURL: nil, location: Locations.brazil, description: "Description", behaviourRate: 10.0, skillRate: 10.0, languages: [Languages.english, Languages.portuguese], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: Games.games)
-        
         users.append(user1)
         
         let user2: User = User(id: "0", name: "2arselo difenbeck", nickname: "@shechello", photoURL: nil, location: Locations.brazil, description: "Description", behaviourRate: 10.0, skillRate: 10.0, languages: [Languages.english, Languages.portuguese], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: selectedGames1)
-        
         users.append(user2)
         
         let user3: User = User(id: "0", name: "3arselo difenbeck", nickname: "@shechello", photoURL: nil, location: Locations.brazil, description: "Description", behaviourRate: 10.0, skillRate: 10.0, languages: [Languages.english, Languages.portuguese], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: selectedGames2)
-        
         users.append(user3)
+        
         //END MOCKED DATA
         
-        super.viewDidLoad()
+        filteredUsers = users
         
+        super.viewDidLoad()
         // Do any additional setup after loading the view.
         
         discoverTableView.delegate = self
         discoverTableView.dataSource = self
-
-        NSLocalizedString("DiscoverFiltersButton", comment: "Filters button in Discover Screen")
         
         // Header appearance
         let appearance = UINavigationBarAppearance()
@@ -54,23 +59,19 @@ class DiscoverViewController: UIViewController {
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         
         // Search Controller | uses extension
-        
-        let searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Users"
         navigationItem.searchController = searchController
         definesPresentationContext = true
         
+        // Adding filter button to the search controller
+        searchController.searchBar.delegate = self
+        searchController.searchBar.showsBookmarkButton = true
+        searchController.searchBar.setImage(UIImage(systemName: "line.horizontal.3.decrease.circle"), for: .bookmark, state: .normal)
+        
     }
     
-//
-//    //pesquisa
-//    func updateFilters() {
-//        // logica
-//        DiscoverTableView.reloadData()
-//    }
-
     /*
     // MARK: - Navigation
 
@@ -83,10 +84,24 @@ class DiscoverViewController: UIViewController {
 
 }
 
-extension DiscoverViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-      // TODO
+extension DiscoverViewController: UISearchBarDelegate, UISearchResultsUpdating {
+    
+    func filterContentForSearchText(_ searchText: String) {
+        filteredUsers = users.filter { (user: User) -> Bool in
+            return user.name.lowercased().contains(searchText.lowercased())
+        }
+        discoverTableView.reloadData()
     }
+    
+    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
+        // SHOW FILTER SCREEN
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        filterContentForSearchText(searchBar.text!)
+    }
+    
   }
 
 extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
@@ -96,6 +111,10 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        if isFiltering {
+            return filteredUsers.count
+        }
+            
         return users.count
     }
     
@@ -114,8 +133,13 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         // Using sections to have a "rounded cell" which is actually a section
-        let user = users[indexPath.section]
-
+        let user: User
+        if isFiltering {
+            user = filteredUsers[indexPath.section]
+        } else {
+            user = users[indexPath.section]
+        }
+        
         cell.setup(url: user.photoURL, nameText: user.name, nickText: user.nickname, userGames: user.selectedGames)
         
         return cell

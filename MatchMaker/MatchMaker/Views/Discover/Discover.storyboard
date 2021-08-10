@@ -56,10 +56,13 @@
                                                                 </label>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstItem="od5-bB-aed" firstAttribute="top" secondItem="hsx-3B-B9b" secondAttribute="top" id="Ktg-gW-PKX"/>
-                                                                <constraint firstItem="MjN-ub-148" firstAttribute="top" secondItem="od5-bB-aed" secondAttribute="bottom" constant="2" id="QSR-J3-CUN"/>
-                                                                <constraint firstItem="od5-bB-aed" firstAttribute="top" secondItem="hsx-3B-B9b" secondAttribute="top" id="art-R8-fyC"/>
-                                                                <constraint firstItem="MjN-ub-148" firstAttribute="top" secondItem="od5-bB-aed" secondAttribute="bottom" constant="2" id="yMW-dk-KGP"/>
+                                                                <constraint firstAttribute="trailing" secondItem="MjN-ub-148" secondAttribute="trailing" id="6Tn-fy-hPH"/>
+                                                                <constraint firstAttribute="bottom" secondItem="MjN-ub-148" secondAttribute="bottom" id="J6C-CX-rWc"/>
+                                                                <constraint firstItem="od5-bB-aed" firstAttribute="leading" secondItem="hsx-3B-B9b" secondAttribute="leading" id="ji9-Oc-mEL"/>
+                                                                <constraint firstAttribute="trailing" secondItem="od5-bB-aed" secondAttribute="trailing" id="qPj-Lv-l4n"/>
+                                                                <constraint firstItem="MjN-ub-148" firstAttribute="top" secondItem="od5-bB-aed" secondAttribute="bottom" constant="2" id="tB7-U9-ch7"/>
+                                                                <constraint firstItem="MjN-ub-148" firstAttribute="leading" secondItem="hsx-3B-B9b" secondAttribute="leading" id="w75-eG-N9f"/>
+                                                                <constraint firstItem="od5-bB-aed" firstAttribute="top" secondItem="hsx-3B-B9b" secondAttribute="top" id="wfe-ED-sJf"/>
                                                             </constraints>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="IBy-Er-Baz" userLabel="Button">
@@ -254,20 +257,17 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="gP6-Wi-hBP" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="AVH-Yi-J9s"/>
-                            <constraint firstItem="gP6-Wi-hBP" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="QNI-zS-Ij9"/>
-                            <constraint firstItem="gP6-Wi-hBP" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="QYH-oo-3hZ"/>
-                            <constraint firstItem="gP6-Wi-hBP" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Zwq-9W-CRD"/>
+                            <constraint firstItem="gP6-Wi-hBP" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Edv-O2-Dqe"/>
+                            <constraint firstItem="gP6-Wi-hBP" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="FQT-cd-9Hw"/>
+                            <constraint firstItem="gP6-Wi-hBP" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="FnE-2a-3MX"/>
+                            <constraint firstItem="gP6-Wi-hBP" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="ZOB-GJ-3LU"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="XF4-pO-Gin"/>
-                    <navigationItem key="navigationItem" title="Discover" id="yGJ-eI-cbc">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="M2e-Y7-B9O"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Discover" id="yGJ-eI-cbc"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
-                        <outlet property="DiscoverTableView" destination="gP6-Wi-hBP" id="7dB-48-5b8"/>
-                        <outlet property="FiltersButton" destination="M2e-Y7-B9O" id="ScO-jI-ZPX"/>
+                        <outlet property="discoverTableView" destination="gP6-Wi-hBP" id="EtX-NT-YAM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
