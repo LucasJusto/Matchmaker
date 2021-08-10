@@ -95,6 +95,7 @@ enum Languages: CustomStringConvertible, CaseIterable {
     }
 }
 
+
 extension Languages: TitleModel { }
 
 enum Locations: CustomStringConvertible, CaseIterable {
@@ -126,6 +127,8 @@ enum Locations: CustomStringConvertible, CaseIterable {
                 return NSLocalizedString("LocationAfricaNorth", comment: "Africa North")
             case .africaSouth:
                 return NSLocalizedString("LocationAfricaSouth", comment: "Africa South")
+            case .dontKnow:
+                return NSLocalizedString("LocationDontKnow", comment: "I don't know")
         }
     }
     
@@ -155,6 +158,8 @@ enum Locations: CustomStringConvertible, CaseIterable {
                 return "LocationAfricaNorth"
             case .africaSouth:
                 return "LocationAfricaSouth"
+            case .dontKnow:
+                return "LocationDontKnow"
         }
     }
     
@@ -184,6 +189,8 @@ enum Locations: CustomStringConvertible, CaseIterable {
                 return Locations.africaNorth
             case "LocationAfricaSouth":
                 return Locations.africaSouth
+            case "LocationDontKnow":
+                return Locations.dontKnow
             default:
                 return Locations.northAmerica
         }
@@ -194,7 +201,8 @@ public struct Social {
     let id: String //iCloud ID
     let name: String //real name
     let nickname: String //in game name
-    let photo: UIImage //profile picture
+    let photoURL: URL? //profile picture
+    let games: [Game]? //games played by this user
     var isInvite: IsInvite?
 }
 
