@@ -494,7 +494,7 @@
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="onboarding5ChangePickerLabel"/>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <segue destination="gZX-mx-pNf" kind="presentation" id="rb0-Ia-hO7"/>
+                                                                <action selector="didTapButton:" destination="avI-oz-ZSA" eventType="touchUpInside" id="64K-bz-lfp"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -792,6 +792,7 @@
                     <navigationItem key="navigationItem" id="WYA-zS-EQB"/>
                     <connections>
                         <outlet property="tableView" destination="Ri0-tv-Wfd" id="WM3-9Y-8oz"/>
+                        <segue destination="nG5-GQ-Aea" kind="presentation" identifier="toUserLocations" id="CFx-gc-RK6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qq5-ut-g7R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -826,7 +827,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BTP-j0-A7y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2563" y="88"/>
+            <point key="canvasLocation" x="2964" y="-88"/>
+        </scene>
+        <!--UserLocationStoryboard-->
+        <scene sceneID="gvU-sy-BWC">
+            <objects>
+                <viewControllerPlaceholder storyboardName="UserLocationStoryboard" id="nG5-GQ-Aea" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZT4-Ah-AEa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2949" y="384"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dlY-b5-pjK">
@@ -856,9 +865,6 @@
             <size key="intrinsicContentSize" width="32" height="34"/>
         </designable>
     </designables>
-    <inferredMetricsTieBreakers>
-        <segue reference="ZBD-Id-DWR"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="CounterStrikeGO" width="585" height="390"/>
         <image name="logo" width="232" height="246"/>

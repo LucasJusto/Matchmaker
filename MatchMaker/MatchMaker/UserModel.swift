@@ -96,7 +96,8 @@ enum Languages: CustomStringConvertible, CaseIterable {
 }
 
 extension Languages: TitleModel { }
-enum Locations: CustomStringConvertible {
+
+enum Locations: CustomStringConvertible, CaseIterable {
     case northAmerica, brazil, latinAmericaSouth, latinAmericaNorth, europeEast, europeWest, china, oceania, asiaEast, asiaWest, africaNorth, africaSouth
          
     var description: String {
