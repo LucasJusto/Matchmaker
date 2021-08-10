@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="klZ-7b-DD7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hN7-yL-3eC">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -13,7 +13,7 @@
         <!--Onboarding View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" customClass="OnboardingViewController" customModule="MatchMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="OnboardingViewController" storyboardIdentifier="OnboardingViewController" id="Y6W-OH-hqX" customClass="OnboardingViewController" customModule="MatchMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -30,7 +30,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FirstOnboardingCollectionViewCell" id="wU8-R2-6DJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="894"/>
+                                        <rect key="frame" x="10" y="0.0" width="414" height="894"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="bMF-2H-H1j">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="894"/>
@@ -296,60 +296,11 @@
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="onboarding5ImageLabel"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vjq-1c-yl0">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vjq-1c-yl0" customClass="UserAvatarView" customModule="MatchMaker" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="33" width="121" height="122"/>
-                                                            <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_default" translatesAutoresizingMaskIntoConstraints="NO" id="HUw-Su-8cV">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="121" height="122"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="122" id="A6Q-vo-1HN"/>
-                                                                        <constraint firstAttribute="width" constant="121" id="sh7-oS-9bG"/>
-                                                                    </constraints>
-                                                                    <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                            <real key="value" value="60"/>
-                                                                        </userDefinedRuntimeAttribute>
-                                                                    </userDefinedRuntimeAttributes>
-                                                                </imageView>
-                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hL4-Fi-W0U">
-                                                                    <rect key="frame" x="89" y="90" width="26" height="26"/>
-                                                                    <subviews>
-                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uzf-5c-JVR">
-                                                                            <rect key="frame" x="5.5" y="7.5" width="15" height="11"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="width" constant="15" id="dWG-mu-pJ7"/>
-                                                                                <constraint firstAttribute="height" constant="11" id="xJX-Fy-MWM"/>
-                                                                            </constraints>
-                                                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                            <state key="normal" image="camera" catalog="system"/>
-                                                                            <connections>
-                                                                                <action selector="pressedCameraButton:" destination="qJe-dK-1OT" eventType="touchUpInside" id="tlI-0n-4AC"/>
-                                                                            </connections>
-                                                                        </button>
-                                                                    </subviews>
-                                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                                    <constraints>
-                                                                        <constraint firstItem="Uzf-5c-JVR" firstAttribute="centerX" secondItem="hL4-Fi-W0U" secondAttribute="centerX" id="AHb-VD-rzr"/>
-                                                                        <constraint firstAttribute="height" constant="26" id="Isj-il-783"/>
-                                                                        <constraint firstAttribute="width" constant="26" id="eqq-Lb-iHy"/>
-                                                                        <constraint firstItem="Uzf-5c-JVR" firstAttribute="centerY" secondItem="hL4-Fi-W0U" secondAttribute="centerY" id="uPi-I9-ecI"/>
-                                                                    </constraints>
-                                                                    <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                            <real key="value" value="13"/>
-                                                                        </userDefinedRuntimeAttribute>
-                                                                    </userDefinedRuntimeAttributes>
-                                                                </view>
-                                                            </subviews>
                                                             <constraints>
-                                                                <constraint firstAttribute="bottom" secondItem="hL4-Fi-W0U" secondAttribute="bottom" constant="6" id="5MM-W1-ugq"/>
                                                                 <constraint firstAttribute="height" constant="122" id="DTZ-Jg-MI2"/>
                                                                 <constraint firstAttribute="width" constant="121" id="I9z-yi-EAu"/>
-                                                                <constraint firstAttribute="trailing" secondItem="hL4-Fi-W0U" secondAttribute="trailing" constant="6" id="NoH-p3-a0u"/>
-                                                                <constraint firstItem="HUw-Su-8cV" firstAttribute="top" secondItem="Vjq-1c-yl0" secondAttribute="top" id="Q2O-iP-pS1"/>
-                                                                <constraint firstItem="HUw-Su-8cV" firstAttribute="leading" secondItem="Vjq-1c-yl0" secondAttribute="leading" id="aWQ-4B-Zvc"/>
-                                                                <constraint firstAttribute="bottom" secondItem="HUw-Su-8cV" secondAttribute="bottom" id="fDG-HM-bOT"/>
-                                                                <constraint firstAttribute="trailing" secondItem="HUw-Su-8cV" secondAttribute="trailing" id="lDT-qm-3a6"/>
                                                             </constraints>
                                                         </view>
                                                     </subviews>
@@ -364,8 +315,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <outlet property="cameraButton" destination="Uzf-5c-JVR" id="ASG-xZ-NWQ"/>
-                                            <outlet property="profileImageView" destination="HUw-Su-8cV" id="Sm7-hL-OY7"/>
+                                            <outlet property="userAvatarView" destination="Vjq-1c-yl0" id="qHz-D4-TEd"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="text-field-cell" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="text-field-cell" rowHeight="87" id="ut9-HN-nS8" customClass="TextFieldTableViewCell" customModule="MatchMaker" customModuleProvider="target">
@@ -917,10 +867,8 @@
     </designables>
     <resources>
         <image name="CounterStrikeGO" width="585" height="390"/>
-        <image name="camera" catalog="system" width="128" height="94"/>
         <image name="logo" width="232" height="246"/>
         <image name="person.icloud" catalog="system" width="128" height="88"/>
-        <image name="profile_default" width="500" height="500"/>
         <namedColor name="Primary">
             <color red="0.38823529411764707" green="0.090196078431372548" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
