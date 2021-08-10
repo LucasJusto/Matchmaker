@@ -13,7 +13,7 @@ class OnboardingRegisterViewController: UIViewController {
     
     @IBAction func didTapDone(_ sender: UIButton) {
         
-        let isIncomplete = nameField.isEmpty || usernameField.isEmpty || selectedLocation2.string.isEmpty || tagLanguages.filter { $0.isFavorite }.count < 1 || tagPlatforms.filter { $0.isFavorite }.count < 1
+        let isIncomplete = nameField.isEmpty || usernameField.isEmpty || selectedLocation.string.isEmpty || tagLanguages.filter { $0.isFavorite }.count < 1 || tagPlatforms.filter { $0.isFavorite }.count < 1
         
         didTapDone = true
                 
@@ -97,10 +97,9 @@ class OnboardingRegisterViewController: UIViewController {
     var nameField: String = ""
     var usernameField: String = ""
     var descriptionField: String = ""
-    var selectedLocation: String = Locations.africaNorth.description
     
     typealias UserLocation = (string: String, enum: Locations)
-    var selectedLocation2: UserLocation = UserLocation(string: Locations.africaNorth.description, enum: Locations.africaNorth)
+    var selectedLocation: UserLocation = UserLocation(string: Locations.africaNorth.description, enum: Locations.africaNorth)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -232,9 +231,10 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
         }
         
         cell.delegate = self
-        cell.currentSelectionLabel.text = Locations.africaNorth.description
+        cell.currentSelectionLabel.text = selectedLocation.string
         
-        if didTapDone && selectedLocation2.string.isEmpty {
+        // FIXME: alterar para selectedLocation
+        if didTapDone && selectedLocation.string.isEmpty {
             cell.buttonView.borderColor = .red
         } else {
             cell.buttonView.borderColor = UIColor(named: "Primary")
@@ -455,8 +455,8 @@ extension OnboardingRegisterViewController: PickerCellDelegate, UserLocationDele
     
     func didSelect(with location: Locations) {
         print("modal: \(location)")
-        selectedLocation2.string = location.description
-        selectedLocation2.enum = location
+        selectedLocation.string = location.description
+        selectedLocation.enum = location
         
         tableView.reloadData()
     }
@@ -472,7 +472,7 @@ extension OnboardingRegisterViewController: PickerCellDelegate, UserLocationDele
             
             print("Onboarding: \(selectedLocation)")
             destination.delegate = self
-            destination.selectedLocation = selectedLocation2.enum
+            destination.selectedLocation = selectedLocation.enum
         }
     }
     

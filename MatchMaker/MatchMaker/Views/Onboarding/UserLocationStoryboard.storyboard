@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Country-->
+        <!--Location-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
                 <viewController id="Y6W-OH-hqX" customClass="UserLocationViewController" customModule="MatchMaker" customModuleProvider="target" sceneMemberID="viewController">
@@ -66,7 +66,7 @@
                             <constraint firstItem="ogN-0j-hNG" firstAttribute="top" secondItem="CZv-bU-cye" secondAttribute="bottom" constant="20" id="rK0-Y9-oIE"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Country" id="izu-80-4Rw">
+                    <navigationItem key="navigationItem" title="Location" id="izu-80-4Rw">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="zpH-du-NF2">
                             <connections>
                                 <action selector="didTapUpperDone:" destination="Y6W-OH-hqX" id="hYn-Ke-tv4"/>
