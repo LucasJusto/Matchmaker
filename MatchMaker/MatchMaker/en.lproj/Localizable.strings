@@ -130,6 +130,18 @@ to identify you from iCloud";
 "US South East" = "US South East";
 "US South West" = "US South West";
 
+// MARK: - Home
+// MARK:- Highlight image
+"GamesTitleLabel" = "Games";
+"HighlightTitileAboveImage" = "New game available";
+"TitleButtonHiglighAboveImage" = "Find players now";
+
+// MARK:- Frind request cell
+"RejectRequestFriendButtonLabel" = "Reject";
+"AceptRequestFriendButtonLabel" = "Acept";
+"NotificationRequestFriendLabel" = "sent you a friend request";
+"RecentNotificationsLabel" = "Recent notifications";
+
 // MARK: - Rate
 "ExplainRateLabel" = "Rate based on your gaming \nexperience with the player";
 "SkillRateLabel" = "Skill rate";
