@@ -25,8 +25,6 @@
 		89A9130426AA6F0500D3B1D2 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A9130326AA6F0500D3B1D2 /* OnboardingCollectionViewCell.swift */; };
 		89A9130726AA6FEF00D3B1D2 /* OnboardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A9130626AA6FEF00D3B1D2 /* OnboardingScreen.swift */; };
 		B403CE4826ADE8D100A335AF /* GameDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B403CE4726ADE8D100A335AF /* GameDetail.storyboard */; };
-		B408348A26A9E3F9000F3707 /* Games.swift in Sources */ = {isa = PBXBuildFile; fileRef = B408348926A9E3F9000F3707 /* Games.swift */; };
-		B408348C26A9F3EF000F3707 /* GameServers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B408348B26A9F3EF000F3707 /* GameServers.swift */; };
 		B4C2CB1626ADFEE700401530 /* GameDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C2CB1526ADFEE700401530 /* GameDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,8 +50,6 @@
 		89A9130326AA6F0500D3B1D2 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
 		89A9130626AA6FEF00D3B1D2 /* OnboardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScreen.swift; sourceTree = "<group>"; };
 		B403CE4726ADE8D100A335AF /* GameDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GameDetail.storyboard; sourceTree = "<group>"; };
-		B408348926A9E3F9000F3707 /* Games.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Games.swift; sourceTree = "<group>"; };
-		B408348B26A9F3EF000F3707 /* GameServers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameServers.swift; sourceTree = "<group>"; };
 		B4C2CB1526ADFEE700401530 /* GameDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
