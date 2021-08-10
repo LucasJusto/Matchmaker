@@ -10,7 +10,7 @@ import CloudKit
 import UIKit
 
 enum UserTable: CustomStringConvertible {
-    case recordType, id, name, nickname, country, description, photo, selectedPlatforms, languages
+    case recordType, id, name, nickname, location, description, photo, selectedPlatforms, languages, averageBehaviourRate, averageSkillRate, storeFailMessage
     
     var description: String {
         switch self {
@@ -22,8 +22,8 @@ enum UserTable: CustomStringConvertible {
                 return "name"
             case .nickname:
                 return "nickname"
-            case .country:
-                return "country"
+            case .location:
+                return "location"
             case .description:
                 return "description"
             case .photo:
@@ -32,12 +32,18 @@ enum UserTable: CustomStringConvertible {
                 return "selectedPlatforms"
             case .languages:
                 return "languages"
+            case .storeFailMessage:
+                return "couldntStoreUserData"
+            case .averageBehaviourRate:
+                return "averageBehaviourRate"
+            case .averageSkillRate:
+                return "averageSkillRate"
         }
     }
 }
 
 enum UserGamesTable: CustomStringConvertible {
-    case recordType,userId, gameId, selectedPlatforms, selectedServers
+    case recordType,userId, gameId, selectedPlatforms, selectedServers, storeFailMessage
     
     var description: String {
         switch self {
@@ -51,39 +57,105 @@ enum UserGamesTable: CustomStringConvertible {
                 return "selectedPlatforms"
             case .selectedServers:
                 return "selectedServers"
+            case .storeFailMessage:
+                return "couldntStoreUserGameData"
+        }
+    }
+}
+
+enum FriendsTable: CustomStringConvertible {
+    case recordType, id1, id2, isInvite, storeFailMessage, tableChanged
+    
+    var description: String {
+        switch self {
+            case .recordType:
+                return "Friends"
+            case .id1:
+                return "id1"
+            case .id2:
+                return "id2"
+            case .isInvite:
+                return "isInvite"
+            case .storeFailMessage:
+                return "couldntStoreFriendshipData"
+            case .tableChanged:
+                return "FriendsTableChanged"
+        }
+    }
+}
+
+enum BlockedTable: CustomStringConvertible {
+    case recordType, userId, blockedId
+    
+    var description: String {
+        switch self {
+            case .recordType:
+                return "Blocked"
+            case .userId:
+                return "userId"
+            case .blockedId:
+                return "blockedId"
         }
     }
 }
 
 public class CKRepository {
     static var user: User? //singleton user
-    private static let container: CKContainer = CKContainer(identifier: "iCloud.MatchMaker")
+    public static let container: CKContainer = CKContainer(identifier: "iCloud.MatchMaker")
     
-    static func setOnboardingInfo(name: String, nickname: String, photo: UIImage?, photoURL: URL?, country: String, description: String, languages: [Languages], selectedPlatforms: [Platform], selectedGames: [Game]){
+    static func setOnboardingInfo(name: String, nickname: String, photoURL: URL?, location: Locations, description: String, languages: [Languages], selectedPlatforms: [Platform], selectedGames: [Game]){
         
         //getUserId
-        let id = getUserId()
-        
-        //storing user data at CloudKit
-        storeUserData(id: id, name: name, nickname: nickname, country: country, description: description, photo: photoURL, selectedPlatforms: selectedPlatforms, selectedGames: selectedGames, languages: languages)
-        
-        //creating user singleton
-        user = User(id: id, name: name, nickname: nickname, photo: photo, country: country, description: description, behaviourRate: 0, skillRate: 0, languages: languages, selectedPlatforms: selectedPlatforms, selectedGames: selectedGames)
-    }
-    
-    private static func getUserId() -> String{
-        var id: String = ""
-        let semaphore = DispatchSemaphore(value: 0)
-        
-        container.fetchUserRecordID { record, error in
-            id = record?.recordName ?? ""
-            semaphore.signal()
+        CKRepository.getUserId { id in
+            if let idNotNull = id {
+                //storing user data at CloudKit
+                storeUserData(id: idNotNull, name: name, nickname: nickname, location: location, description: description, photo: photoURL, selectedPlatforms: selectedPlatforms, selectedGames: selectedGames, languages: languages)
+                
+                //creating user singleton
+                user = User(id: idNotNull, name: name, nickname: nickname, photoURL: photoURL, location: location, description: description, behaviourRate: 0, skillRate: 0, languages: languages, selectedPlatforms: selectedPlatforms, selectedGames: selectedGames)
+            }
         }
-        semaphore.wait()
-        return "id\(id)"
     }
     
-    private static func storeUserData(id: String, name: String, nickname: String, country: String, description: String, photo: URL?, selectedPlatforms: [Platform], selectedGames: [Game], languages: [Languages]){
+    static func setUserFromCloudKit() {
+        CKRepository.getUserId { id in
+            if let idNotNull = id {
+                CKRepository.getUserById(id: idNotNull) { user in
+                    CKRepository.user = user
+                }
+            }
+        }
+    }
+    
+    public static func getUserId(completion: @escaping (String?) -> Void) {
+        container.fetchUserRecordID { record, error in
+            completion("id\(record?.recordName ?? "")")
+        }
+    }
+    
+    public static func isUserRegistered(completion: @escaping (Bool) -> Void) {
+        var userID: String = ""
+        
+        CKRepository.getUserId { id in
+            if let idNotNull = id {
+                userID = idNotNull
+            }
+        }
+        
+        let publicDB = container.publicCloudDatabase
+        let predicate = NSPredicate(format: "id == %@", userID)
+        let query = CKQuery(recordType: UserTable.recordType.description, predicate: predicate)
+        
+        publicDB.perform(query, inZoneWith: nil) { result, error in
+            if result?.count == 0 {
+                completion(false)
+                return
+            }
+            completion(true)
+        }
+    }
+    
+    private static func storeUserData(id: String, name: String, nickname: String, location: Locations, description: String, photo: URL?, selectedPlatforms: [Platform], selectedGames: [Game], languages: [Languages]){
         
         let recordID = CKRecord.ID(recordName: id)
         let record = CKRecord(recordType: UserTable.recordType.description, recordID: recordID)
@@ -92,7 +164,7 @@ public class CKRepository {
         record.setObject(id as CKRecordValue?, forKey: UserTable.id.description)
         record.setObject(name as CKRecordValue?, forKey: UserTable.name.description)
         record.setObject(nickname as CKRecordValue?, forKey: UserTable.nickname.description)
-        record.setObject(country as CKRecordValue?, forKey: UserTable.country.description)
+        record.setObject(location.key as CKRecordValue?, forKey: UserTable.location.description)
         record.setObject(description as CKRecordValue?, forKey: UserTable.description.description)
         let languagesKeys = languages.map({ language in
             language.key
@@ -109,7 +181,7 @@ public class CKRepository {
         
         publicDB.save(record) { savedRecord, error in
             if error != nil {
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "couldnt store user data"), object: record)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: UserTable.storeFailMessage.description), object: record)
             }
         }
         
@@ -137,7 +209,7 @@ public class CKRepository {
             
             publicDB.save(record) { savedRecord, error in
                 if error != nil {
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "couldnt store userGames data"), object: record)
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: UserGamesTable.storeFailMessage.description), object: record)
                 }
             }
         }
@@ -149,63 +221,329 @@ public class CKRepository {
         let query = CKQuery(recordType: UserTable.recordType.description, predicate: predicate)
         
         publicDB.perform(query, inZoneWith: nil) { result, error in
-            let id = result?[0].value(forKey: UserTable.id.description) as! String
-            let name = result?[0].value(forKey: UserTable.name.description) as! String
-            let nickname = result?[0].value(forKey: UserTable.nickname.description) as! String
-            var photo: UIImage? = nil
-            if let ckAsset = result?[0].value(forKey: UserTable.photo.description) as? CKAsset {
-                photo = ckAsset.toUIImage()
-            }
-            
-            let description = result?[0].value(forKey: UserTable.description.description) as! String
-            let country = result?[0].value(forKey: UserTable.country.description) as! String
-            let selectedPlatforms = (result?[0].value(forKey: UserTable.selectedPlatforms.description) as! [String]).map { platform in
-                Platform.getPlatform(key: platform)
-            }
-            let languages = (result?[0].value(forKey: UserTable.languages.description) as! [String]).map { language in
-                Languages.getLanguage(language: language)
-            }
-            
-            let gamesPredicate = NSPredicate(format: "userId == %@", id)
-            let gamesQuery = CKQuery(recordType: UserGamesTable.recordType.description, predicate: gamesPredicate)
-            
-            publicDB.perform(gamesQuery, inZoneWith: nil) { results, error in
-                var games: [Game] = [Game]()
-                let allGames = Games.buildGameArray()
-                if let userGames = results {
-                    for userGame in userGames {
-                        let gameId = Games.getGameIdInt(id: (userGame.value(forKey: UserGamesTable.gameId.description) as! String))
-                        let gameSelectedPlatforms = (userGame.value(forKey: UserGamesTable.selectedPlatforms.description) as! [String]).map { platform in
-                            Platform.getPlatform(key: platform)
-                        }
-                        let gameSelectedServersString = userGame.value(forKey: UserGamesTable.selectedServers.description) as! [String]
-                        var gameSelectedServers: [Servers] = [Servers]()
+            if let resultNotNull = result {
+                if resultNotNull.count > 0 {
+                    let id = result?[0].value(forKey: UserTable.id.description) as! String
+                    let name = result?[0].value(forKey: UserTable.name.description) as! String
+                    let nickname = result?[0].value(forKey: UserTable.nickname.description) as! String
+                    var photoURL: URL? = nil
+                    if let ckAsset = result?[0].value(forKey: UserTable.photo.description) as? CKAsset {
+                        photoURL = ckAsset.fileURL
+                    }
+                    var behaviourRate: Double?
+                    if let bRate = result?[0].value(forKey: UserTable.averageBehaviourRate.description) as? Double {
+                        behaviourRate = bRate
+                    }
+                    var skillRate: Double?
+                    if let sRate = result?[0].value(forKey: UserTable.averageSkillRate.description) as? Double {
+                        skillRate = sRate
+                    }
+                    let description = result?[0].value(forKey: UserTable.description.description) as! String
+                    let location = Locations.getLocation(location: result?[0].value(forKey: UserTable.location.description) as! String)
+                    let selectedPlatforms = (result?[0].value(forKey: UserTable.selectedPlatforms.description) as! [String]).map { platform in
+                        Platform.getPlatform(key: platform)
+                    }
+                    let languages = (result?[0].value(forKey: UserTable.languages.description) as! [String]).map { language in
+                        Languages.getLanguage(language: language)
+                    }
+                    
+                    CKRepository.getUserGamesById(id: id) { games in
+                        let user = User(id: id, name: name, nickname: nickname, photoURL: photoURL, location: location, description: description, behaviourRate: behaviourRate ?? 0, skillRate: skillRate ?? 0, languages: languages, selectedPlatforms: selectedPlatforms, selectedGames: games)
                         
-                        //crime \/
-                        for g in gameSelectedServersString {
-                            if let sv = allGames[gameId].serverType?.getServer(server: g) {
-                                gameSelectedServers.append(sv)
-                            }
-                        }
-                        
-                        games.append(Game(id: "\(gameId)", name: allGames[gameId].name, description: allGames[gameId].description, platforms: allGames[gameId].platforms, servers: allGames[gameId].servers, selectedPlatforms: gameSelectedPlatforms, selectedServers: gameSelectedServers, image: allGames[gameId].image))
-                        
+                        completion(user)
                     }
                 }
-                let user = User(id: id, name: name, nickname: nickname, photo: photo, country: country, description: description, behaviourRate: 0, skillRate: 0, languages: languages, selectedPlatforms: selectedPlatforms, selectedGames: games)
-                
-                completion(user)
             }
         }
         
     }
-}
-
-extension CKAsset {
-    func toUIImage() -> UIImage? {
-        if let data = NSData(contentsOf: self.fileURL!) {
-            return UIImage(data: data as Data)
+    
+    static func storeFriendship(inviterUserId: String, receiverUserId: String, isInvite: IsInvite, acceptance: Bool) {
+        let recordID = CKRecord.ID(recordName:"\(inviterUserId)\(receiverUserId)")
+        let record = CKRecord(recordType: FriendsTable.recordType.description, recordID: recordID)
+        let publicDB = container.publicCloudDatabase
+        
+        record.setObject(inviterUserId as CKRecordValue?, forKey: FriendsTable.id1.description)
+        record.setObject(receiverUserId as CKRecordValue?, forKey: FriendsTable.id2.description)
+        if isInvite == IsInvite.yes {
+            record.setObject(IsInvite.yes.description as CKRecordValue?, forKey: FriendsTable.isInvite.description)
         }
-        return nil
+        else if acceptance {
+            record.setObject(IsInvite.no.description as CKRecordValue?, forKey: FriendsTable.isInvite.description)
+        }
+        else {
+            deleteFriendship(id1: inviterUserId, id2: receiverUserId)
+            return
+        }
+        
+        publicDB.save(record) { record, error in
+            if error != nil {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: FriendsTable.storeFailMessage.description), object: record)
+            }
+        }
+    }
+    
+    static func deleteFriendship(id1: String, id2: String) {
+        let publicDB = container.publicCloudDatabase
+        let recordID = CKRecord.ID(recordName:"\(id1)\(id2)")
+        let recordID2 = CKRecord.ID(recordName:"\(id2)\(id1)")
+        
+        publicDB.delete(withRecordID: recordID) { id, error in
+            if error != nil {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: FriendsTable.storeFailMessage.description), object: id)
+            }
+        }
+        
+        publicDB.delete(withRecordID: recordID2) { id, error in
+            if error != nil {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: FriendsTable.storeFailMessage.description), object: id)
+            }
+        }
+    }
+    
+    static func searchUsers(languages: [Languages], platforms: [Platform], behaviourRate: Double, skillRate: Double, locations: [Locations], games: [Game], completion: @escaping ([Social]) -> Void) {
+        //creating user array to be returned
+        var usersFound: [Social] = [Social]()
+        getBlockedUsersId { blockedUsers in
+            var blockedUsersId = blockedUsers
+            //creating string to predicate (filtering the search)
+            var fullPredicate = ""
+            
+            //if there is filters for languages: builds its predicate
+            if languages.count > 0 {
+                var languagesPredicate = "ANY { "
+                for i in 0...languages.count-1 {
+                    if i < languages.count-1 {
+                        languagesPredicate += "'\(languages[i].key)', "
+                    }
+                    else {
+                        languagesPredicate += "'\(languages[i].key)' } IN \(UserTable.languages.description)"
+                    }
+                }
+                fullPredicate += "(\(languagesPredicate))"
+                if platforms.count > 0 || locations.count > 0 || behaviourRate > 0 || skillRate > 0{
+                    fullPredicate += " AND "
+                }
+            }
+            
+            //if there is filters for platforms: builds its predicate
+            if platforms.count > 0 {
+                var platformsPredicate = "ANY { "
+                for i in 0...platforms.count-1 {
+                    if i < platforms.count-1 {
+                        platformsPredicate += "'\(platforms[i].key)', "
+                    }
+                    else {
+                        platformsPredicate += "'\(platforms[i].key)' } IN \(UserTable.selectedPlatforms.description)"
+                    }
+                }
+                fullPredicate += "(\(platformsPredicate))"
+                if locations.count > 0 || behaviourRate > 0 || skillRate > 0{
+                    fullPredicate += " AND "
+                }
+            }
+            
+            //if there is filters for locations: builds its predicate
+            if locations.count > 0 {
+                var locationsPredicate = "ANY { "
+                for i in 0...locations.count-1 {
+                    if i < locations.count-1 {
+                        locationsPredicate += "'\(locations[i].key)', "
+                    }
+                    else {
+                        locationsPredicate += "'\(locations[i].key)' }"
+                    }
+                }
+                fullPredicate += "(\(locationsPredicate) = \(UserTable.location.description))"
+                if behaviourRate > 0 || skillRate > 0 {
+                    fullPredicate += " AND "
+                }
+            }
+            
+            if behaviourRate > 0 {
+                fullPredicate += "(\(UserTable.averageBehaviourRate.description) >= \(behaviourRate))"
+                if skillRate > 0 {
+                    fullPredicate += " AND "
+                }
+            }
+            
+            if skillRate > 0 {
+                fullPredicate += "(\(UserTable.averageSkillRate.description) >= \(skillRate))"
+            }
+            
+            //creating necessary variables to use cloudkit
+            let publicDB = container.publicCloudDatabase
+            var predicate = NSPredicate(value: true)
+            if languages.count > 0 || platforms.count > 0 || behaviourRate > 0 || skillRate > 0 || locations.count > 0 || games.count > 0 {
+                //there is at least one filter
+                predicate = NSPredicate(format: fullPredicate)
+            }
+            let query = CKQuery(recordType: UserTable.recordType.description, predicate: predicate)
+            
+            //filling the array with results to the search (filtered)
+            publicDB.perform(query, inZoneWith: nil) { results, error in
+                if let resultsNotNull = results {
+                    if resultsNotNull.count > 0 {
+                        for i in 0...resultsNotNull.count - 1 {
+                            let id = resultsNotNull[i].value(forKey: UserTable.id.description) as! String
+                            let name = resultsNotNull[i].value(forKey: UserTable.name.description) as! String
+                            let nickName = resultsNotNull[i].value(forKey: UserTable.nickname.description) as! String
+                            var photoURL: URL? = nil
+                            if let ckAsset = resultsNotNull[i].value(forKey: UserTable.photo.description) as? CKAsset {
+                                photoURL = ckAsset.fileURL
+                            }
+                            CKRepository.getUserGamesById(id: id) { userGames in
+                                usersFound.append(Social(id: id, name: name, nickname: nickName, photoURL: photoURL, games: userGames, isInvite: nil))
+                                if usersFound.count == resultsNotNull.count {
+                                    //if usersFound is completlty filled
+                                    
+                                    //remove users that do not conform to the filter games
+                                    usersFound = usersFound.filter { user in
+                                        filterPerGames(filterBy: games, userGames: user.games ?? [])
+                                    }
+                                    
+                                    if let u = CKRepository.user {
+                                        blockedUsersId.append(u.id)
+                                    }
+                                    //if the user has blocked users
+                                    if blockedUsersId.count > 0 {
+                                        //remove them from the search
+                                        usersFound = usersFound.filter({ user in
+                                            !blockedUsersId.contains(user.id)
+                                        })
+                                    }
+                                    
+                                    completion(usersFound)
+                                }
+                            }
+                        }
+                    }
+                    else {
+                        //if not results return empty array
+                        completion(usersFound)
+                    }
+                }
+                else {
+                    //if not results return empty array
+                    completion(usersFound)
+                }
+            }
+        }
+    }
+    
+    private static func filterPerGames(filterBy: [Game], userGames: [Game]) -> Bool{
+        if filterBy.count == 0 {
+            //if there is no filter, return true for any comparison
+            return true
+        }
+        
+        let serversBool: Bool = false
+        var platformsBool: Bool = false
+        var idBool: Bool = false
+        
+        //check if each game has same id, servers or platforms
+        for game in userGames {
+            //checking if there is at least one equal game in both lists
+            var currentFilterGame: Game?
+            if filterBy.contains(where: { filterGame in
+                if filterGame.id == game.id {
+                    currentFilterGame = filterGame
+                    return true
+                }
+                return false
+            }) {
+                idBool = true
+                //if it has same game, check if it is played at same platform
+                if currentFilterGame?.selectedPlatforms.count == 0 {
+                    platformsBool = true
+                }
+                for platform in game.selectedPlatforms {
+                    if currentFilterGame!.selectedPlatforms.contains(where: { filterPlatform in
+                        filterPlatform.key == platform.key
+                    }) {
+                        platformsBool = true
+                        break
+                    }
+                }
+                if platformsBool {
+                    if currentFilterGame?.selectedServers.count == 0 {
+                        return true
+                    }
+                    //if at same game it is at same platform, checks if it is played at same server.
+                    for server in game.selectedServers {
+                        if currentFilterGame!.selectedServers.contains(where: { filterServer in
+                            filterServer.key == server.key
+                        }) {
+                            //if it is same game played in same platforms and servers, return true (because it has to be included).
+                            return true
+                        }
+                    }
+                }
+            }
+            idBool = false
+            platformsBool = false
+        }
+        
+        return idBool && platformsBool && serversBool
+    }
+    
+    private static func getUserGamesById(id: String, completion: @escaping ([Game]) -> Void) {
+        let publicDB = container.publicCloudDatabase
+        let gamesPredicate = NSPredicate(format: "userId == %@", id)
+        let gamesQuery = CKQuery(recordType: UserGamesTable.recordType.description, predicate: gamesPredicate)
+        
+        publicDB.perform(gamesQuery, inZoneWith: nil) { results, error in
+            var games: [Game] = [Game]()
+            let allGames = Games.buildGameArray()
+            if let userGames = results {
+                for userGame in userGames {
+                    let gameId = Games.getGameIdInt(id: (userGame.value(forKey: UserGamesTable.gameId.description) as! String))
+                    let gameSelectedPlatforms = (userGame.value(forKey: UserGamesTable.selectedPlatforms.description) as! [String]).map { platform in
+                        Platform.getPlatform(key: platform)
+                    }
+                    let gameSelectedServersString = userGame.value(forKey: UserGamesTable.selectedServers.description) as! [String]
+                    var gameSelectedServers: [Servers] = [Servers]()
+                    
+                    for g in gameSelectedServersString {
+                        if let sv = allGames[gameId].serverType?.getServer(server: g) {
+                            gameSelectedServers.append(sv)
+                        }
+                    }
+                    
+                    games.append(Game(id: "\(gameId)", name: allGames[gameId].name, description: allGames[gameId].description, platforms: allGames[gameId].platforms, servers: allGames[gameId].servers, selectedPlatforms: gameSelectedPlatforms, selectedServers: gameSelectedServers, image: allGames[gameId].image))
+                }
+            }
+            completion(games)
+        }
+    }
+    
+    static func getBlockedUsersId(completion: @escaping ([String]) -> Void) {
+        var blockedUsersIds = [String]()
+        
+        let publicDB = container.publicCloudDatabase
+        getUserId { id in
+            if let idNotNull = id {
+                let blockedPredicate = NSPredicate(format: "userId == %@", idNotNull)
+                let blockedQuery = CKQuery(recordType: BlockedTable.recordType.description, predicate: blockedPredicate)
+                publicDB.perform(blockedQuery, inZoneWith: nil) { results, error in
+                    if let resultsNotNull = results {
+                        for result in resultsNotNull {
+                            if let blockedUserId = result.value(forKey: BlockedTable.blockedId.description) as? String {
+                                blockedUsersIds.append(blockedUserId)
+                            }
+                        }
+                        completion(blockedUsersIds)
+                    }
+                    else {
+                        //if there isnt results, return empty list
+                        completion(blockedUsersIds)
+                    }
+                }
+            }
+            else {
+                //if there isnt id, return empty list
+                completion(blockedUsersIds)
+            }
+        }
     }
 }
