@@ -17,13 +17,34 @@ class GameDetailsViewController: UIViewController {
     
     var game: Game?
 
-    var didTapDone: Bool = false
+    var isGameSelected: Bool?
+    
+    var didTapDone: Bool = false {
+        didSet {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    var didTapDeselect: Bool = false {
+        didSet {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    @IBOutlet weak var doneButton: UIButton!
+    
+    @IBOutlet weak var buttonsContainerView: UIStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if let game = game {
             gameCoverView.image = game.image
+        }
+        
+        if let isGameSelected = isGameSelected {
+            doneButton.isHidden = isGameSelected
+            buttonsContainerView.isHidden = !doneButton.isHidden
         }
         
         tableView.delegate = self
@@ -85,21 +106,36 @@ class GameDetailsViewController: UIViewController {
     }
     
     @IBAction func didTapBarButton(_ sender: UIBarButtonItem) {
-        self.dismiss(animated: true, completion: nil)
+        self.didTapDone = true
     }
     
     @IBAction func didTapDone(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
+        self.didTapDone = true
+    }
+    
+    @IBAction func didTapDone2(_ sender: UIButton) {
+        self.didTapDone = true
+    }
+    
+    @IBAction func didTapDeselect(_ sender: UIButton) {
+        self.didTapDeselect = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         if var game = self.game {
-            game.selectedServers = self.getSelectedServers()
             
-            game.selectedPlatforms = self.getSelectedPlatforms()
-                            
-            if game.selectedPlatforms.count > 0 && game.selectedServers.count > 0 {
-                self.delegate?.updateGame(game)
+            if didTapDeselect {
+                
+                self.delegate?.updateGame(game, isSelected: false)
+                
+            } else {
+                
+                game.selectedServers = self.getSelectedServers()
+                game.selectedPlatforms = self.getSelectedPlatforms()
+                                
+                if !game.selectedPlatforms.isEmpty && !game.selectedServers.isEmpty {
+                    self.delegate?.updateGame(game, isSelected: true)
+                }
             }
         }
     }

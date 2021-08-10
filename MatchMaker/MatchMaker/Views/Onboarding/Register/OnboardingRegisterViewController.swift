@@ -8,7 +8,7 @@
 import UIKit
 
 protocol GameSelectionDelegate: AnyObject {
-    func updateGame(_ game: Game)
+    func updateGame(_ game: Game, isSelected: Bool)
 }
 
 class OnboardingRegisterViewController: UIViewController {
@@ -97,11 +97,8 @@ class OnboardingRegisterViewController: UIViewController {
     
     var imagePicker: ImagePickerManager = ImagePickerManager()
     var profileImageUrl: URL?
-    var selectedGame: Game? {
-        didSet {
-            print(selectedGame?.name ?? "nope")
-        }
-    }
+    
+    var selectedGame: GameOption?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -139,18 +136,30 @@ class OnboardingRegisterViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "selectedGame" {
+//
+//            if let navController = segue.destination as? UINavigationController {
+//
+//                if let childVC = navController.topViewController as? GameDetailsViewController {
+//
+//                    if let game = selectedGame {
+//                        childVC.game = game
+//                    }
+//
+//                    childVC.delegate = self
+//                }
+//            }
+//        }
+        
         if segue.identifier == "selectedGame" {
-
-            if let navController = segue.destination as? UINavigationController {
-
-                if let childVC = navController.topViewController as? GameDetailsViewController {
-
-                    if let game = selectedGame {
-                        childVC.game = game
-                    }
-                    
-                    childVC.delegate = self
-                }
+            let rootVC = segue.destination as! UINavigationController
+            let destination = rootVC.topViewController as! GameDetailsViewController
+            
+            destination.delegate = self
+            
+            if let game = selectedGame {
+                destination.game = game.option
+                destination.isGameSelected = game.isFavorite
             }
         }
         
@@ -431,7 +440,7 @@ extension OnboardingRegisterViewController: UICollectionViewDelegate, UICollecti
                 tagPlatforms[indexPath.row].isFavorite.toggle()
                 
             case .games:
-                self.selectedGame = tagGames[indexPath.row].option
+                self.selectedGame = tagGames[indexPath.row]
                 performSegue(withIdentifier: "selectedGame", sender: nil)
         }
         
@@ -501,23 +510,24 @@ extension OnboardingRegisterViewController: UserAvatarViewDelegate {
 }
 
 extension OnboardingRegisterViewController: GameSelectionDelegate {
-    func updateGame(_ game: Game) {
+    
+    func updateGame(_ game: Game, isSelected: Bool) {
         let indexPath = IndexPath(row: OnboardingFields.games.rawValue, section: 0)
 
         let cell = tableView.cellForRow(at: indexPath) as? SelectorTableViewCell
         
         if let gameIndex = tagGames.firstIndex(where: { $0.option.id == game.id }) {
-            tagGames[gameIndex] = GameOption(option: game, isFavorite: true)
+            tagGames[gameIndex] = GameOption(option: game, isFavorite: isSelected)
         }
         
         cell?.collectionView.reloadItems(at: [indexPath])
     }
+    
 }
 
 extension OnboardingRegisterViewController: PickerCellDelegate, UserLocationDelegate {
     
     func didSelect(with location: Locations) {
-        print("modal: \(location)")
         selectedLocation.string = location.description
         selectedLocation.enum = location
         
@@ -527,16 +537,4 @@ extension OnboardingRegisterViewController: PickerCellDelegate, UserLocationDele
     func didChooseLocation(_ sender: UITableViewCell) {
         performSegue(withIdentifier: "toUserLocations", sender: sender)
     }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "toUserLocations" {
-//            let rootVC = segue.destination as! UINavigationController
-//            let destination = rootVC.topViewController as! UserLocationViewController
-//
-//            print("Onboarding: \(selectedLocation)")
-//            destination.delegate = self
-//            destination.selectedLocation = selectedLocation.enum
-//        }
-//    }
-    
 }

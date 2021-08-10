@@ -822,7 +822,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eSR-y9-UTp">
                                 <rect key="frame" x="0.0" y="742" width="414" height="100"/>
                                 <subviews>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgO-bz-bP3">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgO-bz-bP3">
                                         <rect key="frame" x="20" y="12" width="374" height="38"/>
                                         <color key="backgroundColor" name="Primary"/>
                                         <inset key="contentEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
@@ -838,7 +838,7 @@
                                             <action selector="didTapDone:" destination="Bk8-Ao-2Z6" eventType="touchUpInside" id="7Qe-N9-fxv"/>
                                         </connections>
                                     </button>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Ful-KG-CO2">
+                                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Ful-KG-CO2">
                                         <rect key="frame" x="20" y="12" width="374" height="38"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2pk-8h-vAq">
@@ -854,6 +854,9 @@
                                                         <real key="value" value="8"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="didTapDeselect:" destination="Bk8-Ao-2Z6" eventType="touchUpInside" id="Mmc-DJ-5Xu"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xch-ko-RtU">
                                                 <rect key="frame" x="192" y="0.0" width="182" height="38"/>
@@ -868,6 +871,9 @@
                                                         <real key="value" value="8"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="didTapDone2:" destination="Bk8-Ao-2Z6" eventType="touchUpInside" id="u92-If-7bD"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -1016,6 +1022,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="buttonsContainerView" destination="Ful-KG-CO2" id="YBg-2T-RoU"/>
+                        <outlet property="doneButton" destination="hgO-bz-bP3" id="SVV-vN-Lia"/>
                         <outlet property="gameCoverView" destination="ysR-i6-S9z" id="yCQ-zm-tL6"/>
                         <outlet property="tableView" destination="zgg-ZL-Xiw" id="mxH-SK-vzV"/>
                         <outlet property="tableViewHeight" destination="ehY-JG-1bq" id="0ht-Gk-ENl"/>
