@@ -17,7 +17,7 @@ class OnboardingRegisterViewController: UIViewController {
     
     @IBAction func didTapDone(_ sender: UIButton) {
         
-        let isIncomplete = nameField.isEmpty || usernameField.isEmpty || selectedLocation.isEmpty || tagLanguages.filter { $0.isFavorite }.count < 1 || tagPlatforms.filter { $0.isFavorite }.count < 1
+        let isIncomplete = nameField.isEmpty || usernameField.isEmpty || selectedLocation.string.isEmpty || tagLanguages.filter { $0.isFavorite }.count < 1 || tagPlatforms.filter { $0.isFavorite }.count < 1
         
         didTapDone = true
                 
@@ -91,7 +91,10 @@ class OnboardingRegisterViewController: UIViewController {
     var nameField: String = ""
     var usernameField: String = ""
     var descriptionField: String = ""
-    var selectedLocation: String = Locations.africaNorth.description
+    
+    typealias UserLocation = (string: String, enum: Locations)
+    var selectedLocation: UserLocation = UserLocation(string: Locations.africaNorth.description, enum: Locations.africaNorth)
+    
     var imagePicker: ImagePickerManager = ImagePickerManager()
     var profileImageUrl: URL?
     var selectedGame: Game? {
@@ -133,6 +136,32 @@ class OnboardingRegisterViewController: UIViewController {
                     self.tagGames = tagGames
             }
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "selectedGame" {
+
+            if let navController = segue.destination as? UINavigationController {
+
+                if let childVC = navController.topViewController as? GameDetailsViewController {
+
+                    if let game = selectedGame {
+                        childVC.game = game
+                    }
+                    
+                    childVC.delegate = self
+                }
+            }
+        }
+        
+        if segue.identifier == "toUserLocations" {
+            let rootVC = segue.destination as! UINavigationController
+            let destination = rootVC.topViewController as! UserLocationViewController
+            
+            destination.delegate = self
+            destination.selectedLocation = selectedLocation.enum
+        }
+        
     }
     
 }
@@ -232,9 +261,11 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
             return UITableViewCell()
         }
         
-        cell.currentSelectionLabel.text = Locations.africaNorth.description
+        cell.delegate = self
+        cell.currentSelectionLabel.text = selectedLocation.string
         
-        if didTapDone && selectedLocation.isEmpty {
+        // FIXME: alterar para selectedLocation
+        if didTapDone && selectedLocation.string.isEmpty {
             cell.buttonView.borderColor = .red
         } else {
             cell.buttonView.borderColor = UIColor(named: "Primary")
@@ -481,21 +512,31 @@ extension OnboardingRegisterViewController: GameSelectionDelegate {
         
         cell?.collectionView.reloadItems(at: [indexPath])
     }
+}
+
+extension OnboardingRegisterViewController: PickerCellDelegate, UserLocationDelegate {
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "selectedGame" {
-
-            if let navController = segue.destination as? UINavigationController {
-
-                if let childVC = navController.topViewController as? GameDetailsViewController {
-
-                    if let game = selectedGame {
-                        childVC.game = game
-                    }
-                    
-                    childVC.delegate = self
-                }
-            }
-        }
+    func didSelect(with location: Locations) {
+        print("modal: \(location)")
+        selectedLocation.string = location.description
+        selectedLocation.enum = location
+        
+        tableView.reloadData()
     }
+    
+    func didChooseLocation(_ sender: UITableViewCell) {
+        performSegue(withIdentifier: "toUserLocations", sender: sender)
+    }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "toUserLocations" {
+//            let rootVC = segue.destination as! UINavigationController
+//            let destination = rootVC.topViewController as! UserLocationViewController
+//
+//            print("Onboarding: \(selectedLocation)")
+//            destination.delegate = self
+//            destination.selectedLocation = selectedLocation.enum
+//        }
+//    }
+    
 }
