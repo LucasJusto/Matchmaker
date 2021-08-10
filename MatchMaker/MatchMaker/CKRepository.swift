@@ -64,16 +64,16 @@ enum UserGamesTable: CustomStringConvertible {
 }
 
 enum FriendsTable: CustomStringConvertible {
-    case recordType, id1, id2, isInvite, storeFailMessage, tableChanged
+    case recordType, inviterId, receiverId, isInvite, storeFailMessage, tableChanged
     
     var description: String {
         switch self {
             case .recordType:
                 return "Friends"
-            case .id1:
-                return "id1"
-            case .id2:
-                return "id2"
+            case .inviterId:
+                return "inviterId"
+            case .receiverId:
+                return "receiverId"
             case .isInvite:
                 return "isInvite"
             case .storeFailMessage:
@@ -129,6 +129,9 @@ public class CKRepository {
     
     public static func getUserId(completion: @escaping (String?) -> Void) {
         container.fetchUserRecordID { record, error in
+            if let ckError = error as? CKError {
+                print("error: \(ckError)")
+            }
             completion("id\(record?.recordName ?? "")")
         }
     }
@@ -263,8 +266,8 @@ public class CKRepository {
         let record = CKRecord(recordType: FriendsTable.recordType.description, recordID: recordID)
         let publicDB = container.publicCloudDatabase
         
-        record.setObject(inviterUserId as CKRecordValue?, forKey: FriendsTable.id1.description)
-        record.setObject(receiverUserId as CKRecordValue?, forKey: FriendsTable.id2.description)
+        record.setObject(inviterUserId as CKRecordValue?, forKey: FriendsTable.inviterId.description)
+        record.setObject(receiverUserId as CKRecordValue?, forKey: FriendsTable.receiverId.description)
         if isInvite == IsInvite.yes {
             record.setObject(IsInvite.yes.description as CKRecordValue?, forKey: FriendsTable.isInvite.description)
         }
@@ -545,5 +548,45 @@ public class CKRepository {
                 completion(blockedUsersIds)
             }
         }
+    }
+    
+    static func errorAlertHandler(errorCodeValue: CKError.Code){
+        
+        let notLoggedInTitle = NSLocalizedString("CKErrorNotLoggedInTitle", comment: "Not logged in iCloud")
+        let notLoggedInMessage = NSLocalizedString("CKErrorNotLoggedInMessage", comment: "You need to be logged in at iCloud to use this app.")
+        
+        let defaultTitle = NSLocalizedString("CKErrorDefaultTitle", comment: "An error ocurred")
+        let defaultMessage = NSLocalizedString("CKErrorDefaultMessage", comment: "Something unexpected ocurred, your data may not have been saved.")
+        
+        let keyWindow = UIApplication.shared.windows.first(where: \.isKeyWindow)
+        var topController = keyWindow?.rootViewController
+                    
+        // get topmost view controller to present alert
+        while let presentedViewController = topController?.presentedViewController {
+            topController = presentedViewController
+        }
+
+        switch errorCodeValue {
+            case .notAuthenticated:
+                //user is not logged in iCloud
+                topController?.present(prepareAlert(title: notLoggedInTitle, message: notLoggedInMessage), animated: true)
+            default:
+                topController?.present(prepareAlert(title: defaultTitle, message: defaultMessage), animated: true)
+        }
+        
+    }
+    
+    private static func prepareAlert(title: String, message: String) -> UIAlertController{
+        let alertButtonLabel = NSLocalizedString("CKErrorAlertButtonLabel", comment: "Ok")
+        
+        let dialogMessage = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let ok = UIAlertAction(title: alertButtonLabel, style: .default, handler: { (action) -> Void in
+            print("clickou pra fechar")
+          })
+        
+        dialogMessage.addAction(ok)
+        
+        return dialogMessage
     }
 }

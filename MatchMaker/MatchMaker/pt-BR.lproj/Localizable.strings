@@ -8,6 +8,12 @@
 
 "titleLabel" = "Hello World";
 
+//MARK: - CKErrorAlert
+"CKErrorNotLoggedInTitle" = "Não logado no iCloud";
+"CKErrorNotLoggedInMessage" = "Você precisa estar logado no iCloud para utilizar este aplicativo.";
+"CKErrorDefaultTitle" = "Um erro ocorreu";
+"CKErrorDefaultMessage" = "Algo inesperado ocorreu, talvez seus dados não tenham sido salvos.";
+
 // MARK:- ONBOARDING 1
 "onboarding1Title" = "Welcome to";
 "onboarding1Description" = "Find players that correspond
