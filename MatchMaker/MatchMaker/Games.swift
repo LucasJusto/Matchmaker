@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 
 // MARK:- Platform
-enum Platform: CustomStringConvertible {
+enum Platform: CustomStringConvertible, CaseIterable {
     case PC
     case PlayStation
     case Xbox
@@ -76,6 +76,10 @@ enum Platform: CustomStringConvertible {
     }
 }
 
+extension Platform: SmallLabeledImageModel { }
+
+//MARK: - Servers: Protocol
+
 protocol Servers {
     var description: String { get }
     
@@ -84,7 +88,7 @@ protocol Servers {
     static func getServer(server: String) -> Servers
 }
 
-// MARK:- Game Struct
+// MARK: - Game: Struct
 struct Game {
     let id: String
     let name: String
@@ -122,18 +126,25 @@ struct Game {
     }
 }
 
+extension Game: RoundedRectangleModel { }
+
+
 // MARK:- Game Array Mocking
 public class Games {
     static let games: [Game] = buildGameArray()
     
     static func buildGameArray() -> [Game] {
         var games: [Game] = []
+        
         // Dota 2
         games.append(Game(id: "0", name: "Dota 2", description: NSLocalizedString("Dota2Description", comment: "dota 2 desc"), platforms: [Platform.PC], servers: [Dota2Servers.USWest, Dota2Servers.USEast, Dota2Servers.EuropeWest, Dota2Servers.EuropeEast, Dota2Servers.SEAsia, Dota2Servers.SouthAmerica, Dota2Servers.Russia, Dota2Servers.Australia, Dota2Servers.SouthAfrica], image: UIImage(named: "Dota2")!, serverType: Dota2Servers.self))
+        
         // League Of Legends
         games.append(Game(id: "1", name: "League of Legends", description: NSLocalizedString("LeagueOfLegendsDescription", comment: "LOL desc"), platforms: [Platform.PC, Platform.Mobile], servers: [LeagueOfLegendsServers.Brazil, LeagueOfLegendsServers.EuropeNordicEast, LeagueOfLegendsServers.EuropeWest, LeagueOfLegendsServers.LatinAmericaNorth, LeagueOfLegendsServers.LatinAmericaSouth, LeagueOfLegendsServers.NorthAmerica, LeagueOfLegendsServers.Oceania, LeagueOfLegendsServers.Russia, LeagueOfLegendsServers.Turkey, LeagueOfLegendsServers.Japan, LeagueOfLegendsServers.Korea], image: UIImage(named: "LeagueOfLegends")!, serverType: LeagueOfLegendsServers.self))
+        
         // Counter Strike: Global Offensive
-        games.append(Game(id: "2", name: "Counter Strike: Global Offensive", description: NSLocalizedString("CounterStrikeGODescription", comment: "CSGO desc"), platforms: [Platform.PC], servers: [CounterStrikeGOServers.EUNorth, CounterStrikeGOServers.PWTianjin, CounterStrikeGOServers.Singapore, CounterStrikeGOServers.IndiaWest, CounterStrikeGOServers.Australia, CounterStrikeGOServers.EUWest, CounterStrikeGOServers.PWShanghai, CounterStrikeGOServers.Chile, CounterStrikeGOServers.USSouthEast, CounterStrikeGOServers.IndiaEast, CounterStrikeGOServers.EUEast, CounterStrikeGOServers.HongKong, CounterStrikeGOServers.Japan, CounterStrikeGOServers.Peru, CounterStrikeGOServers.USWest, CounterStrikeGOServers.Poland, CounterStrikeGOServers.USWest, CounterStrikeGOServers.Poland, CounterStrikeGOServers.PWGuangdong, CounterStrikeGOServers.USNorthCentral, CounterStrikeGOServers.USSouthWest, CounterStrikeGOServers.SouthAfrica, CounterStrikeGOServers.SouthAmerica, CounterStrikeGOServers.Spain, CounterStrikeGOServers.USEast, CounterStrikeGOServers.Dubai], image: UIImage(named: "CounterStrikeGO")!, serverType: CounterStrikeGOServers.self))
+        games.append(Game(id: "2", name: "Counter Strike: Global Offensive", description: NSLocalizedString("CounterStrikeGODescription", comment: "CSGO desc"), platforms: [Platform.PC, Platform.PlayStation, Platform.Xbox], servers: [CounterStrikeGOServers.EUNorth, CounterStrikeGOServers.PWTianjin, CounterStrikeGOServers.Singapore, CounterStrikeGOServers.IndiaWest, CounterStrikeGOServers.Australia, CounterStrikeGOServers.EUWest, CounterStrikeGOServers.PWShanghai, CounterStrikeGOServers.Chile, CounterStrikeGOServers.USSouthEast, CounterStrikeGOServers.IndiaEast, CounterStrikeGOServers.EUEast, CounterStrikeGOServers.HongKong, CounterStrikeGOServers.Japan, CounterStrikeGOServers.Peru, CounterStrikeGOServers.USWest, CounterStrikeGOServers.Poland, CounterStrikeGOServers.USWest, CounterStrikeGOServers.Poland, CounterStrikeGOServers.PWGuangdong, CounterStrikeGOServers.USNorthCentral, CounterStrikeGOServers.USSouthWest, CounterStrikeGOServers.SouthAfrica, CounterStrikeGOServers.SouthAmerica, CounterStrikeGOServers.Spain, CounterStrikeGOServers.USEast, CounterStrikeGOServers.Dubai], image: UIImage(named: "CounterStrikeGO")!, serverType: CounterStrikeGOServers.self))
+        
         return games
     }
     

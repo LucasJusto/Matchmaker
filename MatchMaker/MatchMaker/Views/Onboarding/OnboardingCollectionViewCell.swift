@@ -10,6 +10,8 @@ import UIKit
 class OnboardingCollectionViewCell: UICollectionViewCell {
     
     static let identifier = String(describing: OnboardingCollectionViewCell.self)
+            
+    @IBOutlet weak var colorView: UIView!
     
     @IBOutlet weak var onboardingImageView: UIImageView!
     
@@ -26,6 +28,7 @@ class OnboardingCollectionViewCell: UICollectionViewCell {
         onboardingImageView.translatesAutoresizingMaskIntoConstraints = false
         onboardingImageView.heightAnchor.constraint(equalToConstant: CGFloat(screen.imageHeight)).isActive = true
         onboardingImageView.widthAnchor.constraint(equalToConstant: CGFloat(screen.imageWidth)).isActive = true
+        
+        colorView.backgroundColor = screen.color
     }
-
 }
