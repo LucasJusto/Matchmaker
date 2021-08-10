@@ -61,6 +61,8 @@
 		89AC95BB26B09E3300EC92F6 /* TextViewField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AC95BA26B09E3300EC92F6 /* TextViewField.swift */; };
 		89AC95BD26B0A79F00EC92F6 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AC95BC26B0A79F00EC92F6 /* String+Extensions.swift */; };
 		89CC467726B9DF69001B7C13 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CC467626B9DF69001B7C13 /* ButtonView.swift */; };
+		DFAD96FA26C2F31F0073E85A /* RateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAD96F826C2F31F0073E85A /* RateViewController.swift */; };
+		DFAD96FB26C2F31F0073E85A /* Rate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFAD96F926C2F31F0073E85A /* Rate.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,6 +124,8 @@
 		89AC95BA26B09E3300EC92F6 /* TextViewField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewField.swift; sourceTree = "<group>"; };
 		89AC95BC26B0A79F00EC92F6 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		89CC467626B9DF69001B7C13 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		DFAD96F826C2F31F0073E85A /* RateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateViewController.swift; sourceTree = "<group>"; };
+		DFAD96F926C2F31F0073E85A /* Rate.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Rate.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,6 +265,7 @@
 		892FE5CD26A9EC8E004B4F7F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DFAD96F726C2F31F0073E85A /* Rate */,
 				1B4E87BF26AF62A600A51AF1 /* Xibs */,
 				1B4E87BC26AF434100A51AF1 /* Profile */,
 				89A912FD26AA675100D3B1D2 /* Onboarding */,
@@ -327,6 +332,15 @@
 			path = IBDesignables;
 			sourceTree = "<group>";
 		};
+		DFAD96F726C2F31F0073E85A /* Rate */ = {
+			isa = PBXGroup;
+			children = (
+				DFAD96F826C2F31F0073E85A /* RateViewController.swift */,
+				DFAD96F926C2F31F0073E85A /* Rate.storyboard */,
+			);
+			path = Rate;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -390,6 +404,7 @@
 				1B767CC826B1D0E200EA4588 /* TitleCollectionView.xib in Resources */,
 				1B4E87C126AF62D800A51AF1 /* ProfileRatingView.xib in Resources */,
 				489555EA26A76AC3005F88A2 /* LaunchScreen.storyboard in Resources */,
+				DFAD96FB26C2F31F0073E85A /* Rate.storyboard in Resources */,
 				1B767CC126B110A900EA4588 /* SmallLabeledImageCollectionCell.xib in Resources */,
 				1B767CBD26B10EA500EA4588 /* SmallLabeledImageCollectionView.xib in Resources */,
 				1B767CB826B0AE4600EA4588 /* UserAvatarView.xib in Resources */,
@@ -447,6 +462,7 @@
 				1B767CB526B0864900EA4588 /* RoundedRectangleViewCell.swift in Sources */,
 				89971AEB26B325FB00A421C1 /* GamesSelectionTableViewCell.swift in Sources */,
 				1B4E87C526AF696900A51AF1 /* NibLoadable.swift in Sources */,
+				DFAD96FA26C2F31F0073E85A /* RateViewController.swift in Sources */,
 				89A912FF26AA677700D3B1D2 /* OnboardingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -97,3 +97,11 @@ to identify you from iCloud";
 "US North Central" = "US North Central";
 "US South East" = "US South East";
 "US South West" = "US South West";
+
+// MARK:- Rate
+"ExplainRateLabel" = "Avalie com base em sua \nexperiência de jogo com o jogador";
+"SkillRateLabel" = "Avaliação de habilidades";
+"BehaviorRateLabel" = "Avaliação de comportamento";
+"ConfirmButtonLabel" = "Confirmar";
+"CancelButtonLabel" = "Cancelar";
+"TitleRateModalView"= "Avaliação";
