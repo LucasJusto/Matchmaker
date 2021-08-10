@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if let idNotNull = id {
                     // 1. Create a Query Subscription used on iCloud to filter what shoud be triggered when record type changes
                     let newSubscription = CKQuerySubscription(recordType: FriendsTable.recordType.description,
-                                                              predicate: NSPredicate(format: "(id2 == %@) OR (id1 == %@)", idNotNull, idNotNull),
+                                                              predicate: NSPredicate(format: "\(FriendsTable.receiverId.description) == %@", idNotNull),
                                                               options: [.firesOnRecordCreation,
                                                                         .firesOnRecordDeletion,
                                                                         .firesOnRecordUpdate])
