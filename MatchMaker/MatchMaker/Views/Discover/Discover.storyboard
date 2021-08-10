@@ -3,7 +3,6 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -18,39 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yYd-dN-dO5" userLabel="Header">
-                                <rect key="frame" x="12" y="0.0" width="382" height="35"/>
-                                <subviews>
-                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="VD0-ee-r2R">
-                                        <rect key="frame" x="0.0" y="0.0" width="322" height="35"/>
-                                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </searchBar>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jqh-hW-AC6">
-                                        <rect key="frame" x="322" y="0.0" width="60" height="35"/>
-                                        <color key="backgroundColor" name="Primary"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="60" id="R2I-fg-Bjz"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Filters">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <imageReference key="image" image="line.horizontal.3.decrease.circle" catalog="system" symbolScale="small" renderingMode="template"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="449-Zt-8gv"/>
-                                </constraints>
-                            </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="gP6-Wi-hBP">
-                                <rect key="frame" x="0.0" y="35" width="414" height="690"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -286,21 +254,20 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="gP6-Wi-hBP" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="32a-1x-1Cy"/>
-                            <constraint firstItem="yYd-dN-dO5" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="12" id="97V-SM-LCu"/>
-                            <constraint firstItem="gP6-Wi-hBP" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="A8e-tA-3cI"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="yYd-dN-dO5" secondAttribute="trailing" constant="20" id="AKS-y0-Ncb"/>
-                            <constraint firstItem="gP6-Wi-hBP" firstAttribute="top" secondItem="yYd-dN-dO5" secondAttribute="bottom" id="Rj3-16-Yao"/>
-                            <constraint firstItem="gP6-Wi-hBP" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="ifM-td-u2q"/>
-                            <constraint firstItem="yYd-dN-dO5" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="oj1-he-IWb"/>
+                            <constraint firstItem="gP6-Wi-hBP" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="AVH-Yi-J9s"/>
+                            <constraint firstItem="gP6-Wi-hBP" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="QNI-zS-Ij9"/>
+                            <constraint firstItem="gP6-Wi-hBP" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="QYH-oo-3hZ"/>
+                            <constraint firstItem="gP6-Wi-hBP" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Zwq-9W-CRD"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="XF4-pO-Gin"/>
-                    <navigationItem key="navigationItem" title="Discover" largeTitleDisplayMode="always" id="yGJ-eI-cbc"/>
+                    <navigationItem key="navigationItem" title="Discover" id="yGJ-eI-cbc">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="M2e-Y7-B9O"/>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="DiscoverTableView" destination="gP6-Wi-hBP" id="7dB-48-5b8"/>
-                        <outlet property="FiltersButton" destination="jqh-hW-AC6" id="gnd-Pb-JPc"/>
+                        <outlet property="FiltersButton" destination="M2e-Y7-B9O" id="ScO-jI-ZPX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -352,7 +319,6 @@
         <image name="PC" width="204" height="189"/>
         <image name="Play" width="204" height="188.5"/>
         <image name="Xbox" width="204" height="188.5"/>
-        <image name="line.horizontal.3.decrease.circle" catalog="system" width="128" height="121"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
         <namedColor name="Primary">
             <color red="0.38823529411764707" green="0.090196078431372548" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

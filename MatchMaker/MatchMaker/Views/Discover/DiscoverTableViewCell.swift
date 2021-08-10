@@ -37,8 +37,19 @@ class DiscoverTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setup(profileImage: UIImage, nameText: String, nickText: String, userGames: [Game]) {
-        self.ProfileImage.image = profileImage
+    func setup(url: URL?, nameText: String, nickText: String, userGames: [Game]) {
+        
+        // Trying to unwrap, get image data and set it in the UI
+        if let url = url {
+            DispatchQueue.global().async {
+                if let data = try? Data(contentsOf: url) {
+                    DispatchQueue.main.async {
+                        self.ProfileImage.image = UIImage(data: data)
+                    }
+                }
+            }
+        }
+        
         self.userGames = userGames
         NameLabel.text = nameText
         NickLabel.text = nickText

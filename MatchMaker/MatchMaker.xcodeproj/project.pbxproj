@@ -347,11 +347,11 @@
 		B44F62EC26C3178500AD3E8A /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				B44F62F126C3178500AD3E8A /* Discover.storyboard */,
 				B44F62ED26C3178500AD3E8A /* DiscoverCollectionViewCell.swift */,
 				B44F62EE26C3178500AD3E8A /* DiscoverTableViewCell.swift */,
 				B44F62EF26C3178500AD3E8A /* DiscoverViewController.swift */,
 				B44F62F026C3178500AD3E8A /* DiscoverShowMoreCollectionViewCell.swift */,
-				B44F62F126C3178500AD3E8A /* Discover.storyboard */,
 			);
 			path = Discover;
 			sourceTree = "<group>";

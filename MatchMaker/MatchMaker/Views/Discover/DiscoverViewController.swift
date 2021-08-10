@@ -12,8 +12,8 @@ class DiscoverViewController: UIViewController {
     var users: [User] = []
     var filteredUsers: [User] = []
     
-    @IBOutlet weak var DiscoverTableView: UITableView!
-    @IBOutlet weak var FiltersButton: UIButton!
+    @IBOutlet weak var discoverTableView: UITableView!
+    @IBOutlet weak var filtersButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         
@@ -24,15 +24,15 @@ class DiscoverViewController: UIViewController {
         selectedGames1.append(contentsOf: Games.games)
         selectedGames2.append(Games.games[0])
         
-        let user1: User = User(id: "0", name: "1arselo difenbeck", nickname: "@shechello", photo: nil, country: "Brazil", description: "Description", behaviourRate: 10.0, skillRate: 10.0, languages: [Languages.english, Languages.portuguese], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: Games.games)
+        let user1: User = User(id: "0", name: "1arselo difenbeck", nickname: "@shechello", photoURL: nil, location: Locations.brazil, description: "Description", behaviourRate: 10.0, skillRate: 10.0, languages: [Languages.english, Languages.portuguese], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: Games.games)
         
         users.append(user1)
         
-        let user2: User = User(id: "0", name: "2arselo difenbeck", nickname: "@shechello", photo: nil, country: "Brazil", description: "Description", behaviourRate: 10.0, skillRate: 10.0, languages: [Languages.english, Languages.portuguese], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: selectedGames1)
+        let user2: User = User(id: "0", name: "2arselo difenbeck", nickname: "@shechello", photoURL: nil, location: Locations.brazil, description: "Description", behaviourRate: 10.0, skillRate: 10.0, languages: [Languages.english, Languages.portuguese], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: selectedGames1)
         
         users.append(user2)
         
-        let user3: User = User(id: "0", name: "3arselo difenbeck", nickname: "@shechello", photo: nil, country: "Brazil", description: "Description", behaviourRate: 10.0, skillRate: 10.0, languages: [Languages.english, Languages.portuguese], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: selectedGames2)
+        let user3: User = User(id: "0", name: "3arselo difenbeck", nickname: "@shechello", photoURL: nil, location: Locations.brazil, description: "Description", behaviourRate: 10.0, skillRate: 10.0, languages: [Languages.english, Languages.portuguese], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: selectedGames2)
         
         users.append(user3)
         //END MOCKED DATA
@@ -41,24 +41,35 @@ class DiscoverViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         
-        DiscoverTableView.delegate = self
-        DiscoverTableView.dataSource = self
+        discoverTableView.delegate = self
+        discoverTableView.dataSource = self
+
+        NSLocalizedString("DiscoverFiltersButton", comment: "Filters button in Discover Screen")
         
-        FiltersButton.setTitle(NSLocalizedString("DiscoverFiltersButton", comment: "Filters button in Discover Screen"), for: .normal)
-        
+        // Header appearance
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = UIColor.black
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         
+        // Search Controller | uses extension
+        
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Users"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        
     }
     
-    //pesquisa
-    func updateFilters() {
-        // logica
-        DiscoverTableView.reloadData()
-    }
+//
+//    //pesquisa
+//    func updateFilters() {
+//        // logica
+//        DiscoverTableView.reloadData()
+//    }
 
     /*
     // MARK: - Navigation
@@ -71,6 +82,12 @@ class DiscoverViewController: UIViewController {
     */
 
 }
+
+extension DiscoverViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+      // TODO
+    }
+  }
 
 extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -98,8 +115,8 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
         
         // Using sections to have a "rounded cell" which is actually a section
         let user = users[indexPath.section]
-        
-        cell.setup(profileImage: user.photo, nameText: user.name, nickText: user.nickname, userGames: user.selectedGames)
+
+        cell.setup(url: user.photoURL, nameText: user.name, nickText: user.nickname, userGames: user.selectedGames)
         
         return cell
     }
