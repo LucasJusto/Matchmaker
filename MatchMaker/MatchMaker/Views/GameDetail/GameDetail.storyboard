@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -34,47 +35,50 @@
                                                     <constraint firstAttribute="height" constant="520" id="GB6-mv-JFF"/>
                                                 </constraints>
                                             </imageView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="82b-6Q-Ju2">
-                                                <rect key="frame" x="8" y="420" width="374" height="261.66666666666674"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="82b-6Q-Ju2">
+                                                <rect key="frame" x="20" y="420" width="350" height="259.66666666666674"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="rQ8-va-uFp" userLabel="Game Info">
-                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="350" height="50"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFG-WF-c1t">
-                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="27.666666666666668"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="350" height="27.666666666666668"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wc9-Zq-fxI">
-                                                                <rect key="frame" x="0.0" y="35.666666666666629" width="374" height="14.333333333333336"/>
+                                                                <rect key="frame" x="0.0" y="35.666666666666629" width="350" height="14.333333333333336"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleAspectFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="mYD-WD-Dxy" userLabel="Buttons">
-                                                        <rect key="frame" x="0.0" y="74" width="374" height="30"/>
+                                                    <stackView opaque="NO" contentMode="scaleAspectFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="mYD-WD-Dxy" userLabel="Buttons">
+                                                        <rect key="frame" x="0.0" y="70" width="350" height="40"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lqH-bf-PfT">
-                                                                <rect key="frame" x="0.0" y="0.0" width="179" height="30"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="170" height="40"/>
                                                                 <color key="backgroundColor" name="Primary"/>
                                                                 <state key="normal" title="Find players">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ngm-dr-XyX">
-                                                                <rect key="frame" x="195" y="0.0" width="179" height="30"/>
+                                                                <rect key="frame" x="180" y="0.0" width="170" height="40"/>
                                                                 <color key="backgroundColor" name="Gray"/>
                                                                 <state key="normal" title="Add to my games">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
                                                             </button>
                                                         </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="45C-DB-lDy"/>
+                                                        </constraints>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="2ni-dr-b5K" userLabel="Platforms">
-                                                        <rect key="frame" x="0.0" y="128" width="374" height="82"/>
+                                                        <rect key="frame" x="0.0" y="130" width="350" height="82"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Platforms" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j55-wr-Biw" userLabel="Title">
                                                                 <rect key="frame" x="0.0" y="0.0" width="104.33333333333333" height="27.666666666666668"/>
@@ -162,7 +166,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="bpv-eC-jlj" userLabel="Other Games">
-                                                        <rect key="frame" x="0.0" y="234" width="374" height="27.666666666666686"/>
+                                                        <rect key="frame" x="0.0" y="232" width="350" height="27.666666666666686"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Other Games" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dmB-Cs-ghv" userLabel="Title">
                                                                 <rect key="frame" x="0.0" y="0.0" width="141.66666666666666" height="27.666666666666668"/>
@@ -174,17 +178,25 @@
                                                     </stackView>
                                                 </subviews>
                                             </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yx6-EQ-Lay" userLabel="OtherGamesXIb" customClass="RoundedRectangleCollectionView" customModule="MatchMaker" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="684.66666666666663" width="390" height="177.33333333333337"/>
+                                                <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="pce-lc-GXc" firstAttribute="top" secondItem="mF2-2Y-1I1" secondAttribute="top" id="Hut-3M-pt9"/>
-                                            <constraint firstItem="82b-6Q-Ju2" firstAttribute="leading" secondItem="mF2-2Y-1I1" secondAttribute="leading" constant="8" id="VWB-HL-UAm"/>
+                                            <constraint firstAttribute="trailing" secondItem="yx6-EQ-Lay" secondAttribute="trailing" id="Tcj-KH-5fH"/>
+                                            <constraint firstItem="82b-6Q-Ju2" firstAttribute="leading" secondItem="mF2-2Y-1I1" secondAttribute="leading" constant="20" id="VWB-HL-UAm"/>
                                             <constraint firstAttribute="height" constant="870" id="XkA-h2-gw7"/>
                                             <constraint firstItem="HSS-fq-jnI" firstAttribute="trailing" secondItem="pce-lc-GXc" secondAttribute="trailing" id="YE6-4J-PQu"/>
                                             <constraint firstItem="HSS-fq-jnI" firstAttribute="leading" secondItem="pce-lc-GXc" secondAttribute="leading" id="bBI-JT-u5N"/>
-                                            <constraint firstAttribute="trailing" secondItem="82b-6Q-Ju2" secondAttribute="trailing" constant="8" id="dEh-tP-qPN"/>
+                                            <constraint firstAttribute="bottom" secondItem="yx6-EQ-Lay" secondAttribute="bottom" constant="8" id="cgC-rW-dOp"/>
+                                            <constraint firstItem="yx6-EQ-Lay" firstAttribute="leading" secondItem="mF2-2Y-1I1" secondAttribute="leading" id="d4a-mq-YjZ"/>
+                                            <constraint firstAttribute="trailing" secondItem="82b-6Q-Ju2" secondAttribute="trailing" constant="20" id="dEh-tP-qPN"/>
                                             <constraint firstItem="HSS-fq-jnI" firstAttribute="bottom" secondItem="pce-lc-GXc" secondAttribute="bottom" id="jZi-W2-NK7"/>
                                             <constraint firstItem="pce-lc-GXc" firstAttribute="leading" secondItem="mF2-2Y-1I1" secondAttribute="leading" id="nTX-Cq-mVO"/>
+                                            <constraint firstItem="yx6-EQ-Lay" firstAttribute="top" secondItem="82b-6Q-Ju2" secondAttribute="bottom" constant="5" id="oHD-tE-XKK"/>
                                             <constraint firstItem="HSS-fq-jnI" firstAttribute="top" secondItem="pce-lc-GXc" secondAttribute="top" id="rZb-N9-SWT"/>
                                             <constraint firstItem="82b-6Q-Ju2" firstAttribute="top" secondItem="pce-lc-GXc" secondAttribute="bottom" constant="-100" id="uLJ-Qu-3ey"/>
                                         </constraints>
@@ -219,6 +231,7 @@
                         <outlet property="GameTitle" destination="IFG-WF-c1t" id="Lpy-UG-Eae"/>
                         <outlet property="MobileImage" destination="UHJ-bG-pch" id="2BF-nw-6re"/>
                         <outlet property="OtherGamesLabel" destination="dmB-Cs-ghv" id="OFE-AY-efr"/>
+                        <outlet property="OtherGamesXib" destination="yx6-EQ-Lay" id="S4O-GV-iSJ"/>
                         <outlet property="PCImage" destination="ki7-ek-YGi" id="cyK-LP-lRN"/>
                         <outlet property="PlatformsLabel" destination="j55-wr-Biw" id="ank-4h-3MG"/>
                         <outlet property="PlaystationImage" destination="TwD-Fn-4Fr" id="LT6-Mq-TfI"/>
@@ -261,5 +274,8 @@
         <namedColor name="Primary">
             <color red="0.38823529411764707" green="0.090196078431372548" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

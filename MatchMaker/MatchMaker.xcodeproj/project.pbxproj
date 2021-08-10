@@ -63,6 +63,8 @@
 		89AC95BB26B09E3300EC92F6 /* TextViewField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AC95BA26B09E3300EC92F6 /* TextViewField.swift */; };
 		89AC95BD26B0A79F00EC92F6 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AC95BC26B0A79F00EC92F6 /* String+Extensions.swift */; };
 		89CC467726B9DF69001B7C13 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CC467626B9DF69001B7C13 /* ButtonView.swift */; };
+		B44F62EA26C30EF100AD3E8A /* GameDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B44F62E826C30EF100AD3E8A /* GameDetail.storyboard */; };
+		B44F62EB26C30EF100AD3E8A /* GameDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44F62E926C30EF100AD3E8A /* GameDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -126,6 +128,8 @@
 		89AC95BA26B09E3300EC92F6 /* TextViewField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewField.swift; sourceTree = "<group>"; };
 		89AC95BC26B0A79F00EC92F6 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		89CC467626B9DF69001B7C13 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		B44F62E826C30EF100AD3E8A /* GameDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GameDetail.storyboard; sourceTree = "<group>"; };
+		B44F62E926C30EF100AD3E8A /* GameDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,6 +269,7 @@
 		892FE5CD26A9EC8E004B4F7F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B44F62E726C30EF100AD3E8A /* GameDetail */,
 				1B4E87BF26AF62A600A51AF1 /* Xibs */,
 				1B4E87BC26AF434100A51AF1 /* Profile */,
 				89A912FD26AA675100D3B1D2 /* Onboarding */,
@@ -331,6 +336,15 @@
 				89CC467626B9DF69001B7C13 /* ButtonView.swift */,
 			);
 			path = IBDesignables;
+			sourceTree = "<group>";
+		};
+		B44F62E726C30EF100AD3E8A /* GameDetail */ = {
+			isa = PBXGroup;
+			children = (
+				B44F62E826C30EF100AD3E8A /* GameDetail.storyboard */,
+				B44F62E926C30EF100AD3E8A /* GameDetailViewController.swift */,
+			);
+			path = GameDetail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -400,6 +414,7 @@
 				1B767CBD26B10EA500EA4588 /* SmallLabeledImageCollectionView.xib in Resources */,
 				1B767CB826B0AE4600EA4588 /* UserAvatarView.xib in Resources */,
 				1B1C6D1F26BED6DB00B561C6 /* UserLocationStoryboard.storyboard in Resources */,
+				B44F62EA26C30EF100AD3E8A /* GameDetail.storyboard in Resources */,
 				1B767CCC26B1D71D00EA4588 /* TitleViewCell.xib in Resources */,
 				892FE5DD26AA010A004B4F7F /* Onboarding.storyboard in Resources */,
 				892FE5BF26A9E345004B4F7F /* Localizable.strings in Resources */,
@@ -448,6 +463,7 @@
 				895A605026AB56A100BE18C9 /* UILabel+Extensions.swift in Sources */,
 				89CC467726B9DF69001B7C13 /* ButtonView.swift in Sources */,
 				1B5F81A826B4DF7B00D19747 /* ImagePickerManager.swift in Sources */,
+				B44F62EB26C30EF100AD3E8A /* GameDetailViewController.swift in Sources */,
 				1B767CCE26B1D80100EA4588 /* TitleCell.swift in Sources */,
 				89A9130426AA6F0500D3B1D2 /* OnboardingCollectionViewCell.swift in Sources */,
 				1B767CCA26B1D10500EA4588 /* TitleCollectionView.swift in Sources */,
