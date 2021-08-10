@@ -10,6 +10,7 @@ import UIKit
 class DiscoverViewController: UIViewController {
     
     var users: [User] = []
+    var filteredUsers: [User] = []
     
     @IBOutlet weak var DiscoverTableView: UITableView!
     @IBOutlet weak var FiltersButton: UIButton!
@@ -45,6 +46,18 @@ class DiscoverViewController: UIViewController {
         
         FiltersButton.setTitle(NSLocalizedString("DiscoverFiltersButton", comment: "Filters button in Discover Screen"), for: .normal)
         
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor.black
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        
+    }
+    
+    //pesquisa
+    func updateFilters() {
+        // logica
+        DiscoverTableView.reloadData()
     }
 
     /*
