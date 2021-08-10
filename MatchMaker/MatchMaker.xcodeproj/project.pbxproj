@@ -269,10 +269,10 @@
 		892FE5CD26A9EC8E004B4F7F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B44F62E726C30EF100AD3E8A /* GameDetail */,
 				1B4E87BF26AF62A600A51AF1 /* Xibs */,
 				1B4E87BC26AF434100A51AF1 /* Profile */,
 				89A912FD26AA675100D3B1D2 /* Onboarding */,
+				B44F62E726C30EF100AD3E8A /* GameDetail */,
 			);
 			path = Views;
 			sourceTree = "<group>";
