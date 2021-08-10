@@ -121,10 +121,13 @@ class GameDetailsViewController: UIViewController {
         self.didTapDeselect = true
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {        
         if var game = self.game {
             
             if didTapDeselect {
+                
+                game.selectedServers = []
+                game.selectedPlatforms = []
                 
                 self.delegate?.updateGame(game, isSelected: false)
                 
@@ -194,10 +197,10 @@ extension GameDetailsViewController: UITableViewDelegate, UITableViewDataSource 
         cell?.requiredLabel.isHidden = false
         cell?.requiredLabel.textColor = UIColor(named: "LightGray")
         
-        if let height = cell?.collectionView.collectionViewLayout.collectionViewContentSize.height {
-            cell?.collectionViewHeight.constant = height
+        if let size = cell?.collectionView.collectionViewLayout.collectionViewContentSize {
+            cell?.collectionViewHeight.constant = size.height
             
-            let contentSize = tableView.contentSize.height + height
+            let contentSize = tableView.contentSize.height + size.height
             tableViewHeight.constant = contentSize
         }
         
@@ -210,6 +213,7 @@ extension GameDetailsViewController: UITableViewDelegate, UITableViewDataSource 
 }
 
 extension GameDetailsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         let gameDetailsSection = GameDetailsSections.allCases[collectionView.tag]
@@ -236,7 +240,7 @@ extension GameDetailsViewController: UICollectionViewDelegate, UICollectionViewD
         collectionCell.labelView.text = tag.option
         
         collectionCell.containerView.backgroundColor = tag.isFavorite ? UIColor(named: "Primary") : .clear
-                
+        
         return collectionCell
     }
     

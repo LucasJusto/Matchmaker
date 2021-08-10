@@ -30,7 +30,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FirstOnboardingCollectionViewCell" id="wU8-R2-6DJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="894"/>
+                                        <rect key="frame" x="10" y="0.0" width="414" height="894"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="bMF-2H-H1j">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="894"/>
@@ -793,7 +793,7 @@
             <objects>
                 <viewController id="Bk8-Ao-2Z6" customClass="GameDetailsViewController" customModule="MatchMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yOr-zT-9Cl">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Wf-f8-694">
@@ -891,7 +891,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zgg-ZL-Xiw">
-                                <rect key="frame" x="0.0" y="430" width="414" height="312"/>
+                                <rect key="frame" x="0.0" y="410" width="414" height="312"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="312" id="ehY-JG-1bq"/>
@@ -1008,7 +1008,7 @@
                             <constraint firstItem="5Wf-f8-694" firstAttribute="top" secondItem="htB-vp-awV" secondAttribute="top" id="Ur8-9w-n0A"/>
                             <constraint firstItem="5Wf-f8-694" firstAttribute="trailing" secondItem="htB-vp-awV" secondAttribute="trailing" id="ctl-K4-WXj"/>
                             <constraint firstAttribute="bottom" secondItem="eSR-y9-UTp" secondAttribute="bottom" id="kpP-78-ZOm"/>
-                            <constraint firstItem="eSR-y9-UTp" firstAttribute="top" secondItem="zgg-ZL-Xiw" secondAttribute="bottom" id="qMs-m1-zLT"/>
+                            <constraint firstItem="eSR-y9-UTp" firstAttribute="top" secondItem="zgg-ZL-Xiw" secondAttribute="bottom" constant="20" id="qMs-m1-zLT"/>
                             <constraint firstItem="5Wf-f8-694" firstAttribute="leading" secondItem="htB-vp-awV" secondAttribute="leading" id="vsE-4C-dBM"/>
                             <constraint firstItem="zgg-ZL-Xiw" firstAttribute="leading" secondItem="htB-vp-awV" secondAttribute="leading" id="xmK-y6-s2m"/>
                         </constraints>

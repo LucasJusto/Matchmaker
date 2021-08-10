@@ -98,7 +98,11 @@ class OnboardingRegisterViewController: UIViewController {
     var imagePicker: ImagePickerManager = ImagePickerManager()
     var profileImageUrl: URL?
     
-    var selectedGame: GameOption?
+    var selectedGame: GameOption? {
+        didSet {
+            print(selectedGame)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -390,10 +394,10 @@ extension OnboardingRegisterViewController: UICollectionViewDelegate, UICollecti
                 let game = tagGames[indexPath.row]
                 
                 collectionCell.imageView.image = game.option.image
+                
                 collectionCell.selectionTag.isHidden = !game.isFavorite
                 
                 return collectionCell
-
         }
                 
     }
@@ -514,13 +518,17 @@ extension OnboardingRegisterViewController: GameSelectionDelegate {
     func updateGame(_ game: Game, isSelected: Bool) {
         let indexPath = IndexPath(row: OnboardingFields.games.rawValue, section: 0)
 
-        let cell = tableView.cellForRow(at: indexPath) as? SelectorTableViewCell
-        
-        if let gameIndex = tagGames.firstIndex(where: { $0.option.id == game.id }) {
-            tagGames[gameIndex] = GameOption(option: game, isFavorite: isSelected)
+        let cell = tableView.cellForRow(at: indexPath) as? GamesSelectionTableViewCell
+    
+        guard let gameIndex = tagGames.firstIndex(where: { $0.option.id == game.id }) else {
+            return
         }
         
-        cell?.collectionView.reloadItems(at: [indexPath])
+        tagGames[gameIndex] = GameOption(option: game, isFavorite: isSelected)
+        
+        let collectionIndexPath = IndexPath(row: gameIndex, section: 0)
+        
+        cell?.collectionView.reloadItems(at: [collectionIndexPath])
     }
     
 }
