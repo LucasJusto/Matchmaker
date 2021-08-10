@@ -187,7 +187,16 @@ extension GameDetailsViewController: UITableViewDelegate, UITableViewDataSource 
         let cell = tableView.dequeueReusableCell(withIdentifier: "selector-cell") as? SelectorTableViewCell
         
         if let gameDetailsSection = GameDetailsSections(rawValue: tag) {
+            
             cell?.setUp(title: gameDetailsSection.description)
+            
+            if gameDetailsSection == .platforms {
+                let layout = cell?.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+                
+                layout.scrollDirection = .horizontal
+                
+                cell?.collectionView.setCollectionViewLayout(layout, animated: true)
+            }
         }
         
         cell?.collectionView.delegate = self
@@ -203,8 +212,6 @@ extension GameDetailsViewController: UITableViewDelegate, UITableViewDataSource 
             let contentSize = tableView.contentSize.height + size.height
             tableViewHeight.constant = contentSize
         }
-        
-        
         
         return cell
     }
