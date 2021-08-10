@@ -9,7 +9,7 @@ import UIKit
 
 //MARK: - ProfileRatingView Class
 
-@IBDesignable class ProfileRatingView: UIView, NibLoadable {
+class ProfileRatingView: UIView, NibLoadable {
     
     //MARK: ProfileRatingView - Variables and Outlets Setup
     

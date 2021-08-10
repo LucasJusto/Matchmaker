@@ -11,8 +11,14 @@ class TextViewTableViewCell: UITableViewCell {
 
     @IBOutlet weak var textViewField: TextViewField!
     
+    @IBOutlet weak var counterLabelView: UILabel!
+            
+    let maxLength = 300
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        textViewField.tintColor = .white
+        textViewField.textColor = .white
     }
-
 }

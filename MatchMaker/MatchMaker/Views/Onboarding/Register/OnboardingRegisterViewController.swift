@@ -12,8 +12,47 @@ class OnboardingRegisterViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     @IBAction func didTapDone(_ sender: UIButton) {
-        print("foi")
+        
+        let isIncomplete = nameField.isEmpty || usernameField.isEmpty || selectedLocation.string.isEmpty || tagLanguages.filter { $0.isFavorite }.count < 1 || tagPlatforms.filter { $0.isFavorite }.count < 1
+        
+        didTapDone = true
+                
+        if isIncomplete {
+            self.present(alertEmptyFields(), animated: true, completion: nil)
+        } else {
+            self.tableView.reloadData()
+        }
+        
+        let languages = tagLanguages.filter { $0.isFavorite }.map { Languages.getLanguage(language: "Languages\($0.option)") }
+        let platforms = tagPlatforms.filter { $0.isFavorite }.map { Platform.getPlatform(key: "Platform\($0.option == "PlayStation" ? "PS" : $0.option)") }
+        let games = tagGames.filter { $0.isFavorite }.map { $0.option }
+                
+        CKRepository.setOnboardingInfo(name: self.nameField, nickname: self.usernameField, photoURL: nil, location: Locations.africaNorth, description: self.descriptionField, languages: languages, selectedPlatforms: platforms, selectedGames: games)
     }
+    
+    func alertEmptyFields() -> UIAlertController {
+        let title = NSLocalizedString("onboarding5AlertTitleLabel", comment: "alert title")
+        
+        let message = NSLocalizedString("onboarding5AlertTextLabel", comment: "alert text")
+        
+        let buttonLabel = NSLocalizedString("onboarding5AlertButtonLabel", comment: "alert text")
+        
+        let dialogMessage = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let ok = UIAlertAction(title: buttonLabel, style: .default, handler: { (action) -> Void in
+            self.tableView.reloadData()
+          })
+        
+        dialogMessage.addAction(ok)
+        
+        return dialogMessage
+    }
+    
+    @objc func closeKeyboard(sender: Any) {
+        self.view.endEditing(true)
+    }
+    
+    var didTapDone = false
     
     enum OnboardingTagCategory: Int, CaseIterable {
         case languages
@@ -31,6 +70,7 @@ class OnboardingRegisterViewController: UIViewController {
         case nameField
         case usernameField
         case descriptionField
+        case locations
         case languages
         case platforms
         case games
@@ -39,39 +79,20 @@ class OnboardingRegisterViewController: UIViewController {
     let onboardingFields = OnboardingFields.allCases
     
     typealias TagOption = (option: String, isFavorite: Bool)
-    
     typealias GameOption = (option: Game, isFavorite: Bool)
     
-    var tagLanguages: [TagOption] = [] {
-        didSet {
-            print(tagLanguages)
-        }
-    }
-    var tagPlatforms: [TagOption] = [] {
-        didSet {
-            print(tagPlatforms)
-        }
-    }
-    var tagGames: [GameOption] = [] {
-        didSet {
-            print(tagGames)
-        }
-    }
-    var nameField: String = "" {
-        didSet {
-            print(nameField)
-        }
-    }
-    var usernameField: String = "" {
-        didSet {
-            print(usernameField)
-        }
-    }
-    var descriptionField: String = "" {
-        didSet {
-            print(descriptionField)
-        }
-    }
+    var tagLanguages: [TagOption] = []
+    var tagPlatforms: [TagOption] = []
+    var tagGames: [GameOption] = []
+    var nameField: String = ""
+    var usernameField: String = ""
+    var descriptionField: String = ""
+    
+    typealias UserLocation = (string: String, enum: Locations)
+    var selectedLocation: UserLocation = UserLocation(string: Locations.africaNorth.description, enum: Locations.africaNorth)
+    
+    var imagePicker: ImagePickerManager = ImagePickerManager()
+    var profileImageUrl: URL?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,6 +151,8 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
                 
             case .descriptionField: return textViewCell()
                 
+            case .locations: return pickerCell()
+                
             case .languages: return selectorCell(titleKey: "onboarding5LanguagesLabel", tag: OnboardingTagCategory.languages.rawValue) ?? defaultCell
                     
             case .platforms: return selectorCell(titleKey: "onboarding5PlatformsLabel", tag: OnboardingTagCategory.platforms.rawValue) ?? defaultCell
@@ -143,15 +166,19 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
                 return UITableViewCell()
         }
         
+        cell.userAvatarView.delegate = self
+        
         cell.tag = OnboardingFields.profileImage.rawValue
         
         return cell
     }
     
     func textFieldCell(titleKey: String, tag: Int) -> UITableViewCell {
+        
         let string = NSLocalizedString(titleKey, comment: "text field label")
                     
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "text-field-cell") as? TextFieldTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "text-field-cell") as? TextFieldTableViewCell
+              else {
                 return UITableViewCell()
         }
         
@@ -159,6 +186,23 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
         cell.textField.tag = tag
                 
         cell.setUp(title: string)
+        
+        var text = ""
+        
+        if let onboardingTextField = OnboardingTextFields(rawValue: tag) {
+            
+            switch onboardingTextField {
+                case .nameField: text = nameField
+                case .usernameField: text = usernameField
+            }
+        }
+        
+        if didTapDone && text.isEmpty {
+            cell.textField.borderColor = .red
+            
+        } else {
+            cell.textField.borderColor = UIColor(named: "Primary")
+        }
         
         return cell
     }
@@ -169,7 +213,28 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
         }
         
         cell.textViewField.delegate = self
-                
+        cell.textViewField.text = descriptionField
+        cell.counterLabelView.text = "\(descriptionField.count)/300"
+        cell.textViewField.addDoneButton(title: NSLocalizedString("onboarding5KeyboardButton", comment: "Keyboard done Button"), target: self, selector: #selector(closeKeyboard(sender:)))
+
+        return cell
+    }
+    
+    func pickerCell() -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "picker-cell") as? PickerTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        cell.delegate = self
+        cell.currentSelectionLabel.text = selectedLocation.string
+        
+        // FIXME: alterar para selectedLocation
+        if didTapDone && selectedLocation.string.isEmpty {
+            cell.buttonView.borderColor = .red
+        } else {
+            cell.buttonView.borderColor = UIColor(named: "Primary")
+        }
+        
         return cell
     }
 
@@ -184,6 +249,24 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
         let string = NSLocalizedString(titleKey, comment: "selector cell label")
 
         cell?.setUp(title: string)
+        
+        var selections = 0
+        
+        if let onboardingTags = OnboardingTagCategory(rawValue: tag) {
+            
+            switch onboardingTags {
+                case .languages: selections = tagLanguages.filter { $0.isFavorite }.count
+                case .platforms: selections = tagPlatforms.filter { $0.isFavorite }.count
+                default: return cell
+            }
+        }
+        
+        if didTapDone && selections == 0 {
+            cell?.requiredLabel.isHidden = false
+            
+        } else {
+            cell?.requiredLabel.isHidden = true
+        }
                 
         return cell
     }
@@ -335,12 +418,67 @@ extension OnboardingRegisterViewController: UITextFieldDelegate {
         
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
 }
 
 extension OnboardingRegisterViewController: UITextViewDelegate {
-    
+
     func textViewDidEndEditing(_ textView: UITextView) {
         self.descriptionField = textView.text ?? ""
+    }
+
+    func textViewDidChange(_ textView: UITextView) {
+        let cell = tableView.cellForRow(at: IndexPath(row: OnboardingFields.descriptionField.rawValue, section: 0)) as? TextViewTableViewCell
+        
+        cell?.counterLabelView.text = "\(textView.text.count)/300"
+    }
+
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        return textView.text.count + (text.count - range.length) <= 300
+    }
+}
+
+extension OnboardingRegisterViewController: UserAvatarViewDelegate {
+    func didChooseImage() {
+        let cell = tableView.cellForRow(at: IndexPath(row: OnboardingFields.profileImage.rawValue, section: 0)) as? ProfileImageTableViewCell
+    
+        imagePicker.pickImage(self) { [unowned self] image, url in
+            DispatchQueue.main.async {
+                cell?.userAvatarView.contentImage.image = image
+                self.profileImageUrl = url
+            }
+        }
+    }
+}
+
+extension OnboardingRegisterViewController: PickerCellDelegate, UserLocationDelegate {
+    
+    func didSelect(with location: Locations) {
+        print("modal: \(location)")
+        selectedLocation.string = location.description
+        selectedLocation.enum = location
+        
+        tableView.reloadData()
+    }
+    
+    func didChooseLocation(_ sender: UITableViewCell) {
+        performSegue(withIdentifier: "toUserLocations", sender: sender)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toUserLocations" {
+            let rootVC = segue.destination as! UINavigationController
+            let destination = rootVC.topViewController as! UserLocationViewController
+            
+            print("Onboarding: \(selectedLocation)")
+            destination.delegate = self
+            destination.selectedLocation = selectedLocation.enum
+        }
     }
     
 }
