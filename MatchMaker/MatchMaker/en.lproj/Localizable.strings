@@ -20,19 +20,23 @@
 with a personalized filter";
 
 // MARK:- ONBOARDING 2
-"onboarding2Title" = "Select games that you like to play";
+"onboarding2Title" = "Select games that
+you like to play";
 "onboarding2Description" = "We have the most popular games
 for you to choose and find players";
 
 // MARK:- ONBOARDING 3
-"onboarding3Title" = "Talk to players and schedule a match";
+"onboarding3Title" = "Talk to players and
+schedule a match";
 "onboarding3Description" = "Use the internal chat to talk
 to players and schedule matches";
 
 // MARK:- ONBOARDING 4
 "onboarding4TitleLabel" = "Sync with iCloud";
-"onboarding4Description" = "We will need your authorization
-to identify you from iCloud";
+"onboarding4Description" = "Don’t worry about
+accounts, we sync your
+data automatically,
+without using your storage";
 "onboarding4ButtonLabel" = "Got it!";
 
 // MARK:- ONBOARDING 5

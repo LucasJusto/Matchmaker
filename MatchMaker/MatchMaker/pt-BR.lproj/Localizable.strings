@@ -1,4 +1,4 @@
-/* 
+/*
   Localizable.strings
   MatchMaker
 
@@ -8,37 +8,56 @@
 
 "titleLabel" = "Hello World";
 
+//MARK: - User
+"UserBehaviour" = "Comportamento";
+"UserSkills" = "Habilidades";
+"UserReviews" = "Avaliações";
+
+// MARK: - Platforms
 // MARK:- ONBOARDING 1
-"onboarding1Title" = "Welcome to";
-"onboarding1Description" = "Find players that correspond
-with a personalized filter";
+"onboarding1Title" = "Bem vindo ao";
+"onboarding1Description" = "Encontre jogadores que correspondem a um filtro personalizado";
 
 // MARK:- ONBOARDING 2
-"onboarding2Title" = "Select games that you like to play";
-"onboarding2Description" = "We have the most popular games
-for you to choose and find players";
+"onboarding2Title" = "Selecione os jogos
+que você gosta";
+"onboarding2Description" = "Nós temos os jogos mais populares
+para você escolher e encontrar jogadores";
 
 // MARK:- ONBOARDING 3
-"onboarding3Title" = "Talk to players and schedule a match";
-"onboarding3Description" = "Use the internal chat to talk
-to players and schedule matches";
+"onboarding3Title" = "Converse com jogadores e marque uma partida";
+
+"onboarding3Description" = "Utilize o chat interno para conversar com jogadores e marcar partidas.";
 
 // MARK:- ONBOARDING 4
-"onboarding4TitleLabel" = "Sync with iCloud";
-"onboarding4Description" = "We will need your authorization
-to identify you from iCloud";
-"onboarding4ButtonLabel" = "Got it!";
+"onboarding4TitleLabel" = "Sincronize com iCloud";
+"onboarding4Description" = "Não se preocupe com sua conta, nós sincronizamos seus dados automaticamente sem utilizar seu armazenamento.";
+"onboarding4ButtonLabel" = "Entendi!";
 
 // MARK:- ONBOARDING 5
-"onboarding5ButtonLabel" = "Done";
-"onboarding5ImageLabel" = "Profile image";
-"onboarding5NameLabel" = "Name";
+"onboarding5ButtonLabel" = "Pronto";
+"onboarding5ImageLabel" = "Foto de perfil";
+"onboarding5NameLabel" = "Nome";
 "onboarding5UsernameLabel" = "Username";
-"onboarding5DescriptionLabel" = "Description";
-"onboarding5LanguagesLabel" = "Languages";
-"onboarding5PlatformsLabel" = "Platforms";
-"onboarding5GamesLabel" = "Games";
-"onboarding5SelectedLabel" = "Selected";
+"onboarding5DescriptionLabel" = "Descrição";
+"onboarding5LocationLabel" = "Localização";
+"onboarding5ChangePickerLabel" = "Mudar";
+"onboarding5LanguagesLabel" = "Linguas";
+"onboarding5PlatformsLabel" = "Plataformas";
+"onboarding5GamesLabel" = "Jogos";
+"onboarding5SelectedLabel" = "Selecionado";
+
+// MARK:- ONBOARDING 5 - Warning
+"onboarding5AlertTitleLabel" = "Campos vazios";
+"onboarding5AlertTextLabel" = "Você precisa preencher os campos obrigatórios para criar seu perfil.";
+"onboarding5AlertButtonLabel" = "Ok";
+
+
+// MARK:- ONBOARDING 5 - Keyboard
+"onboarding5KeyboardButton" = "Pronto";
+
+// MARK:- ONBOARDING GAME
+"onboardingGameServersLabel" = "Servidores";
 
 // MARK:- Platforms
 "PlatformPC" = "PC";
@@ -46,23 +65,39 @@ to identify you from iCloud";
 "PlatformXbox" = "Xbox";
 "PlatformMobile" = "Mobile";
 
-// MARK:- Languages
-"LanguagesPortuguese" = "Portuguese";
-"LanguagesEnglish" = "English";
-"LanguagesChinese" = "Chinese";
-"LanguagesJapanese" = "Japanese";
-"LanguagesSpanish" = "Spanish";
-"LanguagesRussian" = "Russian";
-"LanguagesGerman" = "German";
+// MARK: - Languages
+"LanguagesPortuguese" = "Português";
+"LanguagesEnglish" = "Inglês";
+"LanguagesChinese" = "Chines";
+"LanguagesJapanese" = "Japones";
+"LanguagesSpanish" = "Espanhol";
+"LanguagesRussian" = "Russo";
+"LanguagesGerman" = "Alemão";
 
-"Dota2Description" = "This is the description of Dota 2";
-"LeagueOfLegendsDescription" = "This is the description of League of Legends";
-"CounterStrikeGODescription" = "This is the description of Counter Strike: Global Offensive";
+// MARK:- Locations
+"LocationNorthAmerica" = "America do Norte";
+"LocationBrazil" = "Brasil";
+"LocationLatinAmericaSouth" = "Sul da America Latina";
+"LocationLatinAmericaNorth" = "Norte da America Latina";
+"LocationEuropeEast" = "Leste Europeu";
+"LocationEuropeWest" = "Oeste Europeu";
+"LocationChina" = "China";
+"LocationOceania" = "Oceania";
+"LocationAsiaEast" = "Leste Asiático";
+"LocationAsiaWest" = "Oeste Asiático";
+"LocationAfricaNorth" = "Norte da África";
+"LocationAfricaSouth" = "Sul da África";
+
+"Dota2Description" = "Descrição do Dota 2";
+"LeagueOfLegendsDescription" = "Descrição do League of Legends";
+"CounterStrikeGODescription" = "Descrição do Counter Strike: Global Offensive";
+
+//MARK: - Servers
 "Australia" = "Australia";
-"Europe East" = "Europe East";
-"Europe West" = "Europe West";
+"Europe East" = "Leste Europeu";
+"Europe West" = "Oeste Europeu";
 "Russia" = "Russia";
-"SE Asia" = "SE Asia";
+"SE Asia" = "SE Ásia";
 "South Africa" = "South Africa";
 "South America" = "South America";
 "US East" = "US East";
