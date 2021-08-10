@@ -255,6 +255,10 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
 
         cell?.setUp(title: string)
         
+        if let height = cell?.collectionView.collectionViewLayout.collectionViewContentSize.height {
+            cell?.collectionViewHeight.constant = height
+        }
+        
         var selections = 0
         
         if let onboardingTags = OnboardingTagCategory(rawValue: tag) {
@@ -284,16 +288,18 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
         cell?.collectionView.dataSource = self
         cell?.collectionView.tag = OnboardingTagCategory.games.rawValue
                 
-        let lines = tagGames.count/3
+//        let lines = tagGames.count/3
+//
+//        let width = UIScreen.main.bounds.width * 0.31
+//
+//        let cellHeight = Double(width) * 1.37
+//
+//        let height = CGFloat(cellHeight * Double(lines))
         
-        let width = UIScreen.main.bounds.width * 0.31
-        
-        let cellHeight = Double(width) * 1.37
-        
-        let height = CGFloat(cellHeight * Double(lines))
-        
-        cell?.collectionViewHeight.constant = height
-        
+        if let height = cell?.collectionView.collectionViewLayout.collectionViewContentSize.height {
+            cell?.collectionViewHeight.constant = height
+        }
+                
         return cell
     }
 }
@@ -402,9 +408,10 @@ extension OnboardingRegisterViewController: UICollectionViewDelegate, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        
         return 10
     }
-
+    
 }
 
 extension OnboardingRegisterViewController: UITextFieldDelegate {

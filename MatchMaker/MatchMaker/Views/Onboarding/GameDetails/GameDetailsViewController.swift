@@ -13,8 +13,11 @@ class GameDetailsViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var gameCoverView: UIImageView!
+    @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
     
     var game: Game?
+
+    var didTapDone: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -127,10 +130,13 @@ extension GameDetailsViewController: UITableViewDelegate, UITableViewDataSource 
         let defaultCell = UITableViewCell()
         
         switch gameDetailsSection {
-            case .platforms: return selectorCell(tag: GameDetailsSections.platforms.rawValue) ?? defaultCell
+            case .platforms:
+                return selectorCell(tag: GameDetailsSections.platforms.rawValue) ?? defaultCell
                 
-            case .servers: return selectorCell(tag: GameDetailsSections.servers.rawValue) ?? defaultCell
+            case .servers:
+                return selectorCell(tag: GameDetailsSections.servers.rawValue) ?? defaultCell
         }
+
         
     }
     
@@ -149,8 +155,22 @@ extension GameDetailsViewController: UITableViewDelegate, UITableViewDataSource 
         cell?.collectionView.dataSource = self
         cell?.collectionView.tag = tag
         
+        cell?.requiredLabel.isHidden = false
+        cell?.requiredLabel.textColor = UIColor(named: "LightGray")
+        
+        if let height = cell?.collectionView.collectionViewLayout.collectionViewContentSize.height {
+            cell?.collectionViewHeight.constant = height
+            
+            let contentSize = tableView.contentSize.height + height
+            tableViewHeight.constant = contentSize
+        }
+        
+        
+        
         return cell
     }
+    
+    
 }
 
 extension GameDetailsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
