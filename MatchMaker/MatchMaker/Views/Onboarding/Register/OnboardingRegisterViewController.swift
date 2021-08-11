@@ -7,6 +7,8 @@
 
 import UIKit
 
+//MARK: - OnboardingRegisterViewController Class
+
 class OnboardingRegisterViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
@@ -130,6 +132,8 @@ class OnboardingRegisterViewController: UIViewController {
     }
 }
 
+//MARK: - UITableViewDataSource | UITableViewDelegate
+
 extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -228,7 +232,6 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
         cell.delegate = self
         cell.currentSelectionLabel.text = selectedLocation.string
         
-        // FIXME: alterar para selectedLocation
         if didTapDone && selectedLocation.string.isEmpty {
             cell.buttonView.borderColor = .red
         } else {
@@ -292,6 +295,8 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
         return cell
     }
 }
+
+//MARK: - UICollectionViewDelegate | UICollectionViewDataSource | UICollectionViewDelegateFlowLayout
 
 extension OnboardingRegisterViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -401,6 +406,8 @@ extension OnboardingRegisterViewController: UICollectionViewDelegate, UICollecti
 
 }
 
+//MARK: - UITextViewDelegate
+
 extension OnboardingRegisterViewController: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -425,8 +432,10 @@ extension OnboardingRegisterViewController: UITextFieldDelegate {
     
 }
 
-extension OnboardingRegisterViewController: UITextViewDelegate {
+//MARK: - UITextViewDelegate
 
+extension OnboardingRegisterViewController: UITextViewDelegate {
+    
     func textViewDidEndEditing(_ textView: UITextView) {
         self.descriptionField = textView.text ?? ""
     }
@@ -443,7 +452,11 @@ extension OnboardingRegisterViewController: UITextViewDelegate {
     }
 }
 
+//MARK: - UserAvatarViewDelegate
+
 extension OnboardingRegisterViewController: UserAvatarViewDelegate {
+    
+    
     func didChooseImage() {
         let cell = tableView.cellForRow(at: IndexPath(row: OnboardingFields.profileImage.rawValue, section: 0)) as? ProfileImageTableViewCell
     
@@ -456,29 +469,34 @@ extension OnboardingRegisterViewController: UserAvatarViewDelegate {
     }
 }
 
+//MARK: - PickerCellDelegate | UserLocationDelegate
+
 extension OnboardingRegisterViewController: PickerCellDelegate, UserLocationDelegate {
     
+    //MARK: UserLocationDelegate: Segue
+    
     func didSelect(with location: Locations) {
-        print("modal: \(location)")
         selectedLocation.string = location.description
         selectedLocation.enum = location
         
         tableView.reloadData()
     }
     
+    //MARK: PickerCellDelegate: Segue
+    
     func didChooseLocation(_ sender: UITableViewCell) {
         performSegue(withIdentifier: "toUserLocations", sender: sender)
     }
+    
+    //MARK: PickerCellDelegate: Segue
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toUserLocations" {
             let rootVC = segue.destination as! UINavigationController
             let destination = rootVC.topViewController as! UserLocationViewController
             
-            print("Onboarding: \(selectedLocation)")
             destination.delegate = self
             destination.selectedLocation = selectedLocation.enum
         }
     }
-    
 }
