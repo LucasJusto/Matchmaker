@@ -137,3 +137,23 @@ para você escolher e encontrar jogadores";
 "US North Central" = "US North Central";
 "US South East" = "US South East";
 "US South West" = "US South West";
+
+// MARK: - Home
+// MARK:- Highlight image
+"GamesTitleLabel" = "Jogos";
+"HighlightTitileAboveImage" = "Novo jogo disponível";
+"TitleButtonHiglighAboveImage" = "Encontrar jogadores";
+"RecentNotificationsLabel" = "Notificações recentes";
+
+// MARK:- Frind request cell
+"RejectRequestFriendButtonLabel" = "Rejeitar";
+"AceptRequestFriendButtonLabel" = "Aceitar";
+"NotificationRequestFriendLabel" = "enviou uma solicitação de amizade";
+
+// MARK:- Rate
+"ExplainRateLabel" = "Avalie com base em sua \nexperiência de jogo com o jogador";
+"SkillRateLabel" = "Avaliação de habilidades";
+"BehaviorRateLabel" = "Avaliação de comportamento";
+"ConfirmButtonLabel" = "Confirmar";
+"CancelButtonLabel" = "Cancelar";
+"TitleRateModalView"= "Avaliação";

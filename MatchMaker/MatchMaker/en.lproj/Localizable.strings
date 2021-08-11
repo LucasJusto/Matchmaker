@@ -96,6 +96,7 @@ without using your storage";
 "LocationAsiaWest" = "Asia West";
 "LocationAfricaNorth" = "Africa North";
 "LocationAfricaSouth" = "Africa South";
+"LocationDontKnow" = "I don't know";
 
 "Dota2Description" = "This is the description of Dota 2";
 "LeagueOfLegendsDescription" = "This is the description of League of Legends";
@@ -141,3 +142,28 @@ without using your storage";
 "US North Central" = "US North Central";
 "US South East" = "US South East";
 "US South West" = "US South West";
+
+// MARK:- /Views/GameDetail
+"FindPlayersButton" = "Find players";
+"AddToMyGamesButton" = "Add to my games";
+"PlatformsLabel" = "Platforms";
+"OtherGamesLabel" = "Other Games";
+
+// MARK:- Highlight image
+"GamesTitleLabel" = "Games";
+"HighlightTitileAboveImage" = "New game available";
+"TitleButtonHiglighAboveImage" = "Find players now";
+
+// MARK:- Frind request cell
+"RejectRequestFriendButtonLabel" = "Reject";
+"AceptRequestFriendButtonLabel" = "Acept";
+"NotificationRequestFriendLabel" = "sent you a friend request";
+"RecentNotificationsLabel" = "Recent notifications";
+
+// MARK: - Rate
+"ExplainRateLabel" = "Rate based on your gaming \nexperience with the player";
+"SkillRateLabel" = "Skill rate";
+"BehaviorRateLabel" = "Behavior rate";
+"ConfirmButtonLabel" = "Confirm";
+"CancelButtonLabel" = "Cancel";
+"TitleRateModalView"= "Rate";

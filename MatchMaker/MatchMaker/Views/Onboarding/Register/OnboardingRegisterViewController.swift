@@ -7,6 +7,8 @@
 
 import UIKit
 
+//MARK: - OnboardingRegisterViewController Class
+
 class OnboardingRegisterViewController: UIViewController {
     
     // MARK: - typealias
@@ -570,12 +572,16 @@ extension OnboardingRegisterViewController: GameSelectionDelegate {
 // MARK: - PickerCellDelegate and UserLocalitionDelegate
 extension OnboardingRegisterViewController: PickerCellDelegate, UserLocationDelegate {
     
+    //MARK: UserLocationDelegate: Segue
+    
     func didSelect(with location: Locations) {
         selectedLocation.string = location.description
         selectedLocation.enum = location
         
         tableView.reloadData()
     }
+    
+    //MARK: PickerCellDelegate: Segue
     
     func didChooseLocation(_ sender: UITableViewCell) {
         performSegue(withIdentifier: "toUserLocations", sender: sender)

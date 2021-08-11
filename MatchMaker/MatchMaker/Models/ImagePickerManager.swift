@@ -91,7 +91,9 @@ class ImagePickerManager: NSObject, UINavigationControllerDelegate {
      - returns: Void
      */
     private func openCamera(){
-        viewController?.dismiss(animated: true, completion: nil)
+//        DispatchQueue.main.async {
+//            self.viewController?.dismiss(animated: true, completion: nil)
+//        }
         
         if(UIImagePickerController .isSourceTypeAvailable(.camera)){
             DispatchQueue.main.async {
@@ -123,7 +125,7 @@ class ImagePickerManager: NSObject, UINavigationControllerDelegate {
      */
     private func openGallery(){
         DispatchQueue.main.async {
-            self.viewController?.dismiss(animated: true, completion: nil)
+//            self.viewController?.dismiss(animated: true, completion: nil)
             self.picker.sourceType = .photoLibrary
             self.viewController?.present(self.picker, animated: true, completion: nil)
         }
@@ -141,9 +143,18 @@ class ImagePickerManager: NSObject, UINavigationControllerDelegate {
         
         let selectProfileImage = UIAlertAction(title: "Select a profile picture", style: .default) { [unowned self] (_) in
             DispatchQueue.main.async {
-                self.viewController?.dismiss(animated: true, completion: nil)
+                //self.viewController?.dismiss(animated: true, completion: nil)
+                
+                //old method
                 self.picker.sourceType = .photoLibrary
                 self.viewController?.present(self.picker, animated: true, completion: nil)
+                
+//                var configuration = PHPickerConfiguration(photoLibrary: .shared())
+//                configuration.selectionLimit = 1
+//                configuration.filter = .images
+//
+//                let picker = PHPickerViewController(configuration: configuration)
+//                self.viewController?.present(picker, animated: true, completion: nil)
             }
         }
         actionSheet.addAction(selectProfileImage)
@@ -219,7 +230,15 @@ class ImagePickerManager: NSObject, UINavigationControllerDelegate {
                         return
                     case .limited:
                         DispatchQueue.main.async {
-                            self.openLimitedGallery()
+                            let alertController: UIAlertController = {
+                                let controller = UIAlertController(title: "Warning", message: self.galleryAccessMessage, preferredStyle: .alert)
+                                let action = UIAlertAction(title: "OK", style: .default)
+                                controller.addAction(action)
+                                
+                                return controller
+                            }()
+                            
+                            self.viewController?.present(alertController, animated: true)
                         }
                         return
                     case .notDetermined:
@@ -283,7 +302,17 @@ class ImagePickerManager: NSObject, UINavigationControllerDelegate {
                 
                 return
             case .limited:
-                openLimitedGallery()
+                DispatchQueue.main.async {
+                    let alertController: UIAlertController = {
+                        let controller = UIAlertController(title: "Warning", message: self.galleryAccessMessage, preferredStyle: .alert)
+                        let action = UIAlertAction(title: "OK", style: .default)
+                        controller.addAction(action)
+                        
+                        return controller
+                    }()
+                    
+                    self.viewController?.present(alertController, animated: true)
+                }
                 return
             @unknown default:
                 DispatchQueue.main.async {
@@ -390,13 +419,21 @@ extension ImagePickerManager: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: nil)
         
-        guard let image = info[.originalImage] as? UIImage,
-              let imageURL = info[.imageURL] as? URL
+        guard let image = info[.originalImage] as? UIImage
         else {
             fatalError("Expected a dictionary containing an image and the URL of the image, but was provided the following: \(info)")
         }
         
-        pickImageCallback?(image, imageURL)
+        var imageURL = info[.imageURL] as? URL
+        
+        if imageURL == nil,
+           let cacheURL = try? FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true) {
+            
+            imageURL = cacheURL.appendingPathComponent(UUID().uuidString)
+            try? image.jpegData(compressionQuality: 1)?.write(to: imageURL!)
+        }
+
+        pickImageCallback?(image, imageURL!)
     }
 }
 
