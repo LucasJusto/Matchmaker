@@ -68,6 +68,11 @@
 		B44F62F426C3178500AD3E8A /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44F62EF26C3178500AD3E8A /* DiscoverViewController.swift */; };
 		B44F62F526C3178500AD3E8A /* DiscoverShowMoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44F62F026C3178500AD3E8A /* DiscoverShowMoreCollectionViewCell.swift */; };
 		B44F62F626C3178500AD3E8A /* Discover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B44F62F126C3178500AD3E8A /* Discover.storyboard */; };
+		B4E44EA526C44A04005BA98C /* Social.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4E44EA026C44A04005BA98C /* Social.storyboard */; };
+		B4E44EA626C44A04005BA98C /* SocialTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E44EA126C44A04005BA98C /* SocialTableViewCell.swift */; };
+		B4E44EA726C44A04005BA98C /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E44EA226C44A04005BA98C /* SocialViewController.swift */; };
+		B4E44EA826C44A04005BA98C /* SocialCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E44EA326C44A04005BA98C /* SocialCollectionViewCell.swift */; };
+		B4E44EA926C44A04005BA98C /* SocialShowMoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E44EA426C44A04005BA98C /* SocialShowMoreCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -136,6 +141,11 @@
 		B44F62EF26C3178500AD3E8A /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		B44F62F026C3178500AD3E8A /* DiscoverShowMoreCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverShowMoreCollectionViewCell.swift; sourceTree = "<group>"; };
 		B44F62F126C3178500AD3E8A /* Discover.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Discover.storyboard; sourceTree = "<group>"; };
+		B4E44EA026C44A04005BA98C /* Social.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Social.storyboard; sourceTree = "<group>"; };
+		B4E44EA126C44A04005BA98C /* SocialTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialTableViewCell.swift; sourceTree = "<group>"; };
+		B4E44EA226C44A04005BA98C /* SocialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
+		B4E44EA326C44A04005BA98C /* SocialCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialCollectionViewCell.swift; sourceTree = "<group>"; };
+		B4E44EA426C44A04005BA98C /* SocialShowMoreCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialShowMoreCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -279,6 +289,7 @@
 				1B4E87BC26AF434100A51AF1 /* Profile */,
 				89A912FD26AA675100D3B1D2 /* Onboarding */,
 				B44F62EC26C3178500AD3E8A /* Discover */,
+				B4E44E9F26C44A04005BA98C /* Social */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -356,6 +367,18 @@
 			path = Discover;
 			sourceTree = "<group>";
 		};
+		B4E44E9F26C44A04005BA98C /* Social */ = {
+			isa = PBXGroup;
+			children = (
+				B4E44EA026C44A04005BA98C /* Social.storyboard */,
+				B4E44EA226C44A04005BA98C /* SocialViewController.swift */,
+				B4E44EA126C44A04005BA98C /* SocialTableViewCell.swift */,
+				B4E44EA326C44A04005BA98C /* SocialCollectionViewCell.swift */,
+				B4E44EA426C44A04005BA98C /* SocialShowMoreCollectionViewCell.swift */,
+			);
+			path = Social;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -416,6 +439,7 @@
 			files = (
 				1B4E87CA26B0556C00A51AF1 /* RoundedRectangleCollectionView.xib in Resources */,
 				1B4E87BB26AF3E5200A51AF1 /* ProfileTab.storyboard in Resources */,
+				B4E44EA526C44A04005BA98C /* Social.storyboard in Resources */,
 				1B767CC826B1D0E200EA4588 /* TitleCollectionView.xib in Resources */,
 				1B4E87C126AF62D800A51AF1 /* ProfileRatingView.xib in Resources */,
 				489555EA26A76AC3005F88A2 /* LaunchScreen.storyboard in Resources */,
@@ -447,6 +471,8 @@
 				1B1C6D2126BED8DE00B561C6 /* UserLocationViewController.swift in Sources */,
 				89AC95BB26B09E3300EC92F6 /* TextViewField.swift in Sources */,
 				892A642C26B1D90D00B375CC /* SelectableTagCollectionViewCell.swift in Sources */,
+				B4E44EA926C44A04005BA98C /* SocialShowMoreCollectionViewCell.swift in Sources */,
+				B4E44EA626C44A04005BA98C /* SocialTableViewCell.swift in Sources */,
 				895A604E26AB48C300BE18C9 /* UIView+Extensions.swift in Sources */,
 				489555DE26A76AC1005F88A2 /* AppDelegate.swift in Sources */,
 				89AC95BD26B0A79F00EC92F6 /* String+Extensions.swift in Sources */,
@@ -476,7 +502,9 @@
 				89CC467726B9DF69001B7C13 /* ButtonView.swift in Sources */,
 				1B5F81A826B4DF7B00D19747 /* ImagePickerManager.swift in Sources */,
 				1B767CCE26B1D80100EA4588 /* TitleCell.swift in Sources */,
+				B4E44EA726C44A04005BA98C /* SocialViewController.swift in Sources */,
 				89A9130426AA6F0500D3B1D2 /* OnboardingCollectionViewCell.swift in Sources */,
+				B4E44EA826C44A04005BA98C /* SocialCollectionViewCell.swift in Sources */,
 				1B767CCA26B1D10500EA4588 /* TitleCollectionView.swift in Sources */,
 				489555E026A76AC1005F88A2 /* SceneDelegate.swift in Sources */,
 				1B767CB526B0864900EA4588 /* RoundedRectangleViewCell.swift in Sources */,
