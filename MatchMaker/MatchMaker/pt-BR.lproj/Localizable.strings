@@ -40,6 +40,7 @@ para você escolher e encontrar jogadores";
 "onboarding5NameLabel" = "Nome";
 "onboarding5UsernameLabel" = "Username";
 "onboarding5DescriptionLabel" = "Descrição";
+"onboarding5DescriptionPlaceholder" = "Fale sobre você e informe suas formas de contato para outros jogadores";
 "onboarding5LocationLabel" = "Localização";
 "onboarding5ChangePickerLabel" = "Mudar";
 "onboarding5LanguagesLabel" = "Linguas";
@@ -51,13 +52,16 @@ para você escolher e encontrar jogadores";
 "onboarding5AlertTitleLabel" = "Campos vazios";
 "onboarding5AlertTextLabel" = "Você precisa preencher os campos obrigatórios para criar seu perfil.";
 "onboarding5AlertButtonLabel" = "Ok";
-
+"onboarding5RequiredLabel" = "Obrigatório";
 
 // MARK:- ONBOARDING 5 - Keyboard
 "onboarding5KeyboardButton" = "Pronto";
 
 // MARK:- ONBOARDING GAME
 "onboardingGameServersLabel" = "Servidores";
+"onboardingGameDoneButtonLabel" = "Pronto";
+"onboardingGameDeselectButtonLabel" = "Deselecionar";
+
 
 // MARK:- Platforms
 "PlatformPC" = "PC";

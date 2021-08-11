@@ -45,6 +45,7 @@ without using your storage";
 "onboarding5NameLabel" = "Name";
 "onboarding5UsernameLabel" = "Username";
 "onboarding5DescriptionLabel" = "Description";
+"onboarding5DescriptionPlaceholder" = "Put a description about yourself and also provide a contact for other players.";
 "onboarding5LocationLabel" = "Location";
 "onboarding5ChangePickerLabel" = "Change";
 "onboarding5LanguagesLabel" = "Languages";
@@ -56,12 +57,15 @@ without using your storage";
 "onboarding5AlertTitleLabel" = "Empty Fields";
 "onboarding5AlertTextLabel" = "You need to fill the required fields to create your profile";
 "onboarding5AlertButtonLabel" = "Ok";
+"onboarding5RequiredLabel" = "Required";
 
 // MARK:- ONBOARDING 5 - Keyboard
 "onboarding5KeyboardButton" = "Done";
 
 // MARK:- ONBOARDING GAME
 "onboardingGameServersLabel" = "Servers";
+"onboardingGameDoneButtonLabel" = "Done";
+"onboardingGameDeselectButtonLabel" = "Deselect";
 
 // MARK:- Platforms
 "PlatformPC" = "PC";

@@ -106,11 +106,7 @@ class OnboardingRegisterViewController: UIViewController {
     var imagePicker: ImagePickerManager = ImagePickerManager()
     var profileImageUrl: URL?
     
-    var selectedGame: GameOption? {
-        didSet {
-            print(selectedGame)
-        }
-    }
+    var selectedGame: GameOption?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -148,21 +144,6 @@ class OnboardingRegisterViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "selectedGame" {
-//
-//            if let navController = segue.destination as? UINavigationController {
-//
-//                if let childVC = navController.topViewController as? GameDetailsViewController {
-//
-//                    if let game = selectedGame {
-//                        childVC.game = game
-//                    }
-//
-//                    childVC.delegate = self
-//                }
-//            }
-//        }
-        
         if segue.identifier == "selectedGame" {
             let rootVC = segue.destination as! UINavigationController
             let destination = rootVC.topViewController as! GameDetailsViewController
@@ -269,7 +250,7 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
                 return UITableViewCell()
         }
         
-        cell.placeholder = "Put a description about yourself and also provide a contact for other players."
+        cell.placeholder = NSLocalizedString("onboarding5DescriptionPlaceholder", comment: "description placeholder")
         
         if descriptionField.isEmpty {
             descriptionField = cell.placeholder
@@ -298,7 +279,6 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
         cell.delegate = self
         cell.currentSelectionLabel.text = selectedLocation.string
         
-        // FIXME: alterar para selectedLocation
         if didTapDone && selectedLocation.string.isEmpty {
             cell.buttonView.borderColor = .red
         } else {
@@ -352,14 +332,6 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
         cell?.collectionView.delegate = self
         cell?.collectionView.dataSource = self
         cell?.collectionView.tag = OnboardingTagCategory.games.rawValue
-                
-//        let lines = tagGames.count/3
-//
-//        let width = UIScreen.main.bounds.width * 0.31
-//
-//        let cellHeight = Double(width) * 1.37
-//
-//        let height = CGFloat(cellHeight * Double(lines))
         
         if let height = cell?.collectionView.collectionViewLayout.collectionViewContentSize.height {
             cell?.collectionViewHeight.constant = height
@@ -395,8 +367,11 @@ extension OnboardingRegisterViewController: UICollectionViewDelegate, UICollecti
                 let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "selectable-tag-cell", for: indexPath) as! SelectableTagCollectionViewCell
                 
                 let supportedLanguage = tagLanguages[indexPath.row]
+                
                 collectionCell.labelView.text = supportedLanguage.option
+                
                 collectionCell.containerView.backgroundColor = supportedLanguage.isFavorite ? UIColor(named: "Primary") : .clear
+                
                 return collectionCell
 
                 
@@ -405,8 +380,11 @@ extension OnboardingRegisterViewController: UICollectionViewDelegate, UICollecti
                 let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "selectable-tag-cell", for: indexPath) as! SelectableTagCollectionViewCell
                 
                 let supportedPlatform = tagPlatforms[indexPath.row]
+                
                 collectionCell.labelView.text = supportedPlatform.option
+                
                 collectionCell.containerView.backgroundColor = supportedPlatform.isFavorite ? UIColor(named: "Primary") : .clear
+                
                 return collectionCell
 
             case .games:
@@ -509,7 +487,7 @@ extension OnboardingRegisterViewController: UITextViewDelegate {
         self.descriptionField = textView.text ?? ""
         
         if textView.text.isEmpty {
-            textView.text = "Put a description about yourself and also provide a contact for other players."
+            textView.text = NSLocalizedString("onboarding5DescriptionPlaceholder", comment: "description placeholder")
             textView.textColor = .lightGray
         }
     }

@@ -591,12 +591,15 @@
                                                         </collectionViewCell>
                                                     </cells>
                                                 </collectionView>
-                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Required" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yej-2V-RYa">
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Required" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yej-2V-RYa" customClass="LocalizableLabel" customModule="MatchMaker" customModuleProvider="target">
                                                     <rect key="frame" x="167" y="9" width="43" height="12"/>
                                                     <color key="tintColor" systemColor="systemRedColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" systemColor="systemRedColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="onboarding5RequiredLabel"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -668,9 +671,8 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ePO-mN-OUr">
                                                                         <rect key="frame" x="0.0" y="125" width="110" height="26"/>
                                                                         <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Selected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nym-WQ-E5J" customClass="LocalizableLabel" customModule="MatchMaker" customModuleProvider="target">
-                                                                                <rect key="frame" x="31" y="6" width="50" height="14"/>
-                                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nym-WQ-E5J" customClass="LocalizableLabel" customModule="MatchMaker" customModuleProvider="target">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="110" height="26"/>
                                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
@@ -681,7 +683,11 @@
                                                                         </subviews>
                                                                         <color key="backgroundColor" name="Primary"/>
                                                                         <constraints>
+                                                                            <constraint firstAttribute="bottom" secondItem="Nym-WQ-E5J" secondAttribute="bottom" id="FwY-G4-A2k"/>
+                                                                            <constraint firstItem="Nym-WQ-E5J" firstAttribute="top" secondItem="ePO-mN-OUr" secondAttribute="top" id="MGy-3J-fpv"/>
+                                                                            <constraint firstItem="Nym-WQ-E5J" firstAttribute="leading" secondItem="ePO-mN-OUr" secondAttribute="leading" id="ZAU-pJ-S0s"/>
                                                                             <constraint firstAttribute="height" constant="26" id="gV0-c6-kpn"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="Nym-WQ-E5J" secondAttribute="trailing" id="liz-Ha-NuS"/>
                                                                         </constraints>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -822,7 +828,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eSR-y9-UTp">
                                 <rect key="frame" x="0.0" y="742" width="414" height="100"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgO-bz-bP3">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgO-bz-bP3" customClass="LocalizableButtonLabel" customModule="MatchMaker" customModuleProvider="target">
                                         <rect key="frame" x="20" y="12" width="374" height="38"/>
                                         <color key="backgroundColor" name="Primary"/>
                                         <inset key="contentEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
@@ -833,6 +839,7 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="8"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="onboardingGameDoneButtonLabel"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="didTapDone:" destination="Bk8-Ao-2Z6" eventType="touchUpInside" id="7Qe-N9-fxv"/>
@@ -841,7 +848,7 @@
                                     <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Ful-KG-CO2">
                                         <rect key="frame" x="20" y="12" width="374" height="38"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2pk-8h-vAq">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2pk-8h-vAq" customClass="LocalizableButtonLabel" customModule="MatchMaker" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="182" height="38"/>
                                                 <color key="backgroundColor" name="LightGray2"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
@@ -853,12 +860,13 @@
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="8"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="onboardingGameDeselectButtonLabel"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="didTapDeselect:" destination="Bk8-Ao-2Z6" eventType="touchUpInside" id="Mmc-DJ-5Xu"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xch-ko-RtU">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xch-ko-RtU" customClass="LocalizableButtonLabel" customModule="MatchMaker" customModuleProvider="target">
                                                 <rect key="frame" x="192" y="0.0" width="182" height="38"/>
                                                 <color key="backgroundColor" name="Primary"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
@@ -870,6 +878,7 @@
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="8"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="onboardingGameDoneButtonLabel"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="didTapDone2:" destination="Bk8-Ao-2Z6" eventType="touchUpInside" id="u92-If-7bD"/>
@@ -968,12 +977,15 @@
                                                         </collectionViewCell>
                                                     </cells>
                                                 </collectionView>
-                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Required" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zid-8h-oRk">
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Required" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zid-8h-oRk" customClass="LocalizableLabel" customModule="MatchMaker" customModuleProvider="target">
                                                     <rect key="frame" x="185" y="9" width="43" height="12"/>
                                                     <color key="tintColor" systemColor="systemRedColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" systemColor="systemRedColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="onboarding5RequiredLabel"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1103,7 +1115,7 @@
             <color red="0.24313725490196078" green="0.24313725490196078" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Primary">
-            <color red="0.3880000114440918" green="0.090000003576278687" blue="0.88599997758865356" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.38823529411764707" green="0.090196078431372548" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
