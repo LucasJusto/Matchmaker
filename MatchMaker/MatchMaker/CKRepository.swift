@@ -130,7 +130,7 @@ public class CKRepository {
     public static func getUserId(completion: @escaping (String?) -> Void) {
         container.fetchUserRecordID { record, error in
             if let ckError = error as? CKError {
-                print("error: \(ckError)")
+                CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
             }
             completion("id\(record?.recordName ?? "")")
         }
@@ -150,6 +150,10 @@ public class CKRepository {
         let query = CKQuery(recordType: UserTable.recordType.description, predicate: predicate)
         
         publicDB.perform(query, inZoneWith: nil) { result, error in
+            if let ckError = error as? CKError {
+                CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+            }
+            
             if result?.count == 0 {
                 completion(false)
                 return
@@ -183,8 +187,8 @@ public class CKRepository {
         record.setObject(platformsIds as CKRecordValue?, forKey: UserTable.selectedPlatforms.description)
         
         publicDB.save(record) { savedRecord, error in
-            if error != nil {
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: UserTable.storeFailMessage.description), object: record)
+            if let ckError = error as? CKError {
+                CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
             }
         }
         
@@ -211,8 +215,8 @@ public class CKRepository {
             record.setObject(selectedServers as CKRecordValue?, forKey: UserGamesTable.selectedServers.description)
             
             publicDB.save(record) { savedRecord, error in
-                if error != nil {
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: UserGamesTable.storeFailMessage.description), object: record)
+                if let ckError = error as? CKError {
+                    CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
                 }
             }
         }
@@ -224,6 +228,10 @@ public class CKRepository {
         let query = CKQuery(recordType: UserTable.recordType.description, predicate: predicate)
         
         publicDB.perform(query, inZoneWith: nil) { result, error in
+            if let ckError = error as? CKError {
+                CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+            }
+            
             if let resultNotNull = result {
                 if resultNotNull.count > 0 {
                     let id = result?[0].value(forKey: UserTable.id.description) as! String
@@ -280,8 +288,8 @@ public class CKRepository {
         }
         
         publicDB.save(record) { record, error in
-            if error != nil {
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: FriendsTable.storeFailMessage.description), object: record)
+            if let ckError = error as? CKError {
+                CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
             }
         }
     }
@@ -292,14 +300,18 @@ public class CKRepository {
         let recordID2 = CKRecord.ID(recordName:"\(id2)\(id1)")
         
         publicDB.delete(withRecordID: recordID) { id, error in
-            if error != nil {
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: FriendsTable.storeFailMessage.description), object: id)
+            if id != nil {
+                if let ckError = error as? CKError {
+                    CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                }
             }
         }
         
         publicDB.delete(withRecordID: recordID2) { id, error in
-            if error != nil {
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: FriendsTable.storeFailMessage.description), object: id)
+            if id != nil {
+                if let ckError = error as? CKError {
+                    CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                }
             }
         }
     }
@@ -385,6 +397,10 @@ public class CKRepository {
             
             //filling the array with results to the search (filtered)
             publicDB.perform(query, inZoneWith: nil) { results, error in
+                if let ckError = error as? CKError {
+                    CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                }
+                
                 if let resultsNotNull = results {
                     if resultsNotNull.count > 0 {
                         for i in 0...resultsNotNull.count - 1 {
@@ -496,6 +512,10 @@ public class CKRepository {
         let gamesQuery = CKQuery(recordType: UserGamesTable.recordType.description, predicate: gamesPredicate)
         
         publicDB.perform(gamesQuery, inZoneWith: nil) { results, error in
+            if let ckError = error as? CKError {
+                CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+            }
+            
             var games: [Game] = [Game]()
             let allGames = Games.buildGameArray()
             if let userGames = results {
@@ -529,6 +549,10 @@ public class CKRepository {
                 let blockedPredicate = NSPredicate(format: "userId == %@", idNotNull)
                 let blockedQuery = CKQuery(recordType: BlockedTable.recordType.description, predicate: blockedPredicate)
                 publicDB.perform(blockedQuery, inZoneWith: nil) { results, error in
+                    if let ckError = error as? CKError {
+                        CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                    }
+                    
                     if let resultsNotNull = results {
                         for result in resultsNotNull {
                             if let blockedUserId = result.value(forKey: BlockedTable.blockedId.description) as? String {
@@ -550,30 +574,32 @@ public class CKRepository {
         }
     }
     
-    static func errorAlertHandler(errorCodeValue: CKError.Code){
+    static func errorAlertHandler(CKErrorCode: CKError.Code){
         
         let notLoggedInTitle = NSLocalizedString("CKErrorNotLoggedInTitle", comment: "Not logged in iCloud")
-        let notLoggedInMessage = NSLocalizedString("CKErrorNotLoggedInMessage", comment: "You need to be logged in at iCloud to use this app.")
+        let notLoggedInMessage = NSLocalizedString("CKErrorNotLoggedInMessage", comment: "You need to be logged in iCloud to use this app.")
         
         let defaultTitle = NSLocalizedString("CKErrorDefaultTitle", comment: "An error ocurred")
         let defaultMessage = NSLocalizedString("CKErrorDefaultMessage", comment: "Something unexpected ocurred, your data may not have been saved.")
         
-        let keyWindow = UIApplication.shared.windows.first(where: \.isKeyWindow)
-        var topController = keyWindow?.rootViewController
-                    
-        // get topmost view controller to present alert
-        while let presentedViewController = topController?.presentedViewController {
-            topController = presentedViewController
+        //getting the top view controller
+        DispatchQueue.main.async {
+            let keyWindow = UIApplication.shared.windows.first(where: \.isKeyWindow)
+            var topController = keyWindow?.rootViewController
+                        
+            // get topmost view controller to present alert
+            while let presentedViewController = topController?.presentedViewController {
+                topController = presentedViewController
+            }
+            
+            switch CKErrorCode {
+                case .notAuthenticated:
+                    //user is not logged in iCloud
+                    topController?.present(prepareAlert(title: notLoggedInTitle, message: notLoggedInMessage), animated: true)
+                default:
+                    topController?.present(prepareAlert(title: defaultTitle, message: defaultMessage), animated: true)
+            }
         }
-
-        switch errorCodeValue {
-            case .notAuthenticated:
-                //user is not logged in iCloud
-                topController?.present(prepareAlert(title: notLoggedInTitle, message: notLoggedInMessage), animated: true)
-            default:
-                topController?.present(prepareAlert(title: defaultTitle, message: defaultMessage), animated: true)
-        }
-        
     }
     
     private static func prepareAlert(title: String, message: String) -> UIAlertController{
