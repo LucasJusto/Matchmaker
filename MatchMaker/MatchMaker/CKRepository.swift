@@ -132,7 +132,9 @@ public class CKRepository {
             if let ckError = error as? CKError {
                 CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
             }
-            completion("id\(record?.recordName ?? "")")
+            if let id = record?.recordName {
+                completion("id\(id)")
+            }
         }
     }
     
@@ -592,9 +594,14 @@ public class CKRepository {
                 topController = presentedViewController
             }
             
+            let isAlertOn = topController is UIAlertController
+            
+            guard !isAlertOn else { return }
+            
             switch CKErrorCode {
                 case .notAuthenticated:
                     //user is not logged in iCloud
+                    print("ABOBORA \(topController)")
                     topController?.present(prepareAlert(title: notLoggedInTitle, message: notLoggedInMessage), animated: true)
                 default:
                     topController?.present(prepareAlert(title: defaultTitle, message: defaultMessage), animated: true)
