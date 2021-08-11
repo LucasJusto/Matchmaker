@@ -63,6 +63,10 @@
 		89AC95BB26B09E3300EC92F6 /* TextViewField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AC95BA26B09E3300EC92F6 /* TextViewField.swift */; };
 		89AC95BD26B0A79F00EC92F6 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AC95BC26B0A79F00EC92F6 /* String+Extensions.swift */; };
 		89CC467726B9DF69001B7C13 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CC467626B9DF69001B7C13 /* ButtonView.swift */; };
+		B44F62EA26C30EF100AD3E8A /* GameDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B44F62E826C30EF100AD3E8A /* GameDetail.storyboard */; };
+		B44F62EB26C30EF100AD3E8A /* GameDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44F62E926C30EF100AD3E8A /* GameDetailViewController.swift */; };
+		B4E44E9D26C43A03005BA98C /* RateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E44E9B26C43A03005BA98C /* RateViewController.swift */; };
+		B4E44E9E26C43A03005BA98C /* Rate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4E44E9C26C43A03005BA98C /* Rate.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -126,6 +130,10 @@
 		89AC95BA26B09E3300EC92F6 /* TextViewField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewField.swift; sourceTree = "<group>"; };
 		89AC95BC26B0A79F00EC92F6 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		89CC467626B9DF69001B7C13 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		B44F62E826C30EF100AD3E8A /* GameDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GameDetail.storyboard; sourceTree = "<group>"; };
+		B44F62E926C30EF100AD3E8A /* GameDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDetailViewController.swift; sourceTree = "<group>"; };
+		B4E44E9B26C43A03005BA98C /* RateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateViewController.swift; sourceTree = "<group>"; };
+		B4E44E9C26C43A03005BA98C /* Rate.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Rate.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,6 +276,8 @@
 				1B4E87BF26AF62A600A51AF1 /* Xibs */,
 				1B4E87BC26AF434100A51AF1 /* Profile */,
 				89A912FD26AA675100D3B1D2 /* Onboarding */,
+				B44F62E726C30EF100AD3E8A /* GameDetail */,
+				B4E44E9A26C43A03005BA98C /* Rate */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -333,6 +343,24 @@
 			path = IBDesignables;
 			sourceTree = "<group>";
 		};
+		B44F62E726C30EF100AD3E8A /* GameDetail */ = {
+			isa = PBXGroup;
+			children = (
+				B44F62E826C30EF100AD3E8A /* GameDetail.storyboard */,
+				B44F62E926C30EF100AD3E8A /* GameDetailViewController.swift */,
+			);
+			path = GameDetail;
+			sourceTree = "<group>";
+		};
+		B4E44E9A26C43A03005BA98C /* Rate */ = {
+			isa = PBXGroup;
+			children = (
+				B4E44E9B26C43A03005BA98C /* RateViewController.swift */,
+				B4E44E9C26C43A03005BA98C /* Rate.storyboard */,
+			);
+			path = Rate;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -391,6 +419,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4E44E9E26C43A03005BA98C /* Rate.storyboard in Resources */,
 				1B4E87CA26B0556C00A51AF1 /* RoundedRectangleCollectionView.xib in Resources */,
 				1B4E87BB26AF3E5200A51AF1 /* ProfileTab.storyboard in Resources */,
 				1B767CC826B1D0E200EA4588 /* TitleCollectionView.xib in Resources */,
@@ -400,6 +429,7 @@
 				1B767CBD26B10EA500EA4588 /* SmallLabeledImageCollectionView.xib in Resources */,
 				1B767CB826B0AE4600EA4588 /* UserAvatarView.xib in Resources */,
 				1B1C6D1F26BED6DB00B561C6 /* UserLocationStoryboard.storyboard in Resources */,
+				B44F62EA26C30EF100AD3E8A /* GameDetail.storyboard in Resources */,
 				1B767CCC26B1D71D00EA4588 /* TitleViewCell.xib in Resources */,
 				892FE5DD26AA010A004B4F7F /* Onboarding.storyboard in Resources */,
 				892FE5BF26A9E345004B4F7F /* Localizable.strings in Resources */,
@@ -422,6 +452,7 @@
 				1B767CBF26B10F5500EA4588 /* SmallLabeledImageCollectionView.swift in Sources */,
 				1B1C6D2126BED8DE00B561C6 /* UserLocationViewController.swift in Sources */,
 				89AC95BB26B09E3300EC92F6 /* TextViewField.swift in Sources */,
+				B4E44E9D26C43A03005BA98C /* RateViewController.swift in Sources */,
 				892A642C26B1D90D00B375CC /* SelectableTagCollectionViewCell.swift in Sources */,
 				895A604E26AB48C300BE18C9 /* UIView+Extensions.swift in Sources */,
 				489555DE26A76AC1005F88A2 /* AppDelegate.swift in Sources */,
@@ -448,6 +479,7 @@
 				895A605026AB56A100BE18C9 /* UILabel+Extensions.swift in Sources */,
 				89CC467726B9DF69001B7C13 /* ButtonView.swift in Sources */,
 				1B5F81A826B4DF7B00D19747 /* ImagePickerManager.swift in Sources */,
+				B44F62EB26C30EF100AD3E8A /* GameDetailViewController.swift in Sources */,
 				1B767CCE26B1D80100EA4588 /* TitleCell.swift in Sources */,
 				89A9130426AA6F0500D3B1D2 /* OnboardingCollectionViewCell.swift in Sources */,
 				1B767CCA26B1D10500EA4588 /* TitleCollectionView.swift in Sources */,

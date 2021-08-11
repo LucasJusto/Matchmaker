@@ -6,27 +6,41 @@
 //
 
 import UIKit
+//MARK: - UserLocationDelegate Protocol
 
 protocol UserLocationDelegate: AnyObject {
+    /**
+    The equivalent of a "backwards segue". In order to send information one screen back.
+    
+     
+    - Parameters:
+        - location: the user's selected location.
+     
+    - Returns: Void
+     */
     func didSelect(with location: Locations)
 }
 
+//MARK: - UserLocationViewController Class
+
 class UserLocationViewController: UIViewController {
 
+    //MARK: UserLocationViewController Variables Setup
     @IBOutlet weak var tableView: UITableView!
     
+    weak var delegate: UserLocationDelegate?
+
     private var cellIdentifier: String = "locationCell"
-    
     private var selectedIndexPath: IndexPath? {
         guard let index = locations.firstIndex(of: selectedLocation) else { return nil }
         let indexPath = IndexPath(row: index, section: 0)
         return indexPath
     }
     
-    weak var delegate: UserLocationDelegate?
     var locations: [Locations] = []
     var selectedLocation: Locations = .brazil
     
+    //MARK: UserLocationViewController Class Setup
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -50,6 +64,8 @@ class UserLocationViewController: UIViewController {
     
 }
 
+//MARK: - UITableViewDelegate
+
 extension UserLocationViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -69,6 +85,8 @@ extension UserLocationViewController: UITableViewDelegate {
         selectedLocation = location
     }
 }
+
+//MARK: - UITableViewDataSource
 
 extension UserLocationViewController: UITableViewDataSource {
     
