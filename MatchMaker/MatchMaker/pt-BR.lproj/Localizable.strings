@@ -10,9 +10,10 @@
 
 //MARK: - CKErrorAlert
 "CKErrorNotLoggedInTitle" = "Não logado no iCloud";
-"CKErrorNotLoggedInMessage" = "Você precisa estar logado no iCloud para utilizar este aplicativo.";
+"CKErrorNotLoggedInMessage" = "Você precisa estar logado no iCloud para utilizar este aplicativo. Por favor feche o aplicativo e faça login no iCloud antes de abri-lo novamente.";
 "CKErrorDefaultTitle" = "Um erro ocorreu";
 "CKErrorDefaultMessage" = "Algo inesperado ocorreu, talvez seus dados não tenham sido salvos.";
+"CKErrorAlertButtonLabel" = "Ok";
 
 // MARK:- ONBOARDING 1
 "onboarding1Title" = "Welcome to";

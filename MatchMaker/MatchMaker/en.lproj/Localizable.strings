@@ -10,9 +10,10 @@
 
 //MARK: - CKErrorAlert
 "CKErrorNotLoggedInTitle" = "Not logged in iCloud";
-"CKErrorNotLoggedInMessage" = "You need to be logged in at iCloud to use this app.";
+"CKErrorNotLoggedInMessage" = "You need to be logged in iCloud to use this app. Please close this app and login iCloud before opening it again.";
 "CKErrorDefaultTitle" = "An error ocurred";
 "CKErrorDefaultMessage" = "Something unexpected ocurred, your data may not have been saved.";
+"CKErrorAlertButtonLabel" = "Ok";
 
 //MARK: - User
 "UserBehaviour" = "Behaviour";
