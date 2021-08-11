@@ -101,9 +101,8 @@ class OnboardingRegisterViewController: UIViewController {
         } else {
             self.tableView.reloadData()
         }
-
         
-//        CKRepository.setOnboardingInfo(name: self.nameField, nickname: self.usernameField, photoURL: nil, location: Locations.africaNorth, description: self.descriptionField, languages: languages, selectedPlatforms: platforms, selectedGames: games)
+        CKRepository.setOnboardingInfo(name: self.nameField, nickname: self.usernameField, photoURL: nil, location: Locations.africaNorth, description: self.descriptionField, languages: languages, selectedPlatforms: platforms, selectedGames: games)
     }
     
     func alertEmptyFields() -> UIAlertController {
