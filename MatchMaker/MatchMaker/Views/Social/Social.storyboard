@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -67,16 +68,16 @@
                                                             </constraints>
                                                         </imageView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="hsx-3B-B9b" userLabel="UserInfo">
-                                                            <rect key="frame" x="45" y="1.5" width="167" height="33.5"/>
+                                                            <rect key="frame" x="45" y="1.5" width="237" height="33.5"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Marselo da Silva" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="od5-bB-aed" userLabel="Name">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="167" height="20.5"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Marselo da Silva" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="od5-bB-aed" userLabel="Name">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="237" height="20.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@gl4ss3s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MjN-ub-148" userLabel="@">
-                                                                    <rect key="frame" x="0.0" y="22.5" width="167" height="11"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="@gl4ss3s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MjN-ub-148" userLabel="@">
+                                                                    <rect key="frame" x="0.0" y="22.5" width="237" height="11"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="9"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
@@ -92,8 +93,8 @@
                                                                 <constraint firstItem="od5-bB-aed" firstAttribute="top" secondItem="hsx-3B-B9b" secondAttribute="top" id="wfe-ED-sJf"/>
                                                             </constraints>
                                                         </stackView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="IBy-Er-Baz" userLabel="Button">
-                                                            <rect key="frame" x="222" y="3" width="120" height="30"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="IBy-Er-Baz" userLabel="Button">
+                                                            <rect key="frame" x="292" y="3" width="50" height="30"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lm6-bp-ybe">
                                                                     <rect key="frame" x="0.0" y="0.0" width="20" height="30"/>
@@ -103,15 +104,15 @@
                                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <state key="normal" image="person.circle" catalog="system"/>
                                                                 </button>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gEM-jJ-AMW">
-                                                                    <rect key="frame" x="30" y="0.0" width="90" height="30"/>
-                                                                    <color key="backgroundColor" name="Primary"/>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gEM-jJ-AMW" userLabel="Message">
+                                                                    <rect key="frame" x="30" y="0.0" width="20" height="30"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="90" id="wfg-SK-EYf"/>
                                                                     </constraints>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                                    <state key="normal" title="Add to friends">
+                                                                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <state key="normal">
                                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <imageReference key="image" image="message" catalog="system" renderingMode="template"/>
                                                                     </state>
                                                                 </button>
                                                             </subviews>
@@ -285,11 +286,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="51.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="kzw-lK-lHc">
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="kzw-lK-lHc">
                                                     <rect key="frame" x="16" y="8" width="342" height="35.5"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="fNH-1U-Sf8">
-                                                            <rect key="frame" x="0.0" y="0.0" width="167" height="35.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="244" height="35.5"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hsB-Hp-10v" userLabel="Profile image">
                                                                     <rect key="frame" x="0.0" y="0.0" width="35" height="35.5"/>
@@ -300,16 +301,16 @@
                                                                     </constraints>
                                                                 </imageView>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="buD-p8-Wnk" userLabel="UserInfo">
-                                                                    <rect key="frame" x="43" y="0.0" width="124" height="35.5"/>
+                                                                    <rect key="frame" x="43" y="0.0" width="201" height="35.5"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Marselo da Silva" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vbm-Jc-URs" userLabel="Name">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="124" height="20.5"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="201" height="20.5"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="@gl4ss3s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIQ-pb-BbF" userLabel="@">
-                                                                            <rect key="frame" x="0.0" y="22.5" width="124" height="13"/>
+                                                                            <rect key="frame" x="0.0" y="22.5" width="201" height="13"/>
                                                                             <fontDescription key="fontDescription" type="system" weight="thin" pointSize="9"/>
                                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
@@ -389,13 +390,13 @@
                                                     </constraints>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Mhe-I2-FE1" userLabel="Buttons">
-                                                    <rect key="frame" x="170" y="8" width="188" height="35.5"/>
+                                                    <rect key="frame" x="230" y="16" width="128" height="19.5"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RXR-dr-oNd" userLabel="Reject">
-                                                            <rect key="frame" x="0.0" y="0.0" width="90" height="35.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="60" height="19.5"/>
                                                             <color key="backgroundColor" name="Gray"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="90" id="gms-Nb-gY5"/>
+                                                                <constraint firstAttribute="width" constant="60" id="gms-Nb-gY5"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                             <state key="normal" title="Reject">
@@ -403,10 +404,10 @@
                                                             </state>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="848-hw-lCE" userLabel="Accept">
-                                                            <rect key="frame" x="98" y="0.0" width="90" height="35.5"/>
+                                                            <rect key="frame" x="68" y="0.0" width="60" height="19.5"/>
                                                             <color key="backgroundColor" name="Primary"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="90" id="kvg-ey-kAM"/>
+                                                                <constraint firstAttribute="width" constant="60" id="kvg-ey-kAM"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                             <state key="normal" title="Accept">
@@ -418,11 +419,11 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="Mhe-I2-FE1" secondAttribute="trailing" constant="16" id="2wf-eR-eYj"/>
-                                                <constraint firstAttribute="bottom" secondItem="Mhe-I2-FE1" secondAttribute="bottom" constant="8" id="D2P-eX-bCg"/>
                                                 <constraint firstItem="VnV-AY-0s3" firstAttribute="top" secondItem="iKg-1E-RK5" secondAttribute="top" constant="8" id="Pf9-s4-X7W"/>
+                                                <constraint firstAttribute="bottom" secondItem="Mhe-I2-FE1" secondAttribute="bottom" constant="16" id="aBK-dp-yfq"/>
                                                 <constraint firstAttribute="bottom" secondItem="VnV-AY-0s3" secondAttribute="bottom" constant="8" id="caw-oK-53s"/>
-                                                <constraint firstItem="Mhe-I2-FE1" firstAttribute="top" secondItem="iKg-1E-RK5" secondAttribute="top" constant="8" id="fZQ-YC-nAM"/>
                                                 <constraint firstItem="VnV-AY-0s3" firstAttribute="leading" secondItem="iKg-1E-RK5" secondAttribute="leading" constant="16" id="sa6-Md-h8v"/>
+                                                <constraint firstItem="Mhe-I2-FE1" firstAttribute="top" secondItem="iKg-1E-RK5" secondAttribute="top" constant="16" id="yYG-mD-OQ3"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="MediumGray"/>
@@ -504,6 +505,7 @@
         <image name="Play" width="204" height="188.5"/>
         <image name="Xbox" width="204" height="188.5"/>
         <image name="bell" catalog="system" width="128" height="124"/>
+        <image name="message" catalog="system" width="128" height="113"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
         <namedColor name="DefaultBackground">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
