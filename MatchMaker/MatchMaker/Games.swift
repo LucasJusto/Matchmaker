@@ -131,7 +131,7 @@ extension Game: RoundedRectangleModel { }
 
 // MARK:- Game Array Mocking
 public class Games {
-    let games: [Game] = buildGameArray()
+    static let games: [Game] = buildGameArray()
     
     static func buildGameArray() -> [Game] {
         var games: [Game] = []

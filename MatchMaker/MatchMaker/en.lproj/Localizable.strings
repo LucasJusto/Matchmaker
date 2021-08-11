@@ -130,3 +130,9 @@ to identify you from iCloud";
 "US North Central" = "US North Central";
 "US South East" = "US South East";
 "US South West" = "US South West";
+
+// MARK:- /Views/GameDetail
+"FindPlayersButton" = "Find players";
+"AddToMyGamesButton" = "Add to my games";
+"PlatformsLabel" = "Platforms";
+"OtherGamesLabel" = "Other Games";
