@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol GameSelectionDelegate: AnyObject {
+    func updateGame(_ game: Game, isSelected: Bool)
+}
+
 class GameDetailsViewController: UIViewController {
     
     weak var delegate: GameSelectionDelegate?

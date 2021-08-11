@@ -13,16 +13,13 @@ class TextViewTableViewCell: UITableViewCell {
     
     @IBOutlet weak var counterLabelView: UILabel!
             
-    var placeholder: String = "Placeholder"
+    @IBOutlet weak var placeholder: LocalizableLabel!
     
     let maxLength = 300
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        textViewField.text = placeholder
-        textViewField.textColor = UIColor.lightGray
-    
         textViewField.tintColor = .white
         textViewField.textColor = .white
     }

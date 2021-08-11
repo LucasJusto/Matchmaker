@@ -305,9 +305,8 @@
 		89A912FD26AA675100D3B1D2 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				89BAE9D826C443BC00F355ED /* Location */,
 				89BF1B3B26C0911A0088CC5D /* GameDetails */,
-				1B1C6D2026BED8DE00B561C6 /* UserLocationViewController.swift */,
-				1B1C6D1E26BED6DB00B561C6 /* UserLocationStoryboard.storyboard */,
 				895A605926AF439000BE18C9 /* Register */,
 				89A9130326AA6F0500D3B1D2 /* OnboardingCollectionViewCell.swift */,
 				892FE5DC26AA010A004B4F7F /* Onboarding.storyboard */,
@@ -334,6 +333,15 @@
 				89CC467626B9DF69001B7C13 /* ButtonView.swift */,
 			);
 			path = IBDesignables;
+			sourceTree = "<group>";
+		};
+		89BAE9D826C443BC00F355ED /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				1B1C6D2026BED8DE00B561C6 /* UserLocationViewController.swift */,
+				1B1C6D1E26BED6DB00B561C6 /* UserLocationStoryboard.storyboard */,
+			);
+			path = Location;
 			sourceTree = "<group>";
 		};
 		89BF1B3B26C0911A0088CC5D /* GameDetails */ = {

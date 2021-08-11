@@ -14,27 +14,28 @@
 "UserReviews" = "Avaliações";
 
 // MARK: - Platforms
-// MARK:- ONBOARDING 1
+
+// MARK: - ONBOARDING 1
 "onboarding1Title" = "Bem vindo ao";
 "onboarding1Description" = "Encontre jogadores que correspondem a um filtro personalizado";
 
-// MARK:- ONBOARDING 2
+// MARK: - ONBOARDING 2
 "onboarding2Title" = "Selecione os jogos
 que você gosta";
 "onboarding2Description" = "Nós temos os jogos mais populares
 para você escolher e encontrar jogadores";
 
-// MARK:- ONBOARDING 3
+// MARK: - ONBOARDING 3
 "onboarding3Title" = "Converse com jogadores e marque uma partida";
 
 "onboarding3Description" = "Utilize o chat interno para conversar com jogadores e marcar partidas.";
 
-// MARK:- ONBOARDING 4
+// MARK: - ONBOARDING 4
 "onboarding4TitleLabel" = "Sincronize com iCloud";
 "onboarding4Description" = "Não se preocupe com sua conta, nós sincronizamos seus dados automaticamente sem utilizar seu armazenamento.";
 "onboarding4ButtonLabel" = "Entendi!";
 
-// MARK:- ONBOARDING 5
+// MARK: - ONBOARDING 5
 "onboarding5ButtonLabel" = "Pronto";
 "onboarding5ImageLabel" = "Foto de perfil";
 "onboarding5NameLabel" = "Nome";
@@ -48,22 +49,22 @@ para você escolher e encontrar jogadores";
 "onboarding5GamesLabel" = "Jogos";
 "onboarding5SelectedLabel" = "Selecionado";
 
-// MARK:- ONBOARDING 5 - Warning
+// MARK: - ONBOARDING 5 - Warning
 "onboarding5AlertTitleLabel" = "Campos vazios";
 "onboarding5AlertTextLabel" = "Você precisa preencher os campos obrigatórios para criar seu perfil.";
 "onboarding5AlertButtonLabel" = "Ok";
 "onboarding5RequiredLabel" = "Obrigatório";
 
-// MARK:- ONBOARDING 5 - Keyboard
+// MARK: - ONBOARDING 5 - Keyboard
 "onboarding5KeyboardButton" = "Pronto";
 
-// MARK:- ONBOARDING GAME
+// MARK: - ONBOARDING GAME
 "onboardingGameServersLabel" = "Servidores";
 "onboardingGameDoneButtonLabel" = "Pronto";
 "onboardingGameDeselectButtonLabel" = "Deselecionar";
 
 
-// MARK:- Platforms
+// MARK: - Platforms
 "PlatformPC" = "PC";
 "PlatformPS" = "PlayStation";
 "PlatformXbox" = "Xbox";
@@ -78,7 +79,7 @@ para você escolher e encontrar jogadores";
 "LanguagesRussian" = "Russo";
 "LanguagesGerman" = "Alemão";
 
-// MARK:- Locations
+// MARK: - Locations
 "LocationNorthAmerica" = "America do Norte";
 "LocationBrazil" = "Brasil";
 "LocationLatinAmericaSouth" = "Sul da America Latina";
