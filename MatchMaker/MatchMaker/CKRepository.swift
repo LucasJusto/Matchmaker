@@ -601,7 +601,6 @@ public class CKRepository {
             switch CKErrorCode {
                 case .notAuthenticated:
                     //user is not logged in iCloud
-                    print("ABOBORA \(topController)")
                     topController?.present(prepareAlert(title: notLoggedInTitle, message: notLoggedInMessage), animated: true)
                 default:
                     topController?.present(prepareAlert(title: defaultTitle, message: defaultMessage), animated: true)
