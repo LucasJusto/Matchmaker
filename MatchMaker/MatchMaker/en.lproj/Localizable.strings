@@ -136,3 +136,22 @@ to identify you from iCloud";
 "AddToMyGamesButton" = "Add to my games";
 "PlatformsLabel" = "Platforms";
 "OtherGamesLabel" = "Other Games";
+
+// MARK:- Highlight image
+"GamesTitleLabel" = "Games";
+"HighlightTitileAboveImage" = "New game available";
+"TitleButtonHiglighAboveImage" = "Find players now";
+
+// MARK:- Frind request cell
+"RejectRequestFriendButtonLabel" = "Reject";
+"AceptRequestFriendButtonLabel" = "Acept";
+"NotificationRequestFriendLabel" = "sent you a friend request";
+"RecentNotificationsLabel" = "Recent notifications";
+
+// MARK: - Rate
+"ExplainRateLabel" = "Rate based on your gaming \nexperience with the player";
+"SkillRateLabel" = "Skill rate";
+"BehaviorRateLabel" = "Behavior rate";
+"ConfirmButtonLabel" = "Confirm";
+"CancelButtonLabel" = "Cancel";
+"TitleRateModalView"= "Rate";
