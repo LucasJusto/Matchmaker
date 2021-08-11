@@ -37,7 +37,6 @@ class OnboardingViewController: UIViewController {
 }
 
 //MARK: - onboarding collection view configs
-
 extension OnboardingViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -75,7 +74,6 @@ extension OnboardingViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     //MARK: - cells setup
-    
     func setUpBasicCell(indexPath: IndexPath, identifier: String) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
        
@@ -83,7 +81,6 @@ extension OnboardingViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func setUpCustomCell(indexPath: IndexPath, tag: Int) -> OnboardingCollectionViewCell {
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OnboardingCollectionViewCell.identifier, for: indexPath) as! OnboardingCollectionViewCell
         
         guard let onboardingPage = OnboardingPages(rawValue: tag) else {
