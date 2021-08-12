@@ -20,6 +20,19 @@
 "UserSkills" = "Skills";
 "UserReviews" = "Reviews";
 
+// MARK: - Friend Profile (OtherPrifile)
+"TitleViewRate" = "Profile";
+"Ratings" = "Ratings";
+"Platforms" = "Platforms";
+"Languages" = "Languages";
+"Games" = "Games";
+"RequestFriendButtonLabel" = "Add to my friends";
+"CancelRequestButtonLabel" = "Cancel request";
+"RemoveFriendButtonLabel" = "Remove friend";
+"PlayingFrom" = "Playing from";
+"RejectRequestButton"= "Reject friend";
+"AceptRequestButton"= "Acept friend";
+
 // MARK: - Platforms
 
 // MARK: - ONBOARDING 1
