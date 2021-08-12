@@ -68,6 +68,8 @@
 		B44F62EB26C30EF100AD3E8A /* GameDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44F62E926C30EF100AD3E8A /* GameDetailViewController.swift */; };
 		B4E44E9D26C43A03005BA98C /* RateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E44E9B26C43A03005BA98C /* RateViewController.swift */; };
 		B4E44E9E26C43A03005BA98C /* Rate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4E44E9C26C43A03005BA98C /* Rate.storyboard */; };
+		DFBDF22C26C59D49009A521F /* OtherProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBDF22A26C59D49009A521F /* OtherProfileViewController.swift */; };
+		DFBDF22D26C59D49009A521F /* OtherProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFBDF22B26C59D49009A521F /* OtherProfile.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -136,6 +138,8 @@
 		B44F62E926C30EF100AD3E8A /* GameDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDetailViewController.swift; sourceTree = "<group>"; };
 		B4E44E9B26C43A03005BA98C /* RateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateViewController.swift; sourceTree = "<group>"; };
 		B4E44E9C26C43A03005BA98C /* Rate.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Rate.storyboard; sourceTree = "<group>"; };
+		DFBDF22A26C59D49009A521F /* OtherProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherProfileViewController.swift; sourceTree = "<group>"; };
+		DFBDF22B26C59D49009A521F /* OtherProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OtherProfile.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +157,7 @@
 		1B4E87BC26AF434100A51AF1 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				DFBDF22926C59D49009A521F /* Other profile */,
 				1B4E87BA26AF3E5200A51AF1 /* ProfileTab.storyboard */,
 				1B4E87BD26AF436A00A51AF1 /* ProfileViewController.swift */,
 			);
@@ -380,6 +385,15 @@
 			path = Rate;
 			sourceTree = "<group>";
 		};
+		DFBDF22926C59D49009A521F /* Other profile */ = {
+			isa = PBXGroup;
+			children = (
+				DFBDF22A26C59D49009A521F /* OtherProfileViewController.swift */,
+				DFBDF22B26C59D49009A521F /* OtherProfile.storyboard */,
+			);
+			path = "Other profile";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -441,6 +455,7 @@
 				B4E44E9E26C43A03005BA98C /* Rate.storyboard in Resources */,
 				1B4E87CA26B0556C00A51AF1 /* RoundedRectangleCollectionView.xib in Resources */,
 				1B4E87BB26AF3E5200A51AF1 /* ProfileTab.storyboard in Resources */,
+				DFBDF22D26C59D49009A521F /* OtherProfile.storyboard in Resources */,
 				1B767CC826B1D0E200EA4588 /* TitleCollectionView.xib in Resources */,
 				1B4E87C126AF62D800A51AF1 /* ProfileRatingView.xib in Resources */,
 				489555EA26A76AC3005F88A2 /* LaunchScreen.storyboard in Resources */,
@@ -467,6 +482,7 @@
 			files = (
 				89971AED26B3279C00A421C1 /* SelectableImageCollectionViewCell.swift in Sources */,
 				489555E226A76AC1005F88A2 /* ViewController.swift in Sources */,
+				DFBDF22C26C59D49009A521F /* OtherProfileViewController.swift in Sources */,
 				1B4E87CC26B055C000A51AF1 /* RoundedRectangleCollectionView.swift in Sources */,
 				1B767CBF26B10F5500EA4588 /* SmallLabeledImageCollectionView.swift in Sources */,
 				1B1C6D2126BED8DE00B561C6 /* UserLocationViewController.swift in Sources */,
