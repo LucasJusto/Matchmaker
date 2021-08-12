@@ -13,6 +13,8 @@ class TextViewTableViewCell: UITableViewCell {
     
     @IBOutlet weak var counterLabelView: UILabel!
             
+    @IBOutlet weak var placeholder: LocalizableLabel!
+    
     let maxLength = 300
     
     override func awakeFromNib() {
