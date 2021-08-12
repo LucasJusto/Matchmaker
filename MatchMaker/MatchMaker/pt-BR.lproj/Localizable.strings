@@ -1,4 +1,4 @@
-/*
+/* 
   Localizable.strings
   MatchMaker
 
@@ -8,121 +8,61 @@
 
 "titleLabel" = "Hello World";
 
-//MARK: - CKErrorAlert
-"CKErrorNotLoggedInTitle" = "Não logado no iCloud";
-"CKErrorNotLoggedInMessage" = "Você precisa estar logado no iCloud para utilizar este aplicativo. Por favor feche o aplicativo e faça login no iCloud antes de abri-lo novamente.";
-"CKErrorDefaultTitle" = "Um erro ocorreu";
-"CKErrorDefaultMessage" = "Algo inesperado ocorreu, talvez seus dados não tenham sido salvos.";
-"CKErrorAlertButtonLabel" = "Ok";
+// MARK:- ONBOARDING 1
+"onboarding1Title" = "Welcome to";
+"onboarding1Description" = "Find players that correspond
+with a personalized filter";
 
-//MARK: - User
-"UserBehaviour" = "Comportamento";
-"UserSkills" = "Habilidades";
-"UserReviews" = "Avaliações";
+// MARK:- ONBOARDING 2
+"onboarding2Title" = "Select games that you like to play";
+"onboarding2Description" = "We have the most popular games
+for you to choose and find players";
 
-// MARK: - Friend Profile (OtherPrifile)
-"TitleViewRate" = "Perfil";
-"Ratings" = "Avaliações";
-"Platforms" = "Plataformas";
-"Languages" = "Linguagens";
-"Games" = "Jogos";
-"RequestFriendButtonLabel" = "Adicionar aos amigos";
-"CancelRequestButtonLabel" = "Cancelar solicitação";
-"RemoveFriendButtonLabel" = "Remover amigos";
-"PlayingFrom" = "Jogando de";
-"RejectRequestButton"= "Rejeitar amigo";
-"AceptRequestButton"= "Aceitar amigo";
+// MARK:- ONBOARDING 3
+"onboarding3Title" = "Talk to players and schedule a match";
+"onboarding3Description" = "Use the internal chat to talk
+to players and schedule matches";
 
-// MARK: - Platforms
+// MARK:- ONBOARDING 4
+"onboarding4TitleLabel" = "Sync with iCloud";
+"onboarding4Description" = "We will need your authorization
+to identify you from iCloud";
+"onboarding4ButtonLabel" = "Got it!";
 
-// MARK: - ONBOARDING 1
-"onboarding1Title" = "Bem vindo ao";
-"onboarding1Description" = "Encontre jogadores que correspondem a um filtro personalizado";
-
-// MARK: - ONBOARDING 2
-"onboarding2Title" = "Selecione os jogos
-que você gosta";
-"onboarding2Description" = "Nós temos os jogos mais populares
-para você escolher e encontrar jogadores";
-
-// MARK: - ONBOARDING 3
-"onboarding3Title" = "Converse com jogadores e marque uma partida";
-
-"onboarding3Description" = "Utilize o chat interno para conversar com jogadores e marcar partidas.";
-
-// MARK: - ONBOARDING 4
-"onboarding4TitleLabel" = "Sincronize com iCloud";
-"onboarding4Description" = "Não se preocupe com sua conta, nós sincronizamos seus dados automaticamente sem utilizar seu armazenamento.";
-"onboarding4ButtonLabel" = "Entendi!";
-
-// MARK: - ONBOARDING 5
-"onboarding5ButtonLabel" = "Pronto";
-"onboarding5ImageLabel" = "Foto de perfil";
-"onboarding5NameLabel" = "Nome";
+// MARK:- ONBOARDING 5
+"onboarding5ButtonLabel" = "Done";
+"onboarding5ImageLabel" = "Profile image";
+"onboarding5NameLabel" = "Name";
 "onboarding5UsernameLabel" = "Username";
-"onboarding5DescriptionLabel" = "Descrição";
-"onboarding5DescriptionPlaceholder" = "Fale sobre você e informe suas formas de contato para outros jogadores";
-"onboarding5LocationLabel" = "Localização";
-"onboarding5ChangePickerLabel" = "Mudar";
-"onboarding5LanguagesLabel" = "Linguas";
-"onboarding5PlatformsLabel" = "Plataformas";
-"onboarding5GamesLabel" = "Jogos";
-"onboarding5SelectedLabel" = "Selecionado";
+"onboarding5DescriptionLabel" = "Description";
+"onboarding5LanguagesLabel" = "Languages";
+"onboarding5PlatformsLabel" = "Platforms";
+"onboarding5GamesLabel" = "Games";
+"onboarding5SelectedLabel" = "Selected";
 
-// MARK: - ONBOARDING 5 - Warning
-"onboarding5AlertTitleLabel" = "Campos vazios";
-"onboarding5AlertTextLabel" = "Você precisa preencher os campos obrigatórios para criar seu perfil.";
-"onboarding5AlertButtonLabel" = "Ok";
-"onboarding5RequiredLabel" = "Obrigatório";
-
-// MARK: - ONBOARDING 5 - Keyboard
-"onboarding5KeyboardButton" = "Pronto";
-
-// MARK: - ONBOARDING GAME
-"onboardingGameServersLabel" = "Servidores";
-"onboardingGameDoneButtonLabel" = "Pronto";
-"onboardingGameDeselectButtonLabel" = "Deselecionar";
-
-
-// MARK: - Platforms
+// MARK:- Platforms
 "PlatformPC" = "PC";
 "PlatformPS" = "PlayStation";
 "PlatformXbox" = "Xbox";
 "PlatformMobile" = "Mobile";
 
-// MARK: - Languages
-"LanguagesPortuguese" = "Português";
-"LanguagesEnglish" = "Inglês";
-"LanguagesChinese" = "Chines";
-"LanguagesJapanese" = "Japones";
-"LanguagesSpanish" = "Espanhol";
-"LanguagesRussian" = "Russo";
-"LanguagesGerman" = "Alemão";
+// MARK:- Languages
+"LanguagesPortuguese" = "Portuguese";
+"LanguagesEnglish" = "English";
+"LanguagesChinese" = "Chinese";
+"LanguagesJapanese" = "Japanese";
+"LanguagesSpanish" = "Spanish";
+"LanguagesRussian" = "Russian";
+"LanguagesGerman" = "German";
 
-// MARK: - Locations
-"LocationNorthAmerica" = "America do Norte";
-"LocationBrazil" = "Brasil";
-"LocationLatinAmericaSouth" = "Sul da America Latina";
-"LocationLatinAmericaNorth" = "Norte da America Latina";
-"LocationEuropeEast" = "Leste Europeu";
-"LocationEuropeWest" = "Oeste Europeu";
-"LocationChina" = "China";
-"LocationOceania" = "Oceania";
-"LocationAsiaEast" = "Leste Asiático";
-"LocationAsiaWest" = "Oeste Asiático";
-"LocationAfricaNorth" = "Norte da África";
-"LocationAfricaSouth" = "Sul da África";
-
-"Dota2Description" = "Descrição do Dota 2";
-"LeagueOfLegendsDescription" = "Descrição do League of Legends";
-"CounterStrikeGODescription" = "Descrição do Counter Strike: Global Offensive";
-
-//MARK: - Servers
+"Dota2Description" = "This is the description of Dota 2";
+"LeagueOfLegendsDescription" = "This is the description of League of Legends";
+"CounterStrikeGODescription" = "This is the description of Counter Strike: Global Offensive";
 "Australia" = "Australia";
-"Europe East" = "Leste Europeu";
-"Europe West" = "Oeste Europeu";
+"Europe East" = "Europe East";
+"Europe West" = "Europe West";
 "Russia" = "Russia";
-"SE Asia" = "SE Ásia";
+"SE Asia" = "SE Asia";
 "South Africa" = "South Africa";
 "South America" = "South America";
 "US East" = "US East";
@@ -157,23 +97,3 @@ para você escolher e encontrar jogadores";
 "US North Central" = "US North Central";
 "US South East" = "US South East";
 "US South West" = "US South West";
-
-// MARK: - Home
-// MARK:- Highlight image
-"GamesTitleLabel" = "Jogos";
-"HighlightTitileAboveImage" = "Novo jogo disponível";
-"TitleButtonHiglighAboveImage" = "Encontrar jogadores";
-"RecentNotificationsLabel" = "Notificações recentes";
-
-// MARK:- Frind request cell
-"RejectRequestFriendButtonLabel" = "Rejeitar";
-"AceptRequestFriendButtonLabel" = "Aceitar";
-"NotificationRequestFriendLabel" = "enviou uma solicitação de amizade";
-
-// MARK:- Rate
-"ExplainRateLabel" = "Avalie com base em sua \nexperiência de jogo com o jogador";
-"SkillRateLabel" = "Avaliação de habilidades";
-"BehaviorRateLabel" = "Avaliação de comportamento";
-"ConfirmButtonLabel" = "Confirmar";
-"CancelButtonLabel" = "Cancelar";
-"TitleRateModalView"= "Avaliação";

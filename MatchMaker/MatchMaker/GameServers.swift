@@ -1,6 +1,6 @@
 import Foundation
 
-enum Dota2Servers: Servers, CustomStringConvertible, CaseIterable {
+enum Dota2Servers: Servers, CustomStringConvertible {
     
     case USWest
     case USEast
@@ -107,7 +107,7 @@ enum Dota2Servers: Servers, CustomStringConvertible, CaseIterable {
     }
 }
 
-enum LeagueOfLegendsServers: Servers, CustomStringConvertible, CaseIterable {
+enum LeagueOfLegendsServers: Servers, CustomStringConvertible {
     
     case Brazil
     case EuropeNordicEast
@@ -235,7 +235,7 @@ enum LeagueOfLegendsServers: Servers, CustomStringConvertible, CaseIterable {
     }
 }
 
-enum CounterStrikeGOServers: Servers, CustomStringConvertible, CaseIterable {
+enum CounterStrikeGOServers: Servers, CustomStringConvertible {
     
     case EUNorth
     case PWTianjin
@@ -489,54 +489,6 @@ enum CounterStrikeGOServers: Servers, CustomStringConvertible, CaseIterable {
                 
             default:
                 return self.USNorthCentral
-        }
-    }
-}
-
-enum WildRiftServers: Servers, CustomStringConvertible, CaseIterable {
-    
-    case Brazil
-    case LatinAmericaNorth
-    case LatinAmericaSouth
-    
-    var description: String {
-        switch self {
-            case .Brazil:
-                return NSLocalizedString("Brazil", comment: "Brazil")
-                
-            case .LatinAmericaNorth:
-                return NSLocalizedString("Latin America North", comment: "Latin America North")
-                
-            case .LatinAmericaSouth:
-                return NSLocalizedString("Latin America South", comment: "Latin America South")
-        }
-    }
-    
-    var key: String {
-        switch self {
-            case .Brazil:
-                return "Brazil"
-                
-            case .LatinAmericaNorth:
-                return "Latin America North"
-                
-            case .LatinAmericaSouth:
-                return "Latin America South"
-        }
-    }
-    
-    static func getServer(server: String) -> Servers {
-        switch server {
-            case "Brazil":
-                return self.Brazil
-                
-            case "Latin America North":
-                return self.LatinAmericaNorth
-                
-            case "Latin America South":
-                return self.LatinAmericaSouth
-            
-            default: return self.Brazil
         }
     }
 }

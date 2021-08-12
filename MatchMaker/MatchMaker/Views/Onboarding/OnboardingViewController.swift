@@ -37,6 +37,7 @@ class OnboardingViewController: UIViewController {
 }
 
 //MARK: - onboarding collection view configs
+
 extension OnboardingViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -74,6 +75,7 @@ extension OnboardingViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     //MARK: - cells setup
+    
     func setUpBasicCell(indexPath: IndexPath, identifier: String) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
        
@@ -81,6 +83,7 @@ extension OnboardingViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func setUpCustomCell(indexPath: IndexPath, tag: Int) -> OnboardingCollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OnboardingCollectionViewCell.identifier, for: indexPath) as! OnboardingCollectionViewCell
         
         guard let onboardingPage = OnboardingPages(rawValue: tag) else {
@@ -92,7 +95,7 @@ extension OnboardingViewController: UICollectionViewDelegate, UICollectionViewDa
                 
                 if let img = UIImage(named: "chat"){
 
-                    let chatScreen = OnboardingScreen(title: NSLocalizedString("onboarding3Title", comment: "title onboarding 3"), description: NSLocalizedString("onboarding3Description", comment: "description onboarding 3"), image: img, imageWidth: 293, imageHeight: 254, color: UIColor(named: "Primary") ?? .black)
+                    let chatScreen = OnboardingScreen(title: NSLocalizedString("onboarding2Title", comment: "title onboarding 2"), description: NSLocalizedString("onboarding2Description", comment: "description onboarding 2"), image: img, imageWidth: 293, imageHeight: 254, color: UIColor(named: "Primary") ?? .black)
                     
                     cell.setup(chatScreen)
                 }
