@@ -30,7 +30,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FirstOnboardingCollectionViewCell" id="wU8-R2-6DJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="894"/>
+                                        <rect key="frame" x="10" y="0.0" width="414" height="894"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="bMF-2H-H1j">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="894"/>
@@ -812,7 +812,7 @@
             <objects>
                 <viewController id="Bk8-Ao-2Z6" customClass="GameDetailsViewController" customModule="MatchMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yOr-zT-9Cl">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Wf-f8-694">

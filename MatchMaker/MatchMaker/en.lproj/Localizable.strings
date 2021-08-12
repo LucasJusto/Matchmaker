@@ -174,3 +174,17 @@ without using your storage";
 "ConfirmButtonLabel" = "Confirm";
 "CancelButtonLabel" = "Cancel";
 "TitleRateModalView"= "Rate";
+
+// MARK: - Filters
+"filtersNavigationTitle" = "Filters";
+"filtersCleanButtonLabel" = "Clean filter";
+"filtersDoneButtonLabel" = "Done";
+"filtersLanguagesLabel" = "Languages";
+"filtersPlatformsLabel" = "Platforms";
+"filtersBehaviorsRateLabel" = "Behaviors rate";
+"filtersSkillsRateLabel" = "Skills rate";
+"filtersLocationLabel" = "Location";
+"filtersGamesLabel" = "Games";
+
+
+
