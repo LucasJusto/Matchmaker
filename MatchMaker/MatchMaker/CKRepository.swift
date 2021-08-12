@@ -145,23 +145,25 @@ public class CKRepository {
             if let idNotNull = id {
                 userID = idNotNull
             }
-        }
-        
-        let publicDB = container.publicCloudDatabase
-        let predicate = NSPredicate(format: "id == %@", userID)
-        let query = CKQuery(recordType: UserTable.recordType.description, predicate: predicate)
-        
-        publicDB.perform(query, inZoneWith: nil) { result, error in
-            if let ckError = error as? CKError {
-                CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
-            }
             
-            if result?.count == 0 {
-                completion(false)
-                return
+            let publicDB = container.publicCloudDatabase
+            let predicate = NSPredicate(format: "id == %@", userID)
+            let query = CKQuery(recordType: UserTable.recordType.description, predicate: predicate)
+            
+            publicDB.perform(query, inZoneWith: nil) { result, error in
+                if let ckError = error as? CKError {
+                    CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                }
+                
+                if result?.count == 0 {
+                    completion(false)
+                    return
+                }
+                completion(true)
             }
-            completion(true)
         }
+        
+        
     }
     
     private static func storeUserData(id: String, name: String, nickname: String, location: Locations, description: String, photo: URL?, selectedPlatforms: [Platform], selectedGames: [Game], languages: [Languages]){
@@ -271,23 +273,14 @@ public class CKRepository {
         
     }
     
-    static func storeFriendship(inviterUserId: String, receiverUserId: String, isInvite: IsInvite, acceptance: Bool) {
+    static func sendFriendshipInvite(inviterUserId: String, receiverUserId: String) {
         let recordID = CKRecord.ID(recordName:"\(inviterUserId)\(receiverUserId)")
         let record = CKRecord(recordType: FriendsTable.recordType.description, recordID: recordID)
         let publicDB = container.publicCloudDatabase
         
         record.setObject(inviterUserId as CKRecordValue?, forKey: FriendsTable.inviterId.description)
         record.setObject(receiverUserId as CKRecordValue?, forKey: FriendsTable.receiverId.description)
-        if isInvite == IsInvite.yes {
-            record.setObject(IsInvite.yes.description as CKRecordValue?, forKey: FriendsTable.isInvite.description)
-        }
-        else if acceptance {
-            record.setObject(IsInvite.no.description as CKRecordValue?, forKey: FriendsTable.isInvite.description)
-        }
-        else {
-            deleteFriendship(id1: inviterUserId, id2: receiverUserId)
-            return
-        }
+        record.setObject(IsInvite.yes.description as CKRecordValue?, forKey: FriendsTable.isInvite.description)
         
         publicDB.save(record) { record, error in
             if let ckError = error as? CKError {
