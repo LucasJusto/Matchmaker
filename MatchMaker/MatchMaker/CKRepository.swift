@@ -14,30 +14,30 @@ enum UserTable: CustomStringConvertible {
     
     var description: String {
         switch self {
-            case .recordType:
-                return "User"
-            case .id:
-                return "id"
-            case .name:
-                return "name"
-            case .nickname:
-                return "nickname"
-            case .location:
-                return "location"
-            case .description:
-                return "description"
-            case .photo:
-                return "photo"
-            case .selectedPlatforms:
-                return "selectedPlatforms"
-            case .languages:
-                return "languages"
-            case .storeFailMessage:
-                return "couldntStoreUserData"
-            case .averageBehaviourRate:
-                return "averageBehaviourRate"
-            case .averageSkillRate:
-                return "averageSkillRate"
+        case .recordType:
+            return "User"
+        case .id:
+            return "id"
+        case .name:
+            return "name"
+        case .nickname:
+            return "nickname"
+        case .location:
+            return "location"
+        case .description:
+            return "description"
+        case .photo:
+            return "photo"
+        case .selectedPlatforms:
+            return "selectedPlatforms"
+        case .languages:
+            return "languages"
+        case .storeFailMessage:
+            return "couldntStoreUserData"
+        case .averageBehaviourRate:
+            return "averageBehaviourRate"
+        case .averageSkillRate:
+            return "averageSkillRate"
         }
     }
 }
@@ -47,18 +47,18 @@ enum UserGamesTable: CustomStringConvertible {
     
     var description: String {
         switch self {
-            case .recordType:
-                return "UserGames"
-            case .userId:
-                return "userId"
-            case .gameId:
-                return "gameId"
-            case .selectedPlatforms:
-                return "selectedPlatforms"
-            case .selectedServers:
-                return "selectedServers"
-            case .storeFailMessage:
-                return "couldntStoreUserGameData"
+        case .recordType:
+            return "UserGames"
+        case .userId:
+            return "userId"
+        case .gameId:
+            return "gameId"
+        case .selectedPlatforms:
+            return "selectedPlatforms"
+        case .selectedServers:
+            return "selectedServers"
+        case .storeFailMessage:
+            return "couldntStoreUserGameData"
         }
     }
 }
@@ -68,18 +68,18 @@ enum FriendsTable: CustomStringConvertible {
     
     var description: String {
         switch self {
-            case .recordType:
-                return "Friends"
-            case .id1:
-                return "id1"
-            case .id2:
-                return "id2"
-            case .isInvite:
-                return "isInvite"
-            case .storeFailMessage:
-                return "couldntStoreFriendshipData"
-            case .tableChanged:
-                return "FriendsTableChanged"
+        case .recordType:
+            return "Friends"
+        case .id1:
+            return "id1"
+        case .id2:
+            return "id2"
+        case .isInvite:
+            return "isInvite"
+        case .storeFailMessage:
+            return "couldntStoreFriendshipData"
+        case .tableChanged:
+            return "FriendsTableChanged"
         }
     }
 }
@@ -89,12 +89,12 @@ enum BlockedTable: CustomStringConvertible {
     
     var description: String {
         switch self {
-            case .recordType:
-                return "Blocked"
-            case .userId:
-                return "userId"
-            case .blockedId:
-                return "blockedId"
+        case .recordType:
+            return "Blocked"
+        case .userId:
+            return "userId"
+        case .blockedId:
+            return "blockedId"
         }
     }
 }
