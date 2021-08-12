@@ -155,7 +155,7 @@ class OnboardingRegisterViewController: UIViewController {
     
     //MARK: - Enums
     enum OnboardingTagCategory: Int, CaseIterable {
-        case languages
+        case languages = 0
         case platforms
         case games
     }
@@ -303,19 +303,23 @@ extension OnboardingRegisterViewController: UITableViewDataSource {
 
     func selectorCell(titleKey: String, tag: Int) -> SelectorTableViewCell? {
         let cell = tableView.dequeueReusableCell(withIdentifier: "selector-cell") as? SelectorTableViewCell
-
+        
+        cell?.collectionView.tag = tag
         cell?.collectionView.delegate = self
         cell?.collectionView.dataSource = self
-        cell?.collectionView.tag = tag
 
         let string = NSLocalizedString(titleKey, comment: "selector cell label")
 
         cell?.setUp(title: string)
 
-        //Setando altura da CollectionView
-        if let height = cell?.collectionView.collectionViewLayout.collectionViewContentSize.height {
-            cell?.collectionViewHeight.constant = height
+        DispatchQueue.main.async {
+            cell?.collectionView.reloadData()
         }
+        
+//        Setando altura da CollectionView
+//        if let height = cell?.collectionView.collectionViewLayout.collectionViewContentSize.height {
+//            cell?.collectionViewHeight.constant = height
+//        }
 
         var selections = 0
 
@@ -335,7 +339,7 @@ extension OnboardingRegisterViewController: UITableViewDataSource {
         } else {
             cell?.requiredLabel.isHidden = true
         }
-
+        
         return cell
     }
 
