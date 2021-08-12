@@ -39,7 +39,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     
                     // 4. Save the new subscription to iCloud
                     database.save(newSubscription) { subscription, error in
-                        if let _ = error {
+                        if let err = error {
+                            print(err)
                             return
                         }
                         
@@ -57,7 +58,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
         if let _ = CKNotification(fromRemoteNotificationDictionary: userInfo) {
-            print("notificado")
             DispatchQueue.main.async {
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: FriendsTable.tableChanged.description), object: nil)
             }
