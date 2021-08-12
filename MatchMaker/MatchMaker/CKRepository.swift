@@ -341,6 +341,17 @@ public class CKRepository {
             if let ckError = error as? CKError {
                 CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
             }
+            else {
+                if error == nil {
+                    if let u = CKRepository.user {
+                        for i in 0...u.friends.count-1 {
+                            if u.friends[i].id == inviterId || u.friends[i].id == receiverId {
+                                CKRepository.user?.friends.remove(at: i)
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
     
