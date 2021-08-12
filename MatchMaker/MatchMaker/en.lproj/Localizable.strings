@@ -8,39 +8,65 @@
 
 "titleLabel" = "Hello World";
 
+//MARK: - CKErrorAlert
+"CKErrorNotLoggedInTitle" = "Not logged in iCloud";
+"CKErrorNotLoggedInMessage" = "You need to be logged in iCloud to use this app. Please close this app and login iCloud before opening it again.";
+"CKErrorDefaultTitle" = "An error ocurred";
+"CKErrorDefaultMessage" = "Something unexpected ocurred, your data may not have been saved.";
+"CKErrorAlertButtonLabel" = "Ok";
+
 //MARK: - User
 "UserBehaviour" = "Behaviour";
 "UserSkills" = "Skills";
 "UserReviews" = "Reviews";
 
+// MARK: - Friend Profile (OtherPrifile)
+"TitleViewRate" = "Profile";
+"Ratings" = "Ratings";
+"Platforms" = "Platforms";
+"Languages" = "Languages";
+"Games" = "Games";
+"RequestFriendButtonLabel" = "Add to my friends";
+"CancelRequestButtonLabel" = "Cancel request";
+"RemoveFriendButtonLabel" = "Remove friend";
+"PlayingFrom" = "Playing from";
+"RejectRequestButton"= "Reject friend";
+"AceptRequestButton"= "Acept friend";
+
 // MARK: - Platforms
-// MARK:- ONBOARDING 1
+
+// MARK: - ONBOARDING 1
 "onboarding1Title" = "Welcome to";
 "onboarding1Description" = "Find players that correspond
 with a personalized filter";
 
-// MARK:- ONBOARDING 2
-"onboarding2Title" = "Select games that you like to play";
+// MARK: - ONBOARDING 2
+"onboarding2Title" = "Select games that
+you like to play";
 "onboarding2Description" = "We have the most popular games
 for you to choose and find players";
 
-// MARK:- ONBOARDING 3
-"onboarding3Title" = "Talk to players and schedule a match";
+// MARK: - ONBOARDING 3
+"onboarding3Title" = "Talk to players and
+schedule a match";
 "onboarding3Description" = "Use the internal chat to talk
 to players and schedule matches";
 
-// MARK:- ONBOARDING 4
+// MARK: - ONBOARDING 4
 "onboarding4TitleLabel" = "Sync with iCloud";
-"onboarding4Description" = "We will need your authorization
-to identify you from iCloud";
+"onboarding4Description" = "Don’t worry about
+accounts, we sync your
+data automatically,
+without using your storage";
 "onboarding4ButtonLabel" = "Got it!";
 
-// MARK:- ONBOARDING 5
+// MARK: - ONBOARDING 5
 "onboarding5ButtonLabel" = "Done";
 "onboarding5ImageLabel" = "Profile image";
 "onboarding5NameLabel" = "Name";
 "onboarding5UsernameLabel" = "Username";
 "onboarding5DescriptionLabel" = "Description";
+"onboarding5DescriptionPlaceholder" = "Put a description about yourself and also provide a contact for other players.";
 "onboarding5LocationLabel" = "Location";
 "onboarding5ChangePickerLabel" = "Change";
 "onboarding5LanguagesLabel" = "Languages";
@@ -48,15 +74,21 @@ to identify you from iCloud";
 "onboarding5GamesLabel" = "Games";
 "onboarding5SelectedLabel" = "Selected";
 
-// MARK:- ONBOARDING 5 - Warning
+// MARK: - ONBOARDING 5 - Warning
 "onboarding5AlertTitleLabel" = "Empty Fields";
 "onboarding5AlertTextLabel" = "You need to fill the required fields to create your profile";
 "onboarding5AlertButtonLabel" = "Ok";
+"onboarding5RequiredLabel" = "Required";
 
-// MARK:- ONBOARDING 5 - Keyboard
+// MARK: - ONBOARDING 5 - Keyboard
 "onboarding5KeyboardButton" = "Done";
 
-// MARK:- Platforms
+// MARK: - ONBOARDING GAME
+"onboardingGameServersLabel" = "Servers";
+"onboardingGameDoneButtonLabel" = "Done";
+"onboardingGameDeselectButtonLabel" = "Deselect";
+
+// MARK: - Platforms
 "PlatformPC" = "PC";
 "PlatformPS" = "PlayStation";
 "PlatformXbox" = "Xbox";
@@ -71,7 +103,7 @@ to identify you from iCloud";
 "LanguagesRussian" = "Russian";
 "LanguagesGerman" = "German";
 
-// MARK:- Locations
+// MARK: - Locations
 "LocationNorthAmerica" = "North America";
 "LocationBrazil" = "Brazil";
 "LocationLatinAmericaSouth" = "Latin America South";
@@ -134,3 +166,27 @@ to identify you from iCloud";
 // MARK:- Discover Screen
 "DiscoverShowMoreButton" = "Show more";
 "DiscoverScreenAddToFriendsButton" = "Add to friends";
+// MARK:- /Views/GameDetail
+"FindPlayersButton" = "Find players";
+"AddToMyGamesButton" = "Add to my games";
+"PlatformsLabel" = "Platforms";
+"OtherGamesLabel" = "Other Games";
+
+// MARK:- Highlight image
+"GamesTitleLabel" = "Games";
+"HighlightTitileAboveImage" = "New game available";
+"TitleButtonHiglighAboveImage" = "Find players now";
+
+// MARK:- Frind request cell
+"RejectRequestFriendButtonLabel" = "Reject";
+"AceptRequestFriendButtonLabel" = "Acept";
+"NotificationRequestFriendLabel" = "sent you a friend request";
+"RecentNotificationsLabel" = "Recent notifications";
+
+// MARK: - Rate
+"ExplainRateLabel" = "Rate based on your gaming \nexperience with the player";
+"SkillRateLabel" = "Skill rate";
+"BehaviorRateLabel" = "Behavior rate";
+"ConfirmButtonLabel" = "Confirm";
+"CancelButtonLabel" = "Cancel";
+"TitleRateModalView"= "Rate";
