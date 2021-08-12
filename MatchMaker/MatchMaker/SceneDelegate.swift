@@ -19,9 +19,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
             else {
                 DispatchQueue.main.async {
-                    let storyboard = UIStoryboard.init(name: "Onboarding", bundle: nil)
+                    let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
 
-                    let viewController = storyboard.instantiateViewController(withIdentifier: "OnboardingViewController") as! OnboardingViewController
+                    let viewController = storyboard.instantiateInitialViewController()!
+                    //let viewController = storyboard.instantiateViewController(withIdentifier: "OnboardingViewController") as! OnboardingViewController
 
                     self.window?.rootViewController = viewController
                     self.window?.makeKeyAndVisible()

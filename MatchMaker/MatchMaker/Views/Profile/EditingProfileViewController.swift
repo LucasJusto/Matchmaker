@@ -1,37 +1,105 @@
 //
-//  OnboardingRegisterViewController.swift
+//  EditingProfileViewController.swift
 //  MatchMaker
 //
-//  Created by Thaís Fernandes on 26/07/21.
+//  Created by Marina De Pazzi on 11/08/21.
 //
 
 import UIKit
 
-//MARK: - OnboardingRegisterViewController Class
+//MARK: - EditingProfileViewController Class
 
-class OnboardingRegisterViewController: UIViewController {
+class EditingProfileViewController: UIViewController {
+    
+    //MARK: EditingProfileViewController Enums
+    
+    enum EditingTagCategory: Int, CaseIterable {
+        case languages
+        case platforms
+        case games
+    }
+    
+    enum EditingTextFields: Int, CaseIterable {
+        case nameField
+        case usernameField
+    }
+    
+    enum EditingFields: Int, CaseIterable {
+        case profileImage
+        case nameField
+        case usernameField
+        case descriptionField
+        case locations
+        case languages
+        case platforms
+        case games
+    }
+    
+    //MARK: EditingProfileViewController Typealiases
+    
+    typealias TagOption = (option: String, isFavorite: Bool)
+    typealias GameOption = (option: Game, isFavorite: Bool)
+    typealias UserLocation = (string: String, enum: Locations)
+    
+    var tagLanguages: [TagOption] = []
+    var tagPlatforms: [TagOption] = []
+    var tagGames: [GameOption] = []
+    var selectedLocation: UserLocation = UserLocation(string: Locations.africaNorth.description, enum: Locations.africaNorth)
+    
+    //MARK: EditingProfileViewController Variables Setup
     
     @IBOutlet weak var tableView: UITableView!
     
-    @IBAction func didTapDone(_ sender: UIButton) {
-        
-        let isIncomplete = nameField.isEmpty || usernameField.isEmpty || selectedLocation.string.isEmpty || tagLanguages.filter { $0.isFavorite }.count < 1 || tagPlatforms.filter { $0.isFavorite }.count < 1
-        
-        didTapDone = true
+    let editingFields = EditingFields.allCases
+
+    var user: User?
+    var imagePicker: ImagePickerManager = ImagePickerManager()
+    var didTapDone = false
+    
+    var nameField: String = ""
+    var usernameField: String = ""
+    var descriptionField: String = ""
+    
+    var profileImageUrl: URL?
+
+    //MARK: EditingProfileViewController View Setup
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.dataSource = self
+        setUpTagCategories()
                 
-        if isIncomplete {
-            self.present(alertEmptyFields(), animated: true, completion: nil)
-        } else {
-            self.tableView.reloadData()
-        }
-        
-        let languages = tagLanguages.filter { $0.isFavorite }.map { Languages.getLanguage(language: "Languages\($0.option)") }
-        let platforms = tagPlatforms.filter { $0.isFavorite }.map { Platform.getPlatform(key: "Platform\($0.option == "PlayStation" ? "PS" : $0.option)") }
-        let games = tagGames.filter { $0.isFavorite }.map { $0.option }
-                
-        CKRepository.setOnboardingInfo(name: self.nameField, nickname: self.usernameField, photoURL: nil, location: Locations.africaNorth, description: self.descriptionField, languages: languages, selectedPlatforms: platforms, selectedGames: games)
+        self.title = NSLocalizedString("viewControllerTitle", comment: "This key is used to set the title of the screen")
     }
     
+    private func setUpTagCategories() {
+        let supportedLanguages = Languages.allCases.map { $0.description }
+        
+        let supportedPlatforms = Platform.allCases.map { $0.description }
+        
+        let supportedGames = Games.buildGameArray()
+        
+        let allTagCategories = EditingTagCategory.allCases
+        
+        allTagCategories.forEach { category in
+            switch category {
+                case .languages:
+                    let tagLanguages = supportedLanguages.map { TagOption(option: $0, isFavorite: false) }
+                    self.tagLanguages = tagLanguages
+                    
+                case .platforms:
+                    let tagPlatforms = supportedPlatforms.map { TagOption(option: $0, isFavorite: false) }
+                    self.tagPlatforms = tagPlatforms
+                    
+                case .games:
+                    let tagGames = supportedGames.map { GameOption(option: $0, isFavorite: false) }
+                    self.tagGames = tagGames
+            }
+        }
+    }
+    
+    //MARK: EditingProfileViewController Class Functions
+
     func alertEmptyFields() -> UIAlertController {
         let title = NSLocalizedString("onboarding5AlertTitleLabel", comment: "alert title")
         
@@ -50,121 +118,95 @@ class OnboardingRegisterViewController: UIViewController {
         return dialogMessage
     }
     
+    //MARK: EditingProfileViewController Button actions
+        
+    @IBAction func didTapUpperDone(_ sender: UIBarButtonItem) {
+        
+        let isIncomplete = nameField.isEmpty || usernameField.isEmpty || selectedLocation.string.isEmpty || tagLanguages.filter { $0.isFavorite }.count < 1 || tagPlatforms.filter { $0.isFavorite }.count < 1
+        
+        didTapDone = true
+                
+        if isIncomplete {
+            self.present(alertEmptyFields(), animated: true, completion: nil)
+        } else {
+            self.tableView.reloadData()
+            self.dismiss(animated: true)
+        }
+        
+        let languages = tagLanguages.filter { $0.isFavorite }.map { Languages.getLanguage(language: "Languages\($0.option)") }
+        let platforms = tagPlatforms.filter { $0.isFavorite }.map { Platform.getPlatform(key: "Platform\($0.option == "PlayStation" ? "PS" : $0.option)") }
+        let games = tagGames.filter { $0.isFavorite }.map { $0.option }
+                
+//        CKRepository.setOnboardingInfo(name: self.nameField, nickname: self.usernameField, photoURL: nil, location: Locations.africaNorth, description: self.descriptionField, languages: languages, selectedPlatforms: platforms, selectedGames: games)
+    }
+    
+    @IBAction func didTapBottomDone(_ sender: UIButton) {
+        
+        let isIncomplete = nameField.isEmpty || usernameField.isEmpty || selectedLocation.string.isEmpty || tagLanguages.filter { $0.isFavorite }.count < 1 || tagPlatforms.filter { $0.isFavorite }.count < 1
+        
+        didTapDone = true
+                
+        if isIncomplete {
+            self.present(alertEmptyFields(), animated: true, completion: nil)
+        } else {
+            self.tableView.reloadData()
+            self.dismiss(animated: true)
+        }
+        
+        let languages = tagLanguages.filter { $0.isFavorite }.map { Languages.getLanguage(language: "Languages\($0.option)") }
+        let platforms = tagPlatforms.filter { $0.isFavorite }.map { Platform.getPlatform(key: "Platform\($0.option == "PlayStation" ? "PS" : $0.option)") }
+        let games = tagGames.filter { $0.isFavorite }.map { $0.option }
+                
+//        CKRepository.setOnboardingInfo(name: self.nameField, nickname: self.usernameField, photoURL: nil, location: Locations.africaNorth, description: self.descriptionField, languages: languages, selectedPlatforms: platforms, selectedGames: games)
+    }
+    
+    @IBAction func didTapBottomCancel(_ sender: UIButton) {
+        self.dismiss(animated: true)
+    }
+    
+    //MARK: EditingProfileViewController OBJC Functions
+    
     @objc func closeKeyboard(sender: Any) {
         self.view.endEditing(true)
     }
-    
-    var didTapDone = false
-    
-    enum OnboardingTagCategory: Int, CaseIterable {
-        case languages
-        case platforms
-        case games
-    }
-    
-    enum OnboardingTextFields: Int, CaseIterable {
-        case nameField
-        case usernameField
-    }
-    
-    enum OnboardingFields: Int, CaseIterable {
-        case profileImage
-        case nameField
-        case usernameField
-        case descriptionField
-        case locations
-        case languages
-        case platforms
-        case games
-    }
-    
-    let onboardingFields = OnboardingFields.allCases
-    
-    typealias TagOption = (option: String, isFavorite: Bool)
-    typealias GameOption = (option: Game, isFavorite: Bool)
-    
-    var tagLanguages: [TagOption] = []
-    var tagPlatforms: [TagOption] = []
-    var tagGames: [GameOption] = []
-    var nameField: String = ""
-    var usernameField: String = ""
-    var descriptionField: String = ""
-    
-    typealias UserLocation = (string: String, enum: Locations)
-    var selectedLocation: UserLocation = UserLocation(string: Locations.africaNorth.description, enum: Locations.africaNorth)
-    
-    var imagePicker: ImagePickerManager = ImagePickerManager()
-    var profileImageUrl: URL?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        tableView.dataSource = self
-        tableView.delegate = self
-                
-        setUpTagCategories()
-    }
-    
-    private func setUpTagCategories() {
-        let supportedLanguages = Languages.allCases.map { $0.description }
-        
-        let supportedPlatforms = Platform.allCases.map { $0.description }
-        
-        let supportedGames = Games.buildGameArray()
-        
-        let allTagCategories = OnboardingTagCategory.allCases
-        
-        allTagCategories.forEach { category in
-            switch category {
-                case .languages:
-                    let tagLanguages = supportedLanguages.map { TagOption(option: $0, isFavorite: false) }
-                    self.tagLanguages = tagLanguages
-                    
-                case .platforms:
-                    let tagPlatforms = supportedPlatforms.map { TagOption(option: $0, isFavorite: false) }
-                    self.tagPlatforms = tagPlatforms
-                    
-                case .games:
-                    let tagGames = supportedGames.map { GameOption(option: $0, isFavorite: false) }
-                    self.tagGames = tagGames
-            }
-        }
-    }
 }
+//MARK: - UITableViewDataSource
 
-//MARK: - UITableViewDataSource | UITableViewDelegate
-
-extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDelegate {
+extension EditingProfileViewController: UITableViewDataSource {
+    
+    //MARK: UITableViewDataSource Cell setup
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return onboardingFields.count
+        return editingFields.count
     }
-    
+        
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let onboardingField = onboardingFields[indexPath.row]
+        let currentEditingField = editingFields[indexPath.row]
         
         let defaultCell = UITableViewCell()
         
-        switch onboardingField {
+        switch currentEditingField {
             case .profileImage: return profileImageCell()
                 
-            case .nameField: return textFieldCell(titleKey: "onboarding5NameLabel", tag: OnboardingTextFields.nameField.rawValue)
+            case .nameField: return textFieldCell(titleKey: "onboarding5NameLabel", tag: EditingTextFields.nameField.rawValue)
                 
-            case .usernameField: return textFieldCell(titleKey: "onboarding5UsernameLabel", tag: OnboardingTextFields.usernameField.rawValue)
+            case .usernameField: return textFieldCell(titleKey: "onboarding5UsernameLabel", tag: EditingTextFields.usernameField.rawValue)
                 
             case .descriptionField: return textViewCell()
                 
             case .locations: return pickerCell()
                 
-            case .languages: return selectorCell(titleKey: "onboarding5LanguagesLabel", tag: OnboardingTagCategory.languages.rawValue) ?? defaultCell
+            case .languages: return selectorCell(titleKey: "onboarding5LanguagesLabel", tag: EditingTagCategory.languages.rawValue) ?? defaultCell
                     
-            case .platforms: return selectorCell(titleKey: "onboarding5PlatformsLabel", tag: OnboardingTagCategory.platforms.rawValue) ?? defaultCell
+            case .platforms: return selectorCell(titleKey: "onboarding5PlatformsLabel", tag: EditingTagCategory.platforms.rawValue) ?? defaultCell
                 
             case .games: return gameCell() ?? defaultCell
         }
     }
     
+    //MARK: UITableViewDataSource Custom cell fetch
+
     func profileImageCell() -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "profile-image-cell") as? ProfileImageTableViewCell else {
                 return UITableViewCell()
@@ -172,7 +214,7 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
         
         cell.userAvatarView.delegate = self
         
-        cell.tag = OnboardingFields.profileImage.rawValue
+        cell.tag = EditingFields.profileImage.rawValue
         
         return cell
     }
@@ -193,9 +235,9 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
         
         var text = ""
         
-        if let onboardingTextField = OnboardingTextFields(rawValue: tag) {
+        if let editingTextField = EditingTextFields(rawValue: tag) {
             
-            switch onboardingTextField {
+            switch editingTextField {
                 case .nameField: text = nameField
                 case .usernameField: text = usernameField
             }
@@ -255,9 +297,9 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
         
         var selections = 0
         
-        if let onboardingTags = OnboardingTagCategory(rawValue: tag) {
+        if let editingTags = EditingTagCategory(rawValue: tag) {
             
-            switch onboardingTags {
+            switch editingTags {
                 case .languages: selections = tagLanguages.filter { $0.isFavorite }.count
                 case .platforms: selections = tagPlatforms.filter { $0.isFavorite }.count
                 default: return cell
@@ -280,7 +322,7 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
         
         cell?.collectionView.delegate = self
         cell?.collectionView.dataSource = self
-        cell?.collectionView.tag = OnboardingTagCategory.games.rawValue
+        cell?.collectionView.tag = EditingTagCategory.games.rawValue
                 
         let lines = tagGames.count/3
         
@@ -294,19 +336,20 @@ extension OnboardingRegisterViewController: UITableViewDataSource, UITableViewDe
         
         return cell
     }
+    
+    
 }
+//MARK: - UICollectionViewDataSource
 
-//MARK: - UICollectionViewDelegate | UICollectionViewDataSource | UICollectionViewDelegateFlowLayout
-
-extension OnboardingRegisterViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension EditingProfileViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        guard let onboardingTagCategory = OnboardingTagCategory(rawValue: collectionView.tag) else {
+        guard let editingTagCategory = EditingTagCategory(rawValue: collectionView.tag) else {
             return 0
         }
         
-        switch onboardingTagCategory {
+        switch editingTagCategory {
             case .languages: return tagLanguages.count
             case .platforms: return tagPlatforms.count
             case .games: return tagGames.count
@@ -314,12 +357,12 @@ extension OnboardingRegisterViewController: UICollectionViewDelegate, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-                
-        guard let onboardingTagCategory = OnboardingTagCategory(rawValue: collectionView.tag) else {
+        
+        guard let editingTagCategory = EditingTagCategory(rawValue: collectionView.tag) else {
             return UICollectionViewCell()
         }
     
-        switch onboardingTagCategory {
+        switch editingTagCategory {
             case .languages:
                 let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "selectable-tag-cell", for: indexPath) as! SelectableTagCollectionViewCell
                 
@@ -349,18 +392,17 @@ extension OnboardingRegisterViewController: UICollectionViewDelegate, UICollecti
                 return collectionCell
 
         }
-                
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        guard let onboardingTagCategory = OnboardingTagCategory(rawValue: collectionView.tag) else {
+        guard let editingTagCategory = EditingTagCategory(rawValue: collectionView.tag) else {
             return CGSize(width: 0, height: 0)
         }
                 
         var model: String
         
-        switch onboardingTagCategory {
+        switch editingTagCategory {
             case .languages:
                 model = tagLanguages[indexPath.row].option
 
@@ -379,14 +421,18 @@ extension OnboardingRegisterViewController: UICollectionViewDelegate, UICollecti
                 
         return size
     }
+}
+//MARK: - UICollectionViewDelegate
+
+extension EditingProfileViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        guard let onboardingTagCategory = OnboardingTagCategory(rawValue: collectionView.tag) else {
+        guard let editingTagCategory = EditingTagCategory(rawValue: collectionView.tag) else {
             return
         }
         
-        switch onboardingTagCategory {
+        switch editingTagCategory {
             case .languages:
                 tagLanguages[indexPath.row].isFavorite.toggle()
                 
@@ -399,24 +445,26 @@ extension OnboardingRegisterViewController: UICollectionViewDelegate, UICollecti
         
         collectionView.reloadItems(at: [indexPath])
     }
+}
+//MARK: - UICollectionViewDelegateFlowLayout
+
+extension EditingProfileViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10
     }
-
 }
-
 //MARK: - UITextFieldDelegate
 
-extension OnboardingRegisterViewController: UITextFieldDelegate {
+extension EditingProfileViewController: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         
-        guard let onboardingTextFieldTag = OnboardingTextFields(rawValue: textField.tag) else {
+        guard let editingTextFieldTag = EditingTextFields(rawValue: textField.tag) else {
             return
         }
         
-        switch onboardingTextFieldTag {
+        switch editingTextFieldTag {
             case .nameField:
                 self.nameField = textField.text ?? ""
             case .usernameField:
@@ -429,19 +477,17 @@ extension OnboardingRegisterViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-    
 }
-
 //MARK: - UITextViewDelegate
 
-extension OnboardingRegisterViewController: UITextViewDelegate {
+extension EditingProfileViewController: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         self.descriptionField = textView.text ?? ""
     }
 
     func textViewDidChange(_ textView: UITextView) {
-        let cell = tableView.cellForRow(at: IndexPath(row: OnboardingFields.descriptionField.rawValue, section: 0)) as? TextViewTableViewCell
+        let cell = tableView.cellForRow(at: IndexPath(row: EditingFields.descriptionField.rawValue, section: 0)) as? TextViewTableViewCell
         
         cell?.counterLabelView.text = "\(textView.text.count)/300"
     }
@@ -451,14 +497,12 @@ extension OnboardingRegisterViewController: UITextViewDelegate {
         return textView.text.count + (text.count - range.length) <= 300
     }
 }
-
 //MARK: - UserAvatarViewDelegate
 
-extension OnboardingRegisterViewController: UserAvatarViewDelegate {
-    
+extension EditingProfileViewController: UserAvatarViewDelegate {
     
     func didChooseImage() {
-        let cell = tableView.cellForRow(at: IndexPath(row: OnboardingFields.profileImage.rawValue, section: 0)) as? ProfileImageTableViewCell
+        let cell = tableView.cellForRow(at: IndexPath(row: EditingFields.profileImage.rawValue, section: 0)) as? ProfileImageTableViewCell
     
         imagePicker.pickImage(self) { [unowned self] image, url in
             DispatchQueue.main.async {
@@ -468,12 +512,9 @@ extension OnboardingRegisterViewController: UserAvatarViewDelegate {
         }
     }
 }
+//MARK: - UserLocationDelegate
 
-//MARK: - PickerCellDelegate | UserLocationDelegate
-
-extension OnboardingRegisterViewController: PickerCellDelegate, UserLocationDelegate {
-    
-    //MARK: UserLocationDelegate: Segue
+extension EditingProfileViewController: UserLocationDelegate {
     
     func didSelect(with location: Locations) {
         selectedLocation.string = location.description
@@ -481,14 +522,14 @@ extension OnboardingRegisterViewController: PickerCellDelegate, UserLocationDele
         
         tableView.reloadData()
     }
-    
-    //MARK: PickerCellDelegate: Segue
+}
+//MARK: - PickerCellDelegate
+
+extension EditingProfileViewController: PickerCellDelegate {
     
     func didChooseLocation(_ sender: UITableViewCell) {
         performSegue(withIdentifier: "toUserLocations", sender: sender)
     }
-    
-    //MARK: PickerCellDelegate: Segue
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toUserLocations" {
