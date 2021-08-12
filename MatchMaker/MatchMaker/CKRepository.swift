@@ -347,6 +347,7 @@ public class CKRepository {
                         for i in 0...u.friends.count-1 {
                             if u.friends[i].id == inviterId || u.friends[i].id == receiverId {
                                 CKRepository.user?.friends.remove(at: i)
+                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: FriendsTable.tableChanged.description), object: nil)
                             }
                         }
                     }
