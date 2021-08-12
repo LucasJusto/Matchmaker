@@ -286,6 +286,14 @@ public class CKRepository {
             if let ckError = error as? CKError {
                 CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
             }
+            else {
+                if error == nil {
+                    getUserById(id: receiverUserId) { user in
+                        CKRepository.user?.friends.append(Social(id: user.id, name: user.name, nickname: user.nickname, photoURL: user.photoURL, games: user.selectedGames, isInvite: IsInvite.yes, isInviter: false))
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: FriendsTable.tableChanged.description), object: nil)
+                    }
+                }
+            }
         }
     }
     
@@ -306,6 +314,14 @@ public class CKRepository {
                     publicDB.save(rec) { record, error in
                         if let ckError = error as? CKError {
                             CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                        }
+                        else {
+                            if error == nil {
+                                getUserById(id: inviterUserId) { user in
+                                    CKRepository.user?.friends.append(Social(id: user.id, name: user.name, nickname: user.nickname, photoURL: user.photoURL, games: user.selectedGames, isInvite: IsInvite.no, isInviter: true))
+                                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: FriendsTable.tableChanged.description), object: nil)
+                                }
+                            }
                         }
                     }
                 }
