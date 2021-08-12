@@ -289,24 +289,41 @@ public class CKRepository {
         }
     }
     
-    static func deleteFriendship(id1: String, id2: String) {
+    static func friendshipInviteAnswer(inviterUserId: String, receiverUserId: String, response: Bool) {
+        let recordID = CKRecord.ID(recordName:"\(inviterUserId)\(receiverUserId)")
         let publicDB = container.publicCloudDatabase
-        let recordID = CKRecord.ID(recordName:"\(id1)\(id2)")
-        let recordID2 = CKRecord.ID(recordName:"\(id2)\(id1)")
         
-        publicDB.delete(withRecordID: recordID) { id, error in
-            if id != nil {
+        if response {
+            //friendshipInviteAccepted
+            publicDB.fetch(withRecordID: recordID) { record, error in
                 if let ckError = error as? CKError {
                     CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                }
+                
+                if let rec = record {
+                    rec.setObject(IsInvite.no.description as CKRecordValue?, forKey: FriendsTable.isInvite.description)
+                    
+                    publicDB.save(rec) { record, error in
+                        if let ckError = error as? CKError {
+                            CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                        }
+                    }
                 }
             }
         }
+        else {
+            //friendshipInviteDenied
+            deleteFriendship(inviterId: inviterUserId, receiverId: receiverUserId)
+        }
+    }
+    
+    static func deleteFriendship(inviterId: String, receiverId: String) {
+        let publicDB = container.publicCloudDatabase
+        let recordID = CKRecord.ID(recordName:"\(inviterId)\(receiverId)")
         
-        publicDB.delete(withRecordID: recordID2) { id, error in
-            if id != nil {
-                if let ckError = error as? CKError {
-                    CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
-                }
+        publicDB.delete(withRecordID: recordID) { id, error in
+            if let ckError = error as? CKError {
+                CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
             }
         }
     }
