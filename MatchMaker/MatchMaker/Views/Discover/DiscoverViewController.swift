@@ -55,6 +55,7 @@ class DiscoverViewController: UIViewController {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = UIColor.black
+        appearance.largeTitleTextAttributes = [.foregroundColor:UIColor.white]
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         
@@ -62,6 +63,7 @@ class DiscoverViewController: UIViewController {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Users"
+        searchController.searchBar.barStyle = .black
         navigationItem.searchController = searchController
         definesPresentationContext = true
         
