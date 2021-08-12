@@ -59,7 +59,8 @@ class EditingProfileViewController: UIViewController {
     var nameField: String = ""
     var usernameField: String = ""
     var descriptionField: String = ""
-    
+    var selectedGame: GameOption?
+
     var profileImageUrl: URL?
 
     //MARK: EditingProfileViewController View Setup
@@ -323,16 +324,20 @@ extension EditingProfileViewController: UITableViewDataSource {
         cell?.collectionView.delegate = self
         cell?.collectionView.dataSource = self
         cell?.collectionView.tag = EditingTagCategory.games.rawValue
+        
+        if let height = cell?.collectionView.collectionViewLayout.collectionViewContentSize.height {
+            cell?.collectionViewHeight.constant = height
+        }
                 
-        let lines = tagGames.count/3
-        
-        let width = UIScreen.main.bounds.width * 0.28
-        
-        let cellHeight = Double(width) * 1.37
-        
-        let height = CGFloat(cellHeight * Double(lines))
-        
-        cell?.collectionViewHeight.constant = height
+//        let lines = tagGames.count/3
+//
+//        let width = UIScreen.main.bounds.width * 0.28
+//
+//        let cellHeight = Double(width) * 1.37
+//
+//        let height = CGFloat(cellHeight * Double(lines))
+//
+//        cell?.collectionViewHeight.constant = height
         
         return cell
     }
@@ -393,34 +398,6 @@ extension EditingProfileViewController: UICollectionViewDataSource {
 
         }
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        guard let editingTagCategory = EditingTagCategory(rawValue: collectionView.tag) else {
-            return CGSize(width: 0, height: 0)
-        }
-                
-        var model: String
-        
-        switch editingTagCategory {
-            case .languages:
-                model = tagLanguages[indexPath.row].option
-
-            case .platforms:
-                model = tagPlatforms[indexPath.row].option
-                
-            case .games:
-                let width = collectionView.bounds.width * 0.28
-                
-                return CGSize(width: width, height: width * 1.37)
-        }
-                
-        let modelSize = model.size(withAttributes: nil)
-        
-        let size = CGSize(width: modelSize.width, height: collectionView.bounds.height)
-                
-        return size
-    }
 }
 //MARK: - UICollectionViewDelegate
 
@@ -440,7 +417,8 @@ extension EditingProfileViewController: UICollectionViewDelegate {
                 tagPlatforms[indexPath.row].isFavorite.toggle()
                 
             case .games:
-                tagGames[indexPath.row].isFavorite.toggle()
+                self.selectedGame = tagGames[indexPath.row]
+                performSegue(withIdentifier: "selectedGame", sender: nil)
         }
         
         collectionView.reloadItems(at: [indexPath])
@@ -449,6 +427,34 @@ extension EditingProfileViewController: UICollectionViewDelegate {
 //MARK: - UICollectionViewDelegateFlowLayout
 
 extension EditingProfileViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        guard let editingTagCategory = EditingTagCategory(rawValue: collectionView.tag) else {
+            return CGSize(width: 0, height: 0)
+        }
+                
+        var model: String
+        
+        switch editingTagCategory {
+            case .languages:
+                model = tagLanguages[indexPath.row].option
+
+            case .platforms:
+                model = tagPlatforms[indexPath.row].option
+                
+            case .games:
+                let width = collectionView.bounds.width * 0.31
+                
+                return CGSize(width: width, height: width * 1.37)
+        }
+                
+        let modelSize = model.size(withAttributes: nil)
+        
+        let size = CGSize(width: modelSize.width, height: collectionView.bounds.height)
+                
+        return size
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10
@@ -539,5 +545,38 @@ extension EditingProfileViewController: PickerCellDelegate {
             destination.delegate = self
             destination.selectedLocation = selectedLocation.enum
         }
+        
+        if segue.identifier == "selectedGame" {
+            let rootVC = segue.destination as! UINavigationController
+            let destination = rootVC.topViewController as! GameDetailsViewController
+            
+            destination.delegate = self
+            
+            if let game = selectedGame {
+                destination.game = game.option
+                destination.isGameSelected = game.isFavorite
+            }
+        }
     }
+}
+// MARK: - GameSelectionDelegate
+
+extension EditingProfileViewController: GameSelectionDelegate {
+    
+    func updateGame(_ game: Game, isSelected: Bool) {
+        let indexPath = IndexPath(row: EditingFields.games.rawValue, section: 0)
+
+        let cell = tableView.cellForRow(at: indexPath) as? GamesSelectionTableViewCell
+    
+        guard let gameIndex = tagGames.firstIndex(where: { $0.option.id == game.id }) else {
+            return
+        }
+        
+        tagGames[gameIndex] = GameOption(option: game, isFavorite: isSelected)
+        
+        let collectionIndexPath = IndexPath(row: gameIndex, section: 0)
+        
+        cell?.collectionView.reloadItems(at: [collectionIndexPath])
+    }
+    
 }

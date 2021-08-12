@@ -191,4 +191,4 @@ without using your storage";
 //MARK: - Profile Customization
 "CancelButtonLabel" = "Cancel";
 "DoneButtonLabel" = "Done";
-"viewControllerTitle" = "EditProfile";
+"viewControllerTitle" = "Edit Profile";
