@@ -163,18 +163,18 @@ without using your storage";
 "US South East" = "US South East";
 "US South West" = "US South West";
 
-// MARK:- /Views/GameDetail
+// MARK: - /Views/GameDetail
 "FindPlayersButton" = "Find players";
 "AddToMyGamesButton" = "Add to my games";
 "PlatformsLabel" = "Platforms";
 "OtherGamesLabel" = "Other Games";
 
-// MARK:- Highlight image
+// MARK: - Highlight image
 "GamesTitleLabel" = "Games";
 "HighlightTitileAboveImage" = "New game available";
 "TitleButtonHiglighAboveImage" = "Find players now";
 
-// MARK:- Frind request cell
+// MARK: - Frind request cell
 "RejectRequestFriendButtonLabel" = "Reject";
 "AceptRequestFriendButtonLabel" = "Acept";
 "NotificationRequestFriendLabel" = "sent you a friend request";
@@ -187,3 +187,8 @@ without using your storage";
 "ConfirmButtonLabel" = "Confirm";
 "CancelButtonLabel" = "Cancel";
 "TitleRateModalView"= "Rate";
+
+//MARK: - Profile Customization
+"CancelButtonLabel" = "Cancel";
+"DoneButtonLabel" = "Done";
+"viewControllerTitle" = "Edit Profile";
