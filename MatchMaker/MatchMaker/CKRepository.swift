@@ -99,6 +99,21 @@ enum BlockedTable: CustomStringConvertible {
     }
 }
 
+enum RatingsTable: CustomStringConvertible {
+    case recordType, raterUserId, ratedUserId
+    
+    var description: String {
+        switch self {
+            case .recordType:
+                return "Ratings"
+            case .raterUserId:
+                return "raterUserId"
+            case .ratedUserId:
+                return "ratedUserId"
+        }
+    }
+}
+
 public class CKRepository {
     static var user: User? //singleton user
     public static let container: CKContainer = CKContainer(identifier: "iCloud.MatchMaker")
