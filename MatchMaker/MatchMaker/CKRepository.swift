@@ -362,6 +362,52 @@ public class CKRepository {
         }
     }
     
+    static func getFriendsById(id: String, completion: @escaping ([Social]) -> Void) {
+        var friends: [Social] = [Social]()
+        
+        let publicDB = container.publicCloudDatabase
+        let inviterPredicate = NSPredicate(format: "\(FriendsTable.inviterId.description) == '\(id)'")
+        let query = CKQuery(recordType: FriendsTable.recordType.description, predicate: inviterPredicate)
+        
+        publicDB.perform(query, inZoneWith: nil) { results, error in
+            if let ckError = error as? CKError {
+                CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+            }
+            if let resultsNotNull = results {
+                for result in resultsNotNull {
+                    if let receiverFriendId = result.value(forKey: FriendsTable.receiverId.description) as? String {
+                        getUserById(id: receiverFriendId) { user in
+                            let isInvite = IsInvite.getIsInvite(string: result.value(forKey: FriendsTable.isInvite.description) as? String ?? "")
+                            friends.append(Social(id: user.id, name: user.name, nickname: user.nickname, photoURL: user.photoURL, games: user.selectedGames, isInvite: isInvite, isInviter: true))
+                            if friends.count == resultsNotNull.count {
+                                let receiverPredicate = NSPredicate(format: "\(FriendsTable.receiverId.description) == '\(id)'")
+                                let receiverQuery = CKQuery(recordType: FriendsTable.recordType.description, predicate: receiverPredicate)
+                                publicDB.perform(receiverQuery, inZoneWith: nil) { receiverResults, receiverError in
+                                    if let ckError = receiverError as? CKError {
+                                        CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                                    }
+                                    if let receiverResultsNotNull = receiverResults {
+                                        for receiverResult in receiverResultsNotNull {
+                                            if let inviterFriendId = receiverResult.value(forKey: FriendsTable.inviterId.description) as? String {
+                                                getUserById(id: inviterFriendId) { user in
+                                                    let receiverIsInvite = IsInvite.getIsInvite(string: receiverResult.value(forKey: FriendsTable.isInvite.description) as? String ?? "")
+                                                    friends.append(Social(id: user.id, name: user.name, nickname: user.nickname, photoURL: user.photoURL, games: user.selectedGames, isInvite: receiverIsInvite, isInviter: false))
+                                                    if friends.count == (resultsNotNull.count + receiverResultsNotNull.count) {
+                                                        completion(friends)
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     static func searchUsers(languages: [Languages], platforms: [Platform], behaviourRate: Double, skillRate: Double, locations: [Locations], games: [Game], completion: @escaping ([Social]) -> Void) {
         //creating user array to be returned
         var usersFound: [Social] = [Social]()
