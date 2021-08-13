@@ -25,7 +25,7 @@ class FiltersViewController: UIViewController {
     var skillsRate: Int = 0
     var selectedLocation: UserLocation = UserLocation(string: "-", enum: Locations.brazil)
     var selectedGames: [GameOption] = []
-    var selectedGame: Game?
+    var selectedGame: GameOption?
     
     //MARK: - Enums
     enum FilterOptions: Int, CaseIterable {
@@ -93,6 +93,19 @@ class FiltersViewController: UIViewController {
     
     // MARK: - Prepare
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "selectedGame" {
+            let rootVC = segue.destination as! UINavigationController
+            let destination = rootVC.topViewController as! GameDetailsViewController
+            
+            destination.delegate = self
+            
+            if let game = selectedGame {
+                destination.game = game.option
+                destination.isGameSelected = game.isFavorite
+            }
+        }
+        
         if segue.identifier == "toUserLocations" {
             let rootVC = segue.destination as! UINavigationController
             let destination = rootVC.topViewController as! UserLocationViewController
@@ -107,9 +120,8 @@ class FiltersViewController: UIViewController {
 extension FiltersViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 6
     }
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -127,7 +139,7 @@ extension FiltersViewController: UITableViewDataSource {
             case .location:
                 return pickerCell() ?? defaultCell
             case .games:
-                return defaultCell
+                return gameCell() ?? defaultCell
         }
     }
     
@@ -157,6 +169,21 @@ extension FiltersViewController: UITableViewDataSource {
         
         return cell
     }
+    
+    func gameCell() -> GamesSelectionTableViewCell? {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "game-selection-cell") as? GamesSelectionTableViewCell
+        
+        cell?.collectionView.tag = TagFilterOptions.games.rawValue
+        cell?.collectionView.delegate = self
+        cell?.collectionView.dataSource = self
+        
+        //Setando altura da CollectionView
+        if let height = cell?.collectionView.collectionViewLayout.collectionViewContentSize.height {
+            cell?.collectionViewHeight.constant = height
+        }
+
+        return cell
+    }
 }
 
 // MARK: - UITableViewDelegate
@@ -180,14 +207,20 @@ extension FiltersViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let defaultCell = SelectableTagCollectionViewCell()
-        
         guard let selectedTagFilter = TagFilterOptions(rawValue: collectionView.tag) else {
             return UICollectionViewCell()
         }
         
         if selectedTagFilter == .games {
-            return defaultCell
+            let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "selectable-image-cell", for: indexPath) as! SelectableImageCollectionViewCell
+
+            let game = selectedGames[indexPath.row]
+
+            collectionCell.imageView.image = game.option.image
+
+            collectionCell.selectionTag.isHidden = !game.isFavorite
+
+            return collectionCell
             
         } else {
             
@@ -226,7 +259,9 @@ extension FiltersViewController: UICollectionViewDataSource {
                     tagPlatforms[indexPath.row].isFavorite.toggle()
                 }
             case .games:
-                return
+                //Seta um game selecionado e abre a tela de jogo selecionado
+                self.selectedGame = selectedGames[indexPath.row]
+                performSegue(withIdentifier: "selectedGame", sender: nil)
         }
 
         collectionView.reloadItems(at: [indexPath])
@@ -253,7 +288,9 @@ extension FiltersViewController: UICollectionViewDelegateFlowLayout {
             case .platforms:
                 model = tagPlatforms[indexPath.row].option
             case .games:
-                return CGSize(width: 0, height: 0)
+                let width = collectionView.bounds.width * 0.28
+
+                return CGSize(width: width, height: width * 1.37)
         }
 
         let modelSize = model.size(withAttributes: nil)
@@ -283,4 +320,25 @@ extension FiltersViewController: PickerCellDelegate, UserLocationDelegate {
     func didChooseLocation(_ sender: UITableViewCell) {
         performSegue(withIdentifier: "toUserLocations", sender: sender)
     }
+}
+
+// MARK: - GameSelectionDelegate
+extension FiltersViewController: GameSelectionDelegate {
+    
+    func updateGame(_ game: Game, isSelected: Bool) {
+        let indexPath = IndexPath(row: FilterOptions.games.rawValue, section: 0)
+
+        let cell = tableView.cellForRow(at: indexPath) as? GamesSelectionTableViewCell
+    
+        guard let gameIndex = selectedGames.firstIndex(where: { $0.option.id == game.id }) else {
+            return
+        }
+        
+        selectedGames[gameIndex] = GameOption(option: game, isFavorite: isSelected)
+        
+        let collectionIndexPath = IndexPath(row: gameIndex, section: 0)
+        
+        cell?.collectionView.reloadItems(at: [collectionIndexPath])
+    }
+    
 }

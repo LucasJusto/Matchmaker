@@ -15,7 +15,7 @@
             <objects>
                 <viewController id="Y6W-OH-hqX" customClass="FiltersViewController" customModule="MatchMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="786"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cZi-Gz-wb3">
@@ -470,7 +470,7 @@
                     <connections>
                         <outlet property="tableView" destination="cZi-Gz-wb3" id="tKh-kL-5Qs"/>
                         <segue destination="zoJ-vM-qAV" kind="presentation" identifier="toUserLocations" id="lOf-kF-hbx"/>
-                        <segue destination="pXG-qI-yQr" kind="presentation" id="HOg-Rj-Xsb"/>
+                        <segue destination="pXG-qI-yQr" kind="presentation" identifier="selectedGame" id="HOg-Rj-Xsb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
