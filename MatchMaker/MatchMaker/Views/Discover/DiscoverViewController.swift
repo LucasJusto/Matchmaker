@@ -149,7 +149,9 @@ extension DiscoverViewController: DiscoverTableCellDelegate {
         guard let userId = cell.userId else { return }
         CKRepository.getUserById(id: userId, completion: { user in
             self.destinationUser = user
-            self.performSegue(withIdentifier: "toOtherProfile", sender: nil)
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "toOtherProfile", sender: nil)
+            }
         })
     }
     

@@ -84,11 +84,7 @@ class OtherProfileViewController: UIViewController {
         //MARK: - open rate screen to rate
     }
     
-    var user: User? {
-        didSet {
-            setupUserProfile()
-        }
-    }
+    var user: User?
     
     //MARK: - Status of friend
     var friendRequestOrNonFriendControl: isFriend? = isFriend.requestReceived
@@ -98,7 +94,7 @@ class OtherProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //setupUserProfile()
+        setupUserProfile()
         
         setCornerContainerRate()
         
