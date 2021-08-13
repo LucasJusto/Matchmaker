@@ -122,6 +122,9 @@ public class CKRepository {
             if let idNotNull = id {
                 CKRepository.getUserById(id: idNotNull) { user in
                     CKRepository.user = user
+                    CKRepository.getFriendsById(id: user.id) { friends in
+                        CKRepository.user?.friends = friends
+                    }
                 }
             }
         }
@@ -663,6 +666,21 @@ public class CKRepository {
             else {
                 //if there isnt id, return empty list
                 completion(blockedUsersIds)
+            }
+        }
+    }
+    
+    static func getBlockedUsersList(completion: @escaping ([Social]) -> Void) {
+        var blockedUsers: [Social] = [Social]()
+        
+        CKRepository.getBlockedUsersId { blockedUsersIds in
+            for id in blockedUsersIds {
+                getUserById(id: id) { user in
+                    blockedUsers.append(Social(id: user.id, name: user.name, nickname: user.nickname, photoURL: user.photoURL, games: user.selectedGames, isInvite: nil, isInviter: nil))
+                    if blockedUsers.count == blockedUsersIds.count {
+                        completion(blockedUsers)
+                    }
+                }
             }
         }
     }
