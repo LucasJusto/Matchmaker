@@ -393,6 +393,7 @@ public class CKRepository {
                                                     let receiverIsInvite = IsInvite.getIsInvite(string: receiverResult.value(forKey: FriendsTable.isInvite.description) as? String ?? "")
                                                     friends.append(Social(id: user.id, name: user.name, nickname: user.nickname, photoURL: user.photoURL, games: user.selectedGames, isInvite: receiverIsInvite, isInviter: false))
                                                     if friends.count == (resultsNotNull.count + receiverResultsNotNull.count) {
+                                                        CKRepository.user?.friends = friends
                                                         completion(friends)
                                                     }
                                                 }
