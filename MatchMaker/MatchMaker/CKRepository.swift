@@ -760,7 +760,7 @@ public class CKRepository {
         let dialogMessage = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         let ok = UIAlertAction(title: alertButtonLabel, style: .default, handler: { (action) -> Void in
-            print("clickou pra fechar")
+            //make things when alert button is clicked
           })
         
         dialogMessage.addAction(ok)
@@ -836,13 +836,14 @@ public class CKRepository {
                         }
                         let rateAverage = rateSum/Double(resultsNotNull.count)
                         resultNotNull.setObject(rateAverage as CKRecordValue?, forKey: UserTable.averageSkillRate.description)
-                        publicDB.save(resultNotNull) { r, error in
+                        let operation = CKModifyRecordsOperation(recordsToSave: [resultNotNull], recordIDsToDelete: nil)
+                        operation.savePolicy = .changedKeys
+                        operation.modifyRecordsCompletionBlock = { _, _, error in
                             if let ckError = error as? CKError {
-                                if ckError.code.rawValue != 14 {
-                                    CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
-                                }
+                                CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
                             }
                         }
+                        publicDB.add(operation)
                     }
                 }
             }
@@ -917,13 +918,14 @@ public class CKRepository {
                         }
                         let rateAverage = rateSum/Double(resultsNotNull.count)
                         resultNotNull.setObject(rateAverage as CKRecordValue?, forKey: UserTable.averageBehaviourRate.description)
-                        publicDB.save(resultNotNull) { r, error in
+                        let operation = CKModifyRecordsOperation(recordsToSave: [resultNotNull], recordIDsToDelete: nil)
+                        operation.savePolicy = .changedKeys
+                        operation.modifyRecordsCompletionBlock = { _, _, error in
                             if let ckError = error as? CKError {
-                                if ckError.code.rawValue != 14 {
-                                    CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
-                                }
+                                CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
                             }
                         }
+                        publicDB.add(operation)
                     }
                 }
             }
