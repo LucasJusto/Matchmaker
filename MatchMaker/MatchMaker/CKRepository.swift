@@ -116,6 +116,23 @@ enum SkillRatingsTable: CustomStringConvertible {
     }
 }
 
+enum BehaviourRatingsTable: CustomStringConvertible {
+    case recordType, raterUserId, ratedUserId, rate
+    
+    var description: String {
+        switch self {
+            case .recordType:
+                return "BehaviourRatings"
+            case .raterUserId:
+                return "raterUserId"
+            case .ratedUserId:
+                return "ratedUserId"
+            case .rate:
+                return "rate"
+        }
+    }
+}
+
 public class CKRepository {
     static var user: User? //singleton user
     public static let container: CKContainer = CKContainer(identifier: "iCloud.MatchMaker")
