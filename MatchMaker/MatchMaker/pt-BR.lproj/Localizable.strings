@@ -83,7 +83,6 @@ para você escolher e encontrar jogadores";
 "onboardingGameDoneButtonLabel" = "Pronto";
 "onboardingGameDeselectButtonLabel" = "Deselecionar";
 
-
 // MARK: - Platforms
 "PlatformPC" = "PC";
 "PlatformPS" = "PlayStation";
@@ -157,6 +156,14 @@ para você escolher e encontrar jogadores";
 "US North Central" = "US North Central";
 "US South East" = "US South East";
 "US South West" = "US South West";
+
+// MARK: - Detail Game
+// MARK:- /Views/GameDetail
+"TitleGameDetailScreen" = "Detalhes do jogo";
+"FindPlayersButton" = "Encontrar jogadores";
+"AddToMyGamesButton" = "Adicionar aos meus jogos";
+"PlatformsLabel" = "Plataformas";
+"OtherGamesLabel" = "Outros jogos";
 
 // MARK: - Home
 // MARK:- Highlight image
