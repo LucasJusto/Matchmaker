@@ -452,6 +452,7 @@ public class CKRepository {
     static func searchUsers(languages: [Languages], platforms: [Platform], behaviourRate: Double, skillRate: Double, locations: [Locations], games: [Game], completion: @escaping ([Social]) -> Void) {
         //creating user array to be returned
         var usersFound: [Social] = [Social]()
+        let semaphore = DispatchSemaphore(value: 1)
         getBlockedUsersId { blockedUsers in
             var blockedUsersId = blockedUsers
             //creating string to predicate (filtering the search)
@@ -545,7 +546,9 @@ public class CKRepository {
                                 photoURL = ckAsset.fileURL
                             }
                             CKRepository.getUserGamesById(id: id) { userGames in
+                                semaphore.wait()
                                 usersFound.append(Social(id: id, name: name, nickname: nickName, photoURL: photoURL, games: userGames, isInvite: nil))
+                                semaphore.signal()
                                 if usersFound.count == resultsNotNull.count {
                                     //if usersFound is completlty filled
                                     
