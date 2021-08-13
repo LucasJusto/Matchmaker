@@ -128,12 +128,18 @@ public class CKRepository {
     }
     
     public static func getUserId(completion: @escaping (String?) -> Void) {
-        container.fetchUserRecordID { record, error in
-            if let ckError = error as? CKError {
-                CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
-            }
-            if let id = record?.recordName {
-                completion("id\(id)")
+        if let u = CKRepository.user {
+            completion(u.id)
+            return
+        }
+        else {
+            container.fetchUserRecordID { record, error in
+                if let ckError = error as? CKError {
+                    CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                }
+                if let id = record?.recordName {
+                    completion("id\(id)")
+                }
             }
         }
     }
