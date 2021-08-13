@@ -120,6 +120,19 @@ class ProfileViewController: UIViewController {
         gamesTitleLabel.adjustsFontForContentSizeCategory = true
     }
     
+    @IBAction func didTapEditingButton(_ sender: Any) {
+        performSegue(withIdentifier: "toEditProfile", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toEditProfile" {
+            let navViewController = segue.destination as! UINavigationController
+            
+            let destination = navViewController.topViewController as! EditingProfileViewController
+            
+            destination.user = self.user
+        }
+    }
 }
 
 //MARK: - ProfileViewController - Setting User Profile Picture
