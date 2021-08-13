@@ -125,6 +125,9 @@ public class CKRepository {
                     CKRepository.getFriendsById(id: user.id) { friends in
                         CKRepository.user?.friends = friends
                     }
+                    CKRepository.getBlockedUsersList { blockedUsers in
+                        CKRepository.user?.blocked = blockedUsers
+                    }
                 }
             }
         }
