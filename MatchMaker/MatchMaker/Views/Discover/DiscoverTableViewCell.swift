@@ -7,14 +7,32 @@
 
 import UIKit
 
+protocol DiscoverTableCellDelegate: AnyObject {
+    func didRequestProfile(_ sender: UITableViewCell)
+}
+
 class DiscoverTableViewCell: UITableViewCell {
 
+    var userId: String?
+    weak var delegate: DiscoverTableCellDelegate?
     @IBOutlet weak var ProfileImage: UIImageView!
     @IBOutlet weak var NameLabel: UILabel!
     @IBOutlet weak var NickLabel: UILabel!
     @IBOutlet weak var ProfileButton: UIButton!
     @IBOutlet weak var AddToFriendsButton: UIButton!
     @IBOutlet weak var CollectionView: UICollectionView!
+    @IBAction func ActionAddToFriendsButton(_ sender: UIButton) {
+        CKRepository.getUserId(completion: { ownUserId in
+//            guard let ownUserId: String = ownUserId else { return }
+//            guard let userId: String = self.userId else { return }
+            #warning("TODO: mandar solicitacao de amizade")
+            //CKRepository.storeFriendship(inviterUserId: ownUserId, receiverUserId: userId, isInvite: IsInvite.yes, acceptance: false)
+        })
+    }
+    @IBAction func ActionSmallProfileIcon(_ sender: UIButton) {
+        delegate?.didRequestProfile(self)
+    }
+    
     
     var userGames: [Game] = []
     
@@ -37,7 +55,7 @@ class DiscoverTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setup(url: URL?, nameText: String, nickText: String, userGames: [Game]) {
+    func setup(userId: String, url: URL?, nameText: String, nickText: String, userGames: [Game]) {
         
         // Trying to unwrap, get image data and set it in the UI
         if let url = url {
@@ -50,6 +68,7 @@ class DiscoverTableViewCell: UITableViewCell {
             }
         }
         
+        self.userId = userId
         self.userGames = userGames
         NameLabel.text = nameText
         NickLabel.text = nickText

@@ -75,6 +75,9 @@
                                                                     </constraints>
                                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <state key="normal" image="person.circle" catalog="system"/>
+                                                                    <connections>
+                                                                        <action selector="ActionSmallProfileIcon:" destination="ZzG-1O-w5n" eventType="touchUpInside" id="v3T-sJ-dwF"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gEM-jJ-AMW">
                                                                     <rect key="frame" x="30" y="0.0" width="90" height="30"/>
@@ -86,6 +89,9 @@
                                                                     <state key="normal" title="Add to friends">
                                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </state>
+                                                                    <connections>
+                                                                        <action selector="ActionAddToFriendsButton:" destination="ZzG-1O-w5n" eventType="touchUpInside" id="dTd-73-LDj"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                             <constraints>
@@ -268,11 +274,22 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="discoverTableView" destination="gP6-Wi-hBP" id="EtX-NT-YAM"/>
+                        <segue destination="KMR-XQ-RhV" kind="show" identifier="toOtherProfile" id="4d9-bh-00V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1047.8260869565217" y="114.50892857142857"/>
+            <point key="canvasLocation" x="1026" y="145"/>
+        </scene>
+        <!--OtherProfile-->
+        <scene sceneID="hi4-KK-I2F">
+            <objects>
+                <viewControllerPlaceholder storyboardName="OtherProfile" id="KMR-XQ-RhV" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="APd-tE-viw"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3pg-md-ZWh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1617" y="145"/>
         </scene>
         <!--Item-->
         <scene sceneID="RRA-z6-26H">

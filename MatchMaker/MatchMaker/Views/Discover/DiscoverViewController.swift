@@ -13,6 +13,9 @@ class DiscoverViewController: UIViewController {
     var users: [Social] = []
     var filteredUsers: [Social] = []
     
+    // Segue helper
+    var destinationUser: User?
+    
     let searchController = UISearchController(searchResultsController: nil)
     var isSearchBarEmpty: Bool {
       return searchController.searchBar.text?.isEmpty ?? true
@@ -122,6 +125,8 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
+        cell.delegate = self
+        
         // Using sections to have a "rounded cell" which is actually a section
         let user: Social
         if isFiltering {
@@ -130,9 +135,29 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
             user = users[indexPath.section]
         }
         
-        cell.setup(url: user.photoURL, nameText: user.name, nickText: user.nickname, userGames: user.games!)
+        cell.setup(userId: user.id,url: user.photoURL, nameText: user.name, nickText: user.nickname, userGames: user.games!)
         
         return cell
     }
     
+}
+
+extension DiscoverViewController: DiscoverTableCellDelegate {
+    
+    func didRequestProfile(_ sender: UITableViewCell) {
+        guard let cell = sender as? DiscoverTableViewCell else { return }
+        guard let userId = cell.userId else { return }
+        CKRepository.getUserById(id: userId, completion: { user in
+            self.destinationUser = user
+            self.performSegue(withIdentifier: "toOtherProfile", sender: nil)
+        })
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier=="toOtherProfile" {
+            let navigationController = segue.destination as! UINavigationController
+            let destination = navigationController.topViewController as! OtherProfileViewController
+            destination.user = self.destinationUser
+        }
+    }
 }
