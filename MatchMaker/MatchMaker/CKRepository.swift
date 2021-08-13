@@ -654,10 +654,10 @@ public class CKRepository {
             if let userGames = results {
                 for userGame in userGames {
                     let gameId = Games.getGameIdInt(id: (userGame.value(forKey: UserGamesTable.gameId.description) as! String))
-                    let gameSelectedPlatforms = (userGame.value(forKey: UserGamesTable.selectedPlatforms.description) as! [String]).map { platform in
+                    let gameSelectedPlatforms = ((userGame.value(forKey: UserGamesTable.selectedPlatforms.description) as? [String]) ?? []).map { platform in
                         Platform.getPlatform(key: platform)
                     }
-                    let gameSelectedServersString = userGame.value(forKey: UserGamesTable.selectedServers.description) as! [String]
+                    let gameSelectedServersString = (userGame.value(forKey: UserGamesTable.selectedServers.description) as? [String]) ?? []
                     var gameSelectedServers: [Servers] = [Servers]()
                     
                     for g in gameSelectedServersString {
