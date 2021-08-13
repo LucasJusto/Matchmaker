@@ -773,8 +773,7 @@ public class CKRepository {
         getUserId { id in
             if let userId = id {
                 
-                let recordID = CKRecord.ID(recordName: "ratings\(userId)\(friendId)")
-                let record = CKRecord(recordType: SkillRatingsTable.recordType.description, recordID: recordID)
+                let recordID = CKRecord.ID(recordName: "skillRatings\(userId)\(friendId)")
     
                 //check if the rating already exists
                 publicDB.fetch(withRecordID: recordID) { result, error in
@@ -795,6 +794,8 @@ public class CKRepository {
                         }
                     }
                     else {
+                        let record = CKRecord(recordType: SkillRatingsTable.recordType.description, recordID: recordID)
+                        
                         record.setObject(userId as CKRecordValue?, forKey: SkillRatingsTable.raterUserId.description)
                         record.setObject(friendId as CKRecordValue?, forKey: SkillRatingsTable.ratedUserId.description)
                         record.setObject(rate as CKRecordValue?, forKey: SkillRatingsTable.rate.description)
@@ -837,7 +838,90 @@ public class CKRepository {
                         resultNotNull.setObject(rateAverage as CKRecordValue?, forKey: UserTable.averageSkillRate.description)
                         publicDB.save(resultNotNull) { r, error in
                             if let ckError = error as? CKError {
+                                if ckError.code.rawValue != 14 {
+                                    CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    static func behaviourRateFriend(friendId: String, rate: Double) {
+        let publicDB = CKRepository.container.publicCloudDatabase
+        getUserId { id in
+            if let userId = id {
+                
+                let recordID = CKRecord.ID(recordName: "behaviourRatings\(userId)\(friendId)")
+    
+                //check if the rating already exists
+                publicDB.fetch(withRecordID: recordID) { result, error in
+                    if let ckError = error as? CKError {
+                        if ckError.code.rawValue != 11 {
+                            CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                        }
+                    }
+                    
+                    if let resultNotNull = result {
+                        resultNotNull.setObject(rate as CKRecordValue?, forKey: BehaviourRatingsTable.rate.description)
+                        
+                        publicDB.save(resultNotNull) { ckRecord, error in
+                            if let ckError = error as? CKError {
                                 CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                            }
+                            recalculateUserBehaviourRateById(id: friendId)
+                        }
+                    }
+                    else {
+                        let record = CKRecord(recordType: BehaviourRatingsTable.recordType.description, recordID: recordID)
+                        
+                        record.setObject(userId as CKRecordValue?, forKey: BehaviourRatingsTable.raterUserId.description)
+                        record.setObject(friendId as CKRecordValue?, forKey: BehaviourRatingsTable.ratedUserId.description)
+                        record.setObject(rate as CKRecordValue?, forKey: BehaviourRatingsTable.rate.description)
+                        
+                        publicDB.save(record) { ckRecord, error in
+                            if let ckError = error as? CKError {
+                                CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                            }
+                            recalculateUserBehaviourRateById(id: friendId)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    private static func recalculateUserBehaviourRateById(id: String) {
+        let publicDB = CKRepository.container.publicCloudDatabase
+        let recordID = CKRecord.ID(recordName: id)
+        
+        publicDB.fetch(withRecordID: recordID) { result, error in
+            if let ckError = error as? CKError {
+                CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+            }
+            
+            if let resultNotNull = result {
+                var rateSum: Double = 0
+                
+                let predicate = NSPredicate(format: "\(BehaviourRatingsTable.ratedUserId.description) == %@", id)
+                let query = CKQuery(recordType: BehaviourRatingsTable.recordType.description, predicate: predicate)
+                
+                publicDB.perform(query, inZoneWith: nil) { results, error in
+                    if let resultsNotNull = results {
+                        for r in resultsNotNull {
+                            if let rate = r.value(forKey: BehaviourRatingsTable.rate.description) as? Double {
+                                rateSum += rate
+                            }
+                        }
+                        let rateAverage = rateSum/Double(resultsNotNull.count)
+                        resultNotNull.setObject(rateAverage as CKRecordValue?, forKey: UserTable.averageBehaviourRate.description)
+                        publicDB.save(resultNotNull) { r, error in
+                            if let ckError = error as? CKError {
+                                if ckError.code.rawValue != 14 {
+                                    CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                                }
                             }
                         }
                     }
