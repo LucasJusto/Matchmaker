@@ -490,6 +490,21 @@ extension EditingProfileViewController: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         self.descriptionField = textView.text ?? ""
+        
+        //Setando placeholder
+        if textView.text.isEmpty {
+            let cell = tableView.cellForRow(at: IndexPath(row: EditingFields.descriptionField.rawValue, section: 0)) as? TextViewTableViewCell
+
+            cell?.placeholder.isHidden = false
+        }
+    }
+    
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        //Escondendo placeholder
+        let cell = tableView.cellForRow(at: IndexPath(row: EditingFields.descriptionField.rawValue, section: 0)) as? TextViewTableViewCell
+        
+        cell?.placeholder.isHidden = true
     }
 
     func textViewDidChange(_ textView: UITextView) {
