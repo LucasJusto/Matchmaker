@@ -1090,7 +1090,7 @@
         <!--Navigation Controller-->
         <scene sceneID="0jx-9q-nbO">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3Nr-Wa-8NZ" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="game-selection" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3Nr-Wa-8NZ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Dfb-Ip-uuE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
@@ -1130,7 +1130,7 @@
             <color red="0.24313725490196078" green="0.24313725490196078" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Primary">
-            <color red="0.38823529411764707" green="0.090196078431372548" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.3880000114440918" green="0.090000003576278687" blue="0.88599997758865356" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

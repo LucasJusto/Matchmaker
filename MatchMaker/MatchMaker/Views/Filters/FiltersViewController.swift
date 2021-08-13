@@ -90,13 +90,24 @@ class FiltersViewController: UIViewController {
     @IBAction func didTapDone(_ sender: UIButton) {
         self.dismiss(animated: true)
     }
+    
+    // MARK: - Prepare
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toUserLocations" {
+            let rootVC = segue.destination as! UINavigationController
+            let destination = rootVC.topViewController as! UserLocationViewController
+            
+            destination.delegate = self
+            destination.selectedLocation = selectedLocation.enum
+        }
+    }
 }
 
 // MARK: - UITableViewDataSource
 extension FiltersViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 5
     }
     
     
@@ -110,11 +121,11 @@ extension FiltersViewController: UITableViewDataSource {
             case .languages: return selectorCell(title: filter.description, tag: TagFilterOptions.languages.rawValue) ?? defaultCell
             case .platforms: return selectorCell(title: filter.description, tag: TagFilterOptions.platforms.rawValue) ?? defaultCell
             case .behaviourRate:
-                return defaultCell
+                return rateCell() ?? defaultCell
             case .skillsRate:
-                return defaultCell
+                return rateCell() ?? defaultCell
             case .location:
-                return defaultCell
+                return pickerCell() ?? defaultCell
             case .games:
                 return defaultCell
         }
@@ -131,6 +142,21 @@ extension FiltersViewController: UITableViewDataSource {
         
         return cell
     }
+    
+    func rateCell() -> RateTableViewCell? {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "rate-cell") as? RateTableViewCell
+        
+        return cell
+    }
+    
+    func pickerCell() -> PickerTableViewCell? {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "picker-cell") as? PickerTableViewCell
+        
+        cell?.delegate = self
+        cell?.currentSelectionLabel.text = selectedLocation.string
+        
+        return cell
+    }
 }
 
 // MARK: - UITableViewDelegate
@@ -138,6 +164,7 @@ extension FiltersViewController: UITableViewDelegate {}
 
 // MARK: - UICollectionViewDataSource
 extension FiltersViewController: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         guard let selectedTagFilter = TagFilterOptions(rawValue: collectionView.tag) else {
@@ -153,18 +180,18 @@ extension FiltersViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        var collectionCell = SelectableTagCollectionViewCell()
+        let defaultCell = SelectableTagCollectionViewCell()
         
         guard let selectedTagFilter = TagFilterOptions(rawValue: collectionView.tag) else {
             return UICollectionViewCell()
         }
         
         if selectedTagFilter == .games {
-            return collectionCell
+            return defaultCell
             
         } else {
             
-            collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "selectable-tag-cell", for: indexPath) as! SelectableTagCollectionViewCell
+            let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "selectable-tag-cell", for: indexPath) as! SelectableTagCollectionViewCell
             
             var tagOption: TagOption?
             
@@ -240,3 +267,20 @@ extension FiltersViewController: UICollectionViewDelegateFlowLayout {
 
 // MARK: - UICollectionViewDelegate
 extension FiltersViewController: UICollectionViewDelegate {}
+
+// MARK: - PickerCellDelegate and UserLocalitionDelegate
+extension FiltersViewController: PickerCellDelegate, UserLocationDelegate {
+    
+    //MARK: UserLocationDelegate: Segue
+    func didSelect(with location: Locations) {
+        selectedLocation.string = location.description
+        selectedLocation.enum = location
+        
+        tableView.reloadData()
+    }
+    
+    //MARK: PickerCellDelegate: Segue
+    func didChooseLocation(_ sender: UITableViewCell) {
+        performSegue(withIdentifier: "toUserLocations", sender: sender)
+    }
+}
