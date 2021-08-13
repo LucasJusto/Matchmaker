@@ -16,6 +16,7 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var PCImage: UIImageView!
     @IBOutlet weak var MobileImage: UIImageView!
     
+    
     func setup(GameImage: UIImage, GameTitle: String, isPlaystation: Bool, isXbox: Bool, isPC: Bool, isMobile: Bool) {
         
         self.GameImage.image = GameImage

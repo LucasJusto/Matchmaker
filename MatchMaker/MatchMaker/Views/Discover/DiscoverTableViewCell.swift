@@ -21,6 +21,7 @@ class DiscoverTableViewCell: UITableViewCell {
     @IBOutlet weak var ProfileButton: UIButton!
     @IBOutlet weak var AddToFriendsButton: UIButton!
     @IBOutlet weak var CollectionView: UICollectionView!
+    
     @IBAction func ActionAddToFriendsButton(_ sender: UIButton) {
         CKRepository.getUserId(completion: { ownUserId in
 //            guard let ownUserId: String = ownUserId else { return }

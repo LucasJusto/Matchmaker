@@ -398,8 +398,8 @@
 			children = (
 				B4E00DD526C6F32900868A65 /* Discover.storyboard */,
 				B4E00DD326C6F32900868A65 /* DiscoverViewController.swift */,
-				B4E00DD126C6F32900868A65 /* DiscoverCollectionViewCell.swift */,
 				B4E00DD226C6F32900868A65 /* DiscoverTableViewCell.swift */,
+				B4E00DD126C6F32900868A65 /* DiscoverCollectionViewCell.swift */,
 				B4E00DD426C6F32900868A65 /* DiscoverShowMoreCollectionViewCell.swift */,
 			);
 			path = Discover;

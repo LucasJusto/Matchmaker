@@ -9,12 +9,13 @@ import UIKit
 
 class DiscoverShowMoreCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var ShowMoreView: UIView!
-    @IBOutlet weak var ShowMoreLabel: UILabel!
+    @IBOutlet weak var showMoreView: UIView!
+    @IBOutlet weak var showMoreButton: UIButton!
     
     func setup() {
-        ShowMoreView.cornerRadius = 10
-        ShowMoreLabel.text = NSLocalizedString("DiscoverShowMoreButton", comment: "Show more button in discover screen")
+        showMoreView.cornerRadius = 10
+        showMoreButton.setTitle(NSLocalizedString("DiscoverShowMoreButton", comment: "Show more button in discover screen"), for: .normal)
+        showMoreButton.contentHorizontalAlignment = .center
         // TO DO
     }
     

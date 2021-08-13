@@ -42,13 +42,13 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="hsx-3B-B9b" userLabel="UserInfo">
                                                             <rect key="frame" x="45" y="1.5" width="167" height="33.5"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Marselo da Silva" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="od5-bB-aed" userLabel="Name">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Marselo da Silva" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="od5-bB-aed" userLabel="Name">
                                                                     <rect key="frame" x="0.0" y="0.0" width="167" height="20.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@gl4ss3s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MjN-ub-148" userLabel="@">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="@gl4ss3s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MjN-ub-148" userLabel="@">
                                                                     <rect key="frame" x="0.0" y="22.5" width="167" height="11"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="9"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -200,22 +200,22 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KH5-6J-cdt">
                                                                         <rect key="frame" x="0.0" y="8" width="71" height="71"/>
                                                                         <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show more" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="utR-m6-KOr">
-                                                                                <rect key="frame" x="5" y="0.0" width="61" height="71"/>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                            </label>
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="ogR-E3-8OJ">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="71" height="71"/>
+                                                                                <state key="normal" title="Show more">
+                                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                </state>
+                                                                            </button>
                                                                         </subviews>
                                                                         <color key="backgroundColor" name="Primary"/>
                                                                         <constraints>
-                                                                            <constraint firstAttribute="bottom" secondItem="utR-m6-KOr" secondAttribute="bottom" id="8Y8-m6-1w3"/>
-                                                                            <constraint firstItem="utR-m6-KOr" firstAttribute="leading" secondItem="KH5-6J-cdt" secondAttribute="leading" constant="5" id="QMA-dl-Jyg"/>
-                                                                            <constraint firstAttribute="trailing" secondItem="utR-m6-KOr" secondAttribute="trailing" constant="5" id="T4r-Zr-azV"/>
+                                                                            <constraint firstItem="ogR-E3-8OJ" firstAttribute="leading" secondItem="KH5-6J-cdt" secondAttribute="leading" id="KA1-wE-JqN"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="ogR-E3-8OJ" secondAttribute="trailing" id="KlZ-cw-73W"/>
                                                                             <constraint firstAttribute="height" priority="999" constant="71" id="Zo2-Eh-g6F"/>
                                                                             <constraint firstAttribute="width" priority="999" constant="71" id="aqO-2Z-ryr"/>
-                                                                            <constraint firstItem="utR-m6-KOr" firstAttribute="top" secondItem="KH5-6J-cdt" secondAttribute="top" id="qg5-vM-Hu3"/>
                                                                             <constraint firstAttribute="width" secondItem="KH5-6J-cdt" secondAttribute="height" multiplier="1:1" id="sbH-yw-T4I"/>
+                                                                            <constraint firstItem="ogR-E3-8OJ" firstAttribute="top" secondItem="KH5-6J-cdt" secondAttribute="top" id="tL4-j4-6bK"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="ogR-E3-8OJ" secondAttribute="bottom" id="uBT-hh-Pje"/>
                                                                         </constraints>
                                                                     </view>
                                                                 </subviews>
@@ -227,8 +227,8 @@
                                                                 </constraints>
                                                             </collectionViewCellContentView>
                                                             <connections>
-                                                                <outlet property="ShowMoreLabel" destination="utR-m6-KOr" id="cR1-qS-aJk"/>
-                                                                <outlet property="ShowMoreView" destination="KH5-6J-cdt" id="Jna-qA-mcT"/>
+                                                                <outlet property="showMoreButton" destination="ogR-E3-8OJ" id="e17-WJ-4sY"/>
+                                                                <outlet property="showMoreView" destination="KH5-6J-cdt" id="1iq-m1-lqH"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
