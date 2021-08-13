@@ -14,14 +14,14 @@
             <objects>
                 <viewController title="GameDetail" id="Y6W-OH-hqX" customClass="GameDetailViewController" customModule="MatchMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="960"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="872"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S6c-OK-7we">
-                                <rect key="frame" x="0.0" y="88" width="390" height="838"/>
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="838"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mF2-2Y-1I1">
-                                        <rect key="frame" x="0.0" y="0.0" width="390" height="960"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="854.66666666666663"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LeagueOfLegends" translatesAutoresizingMaskIntoConstraints="NO" id="pce-lc-GXc" userLabel="GameImage">
                                                 <rect key="frame" x="0.0" y="0.0" width="390" height="520"/>
@@ -92,7 +92,7 @@
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="eQ5-6L-thG" userLabel="Playstation">
                                                                         <rect key="frame" x="0.0" y="0.0" width="35" height="46.333333333333336"/>
                                                                         <subviews>
-                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Play" translatesAutoresizingMaskIntoConstraints="NO" id="TwD-Fn-4Fr">
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Play_selected" translatesAutoresizingMaskIntoConstraints="NO" id="TwD-Fn-4Fr">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" secondItem="TwD-Fn-4Fr" secondAttribute="height" multiplier="1:1" id="07n-g6-QRk"/>
@@ -110,7 +110,7 @@
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="iOm-cu-jm7" userLabel="Xbox">
                                                                         <rect key="frame" x="40" y="0.0" width="35" height="46.333333333333336"/>
                                                                         <subviews>
-                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Xbox" translatesAutoresizingMaskIntoConstraints="NO" id="B2q-ce-fHm">
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Xbox_selected" translatesAutoresizingMaskIntoConstraints="NO" id="B2q-ce-fHm">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="35" id="8KH-EZ-3dK"/>
@@ -128,7 +128,7 @@
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="SmR-r5-Qfa" userLabel="PC">
                                                                         <rect key="frame" x="80" y="0.0" width="35" height="46.333333333333336"/>
                                                                         <subviews>
-                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PC" translatesAutoresizingMaskIntoConstraints="NO" id="ki7-ek-YGi">
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PC_selected" translatesAutoresizingMaskIntoConstraints="NO" id="ki7-ek-YGi">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" secondItem="ki7-ek-YGi" secondAttribute="height" multiplier="1:1" id="21T-Qg-Pv8"/>
@@ -146,7 +146,7 @@
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Sww-Gs-xlj" userLabel="Mobile">
                                                                         <rect key="frame" x="120" y="0.0" width="35" height="46.333333333333336"/>
                                                                         <subviews>
-                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mobile" translatesAutoresizingMaskIntoConstraints="NO" id="UHJ-bG-pch">
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mobile_selected" translatesAutoresizingMaskIntoConstraints="NO" id="UHJ-bG-pch">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" secondItem="UHJ-bG-pch" secondAttribute="height" multiplier="1:1" id="UWI-an-1Kt"/>
@@ -179,15 +179,20 @@
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yx6-EQ-Lay" userLabel="OtherGamesXIb" customClass="RoundedRectangleCollectionView" customModule="MatchMaker" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="684.66666666666663" width="390" height="275.33333333333337"/>
+                                                <rect key="frame" x="0.0" y="684.66666666666663" width="390" height="170"/>
                                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="170" id="MOe-xt-xmY"/>
+                                                </constraints>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="HSS-fq-jnI" secondAttribute="trailing" id="BFU-tJ-EYj"/>
                                             <constraint firstItem="pce-lc-GXc" firstAttribute="top" secondItem="mF2-2Y-1I1" secondAttribute="top" id="Hut-3M-pt9"/>
                                             <constraint firstAttribute="trailing" secondItem="yx6-EQ-Lay" secondAttribute="trailing" id="Tcj-KH-5fH"/>
                                             <constraint firstItem="82b-6Q-Ju2" firstAttribute="leading" secondItem="mF2-2Y-1I1" secondAttribute="leading" constant="20" id="VWB-HL-UAm"/>
+                                            <constraint firstItem="HSS-fq-jnI" firstAttribute="leading" secondItem="mF2-2Y-1I1" secondAttribute="leading" id="WGz-l3-Ch3"/>
                                             <constraint firstItem="HSS-fq-jnI" firstAttribute="trailing" secondItem="pce-lc-GXc" secondAttribute="trailing" id="YE6-4J-PQu"/>
                                             <constraint firstItem="HSS-fq-jnI" firstAttribute="leading" secondItem="pce-lc-GXc" secondAttribute="leading" id="bBI-JT-u5N"/>
                                             <constraint firstItem="yx6-EQ-Lay" firstAttribute="leading" secondItem="mF2-2Y-1I1" secondAttribute="leading" id="d4a-mq-YjZ"/>
@@ -216,11 +221,11 @@
                             <constraint firstItem="S6c-OK-7we" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="YFy-uX-KAb"/>
                             <constraint firstItem="S6c-OK-7we" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="kgv-BN-z6O"/>
                             <constraint firstItem="mF2-2Y-1I1" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" id="s8C-UA-XQu"/>
-                            <constraint firstItem="mF2-2Y-1I1" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" id="uLe-s6-Un3"/>
                             <constraint firstAttribute="bottomMargin" secondItem="S6c-OK-7we" secondAttribute="bottom" id="yRO-0F-Eur"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="1Av-cg-meL"/>
+                    <navigationItem key="navigationItem" title="Game Detail" id="1Av-cg-meL"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="390" height="960"/>
                     <connections>
@@ -236,18 +241,24 @@
                         <outlet property="PlatformsLabel" destination="j55-wr-Biw" id="ank-4h-3MG"/>
                         <outlet property="PlaystationImage" destination="TwD-Fn-4Fr" id="LT6-Mq-TfI"/>
                         <outlet property="XboxImage" destination="B2q-ce-fHm" id="kj3-Ee-vC7"/>
+                        <outlet property="mobileStack" destination="Sww-Gs-xlj" id="CqX-HX-enU"/>
+                        <outlet property="pcStack" destination="SmR-r5-Qfa" id="ggM-PZ-0Le"/>
+                        <outlet property="playstationStack" destination="eQ5-6L-thG" id="GR5-8n-Z2o"/>
+                        <outlet property="titleGameDetailScreen" destination="1Av-cg-meL" id="xJe-a5-Fs8"/>
+                        <outlet property="xboxStack" destination="iOm-cu-jm7" id="qSn-PT-7pB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1027.6923076923076" y="310.66350710900474"/>
+            <point key="canvasLocation" x="978" y="155"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="p0L-of-dbG">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GKz-As-eGD" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LQ6-IC-HeA">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="LQ6-IC-HeA">
                         <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -264,15 +275,15 @@
     <resources>
         <image name="Degrade" width="600" height="800"/>
         <image name="LeagueOfLegends" width="300" height="420"/>
-        <image name="Mobile" width="204" height="188.33332824707031"/>
-        <image name="PC" width="204" height="188.66667175292969"/>
-        <image name="Play" width="204" height="188.33332824707031"/>
-        <image name="Xbox" width="204" height="188.33332824707031"/>
+        <image name="Mobile_selected" width="204.33332824707031" height="188.33332824707031"/>
+        <image name="PC_selected" width="204.33332824707031" height="188.66667175292969"/>
+        <image name="Play_selected" width="204.33332824707031" height="188.33332824707031"/>
+        <image name="Xbox_selected" width="204.33332824707031" height="188.33332824707031"/>
         <namedColor name="Gray">
             <color red="0.43900001049041748" green="0.43900001049041748" blue="0.43900001049041748" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Primary">
-            <color red="0.38823529411764707" green="0.090196078431372548" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.3880000114440918" green="0.090000003576278687" blue="0.88599997758865356" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -163,12 +163,15 @@ without using your storage";
 "US South East" = "US South East";
 "US South West" = "US South West";
 
+// MARK: - Detail Game
 // MARK: - /Views/GameDetail
+"TitleGameDetailScreen" = "Game Detail";
 "FindPlayersButton" = "Find players";
 "AddToMyGamesButton" = "Add to my games";
 "PlatformsLabel" = "Platforms";
 "OtherGamesLabel" = "Other Games";
 
+// MARK: - Home
 // MARK: - Highlight image
 "GamesTitleLabel" = "Games";
 "HighlightTitileAboveImage" = "New game available";
