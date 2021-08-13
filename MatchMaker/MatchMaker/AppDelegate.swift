@@ -40,7 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     // 4. Save the new subscription to iCloud
                     database.save(newSubscription) { subscription, error in
                         if let err = error {
-                            print(err)
                             return
                         }
                         
