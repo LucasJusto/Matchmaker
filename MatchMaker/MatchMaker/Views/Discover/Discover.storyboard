@@ -42,13 +42,13 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="hsx-3B-B9b" userLabel="UserInfo">
                                                             <rect key="frame" x="45" y="1.5" width="167" height="33.5"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Marselo da Silva" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="od5-bB-aed" userLabel="Name">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Marselo da Silva" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="od5-bB-aed" userLabel="Name">
                                                                     <rect key="frame" x="0.0" y="0.0" width="167" height="20.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="@gl4ss3s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MjN-ub-148" userLabel="@">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@gl4ss3s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MjN-ub-148" userLabel="@">
                                                                     <rect key="frame" x="0.0" y="22.5" width="167" height="11"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="9"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -76,7 +76,7 @@
                                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <state key="normal" image="person.circle" catalog="system"/>
                                                                     <connections>
-                                                                        <action selector="ActionSmallProfileIcon:" destination="ZzG-1O-w5n" eventType="touchUpInside" id="v3T-sJ-dwF"/>
+                                                                        <action selector="actionAvatarIcon:" destination="ZzG-1O-w5n" eventType="touchUpInside" id="Rad-a9-BvX"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gEM-jJ-AMW">
@@ -90,7 +90,7 @@
                                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </state>
                                                                     <connections>
-                                                                        <action selector="ActionAddToFriendsButton:" destination="ZzG-1O-w5n" eventType="touchUpInside" id="dTd-73-LDj"/>
+                                                                        <action selector="actionAddToFriendsButton:" destination="ZzG-1O-w5n" eventType="touchUpInside" id="i3Y-wI-gFz"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
@@ -150,9 +150,6 @@
                                                                                 <subviews>
                                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Play" translatesAutoresizingMaskIntoConstraints="NO" id="WmY-xR-5Bl" userLabel="Playstation">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="18" height="20"/>
-                                                                                        <constraints>
-                                                                                            <constraint firstAttribute="width" secondItem="WmY-xR-5Bl" secondAttribute="height" multiplier="1:1" id="XKm-pc-cl1"/>
-                                                                                        </constraints>
                                                                                     </imageView>
                                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Xbox" translatesAutoresizingMaskIntoConstraints="NO" id="pCz-WD-FYl" userLabel="Xbox">
                                                                                         <rect key="frame" x="18" y="0.0" width="17.5" height="20"/>
@@ -182,12 +179,12 @@
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <size key="customSize" width="71" height="110"/>
                                                             <connections>
-                                                                <outlet property="MobileImage" destination="8Zu-6Q-J7f" id="gds-AM-iMj"/>
-                                                                <outlet property="PCImage" destination="eZ4-7S-1qJ" id="M3H-sc-oA1"/>
-                                                                <outlet property="PlaystationImage" destination="WmY-xR-5Bl" id="JKP-W2-9OO"/>
-                                                                <outlet property="XboxImage" destination="pCz-WD-FYl" id="bpA-cN-ees"/>
                                                                 <outlet property="gameImage" destination="7uI-JM-3WR" id="U4q-4v-ilM"/>
                                                                 <outlet property="gameTitleLabel" destination="5vX-PQ-YKT" id="R8a-W0-xiw"/>
+                                                                <outlet property="mobileImage" destination="8Zu-6Q-J7f" id="BzW-vj-KKM"/>
+                                                                <outlet property="pcImage" destination="eZ4-7S-1qJ" id="acV-Io-RXU"/>
+                                                                <outlet property="playstationImage" destination="WmY-xR-5Bl" id="Ie4-2n-msY"/>
+                                                                <outlet property="xboxImage" destination="pCz-WD-FYl" id="fLv-mi-hCi"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DiscoverCollectionShowMoreButton" id="W8T-L9-dht" customClass="DiscoverShowMoreCollectionViewCell" customModule="MatchMaker" customModuleProvider="target">
@@ -249,12 +246,13 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.14117647058823529" green="0.14117647058823529" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <outlet property="AddToFriendsButton" destination="gEM-jJ-AMW" id="VL9-9u-bN0"/>
                                             <outlet property="CollectionView" destination="Zja-IG-i2R" id="fQ9-Sj-9w1"/>
-                                            <outlet property="NameLabel" destination="od5-bB-aed" id="xtP-Q8-OCP"/>
-                                            <outlet property="NickLabel" destination="MjN-ub-148" id="OOi-ra-sua"/>
-                                            <outlet property="ProfileButton" destination="lm6-bp-ybe" id="dsL-va-leP"/>
-                                            <outlet property="ProfileImage" destination="v7L-Hr-GrY" id="FfO-zd-Y65"/>
+                                            <outlet property="addToFriendsButton" destination="gEM-jJ-AMW" id="Hsg-RE-Tas"/>
+                                            <outlet property="collectionView" destination="Zja-IG-i2R" id="Nrk-bw-EsY"/>
+                                            <outlet property="nameLabel" destination="od5-bB-aed" id="4Mt-Da-e64"/>
+                                            <outlet property="nickLabel" destination="MjN-ub-148" id="HbE-5a-xEr"/>
+                                            <outlet property="profileButton" destination="lm6-bp-ybe" id="kH1-0k-jPd"/>
+                                            <outlet property="profileImage" destination="v7L-Hr-GrY" id="Y2G-og-q1X"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol DiscoverShowMoreCollectionViewCellDelegate: AnyObject {
+    func didPressShowMoreButton(_ sender: DiscoverShowMoreCollectionViewCell)
+}
+
 class DiscoverShowMoreCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var showMoreView: UIView!

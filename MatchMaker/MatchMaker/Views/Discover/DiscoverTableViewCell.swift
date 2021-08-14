@@ -8,46 +8,45 @@
 import UIKit
 
 protocol DiscoverTableCellDelegate: AnyObject {
-    func didRequestProfile(_ sender: UITableViewCell)
+    func didPressAvatarIcon(_ sender: DiscoverTableViewCell)
 }
 
 class DiscoverTableViewCell: UITableViewCell {
 
     var userId: String?
+    var userGames: [Game] = []
     weak var delegate: DiscoverTableCellDelegate?
-    @IBOutlet weak var ProfileImage: UIImageView!
-    @IBOutlet weak var NameLabel: UILabel!
-    @IBOutlet weak var NickLabel: UILabel!
-    @IBOutlet weak var ProfileButton: UIButton!
-    @IBOutlet weak var AddToFriendsButton: UIButton!
-    @IBOutlet weak var CollectionView: UICollectionView!
     
-    @IBAction func ActionAddToFriendsButton(_ sender: UIButton) {
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var nickLabel: UILabel!
+    @IBOutlet weak var profileButton: UIButton!
+    @IBOutlet weak var addToFriendsButton: UIButton!
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    // Action outlets
+    @IBAction func actionAvatarIcon(_ sender: UIButton) {
+        delegate?.didPressAvatarIcon(self)
+    }
+    
+    @IBAction func actionAddToFriendsButton(_ sender: UIButton) {
         CKRepository.getUserId(completion: { ownUserId in
-//            guard let ownUserId: String = ownUserId else { return }
-//            guard let userId: String = self.userId else { return }
-            #warning("TODO: mandar solicitacao de amizade")
-            //CKRepository.storeFriendship(inviterUserId: ownUserId, receiverUserId: userId, isInvite: IsInvite.yes, acceptance: false)
+            guard let ownUserId: String = ownUserId else { return }
+            guard let userId: String = self.userId else { return }
+            CKRepository.sendFriendshipInvite(inviterUserId: ownUserId, receiverUserId: userId)
         })
     }
-    @IBAction func ActionSmallProfileIcon(_ sender: UIButton) {
-        delegate?.didRequestProfile(self)
-    }
-    
-    
-    var userGames: [Game] = []
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        CollectionView.dataSource = self
-        CollectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.delegate = self
         
         // Initialization code
-        
-        AddToFriendsButton.setTitle(NSLocalizedString("DiscoverScreenAddToFriendsButton", comment: "Add to friends button text in the Discover Screen."), for: .normal)
-        AddToFriendsButton.cornerRadius = 10
-        ProfileImage.cornerRadius = 10
+        addToFriendsButton.setTitle(NSLocalizedString("DiscoverScreenAddToFriendsButton", comment: "Add to friends button text in the Discover Screen."), for: .normal)
+        addToFriendsButton.cornerRadius = 10
+        profileImage.cornerRadius = 10
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -63,7 +62,7 @@ class DiscoverTableViewCell: UITableViewCell {
             DispatchQueue.global().async {
                 if let data = try? Data(contentsOf: url) {
                     DispatchQueue.main.async {
-                        self.ProfileImage.image = UIImage(data: data)
+                        self.profileImage.image = UIImage(data: data)
                     }
                 }
             }
@@ -71,8 +70,8 @@ class DiscoverTableViewCell: UITableViewCell {
         
         self.userId = userId
         self.userGames = userGames
-        NameLabel.text = nameText
-        NickLabel.text = nickText
+        nameLabel.text = nameText
+        nickLabel.text = nickText
     }
 
 }

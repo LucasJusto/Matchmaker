@@ -9,6 +9,8 @@ import UIKit
 
 class DiscoverViewController: UIViewController {
     
+    @IBOutlet weak var discoverTableView: UITableView!
+    
     // User data and searching
     var users: [Social] = []
     var filteredUsers: [Social] = []
@@ -16,6 +18,7 @@ class DiscoverViewController: UIViewController {
     // Segue helper
     var destinationUser: User?
     
+    // Search
     let searchController = UISearchController(searchResultsController: nil)
     var isSearchBarEmpty: Bool {
       return searchController.searchBar.text?.isEmpty ?? true
@@ -24,16 +27,15 @@ class DiscoverViewController: UIViewController {
       return searchController.isActive && !isSearchBarEmpty
     }
     
-    @IBOutlet weak var discoverTableView: UITableView!
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        CKRepository.searchUsers(languages: [], platforms: [], behaviourRate: 0, skillRate: 0, locations: [], games: []) { asd in
-            self.users = asd
-            self.filteredUsers = asd
+        CKRepository.searchUsers(languages: [], platforms: [], behaviourRate: 0, skillRate: 0, locations: [], games: []) { result in
+            self.users = result
+            self.filteredUsers = result
             DispatchQueue.main.async {
                 self.discoverTableView.reloadData()
             }
@@ -144,9 +146,8 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension DiscoverViewController: DiscoverTableCellDelegate {
     
-    func didRequestProfile(_ sender: UITableViewCell) {
-        guard let cell = sender as? DiscoverTableViewCell else { return }
-        guard let userId = cell.userId else { return }
+    func didPressAvatarIcon(_ sender: DiscoverTableViewCell) {
+        guard let userId = sender.userId else { return }
         CKRepository.getUserById(id: userId, completion: { user in
             self.destinationUser = user
             DispatchQueue.main.async {
