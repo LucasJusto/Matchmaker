@@ -404,6 +404,7 @@ public class CKRepository {
     
     static func getFriendsById(id: String, completion: @escaping ([Social]) -> Void) {
         var friends: [Social] = [Social]()
+        let semaphore = DispatchSemaphore(value: 1)
         
         let publicDB = container.publicCloudDatabase
         let inviterPredicate = NSPredicate(format: "\(FriendsTable.inviterId.description) == '\(id)'")
@@ -418,7 +419,9 @@ public class CKRepository {
                     if let receiverFriendId = result.value(forKey: FriendsTable.receiverId.description) as? String {
                         getUserById(id: receiverFriendId) { user in
                             let isInvite = IsInvite.getIsInvite(string: result.value(forKey: FriendsTable.isInvite.description) as? String ?? "")
+                            semaphore.wait()
                             friends.append(Social(id: user.id, name: user.name, nickname: user.nickname, photoURL: user.photoURL, games: user.selectedGames, isInvite: isInvite, isInviter: true))
+                            semaphore.signal()
                             if friends.count == resultsNotNull.count {
                                 let receiverPredicate = NSPredicate(format: "\(FriendsTable.receiverId.description) == '\(id)'")
                                 let receiverQuery = CKQuery(recordType: FriendsTable.recordType.description, predicate: receiverPredicate)
@@ -431,7 +434,9 @@ public class CKRepository {
                                             if let inviterFriendId = receiverResult.value(forKey: FriendsTable.inviterId.description) as? String {
                                                 getUserById(id: inviterFriendId) { user in
                                                     let receiverIsInvite = IsInvite.getIsInvite(string: receiverResult.value(forKey: FriendsTable.isInvite.description) as? String ?? "")
+                                                    semaphore.wait()
                                                     friends.append(Social(id: user.id, name: user.name, nickname: user.nickname, photoURL: user.photoURL, games: user.selectedGames, isInvite: receiverIsInvite, isInviter: false))
+                                                    semaphore.signal()
                                                     if friends.count == (resultsNotNull.count + receiverResultsNotNull.count) {
                                                         CKRepository.user?.friends = friends
                                                         completion(friends)
