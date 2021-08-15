@@ -177,6 +177,8 @@ class OtherProfileViewController: UIViewController {
 extension OtherProfileViewController {
     //funções dos botões
     
+    #warning("Remove comments of CKRepository calls when testing")
+    
     func aceitaAmigo() {
         friendRequestOrNonFriendControl = isFriend.friend
         aceptOrRejectStack.isHidden = true
@@ -186,6 +188,8 @@ extension OtherProfileViewController {
         aceptButton.setTitle(NSLocalizedString("AceptRequestButton", comment: ""), for: .normal)
         rejectButton.setTitle(NSLocalizedString("RejectRequestButton", comment: ""), for: .normal)
         //MARK: - Do BackEnd to acept friend
+        //guard let user = user else { return }
+        //CKRepository.friendshipInviteAnswer(inviterUserId: CKRepository.user!.id, receiverUserId: user.id, response: true)
     }
 
     func rejeitaAmigo() {
@@ -195,6 +199,8 @@ extension OtherProfileViewController {
         aceptOrRejectStack.isHidden = true
         requestFriendButton.isHidden = false
         //MARK: - Do BackEnd to reject friend
+        //guard let user = user else { return }
+        //CKRepository.deleteFriendship(inviterId: CKRepository.user!.id, receiverId: user.id)
     }
     
     func addFriend() {
@@ -204,6 +210,8 @@ extension OtherProfileViewController {
         aceptOrRejectStack.isHidden = true
         requestFriendButton.isHidden = false
         //MARK: - Do BackEnd to add to friends
+        //guard let user = user else { return }
+        //CKRepository.sendFriendshipInvite(inviterUserId: CKRepository.user!.id, receiverUserId: user.id)
     }
     
     func cancelFriendRequest() {
@@ -222,5 +230,7 @@ extension OtherProfileViewController {
         aceptOrRejectStack.isHidden = true
         requestFriendButton.isHidden = false
         //MARK: - Do BackEnd to remove friend
+        //guard let user = user else { return }
+        //CKRepository.deleteFriendship(inviterId: CKRepository.user!.id, receiverId: user.id)
     }
 }
