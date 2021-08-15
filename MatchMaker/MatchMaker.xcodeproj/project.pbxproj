@@ -397,8 +397,8 @@
 			isa = PBXGroup;
 			children = (
 				B465C02526C9D11900DF9244 /* Social.storyboard */,
-				B465C02626C9D11900DF9244 /* SocialTableViewCell.swift */,
 				B465C02726C9D11900DF9244 /* SocialViewController.swift */,
+				B465C02626C9D11900DF9244 /* SocialTableViewCell.swift */,
 				B465C02826C9D11900DF9244 /* SocialCollectionViewCell.swift */,
 				B465C02926C9D11900DF9244 /* SocialShowMoreCollectionViewCell.swift */,
 			);

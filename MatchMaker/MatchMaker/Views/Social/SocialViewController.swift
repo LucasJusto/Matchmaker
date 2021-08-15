@@ -10,11 +10,13 @@ import UIKit
 class SocialViewController: UIViewController {
     
     // User data and searching
-    var users: [User] = []
-    var filteredUsers: [User] = []
+    var userId: String?
+    var friends: [Social] = []
+    var filteredFriends: [Social] = []
     
     @IBOutlet weak var searchBar: UISearchBar!
-
+    @IBOutlet weak var blockedToggle: UISegmentedControl!
+    
     //let searchController = UISearchController(searchResultsController: nil)
     var isSearchBarEmpty: Bool {
       return searchBar.text?.isEmpty ?? true
@@ -27,25 +29,16 @@ class SocialViewController: UIViewController {
     
     override func viewDidLoad() {
         
-        //START MOCKED DATA
-        var selectedGames1 = Games.games
-        var selectedGames2 = Games.games
+        CKRepository.getUserId(completion: { userId in
+            self.userId = userId
+            guard let userId = self.userId else { return }
+            CKRepository.getFriendsById(id: userId, completion: { results in
+                self.friends = results
+                print("aaaaae: \(results)")
+            })
+        })
         
-        selectedGames1.append(contentsOf: Games.games)
-        selectedGames2.append(Games.games[0])
-        
-        let user1: User = User(id: "0", name: "1arselo difenbeck", nickname: "@shechello", photoURL: nil, location: Locations.brazil, description: "Description", behaviourRate: 10.0, skillRate: 10.0, languages: [Languages.english, Languages.portuguese], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: Games.games)
-        users.append(user1)
-        
-        let user2: User = User(id: "0", name: "2arselo difenbeck", nickname: "@shechello", photoURL: nil, location: Locations.brazil, description: "Description", behaviourRate: 10.0, skillRate: 10.0, languages: [Languages.english, Languages.portuguese], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: selectedGames1)
-        users.append(user2)
-        
-        let user3: User = User(id: "0", name: "3arselo difenbeck", nickname: "@shechello", photoURL: nil, location: Locations.brazil, description: "Description", behaviourRate: 10.0, skillRate: 10.0, languages: [Languages.english, Languages.portuguese], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: selectedGames2)
-        users.append(user3)
-        
-        //END MOCKED DATA
-        
-        filteredUsers = users
+        filteredFriends = friends
         
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -71,6 +64,11 @@ class SocialViewController: UIViewController {
         searchBar.showsBookmarkButton = true
         searchBar.setImage(UIImage(systemName: "line.horizontal.3.decrease.circle"), for: .bookmark, state: .normal)
         
+        // LocalizableString
+        blockedToggle.actionForSegment(at: 0)?.title = NSLocalizedString("SocialViewFriendsSectionToggle", comment: "Friend section title in the toggle between friends/blocked")
+        blockedToggle.actionForSegment(at: 1)?.title = NSLocalizedString("SocialViewBlockedSectionToggle", comment: "Blocked section title in the toggle between friends/blocked")
+        
+        
     }
     
     /*
@@ -88,8 +86,8 @@ class SocialViewController: UIViewController {
 extension SocialViewController: UISearchBarDelegate, UISearchResultsUpdating {
 
     func filterContentForSearchText(_ searchText: String) {
-        filteredUsers = users.filter { (user: User) -> Bool in
-            return user.name.lowercased().contains(searchText.lowercased())
+        filteredFriends = friends.filter { (friend: Social) -> Bool in
+            return friend.name.lowercased().contains(searchText.lowercased())
         }
         discoverTableView.reloadData()
     }
@@ -113,10 +111,10 @@ extension SocialViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         if isFiltering {
-            return filteredUsers.count
+            return filteredFriends.count
         }
             
-        return users.count
+        return friends.count
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -134,14 +132,15 @@ extension SocialViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         // Using sections to have a "rounded cell" which is actually a section
-        let user: User
+        let friend: Social
         if isFiltering {
-            user = filteredUsers[indexPath.section]
+            friend = filteredFriends[indexPath.section]
         } else {
-            user = users[indexPath.section]
+            friend = friends[indexPath.section]
         }
-        
-        cell.setup(url: user.photoURL, nameText: user.name, nickText: user.nickname, userGames: user.selectedGames)
+        var games: [Game] = []
+        guard let games = friend.games else { return cell }
+        cell.setup(url: friend.photoURL, nameText: friend.name, nickText: friend.nickname, userGames: games)
         
         return cell
     }
