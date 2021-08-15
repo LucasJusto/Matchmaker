@@ -7,15 +7,16 @@
 
 import UIKit
 
-protocol DiscoverTableCellDelegate: AnyObject {
-    func didPressAvatarIcon(_ sender: DiscoverTableViewCell)
+protocol DiscoverTableViewCellDelegate: AnyObject {
+    func didPressShowProfile(_ sender: DiscoverTableViewCell)
+    func didPressShowProfileCollection(_ sender: DiscoverShowMoreCollectionViewCell)
 }
 
 class DiscoverTableViewCell: UITableViewCell {
 
     var userId: String?
     var userGames: [Game] = []
-    weak var delegate: DiscoverTableCellDelegate?
+    var delegate: DiscoverTableViewCellDelegate?
     
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -26,7 +27,7 @@ class DiscoverTableViewCell: UITableViewCell {
     
     // Action outlets
     @IBAction func actionAvatarIcon(_ sender: UIButton) {
-        delegate?.didPressAvatarIcon(self)
+        delegate?.didPressShowProfile(self)
     }
     
     @IBAction func actionAddToFriendsButton(_ sender: UIButton) {
@@ -101,7 +102,10 @@ extension DiscoverTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
                     return UICollectionViewCell()
             }
             
-            cell.setup()
+            guard let userId = self.userId else { return UICollectionViewCell() }
+            
+            cell.setup(userId: userId)
+            cell.delegate = delegate
             return cell
         }
         

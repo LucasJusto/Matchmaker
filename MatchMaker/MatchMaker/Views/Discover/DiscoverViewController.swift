@@ -144,9 +144,18 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
     
 }
 
-extension DiscoverViewController: DiscoverTableCellDelegate {
+extension DiscoverViewController: DiscoverTableViewCellDelegate {
+    func didPressShowProfileCollection(_ sender: DiscoverShowMoreCollectionViewCell) {
+        guard let userId = sender.userId else { return }
+        CKRepository.getUserById(id: userId, completion: { user in
+            self.destinationUser = user
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "toOtherProfile", sender: nil)
+            }
+        })
+    }
     
-    func didPressAvatarIcon(_ sender: DiscoverTableViewCell) {
+    func didPressShowProfile(_ sender: DiscoverTableViewCell) {
         guard let userId = sender.userId else { return }
         CKRepository.getUserById(id: userId, completion: { user in
             self.destinationUser = user

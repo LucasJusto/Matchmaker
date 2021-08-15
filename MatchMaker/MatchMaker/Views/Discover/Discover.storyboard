@@ -202,6 +202,9 @@
                                                                                 <state key="normal" title="Show more">
                                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 </state>
+                                                                                <connections>
+                                                                                    <action selector="actionShowMoreButton:" destination="W8T-L9-dht" eventType="touchUpInside" id="x9B-LC-ODq"/>
+                                                                                </connections>
                                                                             </button>
                                                                         </subviews>
                                                                         <color key="backgroundColor" name="Primary"/>
