@@ -622,3 +622,54 @@ public class CKRepository {
         return dialogMessage
     }
 }
+
+extension CKRepository {
+    
+    func sendFriendRequestNotification(by inviterUserId: String, for receiverUserId: String){
+        let database = CKRepository.container.publicCloudDatabase
+        //let database = CKContainer.default().publicCloudDatabase
+        
+        database.fetchAllSubscriptions { [unowned self] subscriptions, error in
+            if error == nil {
+                if let subscriptions = subscriptions {
+                    for subscription in subscriptions {
+                        database.delete(withSubscriptionID: subscription.subscriptionID) { str, error in
+                            if error != nil {
+                                //FIXME: Alert para caso de erro
+                                print("eror while deleting subscriptions")
+                            }
+                        }
+                    }
+                    
+                    var unwrappedUser: User?
+                    CKRepository.getUserById(id: inviterUserId) { user in
+                        DispatchQueue.main.async {
+                            unwrappedUser = user
+                        }
+                    }
+                    
+                    guard let user = unwrappedUser else { return }
+                    
+                    let predicate = NSPredicate(format: "Friends = %@", "\(inviterUserId)\(receiverUserId)")
+                    let subscription = CKQuerySubscription(recordType: FriendsTable.recordType.description, predicate: predicate, options: .firesOnRecordCreation)
+                    
+                    let notification = CKSubscription.NotificationInfo()
+                    notification.alertBody = "@\(user.nickname) sent you a friend request!"
+                    notification.soundName = "default"
+                    
+                    subscription.notificationInfo = notification
+                    
+                    database.save(subscription) { result, error in
+                        if let error = error {
+                            print(error.localizedDescription)
+                        }
+                    }
+                }
+            }
+            else {
+                //FIXME: Alert para caso de erro
+                print("error while fetching subscriptions")
+            }
+        }
+    }
+}
