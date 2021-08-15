@@ -228,6 +228,13 @@ extension OtherProfileViewController {
         }
     }
     
+    /**
+     This function is responsible for canceling a friend request to another user.
+     
+     - Parameters: Void
+     - Returns: Void
+     */
+    //TA FUNCIONANDO ESSE AQUI
     func cancelFriendRequest() {
         friendRequestOrNonFriendControl = isFriend.nonFriend
         requestFriendButton.layer.backgroundColor = UIColor(named: "Primary")?.cgColor
