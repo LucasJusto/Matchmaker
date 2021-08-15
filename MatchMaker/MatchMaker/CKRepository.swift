@@ -64,16 +64,16 @@ enum UserGamesTable: CustomStringConvertible {
 }
 
 enum FriendsTable: CustomStringConvertible {
-    case recordType, id1, id2, isInvite, storeFailMessage, tableChanged
+    case recordType, inviterId, receiverId, isInvite, storeFailMessage, tableChanged
     
     var description: String {
         switch self {
             case .recordType:
                 return "Friends"
-            case .id1:
-                return "id1"
-            case .id2:
-                return "id2"
+            case .inviterId:
+                return "inviterId"
+            case .receiverId:
+                return "receiverId"
             case .isInvite:
                 return "isInvite"
             case .storeFailMessage:
@@ -95,6 +95,40 @@ enum BlockedTable: CustomStringConvertible {
                 return "userId"
             case .blockedId:
                 return "blockedId"
+        }
+    }
+}
+
+enum SkillRatingsTable: CustomStringConvertible {
+    case recordType, raterUserId, ratedUserId, rate
+    
+    var description: String {
+        switch self {
+            case .recordType:
+                return "SkillRatings"
+            case .raterUserId:
+                return "raterUserId"
+            case .ratedUserId:
+                return "ratedUserId"
+            case .rate:
+                return "rate"
+        }
+    }
+}
+
+enum BehaviourRatingsTable: CustomStringConvertible {
+    case recordType, raterUserId, ratedUserId, rate
+    
+    var description: String {
+        switch self {
+            case .recordType:
+                return "BehaviourRatings"
+            case .raterUserId:
+                return "raterUserId"
+            case .ratedUserId:
+                return "ratedUserId"
+            case .rate:
+                return "rate"
         }
     }
 }
@@ -122,14 +156,31 @@ public class CKRepository {
             if let idNotNull = id {
                 CKRepository.getUserById(id: idNotNull) { user in
                     CKRepository.user = user
+                    CKRepository.getFriendsById(id: user.id) { friends in
+                        CKRepository.user?.friends = friends
+                    }
+                    CKRepository.getBlockedUsersList { blockedUsers in
+                        CKRepository.user?.blocked = blockedUsers
+                    }
                 }
             }
         }
     }
     
     public static func getUserId(completion: @escaping (String?) -> Void) {
-        container.fetchUserRecordID { record, error in
-            completion("id\(record?.recordName ?? "")")
+        if let u = CKRepository.user {
+            completion(u.id)
+            return
+        }
+        else {
+            container.fetchUserRecordID { record, error in
+                if let ckError = error as? CKError {
+                    CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                }
+                if let id = record?.recordName {
+                    completion("id\(id)")
+                }
+            }
         }
     }
     
@@ -140,19 +191,25 @@ public class CKRepository {
             if let idNotNull = id {
                 userID = idNotNull
             }
-        }
-        
-        let publicDB = container.publicCloudDatabase
-        let predicate = NSPredicate(format: "id == %@", userID)
-        let query = CKQuery(recordType: UserTable.recordType.description, predicate: predicate)
-        
-        publicDB.perform(query, inZoneWith: nil) { result, error in
-            if result?.count == 0 {
-                completion(false)
-                return
+            
+            let publicDB = container.publicCloudDatabase
+            let predicate = NSPredicate(format: "id == %@", userID)
+            let query = CKQuery(recordType: UserTable.recordType.description, predicate: predicate)
+            
+            publicDB.perform(query, inZoneWith: nil) { result, error in
+                if let ckError = error as? CKError {
+                    CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                }
+                
+                if result?.count == 0 {
+                    completion(false)
+                    return
+                }
+                completion(true)
             }
-            completion(true)
         }
+        
+        
     }
     
     private static func storeUserData(id: String, name: String, nickname: String, location: Locations, description: String, photo: URL?, selectedPlatforms: [Platform], selectedGames: [Game], languages: [Languages]){
@@ -180,8 +237,8 @@ public class CKRepository {
         record.setObject(platformsIds as CKRecordValue?, forKey: UserTable.selectedPlatforms.description)
         
         publicDB.save(record) { savedRecord, error in
-            if error != nil {
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: UserTable.storeFailMessage.description), object: record)
+            if let ckError = error as? CKError {
+                CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
             }
         }
         
@@ -208,8 +265,8 @@ public class CKRepository {
             record.setObject(selectedServers as CKRecordValue?, forKey: UserGamesTable.selectedServers.description)
             
             publicDB.save(record) { savedRecord, error in
-                if error != nil {
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: UserGamesTable.storeFailMessage.description), object: record)
+                if let ckError = error as? CKError {
+                    CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
                 }
             }
         }
@@ -221,6 +278,10 @@ public class CKRepository {
         let query = CKQuery(recordType: UserTable.recordType.description, predicate: predicate)
         
         publicDB.perform(query, inZoneWith: nil) { result, error in
+            if let ckError = error as? CKError {
+                CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+            }
+            
             if let resultNotNull = result {
                 if resultNotNull.count > 0 {
                     let id = result?[0].value(forKey: UserTable.id.description) as! String
@@ -258,45 +319,132 @@ public class CKRepository {
         
     }
     
-    static func storeFriendship(inviterUserId: String, receiverUserId: String, isInvite: IsInvite, acceptance: Bool) {
+    static func sendFriendshipInvite(inviterUserId: String, receiverUserId: String) {
         let recordID = CKRecord.ID(recordName:"\(inviterUserId)\(receiverUserId)")
         let record = CKRecord(recordType: FriendsTable.recordType.description, recordID: recordID)
         let publicDB = container.publicCloudDatabase
         
-        record.setObject(inviterUserId as CKRecordValue?, forKey: FriendsTable.id1.description)
-        record.setObject(receiverUserId as CKRecordValue?, forKey: FriendsTable.id2.description)
-        if isInvite == IsInvite.yes {
-            record.setObject(IsInvite.yes.description as CKRecordValue?, forKey: FriendsTable.isInvite.description)
-        }
-        else if acceptance {
-            record.setObject(IsInvite.no.description as CKRecordValue?, forKey: FriendsTable.isInvite.description)
-        }
-        else {
-            deleteFriendship(id1: inviterUserId, id2: receiverUserId)
-            return
-        }
+        record.setObject(inviterUserId as CKRecordValue?, forKey: FriendsTable.inviterId.description)
+        record.setObject(receiverUserId as CKRecordValue?, forKey: FriendsTable.receiverId.description)
+        record.setObject(IsInvite.yes.description as CKRecordValue?, forKey: FriendsTable.isInvite.description)
         
         publicDB.save(record) { record, error in
-            if error != nil {
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: FriendsTable.storeFailMessage.description), object: record)
+            if let ckError = error as? CKError {
+                CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+            }
+            else {
+                if error == nil {
+                    getUserById(id: receiverUserId) { user in
+                        CKRepository.user?.friends.append(Social(id: user.id, name: user.name, nickname: user.nickname, photoURL: user.photoURL, games: user.selectedGames, isInvite: IsInvite.yes, isInviter: false))
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: FriendsTable.tableChanged.description), object: nil)
+                    }
+                }
             }
         }
     }
     
-    static func deleteFriendship(id1: String, id2: String) {
+    static func friendshipInviteAnswer(inviterUserId: String, receiverUserId: String, response: Bool) {
+        let recordID = CKRecord.ID(recordName:"\(inviterUserId)\(receiverUserId)")
         let publicDB = container.publicCloudDatabase
-        let recordID = CKRecord.ID(recordName:"\(id1)\(id2)")
-        let recordID2 = CKRecord.ID(recordName:"\(id2)\(id1)")
         
-        publicDB.delete(withRecordID: recordID) { id, error in
-            if error != nil {
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: FriendsTable.storeFailMessage.description), object: id)
+        if response {
+            //friendshipInviteAccepted
+            publicDB.fetch(withRecordID: recordID) { record, error in
+                if let ckError = error as? CKError {
+                    CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                }
+                
+                if let rec = record {
+                    rec.setObject(IsInvite.no.description as CKRecordValue?, forKey: FriendsTable.isInvite.description)
+                    
+                    publicDB.save(rec) { record, error in
+                        if let ckError = error as? CKError {
+                            CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                        }
+                        else {
+                            if error == nil {
+                                getUserById(id: inviterUserId) { user in
+                                    CKRepository.user?.friends.append(Social(id: user.id, name: user.name, nickname: user.nickname, photoURL: user.photoURL, games: user.selectedGames, isInvite: IsInvite.no, isInviter: true))
+                                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: FriendsTable.tableChanged.description), object: nil)
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
+        else {
+            //friendshipInviteDenied
+            deleteFriendship(inviterId: inviterUserId, receiverId: receiverUserId)
+        }
+    }
+    
+    static func deleteFriendship(inviterId: String, receiverId: String) {
+        let publicDB = container.publicCloudDatabase
+        let recordID = CKRecord.ID(recordName:"\(inviterId)\(receiverId)")
         
-        publicDB.delete(withRecordID: recordID2) { id, error in
-            if error != nil {
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: FriendsTable.storeFailMessage.description), object: id)
+        publicDB.delete(withRecordID: recordID) { id, error in
+            if let ckError = error as? CKError {
+                CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+            }
+            else {
+                if error == nil {
+                    if let u = CKRepository.user {
+                        for i in 0...u.friends.count-1 {
+                            if u.friends[i].id == inviterId || u.friends[i].id == receiverId {
+                                CKRepository.user?.friends.remove(at: i)
+                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: FriendsTable.tableChanged.description), object: nil)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    static func getFriendsById(id: String, completion: @escaping ([Social]) -> Void) {
+        var friends: [Social] = [Social]()
+        
+        let publicDB = container.publicCloudDatabase
+        let inviterPredicate = NSPredicate(format: "\(FriendsTable.inviterId.description) == '\(id)'")
+        let query = CKQuery(recordType: FriendsTable.recordType.description, predicate: inviterPredicate)
+        
+        publicDB.perform(query, inZoneWith: nil) { results, error in
+            if let ckError = error as? CKError {
+                CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+            }
+            if let resultsNotNull = results {
+                for result in resultsNotNull {
+                    if let receiverFriendId = result.value(forKey: FriendsTable.receiverId.description) as? String {
+                        getUserById(id: receiverFriendId) { user in
+                            let isInvite = IsInvite.getIsInvite(string: result.value(forKey: FriendsTable.isInvite.description) as? String ?? "")
+                            friends.append(Social(id: user.id, name: user.name, nickname: user.nickname, photoURL: user.photoURL, games: user.selectedGames, isInvite: isInvite, isInviter: true))
+                            if friends.count == resultsNotNull.count {
+                                let receiverPredicate = NSPredicate(format: "\(FriendsTable.receiverId.description) == '\(id)'")
+                                let receiverQuery = CKQuery(recordType: FriendsTable.recordType.description, predicate: receiverPredicate)
+                                publicDB.perform(receiverQuery, inZoneWith: nil) { receiverResults, receiverError in
+                                    if let ckError = receiverError as? CKError {
+                                        CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                                    }
+                                    if let receiverResultsNotNull = receiverResults {
+                                        for receiverResult in receiverResultsNotNull {
+                                            if let inviterFriendId = receiverResult.value(forKey: FriendsTable.inviterId.description) as? String {
+                                                getUserById(id: inviterFriendId) { user in
+                                                    let receiverIsInvite = IsInvite.getIsInvite(string: receiverResult.value(forKey: FriendsTable.isInvite.description) as? String ?? "")
+                                                    friends.append(Social(id: user.id, name: user.name, nickname: user.nickname, photoURL: user.photoURL, games: user.selectedGames, isInvite: receiverIsInvite, isInviter: false))
+                                                    if friends.count == (resultsNotNull.count + receiverResultsNotNull.count) {
+                                                        CKRepository.user?.friends = friends
+                                                        completion(friends)
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
@@ -304,6 +452,7 @@ public class CKRepository {
     static func searchUsers(languages: [Languages], platforms: [Platform], behaviourRate: Double, skillRate: Double, locations: [Locations], games: [Game], completion: @escaping ([Social]) -> Void) {
         //creating user array to be returned
         var usersFound: [Social] = [Social]()
+        let semaphore = DispatchSemaphore(value: 1)
         getBlockedUsersId { blockedUsers in
             var blockedUsersId = blockedUsers
             //creating string to predicate (filtering the search)
@@ -382,6 +531,10 @@ public class CKRepository {
             
             //filling the array with results to the search (filtered)
             publicDB.perform(query, inZoneWith: nil) { results, error in
+                if let ckError = error as? CKError {
+                    CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                }
+                
                 if let resultsNotNull = results {
                     if resultsNotNull.count > 0 {
                         for i in 0...resultsNotNull.count - 1 {
@@ -393,7 +546,9 @@ public class CKRepository {
                                 photoURL = ckAsset.fileURL
                             }
                             CKRepository.getUserGamesById(id: id) { userGames in
+                                semaphore.wait()
                                 usersFound.append(Social(id: id, name: name, nickname: nickName, photoURL: photoURL, games: userGames, isInvite: nil))
+                                semaphore.signal()
                                 if usersFound.count == resultsNotNull.count {
                                     //if usersFound is completlty filled
                                     
@@ -493,15 +648,19 @@ public class CKRepository {
         let gamesQuery = CKQuery(recordType: UserGamesTable.recordType.description, predicate: gamesPredicate)
         
         publicDB.perform(gamesQuery, inZoneWith: nil) { results, error in
+            if let ckError = error as? CKError {
+                CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+            }
+            
             var games: [Game] = [Game]()
             let allGames = Games.buildGameArray()
             if let userGames = results {
                 for userGame in userGames {
                     let gameId = Games.getGameIdInt(id: (userGame.value(forKey: UserGamesTable.gameId.description) as! String))
-                    let gameSelectedPlatforms = (userGame.value(forKey: UserGamesTable.selectedPlatforms.description) as! [String]).map { platform in
+                    let gameSelectedPlatforms = ((userGame.value(forKey: UserGamesTable.selectedPlatforms.description) as? [String]) ?? []).map { platform in
                         Platform.getPlatform(key: platform)
                     }
-                    let gameSelectedServersString = userGame.value(forKey: UserGamesTable.selectedServers.description) as! [String]
+                    let gameSelectedServersString = (userGame.value(forKey: UserGamesTable.selectedServers.description) as? [String]) ?? []
                     var gameSelectedServers: [Servers] = [Servers]()
                     
                     for g in gameSelectedServersString {
@@ -526,6 +685,10 @@ public class CKRepository {
                 let blockedPredicate = NSPredicate(format: "userId == %@", idNotNull)
                 let blockedQuery = CKQuery(recordType: BlockedTable.recordType.description, predicate: blockedPredicate)
                 publicDB.perform(blockedQuery, inZoneWith: nil) { results, error in
+                    if let ckError = error as? CKError {
+                        CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                    }
+                    
                     if let resultsNotNull = results {
                         for result in resultsNotNull {
                             if let blockedUserId = result.value(forKey: BlockedTable.blockedId.description) as? String {
@@ -543,6 +706,231 @@ public class CKRepository {
             else {
                 //if there isnt id, return empty list
                 completion(blockedUsersIds)
+            }
+        }
+    }
+    
+    static func getBlockedUsersList(completion: @escaping ([Social]) -> Void) {
+        var blockedUsers: [Social] = [Social]()
+        
+        CKRepository.getBlockedUsersId { blockedUsersIds in
+            for id in blockedUsersIds {
+                getUserById(id: id) { user in
+                    blockedUsers.append(Social(id: user.id, name: user.name, nickname: user.nickname, photoURL: user.photoURL, games: user.selectedGames, isInvite: nil, isInviter: nil))
+                    if blockedUsers.count == blockedUsersIds.count {
+                        completion(blockedUsers)
+                    }
+                }
+            }
+        }
+    }
+    
+    static func errorAlertHandler(CKErrorCode: CKError.Code){
+        
+        let notLoggedInTitle = NSLocalizedString("CKErrorNotLoggedInTitle", comment: "Not logged in iCloud")
+        let notLoggedInMessage = NSLocalizedString("CKErrorNotLoggedInMessage", comment: "You need to be logged in iCloud to use this app.")
+        
+        let defaultTitle = NSLocalizedString("CKErrorDefaultTitle", comment: "An error ocurred")
+        let defaultMessage = NSLocalizedString("CKErrorDefaultMessage", comment: "Something unexpected ocurred, your data may not have been saved.")
+        
+        //getting the top view controller
+        DispatchQueue.main.async {
+            let keyWindow = UIApplication.shared.windows.first(where: \.isKeyWindow)
+            var topController = keyWindow?.rootViewController
+                        
+            // get topmost view controller to present alert
+            while let presentedViewController = topController?.presentedViewController {
+                topController = presentedViewController
+            }
+            
+            let isAlertOn = topController is UIAlertController
+            
+            guard !isAlertOn else { return }
+            
+            switch CKErrorCode {
+                case .notAuthenticated:
+                    //user is not logged in iCloud
+                    topController?.present(prepareAlert(title: notLoggedInTitle, message: notLoggedInMessage), animated: true)
+                default:
+                    topController?.present(prepareAlert(title: defaultTitle, message: defaultMessage), animated: true)
+            }
+        }
+    }
+    
+    private static func prepareAlert(title: String, message: String) -> UIAlertController{
+        let alertButtonLabel = NSLocalizedString("CKErrorAlertButtonLabel", comment: "Ok")
+        
+        let dialogMessage = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let ok = UIAlertAction(title: alertButtonLabel, style: .default, handler: { (action) -> Void in
+            //make things when alert button is clicked
+          })
+        
+        dialogMessage.addAction(ok)
+        
+        return dialogMessage
+    }
+    
+    static func skillRateFriend(friendId: String, rate: Double) {
+        let publicDB = CKRepository.container.publicCloudDatabase
+        getUserId { id in
+            if let userId = id {
+                
+                let recordID = CKRecord.ID(recordName: "skillRatings\(userId)\(friendId)")
+    
+                //check if the rating already exists
+                publicDB.fetch(withRecordID: recordID) { result, error in
+                    if let ckError = error as? CKError {
+                        if ckError.code.rawValue != 11 {
+                            CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                        }
+                    }
+                    
+                    if let resultNotNull = result {
+                        resultNotNull.setObject(rate as CKRecordValue?, forKey: SkillRatingsTable.rate.description)
+                        
+                        publicDB.save(resultNotNull) { ckRecord, error in
+                            if let ckError = error as? CKError {
+                                CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                            }
+                            recalculateUserSkillRateById(id: friendId)
+                        }
+                    }
+                    else {
+                        let record = CKRecord(recordType: SkillRatingsTable.recordType.description, recordID: recordID)
+                        
+                        record.setObject(userId as CKRecordValue?, forKey: SkillRatingsTable.raterUserId.description)
+                        record.setObject(friendId as CKRecordValue?, forKey: SkillRatingsTable.ratedUserId.description)
+                        record.setObject(rate as CKRecordValue?, forKey: SkillRatingsTable.rate.description)
+                        
+                        publicDB.save(record) { ckRecord, error in
+                            if let ckError = error as? CKError {
+                                CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                            }
+                            recalculateUserSkillRateById(id: friendId)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    private static func recalculateUserSkillRateById(id: String) {
+        let publicDB = CKRepository.container.publicCloudDatabase
+        let recordID = CKRecord.ID(recordName: id)
+        
+        publicDB.fetch(withRecordID: recordID) { result, error in
+            if let ckError = error as? CKError {
+                CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+            }
+            
+            if let resultNotNull = result {
+                var rateSum: Double = 0
+                
+                let predicate = NSPredicate(format: "\(SkillRatingsTable.ratedUserId.description) == %@", id)
+                let query = CKQuery(recordType: SkillRatingsTable.recordType.description, predicate: predicate)
+                
+                publicDB.perform(query, inZoneWith: nil) { results, error in
+                    if let resultsNotNull = results {
+                        for r in resultsNotNull {
+                            if let rate = r.value(forKey: SkillRatingsTable.rate.description) as? Double {
+                                rateSum += rate
+                            }
+                        }
+                        let rateAverage = rateSum/Double(resultsNotNull.count)
+                        resultNotNull.setObject(rateAverage as CKRecordValue?, forKey: UserTable.averageSkillRate.description)
+                        let operation = CKModifyRecordsOperation(recordsToSave: [resultNotNull], recordIDsToDelete: nil)
+                        operation.savePolicy = .changedKeys
+                        operation.modifyRecordsCompletionBlock = { _, _, error in
+                            if let ckError = error as? CKError {
+                                CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                            }
+                        }
+                        publicDB.add(operation)
+                    }
+                }
+            }
+        }
+    }
+    
+    static func behaviourRateFriend(friendId: String, rate: Double) {
+        let publicDB = CKRepository.container.publicCloudDatabase
+        getUserId { id in
+            if let userId = id {
+                
+                let recordID = CKRecord.ID(recordName: "behaviourRatings\(userId)\(friendId)")
+    
+                //check if the rating already exists
+                publicDB.fetch(withRecordID: recordID) { result, error in
+                    if let ckError = error as? CKError {
+                        if ckError.code.rawValue != 11 {
+                            CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                        }
+                    }
+                    
+                    if let resultNotNull = result {
+                        resultNotNull.setObject(rate as CKRecordValue?, forKey: BehaviourRatingsTable.rate.description)
+                        
+                        publicDB.save(resultNotNull) { ckRecord, error in
+                            if let ckError = error as? CKError {
+                                CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                            }
+                            recalculateUserBehaviourRateById(id: friendId)
+                        }
+                    }
+                    else {
+                        let record = CKRecord(recordType: BehaviourRatingsTable.recordType.description, recordID: recordID)
+                        
+                        record.setObject(userId as CKRecordValue?, forKey: BehaviourRatingsTable.raterUserId.description)
+                        record.setObject(friendId as CKRecordValue?, forKey: BehaviourRatingsTable.ratedUserId.description)
+                        record.setObject(rate as CKRecordValue?, forKey: BehaviourRatingsTable.rate.description)
+                        
+                        publicDB.save(record) { ckRecord, error in
+                            if let ckError = error as? CKError {
+                                CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                            }
+                            recalculateUserBehaviourRateById(id: friendId)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    private static func recalculateUserBehaviourRateById(id: String) {
+        let publicDB = CKRepository.container.publicCloudDatabase
+        let recordID = CKRecord.ID(recordName: id)
+        
+        publicDB.fetch(withRecordID: recordID) { result, error in
+            if let ckError = error as? CKError {
+                CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+            }
+            
+            if let resultNotNull = result {
+                var rateSum: Double = 0
+                
+                let predicate = NSPredicate(format: "\(BehaviourRatingsTable.ratedUserId.description) == %@", id)
+                let query = CKQuery(recordType: BehaviourRatingsTable.recordType.description, predicate: predicate)
+                
+                publicDB.perform(query, inZoneWith: nil) { results, error in
+                    if let resultsNotNull = results {
+                        for r in resultsNotNull {
+                            if let rate = r.value(forKey: BehaviourRatingsTable.rate.description) as? Double {
+                                rateSum += rate
+                            }
+                        }
+                        let rateAverage = rateSum/Double(resultsNotNull.count)
+                        resultNotNull.setObject(rateAverage as CKRecordValue?, forKey: UserTable.averageBehaviourRate.description)
+                        let operation = CKModifyRecordsOperation(recordsToSave: [resultNotNull], recordIDsToDelete: nil)
+                        operation.savePolicy = .changedKeys
+                        operation.modifyRecordsCompletionBlock = { _, _, error in
+                            if let ckError = error as? CKError {
+                                CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                            }
+                        }
+                        publicDB.add(operation)
+                    }
+                }
             }
         }
     }
