@@ -13,14 +13,14 @@ class SocialViewController: UIViewController {
     var users: [User] = []
     var filteredUsers: [User] = []
     
-    @IBOutlet weak var SearchBar: UISearchBar!
+    @IBOutlet weak var searchBar: UISearchBar!
 
     //let searchController = UISearchController(searchResultsController: nil)
     var isSearchBarEmpty: Bool {
-      return SearchBar.text?.isEmpty ?? true
+      return searchBar.text?.isEmpty ?? true
     }
     var isFiltering: Bool {
-        return SearchBar.isFocused && !isSearchBarEmpty
+        return searchBar.isFocused && !isSearchBarEmpty
     }
     
     @IBOutlet weak var discoverTableView: UITableView!
@@ -63,13 +63,13 @@ class SocialViewController: UIViewController {
         // Search Controller | uses extension
 //        SearchBar.searchResultsUpdater = self
 //        SearchBar.obscuresBackgroundDuringPresentation = false
-        SearchBar.placeholder = "Search Users"
+        searchBar.placeholder = "Search Users"
         definesPresentationContext = true
 
 //        // Adding filter button to the search controller
-        SearchBar.delegate = self
-        SearchBar.showsBookmarkButton = true
-        SearchBar.setImage(UIImage(systemName: "line.horizontal.3.decrease.circle"), for: .bookmark, state: .normal)
+        searchBar.delegate = self
+        searchBar.showsBookmarkButton = true
+        searchBar.setImage(UIImage(systemName: "line.horizontal.3.decrease.circle"), for: .bookmark, state: .normal)
         
     }
     
