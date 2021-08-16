@@ -106,7 +106,7 @@ class OtherProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let mockedSocial = Social(id: "id_ee3aeda325ddb726141b73fc1d1d908a", name: "Marina", nickname: "CUI CUI", photoURL: nil, games: [], isInvite: .yes, isInviter: true)
+        let mockedSocial = Social(id: "id_ee3aeda325ddb726141b73fc1d1d908a", name: "Marina", nickname: "CUI CUI", photoURL: nil, games: [], isInvite: .yes, isInviter: false)
         
         social = mockedSocial
         
@@ -171,7 +171,7 @@ class OtherProfileViewController: UIViewController {
         
         //MARK: - Implement user informations here (The data that are already here are mocked
         
-        //user = User(id: "teste", name: "Marina de Pazzi", nickname: "Prolene", photoURL: nil, location: Locations.brazil, description: "fala fellas, voce que curte um cszinho, bora fazer um projetinho na mansao arromba", behaviourRate: 5.0, skillRate: 5.0, languages: [Languages.english, Languages.portuguese, Languages.russian, Languages.german], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: [marinaGames[1], marinaGames[2]])
+        user = User(id: "teste", name: "Marina de Pazzi", nickname: "Prolene", photoURL: nil, location: Locations.brazil, description: "fala fellas, voce que curte um cszinho, bora fazer um projetinho na mansao arromba", behaviourRate: 5.0, skillRate: 5.0, languages: [Languages.english, Languages.portuguese, Languages.russian, Languages.german], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: [marinaGames[1], marinaGames[2]])
         
         guard let unwrappedUser = user else { return }
         
@@ -279,11 +279,11 @@ extension OtherProfileViewController {
         requestFriendButton.isHidden = false
         //MARK: - Do BackEnd to cancel request
         
-//        guard let user = user else { return }
-//        CKRepository.getUserId { id in
-//            guard let id = id else { return }
-//            CKRepository.deleteFriendship(inviterId: id, receiverId: user.id)
-//        }
+        guard let user = user else { return }
+        CKRepository.getUserId { id in
+            guard let id = id else { return }
+            CKRepository.deleteFriendship(inviterId: id, receiverId: user.id) { }
+        }
     }
     
     func removeFriend() {
@@ -294,10 +294,10 @@ extension OtherProfileViewController {
         requestFriendButton.isHidden = false
         //MARK: - Do BackEnd to remove friend
         
-//        guard let user = user else { return }
-//        CKRepository.getUserId { id in
-//            guard let id = id else { return }
-//            CKRepository.deleteFriendship(inviterId: id, receiverId: user.id)
-//        }
+        guard let user = user else { return }
+        CKRepository.getUserId { id in
+            guard let id = id else { return }
+            CKRepository.deleteFriendship(inviterId: id, receiverId: user.id) { }
+        }
     }
 }
