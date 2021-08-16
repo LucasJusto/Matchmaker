@@ -204,6 +204,7 @@ public struct Social {
     let photoURL: URL? //profile picture
     let games: [Game]? //games played by this user
     var isInvite: IsInvite?
+    var isInviter: Bool?
 }
 
 public class User {
