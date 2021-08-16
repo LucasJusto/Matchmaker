@@ -201,3 +201,5 @@ without using your storage";
 "SocialViewFriendsSectionToggle" = "Friends";
 "SocialViewBlockedSectionToggle" = "Blocked";
 "SocialViewCancelSentRequest" = "Cancel request";
+"SocialReceivedRequestAcceptInvite" = "Accept";
+"SocialReceivedRequestDeclineInvite" = "Reject";

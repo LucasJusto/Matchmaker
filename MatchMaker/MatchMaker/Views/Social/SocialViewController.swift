@@ -43,7 +43,6 @@ class SocialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
         updateAndReload()
         
         socialTableView.delegate = self
@@ -57,18 +56,14 @@ class SocialViewController: UIViewController {
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         
         // Search Controller | uses extension
-//        searchBar.searchResultsUpdater = self
-//        searchBar.obscuresBackgroundDuringPresentation = false
-        searchBar.placeholder = NSLocalizedString("SocialViewSearchUsers", comment: "Placeholder text in search bar")
-//        definesPresentationContext = true
         searchBar.delegate = self
         
         // LocalizableString
+        searchBar.placeholder = NSLocalizedString("SocialViewSearchUsers", comment: "Placeholder text in search bar")
         let segment1 = NSLocalizedString("SocialViewFriendsSectionToggle", comment: "Friend section title in the toggle between friends/blocked")
         blockedToggle.setTitle(segment1, forSegmentAt: 0)
         let segment2 = NSLocalizedString("SocialViewBlockedSectionToggle", comment: "Blocked section title in the toggle between friends/blocked")
         blockedToggle.setTitle(segment2, forSegmentAt: 1)
-        
         
     }
     
@@ -122,10 +117,6 @@ extension SocialViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendProfileCell", for: indexPath) as? SocialTableViewCell
-//        else {
-//            return UITableViewCell()
-//        }
         
         // Using sections to have a "rounded cell" which is actually a section
         let friend: Social
