@@ -203,3 +203,8 @@ without using your storage";
 "SocialViewCancelSentRequest" = "Cancel request";
 "SocialReceivedRequestAcceptInvite" = "Accept";
 "SocialReceivedRequestDeclineInvite" = "Reject";
+
+//MARK: - Discover
+"DiscoverScreenAddToFriendsButton" = "Add to friends";
+"DiscoverShowMoreButton" = "Show more";
+"DiscoverScreenRequestSent" = "Request sent!";

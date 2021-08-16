@@ -7,28 +7,51 @@
 
 import UIKit
 
+protocol DiscoverTableViewCellDelegate: AnyObject {
+    func didPressShowProfile(_ sender: DiscoverTableViewCell)
+    func didPressShowProfileCollection(_ sender: DiscoverShowMoreCollectionViewCell)
+}
+
 class DiscoverTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var ProfileImage: UIImageView!
-    @IBOutlet weak var NameLabel: UILabel!
-    @IBOutlet weak var NickLabel: UILabel!
-    @IBOutlet weak var ProfileButton: UIButton!
-    @IBOutlet weak var AddToFriendsButton: UIButton!
-    @IBOutlet weak var CollectionView: UICollectionView!
-    
+    var userId: String?
     var userGames: [Game] = []
+    var delegate: DiscoverTableViewCellDelegate?
+    
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var nickLabel: UILabel!
+    @IBOutlet weak var profileButton: UIButton!
+    @IBOutlet weak var addToFriendsButton: UIButton!
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    // Action outlets
+    @IBAction func actionAvatarIcon(_ sender: UIButton) {
+        delegate?.didPressShowProfile(self)
+    }
+    
+    @IBAction func actionAddToFriendsButton(_ sender: UIButton) {
+        CKRepository.getUserId(completion: { ownUserId in
+            guard let ownUserId: String = ownUserId else { return }
+            guard let userId: String = self.userId else { return }
+            CKRepository.sendFriendshipInvite(inviterUserId: ownUserId, receiverUserId: userId)
+            DispatchQueue.main.async {
+                self.addToFriendsButton.setTitle(NSLocalizedString("DiscoverScreenRequestSent", comment: "Message shown when the request was sent"), for: .normal)
+                self.addToFriendsButton.isEnabled = false
+            }
+        })
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        CollectionView.dataSource = self
-        CollectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.delegate = self
         
         // Initialization code
-        
-        AddToFriendsButton.setTitle(NSLocalizedString("DiscoverScreenAddToFriendsButton", comment: "Add to friends button text in the Discover Screen."), for: .normal)
-        AddToFriendsButton.cornerRadius = 10
-        ProfileImage.cornerRadius = 10
+        addToFriendsButton.setTitle(NSLocalizedString("DiscoverScreenAddToFriendsButton", comment: "Add to friends button text in the Discover Screen."), for: .normal)
+        addToFriendsButton.cornerRadius = 10
+        profileImage.cornerRadius = 10
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -37,22 +60,23 @@ class DiscoverTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setup(url: URL?, nameText: String, nickText: String, userGames: [Game]) {
+    func setup(userId: String, url: URL?, nameText: String, nickText: String, userGames: [Game]) {
         
         // Trying to unwrap, get image data and set it in the UI
         if let url = url {
             DispatchQueue.global().async {
                 if let data = try? Data(contentsOf: url) {
                     DispatchQueue.main.async {
-                        self.ProfileImage.image = UIImage(data: data)
+                        self.profileImage.image = UIImage(data: data)
                     }
                 }
             }
         }
         
+        self.userId = userId
         self.userGames = userGames
-        NameLabel.text = nameText
-        NickLabel.text = nickText
+        nameLabel.text = nameText
+        nickLabel.text = nickText
     }
 
 }
@@ -82,7 +106,10 @@ extension DiscoverTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
                     return UICollectionViewCell()
             }
             
-            cell.setup()
+            guard let userId = self.userId else { return UICollectionViewCell() }
+            
+            cell.setup(userId: userId)
+            cell.delegate = delegate
             return cell
         }
         
