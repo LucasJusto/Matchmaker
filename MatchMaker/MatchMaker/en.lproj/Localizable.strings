@@ -195,3 +195,8 @@ without using your storage";
 "CancelButtonLabel" = "Cancel";
 "DoneButtonLabel" = "Done";
 "viewControllerTitle" = "Edit Profile";
+
+//MARK: - Discover
+"DiscoverScreenAddToFriendsButton" = "Add to friends";
+"DiscoverShowMoreButton" = "Show more";
+"DiscoverScreenRequestSent" = "Request sent!";
