@@ -433,7 +433,7 @@
                                             <outlet property="rejectRequestButton" destination="RXR-dr-oNd" id="J60-ZD-pyM"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BlockedCell" id="jEW-Mq-daH" customClass="SocialTableViewSentRequestCell" customModule="MatchMaker" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BlockedCell" id="jEW-Mq-daH" customClass="SocialBlockedTableViewCell" customModule="MatchMaker" customModuleProvider="target">
                                         <rect key="frame" x="20" y="366" width="374" height="51.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jEW-Mq-daH" id="O0n-TY-E0O">
@@ -483,6 +483,9 @@
                                                     <state key="normal" title="unblock">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="actionUnblockButton:" destination="jEW-Mq-daH" eventType="touchUpInside" id="BaU-t2-gWg"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -496,6 +499,12 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="MediumGray"/>
+                                        <connections>
+                                            <outlet property="nickname" destination="fFI-wp-swN" id="4a4-2f-WEd"/>
+                                            <outlet property="profileImage" destination="aQM-SE-khJ" id="4Fs-XB-kLT"/>
+                                            <outlet property="unblockButton" destination="lh5-Ie-6Gd" id="DDW-2E-rEf"/>
+                                            <outlet property="username" destination="jcU-BC-cSq" id="09L-po-W6R"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

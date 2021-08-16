@@ -204,6 +204,7 @@ without using your storage";
 "SocialReceivedRequestAcceptInvite" = "Accept";
 "SocialReceivedRequestDeclineInvite" = "Reject";
 "SocialShowMoreButton" = "Show more";
+"SocialUnblockButton" = "Unblock";
 
 //MARK: - Discover
 "DiscoverScreenAddToFriendsButton" = "Add to friends";

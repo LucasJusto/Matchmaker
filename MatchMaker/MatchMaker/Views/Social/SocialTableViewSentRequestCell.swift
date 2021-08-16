@@ -36,6 +36,12 @@ class SocialTableViewSentRequestCell: UITableViewCell {
         // Initialization code
     }
     
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        //super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+    
     func setup(userId: String, photoURL: URL?, name: String, nickname: String) {
         
         // Trying to unwrap, get image data and set it in the UI

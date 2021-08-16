@@ -33,6 +33,12 @@ class SocialTableViewFriendCell: UITableViewCell {
         profileImage.cornerRadius = 10
     }
     
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        //super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+    
     func setup(url: URL?, nameText: String, nickText: String, userGames: [Game]) {
         
         // Trying to unwrap, get image data and set it in the UI
