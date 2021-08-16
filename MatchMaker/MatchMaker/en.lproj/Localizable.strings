@@ -20,6 +20,19 @@
 "UserSkills" = "Skills";
 "UserReviews" = "Reviews";
 
+// MARK: - Friend Profile (OtherPrifile)
+"TitleViewRate" = "Profile";
+"Ratings" = "Ratings";
+"Platforms" = "Platforms";
+"Languages" = "Languages";
+"Games" = "Games";
+"RequestFriendButtonLabel" = "Add to my friends";
+"CancelRequestButtonLabel" = "Cancel request";
+"RemoveFriendButtonLabel" = "Remove friend";
+"PlayingFrom" = "Playing from";
+"RejectRequestButton"= "Reject friend";
+"AceptRequestButton"= "Acept friend";
+
 // MARK: - Platforms
 
 // MARK: - ONBOARDING 1
@@ -150,18 +163,21 @@ without using your storage";
 "US South East" = "US South East";
 "US South West" = "US South West";
 
-// MARK:- /Views/GameDetail
+// MARK: - Detail Game
+// MARK: - /Views/GameDetail
+"TitleGameDetailScreen" = "Game Detail";
 "FindPlayersButton" = "Find players";
 "AddToMyGamesButton" = "Add to my games";
 "PlatformsLabel" = "Platforms";
 "OtherGamesLabel" = "Other Games";
 
-// MARK:- Highlight image
+// MARK: - Home
+// MARK: - Highlight image
 "GamesTitleLabel" = "Games";
 "HighlightTitileAboveImage" = "New game available";
 "TitleButtonHiglighAboveImage" = "Find players now";
 
-// MARK:- Frind request cell
+// MARK: - Frind request cell
 "RejectRequestFriendButtonLabel" = "Reject";
 "AceptRequestFriendButtonLabel" = "Acept";
 "NotificationRequestFriendLabel" = "sent you a friend request";
@@ -186,5 +202,12 @@ without using your storage";
 "filtersLocationLabel" = "Location";
 "filtersGamesLabel" = "Games";
 
+// MARK: - Profile Customization
+"CancelButtonLabel" = "Cancel";
+"DoneButtonLabel" = "Done";
+"viewControllerTitle" = "Edit Profile";
 
-
+// MARK: - Discover
+"DiscoverScreenAddToFriendsButton" = "Add to friends";
+"DiscoverShowMoreButton" = "Show more";
+"DiscoverScreenRequestSent" = "Request sent!";

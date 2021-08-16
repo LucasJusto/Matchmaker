@@ -10,7 +10,7 @@ import UIKit
 class GameDetailViewController: UIViewController {
     
     // Game mock
-    var game = Games.games[0]
+    var game: Game = Games.games[0]
     
     // Game info
     @IBOutlet weak var GameImage: UIImageView!
@@ -34,8 +34,17 @@ class GameDetailViewController: UIViewController {
     // Xib
     @IBOutlet weak var OtherGamesXib: RoundedRectangleCollectionView!
     
+    @IBOutlet weak var titleGameDetailScreen: UINavigationItem!
+    
+    @IBOutlet weak var playstationStack: UIStackView!
+    @IBOutlet weak var xboxStack: UIStackView!
+    @IBOutlet weak var pcStack: UIStackView!
+    @IBOutlet weak var mobileStack: UIStackView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        titleGameDetailScreen.title = NSLocalizedString("TitleGameDetailScreen", comment: "Screen title")
         
         // Xib setup
         OtherGamesXib.RoundedRectangleImageModels = Games.games
@@ -55,17 +64,22 @@ class GameDetailViewController: UIViewController {
         GameTitle.text = game.name
         GameDescription.text = game.description
         
+        playstationStack.isHidden = true
+        xboxStack.isHidden = true
+        pcStack.isHidden = true
+        mobileStack.isHidden = true
+        
         //Platforms setup
         for platform in game.platforms {
             switch(platform) {
                 case .PC:
-                    PCImage.image = UIImage(named: platform.imageSelected)
+                    pcStack.isHidden = false
                 case .PlayStation:
-                    PlaystationImage.image = UIImage(named: platform.imageSelected)
+                    playstationStack.isHidden = false
                 case .Xbox:
-                    XboxImage.image = UIImage(named: platform.imageSelected)
+                    xboxStack.isHidden = false
                 case .Mobile:
-                    MobileImage.image = UIImage(named: platform.imageSelected)
+                    mobileStack.isHidden = false
             }
         }
     }

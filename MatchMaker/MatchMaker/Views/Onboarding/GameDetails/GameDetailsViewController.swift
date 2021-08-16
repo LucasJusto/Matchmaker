@@ -195,13 +195,13 @@ extension GameDetailsViewController: UITableViewDataSource, UITableViewDelegate 
 
             cell?.setUp(title: gameDetailsSection.description)
 
-            if gameDetailsSection == .platforms {
-                let layout = cell?.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-
-                layout.scrollDirection = .horizontal
-
-                cell?.collectionView.setCollectionViewLayout(layout, animated: true)
-            }
+//            if gameDetailsSection == .platforms {
+//                let layout = cell?.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+//
+//                layout.scrollDirection = .horizontal
+//
+//                cell?.collectionView.setCollectionViewLayout(layout, animated: true)
+//            }
         }
 
         cell?.collectionView.delegate = self
@@ -212,12 +212,12 @@ extension GameDetailsViewController: UITableViewDataSource, UITableViewDelegate 
         cell?.requiredLabel.textColor = UIColor(named: "LightGray")
 
         //Setando a altura da cell e da tableView
-        if let size = cell?.collectionView.collectionViewLayout.collectionViewContentSize {
-            cell?.collectionViewHeight.constant = size.height
-
-            let contentSize = tableView.contentSize.height + size.height
-            tableViewHeight.constant = contentSize
-        }
+//        if let size = cell?.collectionView.collectionViewLayout.collectionViewContentSize {
+//            cell?.collectionViewHeight.constant = size.height
+//
+//            let contentSize = tableView.contentSize.height + size.height
+//            tableViewHeight.constant = contentSize
+//        }
 
         return cell
     }

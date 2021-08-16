@@ -20,6 +20,19 @@
 "UserSkills" = "Habilidades";
 "UserReviews" = "Avaliações";
 
+// MARK: - Friend Profile (OtherPrifile)
+"TitleViewRate" = "Perfil";
+"Ratings" = "Avaliações";
+"Platforms" = "Plataformas";
+"Languages" = "Linguagens";
+"Games" = "Jogos";
+"RequestFriendButtonLabel" = "Adicionar aos amigos";
+"CancelRequestButtonLabel" = "Cancelar solicitação";
+"RemoveFriendButtonLabel" = "Remover amigos";
+"PlayingFrom" = "Jogando de";
+"RejectRequestButton"= "Rejeitar amigo";
+"AceptRequestButton"= "Aceitar amigo";
+
 // MARK: - Platforms
 
 // MARK: - ONBOARDING 1
@@ -69,7 +82,6 @@ para você escolher e encontrar jogadores";
 "onboardingGameServersLabel" = "Servidores";
 "onboardingGameDoneButtonLabel" = "Pronto";
 "onboardingGameDeselectButtonLabel" = "Deselecionar";
-
 
 // MARK: - Platforms
 "PlatformPC" = "PC";
@@ -144,6 +156,14 @@ para você escolher e encontrar jogadores";
 "US North Central" = "US North Central";
 "US South East" = "US South East";
 "US South West" = "US South West";
+
+// MARK: - Detail Game
+// MARK:- /Views/GameDetail
+"TitleGameDetailScreen" = "Detalhes do jogo";
+"FindPlayersButton" = "Encontrar jogadores";
+"AddToMyGamesButton" = "Adicionar aos meus jogos";
+"PlatformsLabel" = "Plataformas";
+"OtherGamesLabel" = "Outros jogos";
 
 // MARK: - Home
 // MARK:- Highlight image
