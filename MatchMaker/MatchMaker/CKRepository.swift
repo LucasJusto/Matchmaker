@@ -602,18 +602,21 @@ public class CKRepository {
                                         filterPerGames(filterBy: games, userGames: user.games ?? [])
                                     }
                                     
-                                    if let u = CKRepository.user {
-                                        blockedUsersId.append(u.id)
-                                    }
-                                    //if the user has blocked users
-                                    if blockedUsersId.count > 0 {
-                                        //remove them from the search
-                                        usersFound = usersFound.filter({ user in
-                                            !blockedUsersId.contains(user.id)
-                                        })
-                                    }
+                                    getUserId(completion: { userId in
+                                        if let userIdNotNull = userId {
+                                            blockedUsersId.append(userIdNotNull)
+                                        }
+                                
+                                        //if the user has blocked users
+                                        if blockedUsersId.count > 0 {
+                                            //remove them from the search
+                                            usersFound = usersFound.filter({ user in
+                                                !blockedUsersId.contains(user.id)
+                                            })
+                                        }
+                                        completion(usersFound)
+                                    })
                                     
-                                    completion(usersFound)
                                 }
                             }
                         }
