@@ -7,15 +7,22 @@
 
 import UIKit
 
+protocol SocialTableViewFriendCellDelegate: AnyObject {
+    func didPressShowProfile(_ sender: SocialTableViewFriendCell)
+    func didPressShowProfileCollection(_ sender: SocialCollectionViewShowMoreCell)
+}
+
 class SocialTableViewFriendCell: UITableViewCell {
 
+    var userId: String?
+    var userGames: [Game] = []
+    var delegate: SocialTableViewFriendCellDelegate?
+    
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var nickLabel: UILabel!
     @IBOutlet weak var profileButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
-    
-    var userGames: [Game] = []
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -66,12 +73,15 @@ extension SocialTableViewFriendCell: UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if indexPath.row == 3 && userGames.count > 4{
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SocialShowMoreCollectionViewCell", for: indexPath) as? SocialShowMoreCollectionViewCell
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SocialShowMoreCollectionViewCell", for: indexPath) as? SocialCollectionViewShowMoreCell
             else {
                     return UICollectionViewCell()
             }
             
-            cell.setup()
+            guard let userId = self.userId else { return UICollectionViewCell() }
+            
+            cell.setup(userId: userId)
+            cell.delegate = delegate
             return cell
         }
         

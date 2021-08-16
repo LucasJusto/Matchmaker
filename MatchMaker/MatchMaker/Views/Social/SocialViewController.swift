@@ -14,6 +14,9 @@ class SocialViewController: UIViewController {
     var friends: [Social] = []
     var filteredFriends: [Social] = []
     
+    // Segue helper
+    var destinationUser: User?
+    
     @IBOutlet weak var socialTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var blockedToggle: UISegmentedControl!
@@ -156,4 +159,35 @@ extension SocialViewController: SocialTableViewSentRequestCellDelegate, SocialTa
         updateAndReload()
     }
     
+}
+
+extension SocialViewController: SocialTableViewFriendCellDelegate {
+    
+    func didPressShowProfileCollection(_ sender: SocialCollectionViewShowMoreCell) {
+        guard let userId = sender.userId else { return }
+        CKRepository.getUserById(id: userId, completion: { user in
+            self.destinationUser = user
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "toOtherProfile", sender: nil)
+            }
+        })
+    }
+    
+    func didPressShowProfile(_ sender: SocialTableViewFriendCell) {
+        guard let userId = sender.userId else { return }
+        CKRepository.getUserById(id: userId, completion: { user in
+            self.destinationUser = user
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "toOtherProfile", sender: nil)
+            }
+        })
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier=="toOtherProfile" {
+            let navigationController = segue.destination as! UINavigationController
+            let destination = navigationController.topViewController as! OtherProfileViewController
+            destination.user = self.destinationUser
+        }
+    }
 }
