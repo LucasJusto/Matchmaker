@@ -59,13 +59,9 @@ class SocialViewController: UIViewController {
         // Search Controller | uses extension
 //        SearchBar.searchResultsUpdater = self
 //        SearchBar.obscuresBackgroundDuringPresentation = false
-        searchBar.placeholder = "Search Users"
+        searchBar.placeholder = NSLocalizedString("SocialViewSearchUsers", comment: "Placeholder text in search bar")
         definesPresentationContext = true
-
-//        // Adding filter button to the search controller
         searchBar.delegate = self
-        searchBar.showsBookmarkButton = true
-        searchBar.setImage(UIImage(systemName: "line.horizontal.3.decrease.circle"), for: .bookmark, state: .normal)
         
         // LocalizableString
         blockedToggle.actionForSegment(at: 0)?.title = NSLocalizedString("SocialViewFriendsSectionToggle", comment: "Friend section title in the toggle between friends/blocked")

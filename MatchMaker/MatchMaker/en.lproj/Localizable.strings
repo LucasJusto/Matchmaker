@@ -195,3 +195,6 @@ without using your storage";
 "CancelButtonLabel" = "Cancel";
 "DoneButtonLabel" = "Done";
 "viewControllerTitle" = "Edit Profile";
+
+//MARK: - Social
+"SocialViewSearchUsers" = "Search Users";
