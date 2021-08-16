@@ -106,7 +106,7 @@
                                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <state key="normal" title="Acept Friend"/>
                                                                 <connections>
-                                                                    <action selector="aceptButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="5in-5v-uJ7"/>
+                                                                    <action selector="acceptButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="5in-5v-uJ7"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -391,8 +391,8 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <size key="freeformSize" width="390" height="1500"/>
                     <connections>
-                        <outlet property="aceptButton" destination="zfW-Oy-A6K" id="gxM-pj-GLZ"/>
-                        <outlet property="aceptOrRejectStack" destination="ZD2-2U-cOz" id="TJq-Uw-Ml2"/>
+                        <outlet property="acceptButton" destination="zfW-Oy-A6K" id="gxM-pj-GLZ"/>
+                        <outlet property="acceptOrRejectStack" destination="ZD2-2U-cOz" id="TJq-Uw-Ml2"/>
                         <outlet property="amaountOfReviewsSKillLaber" destination="LAF-Oa-eui" id="Blv-fL-1UI"/>
                         <outlet property="amountOfReviewsBehavioursLabel" destination="jqI-f9-NZ1" id="of8-9d-IZt"/>
                         <outlet property="behaviourRateLabel" destination="zgN-Wb-zoe" id="w6C-O8-bO2"/>
