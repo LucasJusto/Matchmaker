@@ -16,6 +16,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         UIApplication.shared.registerForRemoteNotifications()
         
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+            if let error = error {
+                print("D'oh: \(error.localizedDescription)")
+            }
+            else {
+                DispatchQueue.main.async {
+                    application.registerForRemoteNotifications()
+                }
+            }
+        }
+        
+        UNUserNotificationCenter.current().delegate = self
+        
         if UserDefaults.standard.bool(forKey: "FriendsTableSubscription") {
             
         } else {
@@ -31,22 +44,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     // 2. Creating a Subscription which will be sent to iCloud as a wrapper
                     let notification = CKSubscription.NotificationInfo()
                     notification.shouldSendContentAvailable = true
-                    
-                    newSubscription.notificationInfo = notification
-                    
-                    // 3. Create a public database where it is going to be placed at
-                    let database = CKRepository.container.publicCloudDatabase
-                    
-                    // 4. Save the new subscription to iCloud
-                    database.save(newSubscription) { subscription, error in
-                        if let err = error {
-                            return
-                        }
+                                        
+                    CKRepository.getUserById(id: idNotNull) { [weak notification] user in
+                        guard let notification = notification else { return }
+                        notification.alertBody = "@\(user.nickname) sent you a friend request!"
+                        notification.soundName = "default"
                         
-                        if let _ = subscription {
-                            UserDefaults.standard.set(true, forKey: "FriendsTableSubscription")
+                        // 3. Create a public database where it is going to be placed at
+                        let database = CKRepository.container.publicCloudDatabase
+                        
+                        newSubscription.notificationInfo = notification
+                        
+                        // 4. Save the new subscription to iCloud
+                        database.save(newSubscription) { subscription, error in
+                            if let _ = error {
+                                return
+                            }
+                            
+                            if let _ = subscription {
+                                UserDefaults.standard.set(true, forKey: "FriendsTableSubscription")
+                            }
                         }
                     }
+                    
                 }
             }
         }
@@ -85,3 +105,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 }
 
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    //3
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.banner, .sound, .badge, .list])
+    }
+}

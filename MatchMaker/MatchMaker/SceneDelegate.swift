@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
             else {
                 DispatchQueue.main.async {
-                    let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+                    let storyboard = UIStoryboard.init(name: "OtherProfile", bundle: nil)
 
                     let viewController = storyboard.instantiateInitialViewController()!
                     //let viewController = storyboard.instantiateViewController(withIdentifier: "OnboardingViewController") as! OnboardingViewController
