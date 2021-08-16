@@ -14,7 +14,6 @@ class FiltersViewController: UIViewController {
     typealias GameOption = (option: Game, isFavorite: Bool)
     typealias UserLocation = (string: String, enum: Locations)
     
-    
     //MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
     
@@ -40,8 +39,8 @@ class FiltersViewController: UIViewController {
             switch self {
                 case .languages: return NSLocalizedString("filtersLanguagesLabel", comment: "Languages label")
                 case .platforms: return NSLocalizedString("filtersPlatformsLabel", comment: "Platforms label")
-                case .behaviourRate: return NSLocalizedString("filtersBehaviorsRatesLabel", comment: "Behaviors label")
-                case .skillsRate: return NSLocalizedString("filtersSkillsRatesLabel", comment: "Skills rates label")
+                case .behaviourRate: return NSLocalizedString("filtersBehaviorsRateLabel", comment: "Behaviors label")
+                case .skillsRate: return NSLocalizedString("filtersSkillsRateLabel", comment: "Skills rates label")
                 case .location: return NSLocalizedString("filtersLocationsLabel", comment: "Locations label")
                 case .games: return NSLocalizedString("filtersGamesLabel", comment: "Games label")
             }
@@ -52,6 +51,11 @@ class FiltersViewController: UIViewController {
         case languages
         case platforms
         case games
+    }
+    
+    enum RateFilterOptions: Int, CaseIterable {
+        case behaviourRate
+        case skillsRate
     }
     
     //MARK: - Functions
@@ -133,9 +137,9 @@ extension FiltersViewController: UITableViewDataSource {
             case .languages: return selectorCell(title: filter.description, tag: TagFilterOptions.languages.rawValue) ?? defaultCell
             case .platforms: return selectorCell(title: filter.description, tag: TagFilterOptions.platforms.rawValue) ?? defaultCell
             case .behaviourRate:
-                return rateCell() ?? defaultCell
+                return rateCell(title: filter.description, tag: RateFilterOptions.behaviourRate.rawValue) ?? defaultCell
             case .skillsRate:
-                return rateCell() ?? defaultCell
+                return rateCell(title: filter.description, tag: RateFilterOptions.skillsRate.rawValue) ?? defaultCell
             case .location:
                 return pickerCell() ?? defaultCell
             case .games:
@@ -155,8 +159,13 @@ extension FiltersViewController: UITableViewDataSource {
         return cell
     }
     
-    func rateCell() -> RateTableViewCell? {
+    func rateCell(title: String, tag: Int) -> RateTableViewCell? {
         let cell = tableView.dequeueReusableCell(withIdentifier: "rate-cell") as? RateTableViewCell
+        
+        cell?.tag = tag
+        cell?.delegate = self
+        
+        cell?.titleLabel.text = title
         
         return cell
     }
@@ -341,4 +350,21 @@ extension FiltersViewController: GameSelectionDelegate {
         cell?.collectionView.reloadItems(at: [collectionIndexPath])
     }
     
+}
+
+extension FiltersViewController: RateTableViewCellDelegate {
+    
+    func didTap(currentRate: Int, tag: Int) {
+        guard let rateType = RateFilterOptions(rawValue: tag) else {
+            return;
+        }
+        
+        switch rateType {
+            case .behaviourRate:
+                behaviorsRate = currentRate
+                
+            case .skillsRate:
+                skillsRate = currentRate
+        }
+    }
 }

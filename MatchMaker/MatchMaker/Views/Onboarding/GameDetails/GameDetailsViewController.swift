@@ -272,7 +272,7 @@ extension GameDetailsViewController: UICollectionViewDelegate, UICollectionViewD
                 }
         }
 
-        collectionView.reloadItems(at: [indexPath])
+        collectionView.reloadData()
     }
 
 }
