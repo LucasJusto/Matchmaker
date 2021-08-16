@@ -375,11 +375,13 @@ public class CKRepository {
         }
         else {
             //friendshipInviteDenied
-            deleteFriendship(inviterId: inviterUserId, receiverId: receiverUserId)
+            deleteFriendship(inviterId: inviterUserId, receiverId: receiverUserId, completion: {
+
+            })
         }
     }
     
-    static func deleteFriendship(inviterId: String, receiverId: String) {
+    static func deleteFriendship(inviterId: String, receiverId: String, completion: @escaping () -> Void) {
         let publicDB = container.publicCloudDatabase
         let recordID = CKRecord.ID(recordName:"\(inviterId)\(receiverId)")
         
@@ -390,10 +392,14 @@ public class CKRepository {
             else {
                 if error == nil {
                     if let u = CKRepository.user {
-                        for i in 0...u.friends.count-1 {
-                            if u.friends[i].id == inviterId || u.friends[i].id == receiverId {
-                                CKRepository.user?.friends.remove(at: i)
-                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: FriendsTable.tableChanged.description), object: nil)
+                        if u.friends.count > 0 {
+                            for i in 0...u.friends.count-1 {
+                                if u.friends[i].id == inviterId || u.friends[i].id == receiverId {
+                                    CKRepository.user?.friends.remove(at: i)
+                                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: FriendsTable.tableChanged.description), object: nil)
+                                    completion()
+                                    break
+                                }
                             }
                         }
                     }
