@@ -7,34 +7,23 @@
 
 import UIKit
 
-class SocialTableViewCell: UITableViewCell {
+class SocialTableViewFriendCell: UITableViewCell {
 
-    @IBOutlet weak var ProfileImage: UIImageView!
-    @IBOutlet weak var NameLabel: UILabel!
-    @IBOutlet weak var NickLabel: UILabel!
-    @IBOutlet weak var ProfileButton: UIButton!
-    @IBOutlet weak var AddToFriendsButton: UIButton!
-    @IBOutlet weak var CollectionView: UICollectionView!
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var nickLabel: UILabel!
+    @IBOutlet weak var profileButton: UIButton!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     var userGames: [Game] = []
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        CollectionView.dataSource = self
-        CollectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.delegate = self
         
-        // Initialization code
-        
-        AddToFriendsButton.setTitle(NSLocalizedString("DiscoverScreenAddToFriendsButton", comment: "Add to friends button text in the Discover Screen."), for: .normal)
-        AddToFriendsButton.cornerRadius = 10
-        ProfileImage.cornerRadius = 10
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        profileImage.cornerRadius = 10
     }
     
     func setup(url: URL?, nameText: String, nickText: String, userGames: [Game]) {
@@ -44,20 +33,20 @@ class SocialTableViewCell: UITableViewCell {
             DispatchQueue.global().async {
                 if let data = try? Data(contentsOf: url) {
                     DispatchQueue.main.async {
-                        self.ProfileImage.image = UIImage(data: data)
+                        self.profileImage.image = UIImage(data: data)
                     }
                 }
             }
         }
         
         self.userGames = userGames
-        NameLabel.text = nameText
-        NickLabel.text = nickText
+        nameLabel.text = nameText
+        nickLabel.text = nickText
     }
 
 }
 
-extension SocialTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension SocialTableViewFriendCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 71, height: 120)

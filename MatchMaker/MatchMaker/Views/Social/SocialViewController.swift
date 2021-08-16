@@ -14,6 +14,7 @@ class SocialViewController: UIViewController {
     var friends: [Social] = []
     var filteredFriends: [Social] = []
     
+    @IBOutlet weak var socialTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var blockedToggle: UISegmentedControl!
     
@@ -25,26 +26,28 @@ class SocialViewController: UIViewController {
         return searchBar.isFocused && !isSearchBarEmpty
     }
     
-    @IBOutlet weak var discoverTableView: UITableView!
-    
-    override func viewDidLoad() {
-        
+    func updateAndReload() {
         CKRepository.getUserId(completion: { userId in
             self.userId = userId
             guard let userId = self.userId else { return }
             CKRepository.getFriendsById(id: userId, completion: { results in
                 self.friends = results
-                print("aaaaae: \(results)")
+                self.filteredFriends = self.friends
+                DispatchQueue.main.async {
+                    self.socialTableView.reloadData()
+                }
             })
         })
-        
-        filteredFriends = friends
-        
+    }
+    
+    override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        discoverTableView.delegate = self
-        discoverTableView.dataSource = self
+        updateAndReload()
+        
+        socialTableView.delegate = self
+        socialTableView.dataSource = self
         
         // Header appearance
         let appearance = UINavigationBarAppearance()
@@ -89,7 +92,7 @@ extension SocialViewController: UISearchBarDelegate, UISearchResultsUpdating {
         filteredFriends = friends.filter { (friend: Social) -> Bool in
             return friend.name.lowercased().contains(searchText.lowercased())
         }
-        discoverTableView.reloadData()
+        socialTableView.reloadData()
     }
 
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
@@ -126,10 +129,10 @@ extension SocialViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendProfileCell", for: indexPath) as? SocialTableViewCell
-        else {
-            return UITableViewCell()
-        }
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendProfileCell", for: indexPath) as? SocialTableViewCell
+//        else {
+//            return UITableViewCell()
+//        }
         
         // Using sections to have a "rounded cell" which is actually a section
         let friend: Social
@@ -138,11 +141,30 @@ extension SocialViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             friend = friends[indexPath.section]
         }
-        var games: [Game] = []
-        guard let games = friend.games else { return cell }
-        cell.setup(url: friend.photoURL, nameText: friend.name, nickText: friend.nickname, userGames: games)
         
+        if friend.isInvite != nil {
+            if friend.isInviter == true {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "SentFriendRequestCell", for: indexPath) as? SocialTableViewSentRequestCell else { return UITableViewCell() }
+                cell.setup(userId: friend.id, photoURL: friend.photoURL, name: friend.name, nickname: friend.nickname)
+                cell.delegate = self
+                return cell
+            }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ReceivedFriendRequestCell", for: indexPath) as? SocialTableViewReceivedRequestCell else { return UITableViewCell() }
+            cell.setup(userId: friend.id, photoURL: friend.photoURL, name: friend.name, nickname: friend.nickname)
+            cell.delegate = self
+            return cell
+        }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendProfileCell", for: indexPath) as? SocialTableViewFriendCell else { return UITableViewCell() }
+        cell.setup(url: friend.photoURL, nameText: friend.name, nickText: friend.nickname, userGames: friend.games!)
         return cell
+    }
+    
+}
+
+extension SocialViewController: SocialTableViewSentRequestCellDelegate, SocialTableViewReceivedRequestCellDelegate {
+
+    func reloadTableView(_ sender: Any) {
+        updateAndReload()
     }
     
 }

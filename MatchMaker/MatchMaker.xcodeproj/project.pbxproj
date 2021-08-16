@@ -69,10 +69,17 @@
 		B44F62EA26C30EF100AD3E8A /* GameDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B44F62E826C30EF100AD3E8A /* GameDetail.storyboard */; };
 		B44F62EB26C30EF100AD3E8A /* GameDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44F62E926C30EF100AD3E8A /* GameDetailViewController.swift */; };
 		B465C02A26C9D11900DF9244 /* Social.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B465C02526C9D11900DF9244 /* Social.storyboard */; };
-		B465C02B26C9D11900DF9244 /* SocialTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B465C02626C9D11900DF9244 /* SocialTableViewCell.swift */; };
+		B465C02B26C9D11900DF9244 /* SocialTableViewFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B465C02626C9D11900DF9244 /* SocialTableViewFriendCell.swift */; };
 		B465C02C26C9D11900DF9244 /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B465C02726C9D11900DF9244 /* SocialViewController.swift */; };
 		B465C02D26C9D11900DF9244 /* SocialCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B465C02826C9D11900DF9244 /* SocialCollectionViewCell.swift */; };
 		B465C02E26C9D11900DF9244 /* SocialShowMoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B465C02926C9D11900DF9244 /* SocialShowMoreCollectionViewCell.swift */; };
+		B465C03026C9FA8B00DF9244 /* SocialTableViewSentRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B465C02F26C9FA8B00DF9244 /* SocialTableViewSentRequestCell.swift */; };
+		B465C03226C9FAB400DF9244 /* SocialTableViewReceivedRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B465C03126C9FAB400DF9244 /* SocialTableViewReceivedRequestCell.swift */; };
+		B465C03926CA08E800DF9244 /* DiscoverCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B465C03426CA08E700DF9244 /* DiscoverCollectionViewCell.swift */; };
+		B465C03A26CA08E800DF9244 /* DiscoverTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B465C03526CA08E700DF9244 /* DiscoverTableViewCell.swift */; };
+		B465C03B26CA08E800DF9244 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B465C03626CA08E700DF9244 /* DiscoverViewController.swift */; };
+		B465C03C26CA08E800DF9244 /* DiscoverShowMoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B465C03726CA08E700DF9244 /* DiscoverShowMoreCollectionViewCell.swift */; };
+		B465C03D26CA08E800DF9244 /* Discover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B465C03826CA08E700DF9244 /* Discover.storyboard */; };
 		B4E44E9D26C43A03005BA98C /* RateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E44E9B26C43A03005BA98C /* RateViewController.swift */; };
 		B4E44E9E26C43A03005BA98C /* Rate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4E44E9C26C43A03005BA98C /* Rate.storyboard */; };
 		DFBDF22C26C59D49009A521F /* OtherProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBDF22A26C59D49009A521F /* OtherProfileViewController.swift */; };
@@ -146,10 +153,17 @@
 		B44F62E826C30EF100AD3E8A /* GameDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GameDetail.storyboard; sourceTree = "<group>"; };
 		B44F62E926C30EF100AD3E8A /* GameDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDetailViewController.swift; sourceTree = "<group>"; };
 		B465C02526C9D11900DF9244 /* Social.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Social.storyboard; sourceTree = "<group>"; };
-		B465C02626C9D11900DF9244 /* SocialTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialTableViewCell.swift; sourceTree = "<group>"; };
+		B465C02626C9D11900DF9244 /* SocialTableViewFriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialTableViewFriendCell.swift; sourceTree = "<group>"; };
 		B465C02726C9D11900DF9244 /* SocialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
 		B465C02826C9D11900DF9244 /* SocialCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialCollectionViewCell.swift; sourceTree = "<group>"; };
 		B465C02926C9D11900DF9244 /* SocialShowMoreCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialShowMoreCollectionViewCell.swift; sourceTree = "<group>"; };
+		B465C02F26C9FA8B00DF9244 /* SocialTableViewSentRequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialTableViewSentRequestCell.swift; sourceTree = "<group>"; };
+		B465C03126C9FAB400DF9244 /* SocialTableViewReceivedRequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialTableViewReceivedRequestCell.swift; sourceTree = "<group>"; };
+		B465C03426CA08E700DF9244 /* DiscoverCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverCollectionViewCell.swift; sourceTree = "<group>"; };
+		B465C03526CA08E700DF9244 /* DiscoverTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverTableViewCell.swift; sourceTree = "<group>"; };
+		B465C03626CA08E700DF9244 /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
+		B465C03726CA08E700DF9244 /* DiscoverShowMoreCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverShowMoreCollectionViewCell.swift; sourceTree = "<group>"; };
+		B465C03826CA08E700DF9244 /* Discover.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Discover.storyboard; sourceTree = "<group>"; };
 		B4E44E9B26C43A03005BA98C /* RateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateViewController.swift; sourceTree = "<group>"; };
 		B4E44E9C26C43A03005BA98C /* Rate.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Rate.storyboard; sourceTree = "<group>"; };
 		DFBDF22A26C59D49009A521F /* OtherProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherProfileViewController.swift; sourceTree = "<group>"; };
@@ -296,6 +310,7 @@
 		892FE5CD26A9EC8E004B4F7F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B465C03326CA08E700DF9244 /* Discover */,
 				1B4E87BF26AF62A600A51AF1 /* Xibs */,
 				1B4E87BC26AF434100A51AF1 /* Profile */,
 				89A912FD26AA675100D3B1D2 /* Onboarding */,
@@ -398,11 +413,25 @@
 			children = (
 				B465C02526C9D11900DF9244 /* Social.storyboard */,
 				B465C02726C9D11900DF9244 /* SocialViewController.swift */,
-				B465C02626C9D11900DF9244 /* SocialTableViewCell.swift */,
+				B465C02F26C9FA8B00DF9244 /* SocialTableViewSentRequestCell.swift */,
+				B465C03126C9FAB400DF9244 /* SocialTableViewReceivedRequestCell.swift */,
+				B465C02626C9D11900DF9244 /* SocialTableViewFriendCell.swift */,
 				B465C02826C9D11900DF9244 /* SocialCollectionViewCell.swift */,
 				B465C02926C9D11900DF9244 /* SocialShowMoreCollectionViewCell.swift */,
 			);
 			path = Social;
+			sourceTree = "<group>";
+		};
+		B465C03326CA08E700DF9244 /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				B465C03426CA08E700DF9244 /* DiscoverCollectionViewCell.swift */,
+				B465C03526CA08E700DF9244 /* DiscoverTableViewCell.swift */,
+				B465C03626CA08E700DF9244 /* DiscoverViewController.swift */,
+				B465C03726CA08E700DF9244 /* DiscoverShowMoreCollectionViewCell.swift */,
+				B465C03826CA08E700DF9244 /* Discover.storyboard */,
+			);
+			path = Discover;
 			sourceTree = "<group>";
 		};
 		B4E44E9A26C43A03005BA98C /* Rate */ = {
@@ -498,6 +527,7 @@
 				892FE5DD26AA010A004B4F7F /* Onboarding.storyboard in Resources */,
 				892FE5BF26A9E345004B4F7F /* Localizable.strings in Resources */,
 				489555E726A76AC3005F88A2 /* Assets.xcassets in Resources */,
+				B465C03D26CA08E800DF9244 /* Discover.storyboard in Resources */,
 				1B4E87CE26B0829800A51AF1 /* RoundedRectangleCollectionCell.xib in Resources */,
 				489555E526A76AC1005F88A2 /* Main.storyboard in Resources */,
 			);
@@ -511,6 +541,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BD7D25326C455D1007BF2C5 /* userImageTableViewCell.swift in Sources */,
+				B465C03226C9FAB400DF9244 /* SocialTableViewReceivedRequestCell.swift in Sources */,
 				89971AED26B3279C00A421C1 /* SelectableImageCollectionViewCell.swift in Sources */,
 				489555E226A76AC1005F88A2 /* ViewController.swift in Sources */,
 				DFBDF22C26C59D49009A521F /* OtherProfileViewController.swift in Sources */,
@@ -518,7 +549,7 @@
 				1B767CBF26B10F5500EA4588 /* SmallLabeledImageCollectionView.swift in Sources */,
 				1B1C6D2126BED8DE00B561C6 /* UserLocationViewController.swift in Sources */,
 				89AC95BB26B09E3300EC92F6 /* TextViewField.swift in Sources */,
-				B465C02B26C9D11900DF9244 /* SocialTableViewCell.swift in Sources */,
+				B465C02B26C9D11900DF9244 /* SocialTableViewFriendCell.swift in Sources */,
 				B4E44E9D26C43A03005BA98C /* RateViewController.swift in Sources */,
 				892A642C26B1D90D00B375CC /* SelectableTagCollectionViewCell.swift in Sources */,
 				895A604E26AB48C300BE18C9 /* UIView+Extensions.swift in Sources */,
@@ -528,18 +559,23 @@
 				B465C02C26C9D11900DF9244 /* SocialViewController.swift in Sources */,
 				89AC95B426B076BF00EC92F6 /* TextFieldTableViewCell.swift in Sources */,
 				8998785426BAFF1C0042DF4C /* PickerTableViewCell.swift in Sources */,
+				B465C03B26CA08E800DF9244 /* DiscoverViewController.swift in Sources */,
 				895A605D26AF556400BE18C9 /* ProfileImageTableViewCell.swift in Sources */,
+				B465C03A26CA08E800DF9244 /* DiscoverTableViewCell.swift in Sources */,
 				89015F8426BC6F43009C70B1 /* UITextView+Extensions.swift in Sources */,
 				89AC95B626B09B9C00EC92F6 /* SelectorTableViewCell.swift in Sources */,
+				B465C03026C9FA8B00DF9244 /* SocialTableViewSentRequestCell.swift in Sources */,
 				8906588826B8749D00E1B5D4 /* TextViewTableViewCell.swift in Sources */,
 				1B5F81AC26B85AF100D19747 /* Games.swift in Sources */,
 				1B4E87BE26AF436A00A51AF1 /* ProfileViewController.swift in Sources */,
 				482505B726B081F900032C87 /* GameServers.swift in Sources */,
+				B465C03C26CA08E800DF9244 /* DiscoverShowMoreCollectionViewCell.swift in Sources */,
 				1B4E87C326AF630C00A51AF1 /* ProfileRatingView.swift in Sources */,
 				1B767CBA26B0AFBD00EA4588 /* UserAvatarView.swift in Sources */,
 				89BF1B3D26C091450088CC5D /* GameDetailsViewController.swift in Sources */,
 				1B767CC526B1B94A00EA4588 /* SmallLabeledImageCollectionViewCell.swift in Sources */,
 				48763E1B26AB3BF4000618D8 /* UserModel.swift in Sources */,
+				B465C03926CA08E800DF9244 /* DiscoverCollectionViewCell.swift in Sources */,
 				48763E1D26AB495B000618D8 /* CKRepository.swift in Sources */,
 				B465C02E26C9D11900DF9244 /* SocialShowMoreCollectionViewCell.swift in Sources */,
 				1B5F81AE26B9B6B300D19747 /* AccessibilityManager.swift in Sources */,

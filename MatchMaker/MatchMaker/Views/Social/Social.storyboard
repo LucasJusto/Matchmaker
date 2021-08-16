@@ -3,7 +3,6 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -50,7 +49,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendProfileCell" id="ZzG-1O-w5n" userLabel="FriendProfileCell" customClass="SocialTableViewCell" customModule="MatchMaker" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendProfileCell" id="ZzG-1O-w5n" userLabel="FriendProfileCell" customClass="SocialTableViewFriendCell" customModule="MatchMaker" customModuleProvider="target">
                                         <rect key="frame" x="20" y="49.5" width="374" height="213.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZzG-1O-w5n" id="rOV-ws-jyC">
@@ -68,16 +67,16 @@
                                                             </constraints>
                                                         </imageView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="hsx-3B-B9b" userLabel="UserInfo">
-                                                            <rect key="frame" x="45" y="1.5" width="237" height="33.5"/>
+                                                            <rect key="frame" x="45" y="1.5" width="267" height="33.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Marselo da Silva" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="od5-bB-aed" userLabel="Name">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="237" height="20.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="267" height="20.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@gl4ss3s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MjN-ub-148" userLabel="@">
-                                                                    <rect key="frame" x="0.0" y="22.5" width="237" height="11"/>
+                                                                    <rect key="frame" x="0.0" y="22.5" width="267" height="11"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="9"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
@@ -94,7 +93,7 @@
                                                             </constraints>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="IBy-Er-Baz" userLabel="Button">
-                                                            <rect key="frame" x="292" y="3" width="50" height="30"/>
+                                                            <rect key="frame" x="322" y="3" width="20" height="30"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lm6-bp-ybe">
                                                                     <rect key="frame" x="0.0" y="0.0" width="20" height="30"/>
@@ -103,14 +102,6 @@
                                                                     </constraints>
                                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <state key="normal" image="person.circle" catalog="system"/>
-                                                                </button>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gEM-jJ-AMW" userLabel="Message">
-                                                                    <rect key="frame" x="30" y="0.0" width="20" height="30"/>
-                                                                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    <state key="normal">
-                                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <imageReference key="image" image="message" catalog="system" renderingMode="template"/>
-                                                                    </state>
                                                                 </button>
                                                             </subviews>
                                                             <constraints>
@@ -201,12 +192,12 @@
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <size key="customSize" width="71" height="110"/>
                                                             <connections>
-                                                                <outlet property="MobileImage" destination="8Zu-6Q-J7f" id="gds-AM-iMj"/>
-                                                                <outlet property="PCImage" destination="eZ4-7S-1qJ" id="M3H-sc-oA1"/>
-                                                                <outlet property="PlaystationImage" destination="WmY-xR-5Bl" id="JKP-W2-9OO"/>
-                                                                <outlet property="XboxImage" destination="pCz-WD-FYl" id="bpA-cN-ees"/>
-                                                                <outlet property="gameImage" destination="7uI-JM-3WR" id="U4q-4v-ilM"/>
-                                                                <outlet property="gameTitleLabel" destination="5vX-PQ-YKT" id="R8a-W0-xiw"/>
+                                                                <outlet property="gameImage" destination="7uI-JM-3WR" id="cF3-7L-4Rx"/>
+                                                                <outlet property="gameTitleLabel" destination="5vX-PQ-YKT" id="fMd-Zv-EZ9"/>
+                                                                <outlet property="mobileImage" destination="8Zu-6Q-J7f" id="5h1-Xy-a6w"/>
+                                                                <outlet property="pcImage" destination="eZ4-7S-1qJ" id="vIH-Xo-soH"/>
+                                                                <outlet property="playstationImage" destination="WmY-xR-5Bl" id="KPD-hx-n3A"/>
+                                                                <outlet property="xboxImage" destination="pCz-WD-FYl" id="m8H-hh-D5Q"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="SocialCollectionShowMoreButton" reuseIdentifier="SocialShowMoreCollectionViewCell" id="W8T-L9-dht" userLabel="SocialCollectionShowMoreButton" customClass="SocialShowMoreCollectionViewCell" customModule="MatchMaker" customModuleProvider="target">
@@ -268,15 +259,14 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="MediumGray"/>
                                         <connections>
-                                            <outlet property="AddToFriendsButton" destination="gEM-jJ-AMW" id="VL9-9u-bN0"/>
-                                            <outlet property="CollectionView" destination="Zja-IG-i2R" id="fQ9-Sj-9w1"/>
-                                            <outlet property="NameLabel" destination="od5-bB-aed" id="xtP-Q8-OCP"/>
-                                            <outlet property="NickLabel" destination="MjN-ub-148" id="OOi-ra-sua"/>
-                                            <outlet property="ProfileButton" destination="lm6-bp-ybe" id="dsL-va-leP"/>
-                                            <outlet property="ProfileImage" destination="v7L-Hr-GrY" id="FfO-zd-Y65"/>
+                                            <outlet property="collectionView" destination="Zja-IG-i2R" id="IjC-lr-5Hn"/>
+                                            <outlet property="nameLabel" destination="od5-bB-aed" id="nBb-Sq-hO6"/>
+                                            <outlet property="nickLabel" destination="MjN-ub-148" id="JN8-gf-Osh"/>
+                                            <outlet property="profileButton" destination="lm6-bp-ybe" id="1Tx-Kw-gZT"/>
+                                            <outlet property="profileImage" destination="v7L-Hr-GrY" id="9MB-9d-3Ue"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SentFriendRequestCell" id="arv-mD-9rF" userLabel="SentFriendRequestCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SentFriendRequestCell" id="arv-mD-9rF" userLabel="SentFriendRequestCell" customClass="SocialTableViewSentRequestCell" customModule="MatchMaker" customModuleProvider="target">
                                         <rect key="frame" x="20" y="263" width="374" height="51.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="arv-mD-9rF" id="BEE-fD-en7">
@@ -326,6 +316,9 @@
                                                     <state key="normal" title="Cancel request">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="actionCancelRequestButton:" destination="arv-mD-9rF" eventType="touchUpInside" id="pXL-oA-Mig"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -339,8 +332,14 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="MediumGray"/>
+                                        <connections>
+                                            <outlet property="avatar" destination="hsB-Hp-10v" id="r8y-HV-7IG"/>
+                                            <outlet property="cancelRequestButton" destination="UKg-Bw-HUj" id="JYA-e7-dcN"/>
+                                            <outlet property="name" destination="Vbm-Jc-URs" id="v4M-Ou-DxH"/>
+                                            <outlet property="nickname" destination="wIQ-pb-BbF" id="0Ip-YI-Vx6"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReceivedFriendRequestCell" id="Dab-b2-RPP" userLabel="ReceivedFriendRequestCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReceivedFriendRequestCell" id="Dab-b2-RPP" userLabel="ReceivedFriendRequestCell" customClass="SocialTableViewReceivedRequestCell" customModule="MatchMaker" customModuleProvider="target">
                                         <rect key="frame" x="20" y="314.5" width="374" height="51.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Dab-b2-RPP" id="iKg-1E-RK5">
@@ -397,6 +396,9 @@
                                                             <state key="normal" title="Reject">
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
+                                                            <connections>
+                                                                <action selector="actionRejectRequestButton:" destination="Dab-b2-RPP" eventType="touchUpInside" id="ibf-Wu-2Z8"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="848-hw-lCE" userLabel="Accept">
                                                             <rect key="frame" x="68" y="0.0" width="60" height="19.5"/>
@@ -408,6 +410,9 @@
                                                             <state key="normal" title="Accept">
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
+                                                            <connections>
+                                                                <action selector="actionAcceptRequestButton:" destination="Dab-b2-RPP" eventType="touchUpInside" id="UZU-Ua-qdS"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                 </stackView>
@@ -423,6 +428,14 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="MediumGray"/>
+                                        <connections>
+                                            <outlet property="acceptRequestButton" destination="848-hw-lCE" id="Ad4-3L-ZWq"/>
+                                            <outlet property="actionRejectRequestButton" destination="RXR-dr-oNd" id="J8n-ff-Mjz"/>
+                                            <outlet property="avatar" destination="3A6-Nj-kpy" id="PwU-hP-fYD"/>
+                                            <outlet property="name" destination="emV-8i-25P" id="Ade-dc-sh3"/>
+                                            <outlet property="nickname" destination="OwP-Bb-EdT" id="rEy-IQ-0R8"/>
+                                            <outlet property="rejectRequestButton" destination="RXR-dr-oNd" id="J60-ZD-pyM"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -448,8 +461,8 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="blockedToggle" destination="N1J-pj-Ghp" id="grM-AC-Otv"/>
-                        <outlet property="discoverTableView" destination="gP6-Wi-hBP" id="EtX-NT-YAM"/>
                         <outlet property="searchBar" destination="kGU-Ue-lol" id="aeG-Yf-m8w"/>
+                        <outlet property="socialTableView" destination="gP6-Wi-hBP" id="4Zh-ZC-Wh8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -502,7 +515,6 @@
         <image name="Play" width="204" height="188.5"/>
         <image name="Xbox" width="204" height="188.5"/>
         <image name="bell" catalog="system" width="128" height="124"/>
-        <image name="message" catalog="system" width="128" height="113"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
         <namedColor name="DefaultBackground">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
