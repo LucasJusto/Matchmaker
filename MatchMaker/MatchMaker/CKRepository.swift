@@ -940,27 +940,3 @@ public class CKRepository {
         }
     }
 }
-
-extension CKRepository {
-    
-    static func sendFriendRequestNotification(for receiverUserId: String){
-        let database = CKRepository.container.publicCloudDatabase
-        
-        guard let user = user else { return }
-                
-        let predicate = NSPredicate(format: "\(FriendsTable.receiverId.description) == '\(receiverUserId)'")
-        let subscription = CKQuerySubscription(recordType: FriendsTable.recordType.description, predicate: predicate, options: .firesOnRecordCreation)
-        
-        let notification = CKSubscription.NotificationInfo()
-        notification.alertBody = "@\(user.nickname) sent you a friend request!"
-        notification.soundName = "default"
-        
-        subscription.notificationInfo = notification
-        
-        database.save(subscription) { result, error in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-        }
-    }
-}
