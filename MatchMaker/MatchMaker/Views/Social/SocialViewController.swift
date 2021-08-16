@@ -18,7 +18,6 @@ class SocialViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var blockedToggle: UISegmentedControl!
     
-    //let searchController = UISearchController(searchResultsController: nil)
     var isSearchBarEmpty: Bool {
       return searchBar.text?.isEmpty ?? true
     }
@@ -64,7 +63,7 @@ class SocialViewController: UIViewController {
         blockedToggle.setTitle(segment1, forSegmentAt: 0)
         let segment2 = NSLocalizedString("SocialViewBlockedSectionToggle", comment: "Blocked section title in the toggle between friends/blocked")
         blockedToggle.setTitle(segment2, forSegmentAt: 1)
-        
+//        blockedToggle.selectedSegmentIndex
     }
     
     /*
