@@ -51,8 +51,8 @@ class SocialTableViewReceivedRequestCell: UITableViewCell {
         self.userId = userId
         self.name.text = name
         self.nickname.text = nickname
-        acceptRequestButton.cornerRadius = 10
-        rejectRequestButton.cornerRadius = 10
+        acceptRequestButton.cornerRadius = 5
+        rejectRequestButton.cornerRadius = 5
     }
 
 }

@@ -51,7 +51,8 @@ class SocialTableViewSentRequestCell: UITableViewCell {
         self.userId = userId
         self.name.text = name
         self.nickname.text = nickname
-        cancelRequestButton.cornerRadius = 10
+        cancelRequestButton.cornerRadius = 5
+        cancelRequestButton.setTitle(NSLocalizedString("SocialViewCancelSentRequest", comment: "Cancel already sent request in Social screen"), for: .normal)
     }
 
 }

@@ -198,3 +198,6 @@ without using your storage";
 
 //MARK: - Social
 "SocialViewSearchUsers" = "Search Users";
+"SocialViewFriendsSectionToggle" = "Friends";
+"SocialViewBlockedSectionToggle" = "Blocked";
+"SocialViewCancelSentRequest" = "Cancel request";

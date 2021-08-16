@@ -23,7 +23,7 @@ class SocialViewController: UIViewController {
       return searchBar.text?.isEmpty ?? true
     }
     var isFiltering: Bool {
-        return searchBar.isFocused && !isSearchBarEmpty
+        return !isSearchBarEmpty
     }
     
     func updateAndReload() {
@@ -57,15 +57,17 @@ class SocialViewController: UIViewController {
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         
         // Search Controller | uses extension
-//        SearchBar.searchResultsUpdater = self
-//        SearchBar.obscuresBackgroundDuringPresentation = false
+//        searchBar.searchResultsUpdater = self
+//        searchBar.obscuresBackgroundDuringPresentation = false
         searchBar.placeholder = NSLocalizedString("SocialViewSearchUsers", comment: "Placeholder text in search bar")
-        definesPresentationContext = true
+//        definesPresentationContext = true
         searchBar.delegate = self
         
         // LocalizableString
-        blockedToggle.actionForSegment(at: 0)?.title = NSLocalizedString("SocialViewFriendsSectionToggle", comment: "Friend section title in the toggle between friends/blocked")
-        blockedToggle.actionForSegment(at: 1)?.title = NSLocalizedString("SocialViewBlockedSectionToggle", comment: "Blocked section title in the toggle between friends/blocked")
+        let segment1 = NSLocalizedString("SocialViewFriendsSectionToggle", comment: "Friend section title in the toggle between friends/blocked")
+        blockedToggle.setTitle(segment1, forSegmentAt: 0)
+        let segment2 = NSLocalizedString("SocialViewBlockedSectionToggle", comment: "Blocked section title in the toggle between friends/blocked")
+        blockedToggle.setTitle(segment2, forSegmentAt: 1)
         
         
     }
@@ -82,22 +84,17 @@ class SocialViewController: UIViewController {
 
 }
 
-extension SocialViewController: UISearchBarDelegate, UISearchResultsUpdating {
+extension SocialViewController: UISearchBarDelegate {
 
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filterContentForSearchText(searchText)
+    }
+    
     func filterContentForSearchText(_ searchText: String) {
         filteredFriends = friends.filter { (friend: Social) -> Bool in
             return friend.name.lowercased().contains(searchText.lowercased())
         }
         socialTableView.reloadData()
-    }
-
-    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
-        // SHOW FILTER SCREEN
-    }
-
-    func updateSearchResults(for searchController: UISearchController) {
-        let searchBar = searchController.searchBar
-        filterContentForSearchText(searchBar.text!)
     }
 
   }
