@@ -394,7 +394,7 @@ extension OnboardingRegisterViewController: UICollectionViewDataSource, UICollec
                 performSegue(withIdentifier: "selectedGame", sender: nil)
         }
 
-        collectionView.reloadItems(at: [indexPath])
+        collectionView.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -568,7 +568,7 @@ extension OnboardingRegisterViewController: GameSelectionDelegate {
         
         let collectionIndexPath = IndexPath(row: gameIndex, section: 0)
         
-        cell?.collectionView.reloadItems(at: [collectionIndexPath])
+        cell?.collectionView.reloadData()
     }
     
 }
