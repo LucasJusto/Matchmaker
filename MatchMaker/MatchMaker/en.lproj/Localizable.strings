@@ -199,3 +199,4 @@ without using your storage";
 //MARK: - Discover
 "DiscoverScreenAddToFriendsButton" = "Add to friends";
 "DiscoverShowMoreButton" = "Show more";
+"DiscoverScreenRequestSent" = "Request sent!";
