@@ -35,6 +35,9 @@ class GameDetailViewController: UIViewController {
     @IBOutlet weak var OtherGamesXib: RoundedRectangleCollectionView!
     
     @IBOutlet weak var titleGameDetailScreen: UINavigationItem!
+    @IBAction func doneButtonAction(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
     
     @IBOutlet weak var playstationStack: UIStackView!
     @IBOutlet weak var xboxStack: UIStackView!
@@ -47,7 +50,8 @@ class GameDetailViewController: UIViewController {
         titleGameDetailScreen.title = NSLocalizedString("TitleGameDetailScreen", comment: "Screen title")
         
         // Xib setup
-        OtherGamesXib.RoundedRectangleImageModels = Games.games
+        OtherGamesXib.roundedRectangleImageModels = Games.games
+        OtherGamesXib.delegate = self
         
         // Label setup
         PlatformsLabel.text = NSLocalizedString("PlatformsLabel", comment: "Platforms label")
@@ -85,6 +89,18 @@ class GameDetailViewController: UIViewController {
     }
     
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "toGame" {
+
+            guard let game = sender as? Game else { return }
+            
+            let destination = segue.destination as? GameDetailViewController
+
+            destination?.game = game
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -95,4 +111,14 @@ class GameDetailViewController: UIViewController {
     }
     */
 
+}
+
+extension GameDetailViewController: RoundedRectangleCollectionViewDelegate {
+    
+    func didSelectRoundedRectangleModel(model: RoundedRectangleModel) {
+        
+        guard let game = model as? Game else { return }
+        print(game.name)
+        performSegue(withIdentifier: "toGame", sender: game)
+    }
 }
