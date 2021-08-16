@@ -11,6 +11,10 @@ protocol RoundedRectangleModel {
     var image: UIImage { get }
 }
 
+protocol RoundedRectangleCollectionViewDelegate: AnyObject {
+    func didSelectRoundedRectangleModel(model: RoundedRectangleModel)
+}
+
 //MARK: - RoundedRectangleCollectionView Class
 
 class RoundedRectangleCollectionView: UIView, NibLoadable {
@@ -21,7 +25,9 @@ class RoundedRectangleCollectionView: UIView, NibLoadable {
     
     private let cellIdentifier: String = "RoundedRectangleCell"
     
-    var RoundedRectangleImageModels: [RoundedRectangleModel] = []
+    var roundedRectangleImageModels: [RoundedRectangleModel] = []
+    
+    weak var delegate: RoundedRectangleCollectionViewDelegate?
     
     //MARK: RoundedRectangleCollectionView - View Setup
     
@@ -56,7 +62,8 @@ extension RoundedRectangleCollectionView: UICollectionViewDelegate {
     
     //this function will later on perfom the segue to the info screen of a game
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        let model = roundedRectangleImageModels[indexPath.row]
+        delegate?.didSelectRoundedRectangleModel(model: model)
     }
 }
 
@@ -67,7 +74,7 @@ extension RoundedRectangleCollectionView: UICollectionViewDataSource {
     //MARK: UICollectionViewDataSource - Content Setup
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return RoundedRectangleImageModels.count
+        return roundedRectangleImageModels.count
     }
     
     //MARK: UICollectionViewDataSource - Cell Setup
@@ -75,7 +82,7 @@ extension RoundedRectangleCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! RoundedRectangleViewCell
         
-        cell.contentImage.image = RoundedRectangleImageModels[indexPath.row].image
+        cell.contentImage.image = roundedRectangleImageModels[indexPath.row].image
         cell.contentImage.layer.cornerRadius = 10
         
         return cell
