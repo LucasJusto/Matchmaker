@@ -64,6 +64,12 @@ class SocialViewController: UIViewController {
         let segment2 = NSLocalizedString("SocialViewBlockedSectionToggle", comment: "Blocked section title in the toggle between friends/blocked")
         blockedToggle.setTitle(segment2, forSegmentAt: 1)
 //        blockedToggle.selectedSegmentIndex
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(SocialViewController.listUpdated), name: NSNotification.Name("friendsTable.tableChanged.description"), object: nil)
+    }
+    
+    @objc func listUpdated() {
+        updateAndReload()
     }
     
     /*

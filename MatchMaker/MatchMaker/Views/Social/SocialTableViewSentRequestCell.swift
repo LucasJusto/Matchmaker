@@ -25,8 +25,9 @@ class SocialTableViewSentRequestCell: UITableViewCell {
         guard let userId = userId else { return }
         CKRepository.getUserId(completion: { ownUserId in
             guard let unwrappedOwnUserId = ownUserId else { return }
-            CKRepository.deleteFriendship(inviterId: unwrappedOwnUserId, receiverId: userId)
-            self.delegate?.reloadTableView(self)
+            CKRepository.deleteFriendship(inviterId: unwrappedOwnUserId, receiverId: userId, completion: {
+                self.delegate?.reloadTableView(self)
+            })
         })
     }
     
