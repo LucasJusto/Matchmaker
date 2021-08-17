@@ -12,36 +12,12 @@ class DiscoverViewController: UIViewController {
     @IBOutlet weak var discoverTableView: UITableView!
     
     // MARK: - Filters
-    var selectedLanguages: [Languages] = [] {
-        didSet {
-            print(selectedLanguages)
-        }
-    }
-    var selectedPlatforms: [Platform] = [] {
-        didSet {
-            print(selectedPlatforms)
-        }
-    }
-    var behaviorsRate: Int = 0 {
-        didSet {
-            print(behaviorsRate)
-        }
-    }
-    var skillsRate: Int = 0 {
-        didSet {
-            print(skillsRate)
-        }
-    }
-    var selectedLocation: Locations? {
-        didSet {
-            print(selectedLocation ?? " ")
-        }
-    }
-    var selectedGames: [Game] = [] {
-        didSet {
-            print(selectedGames)
-        }
-    }
+    var selectedLanguages: [Languages] = []
+    var selectedPlatforms: [Platform] = []
+    var behaviorsRate: Int = 0
+    var skillsRate: Int = 0
+    var selectedLocation: Locations?
+    var selectedGames: [Game] = []
     
     // MARK: - User data and searching
     var users: [Social] = []
@@ -61,18 +37,29 @@ class DiscoverViewController: UIViewController {
       return searchController.isActive && !isSearchBarEmpty
     }
     
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
-        CKRepository.searchUsers(languages: [], platforms: [], behaviourRate: 0, skillRate: 0, locations: [], games: []) { result in
+    func getSelectedLocations() -> [Locations] {
+        if let selectedLocation = selectedLocation {
+            return [selectedLocation]
+        }
+        return []
+    }
+    
+    func updateAndReload() {
+        CKRepository.searchUsers(languages: selectedLanguages, platforms: selectedPlatforms, behaviourRate: Double(behaviorsRate), skillRate: Double(skillsRate), locations: getSelectedLocations(), games: selectedGames) { result in
+            
             self.users = result
             self.filteredUsers = result
+            
             DispatchQueue.main.async {
                 self.discoverTableView.reloadData()
             }
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+                
+        updateAndReload()
         
         discoverTableView.delegate = self
         discoverTableView.dataSource = self
@@ -214,5 +201,7 @@ extension DiscoverViewController: FiltersViewControllerDelegate {
         self.skillsRate = skillsRate
         self.selectedLocation = selectedLocation
         self.selectedGames = selectedGames
+        
+        updateAndReload()
     }
 }
