@@ -30,11 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UNUserNotificationCenter.current().delegate = self
         
         //TODO: Uncomment this line to flush existing subscriptions
-        //flushContainerSubscriptions()
-        
-        if UserDefaults.standard.bool(forKey: "FriendsTableSubscription") {
-            
-        } else {
+        flushContainerSubscriptions() {
             CKRepository.getUserId { id in
                 if let idNotNull = id {
                     // 1. Create a Query Subscription used on iCloud to filter what shoud be triggered when record type changes
@@ -68,10 +64,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         if let _ = error {
                             return
                         }
-                        
-                        if let _ = subscriptions {
-                            UserDefaults.standard.set(true, forKey: "FriendsTableSubscription")
-                        }
                     }
                     
                     database.add(operation)
@@ -85,14 +77,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     /**
      Flushes all current subscriptions active by the user. 
      */
-    func flushContainerSubscriptions (){
+    func flushContainerSubscriptions (completion: @escaping () -> Void){
         let operation = CKFetchSubscriptionsOperation.fetchAllSubscriptionsOperation()
         operation.fetchSubscriptionCompletionBlock = { a, b in
-            print(a, b)
+            //print(a, b)
             let operation2 = CKModifySubscriptionsOperation(subscriptionsToSave: nil, subscriptionIDsToDelete: a?.keys.map({ $0 }))
             operation2.modifySubscriptionsCompletionBlock = { _ , deleted, error in
-                print("deleted: \(deleted)")
-                print("error: \(error)")
+                //print("deleted: \(deleted)")
+                //print("error: \(error)")
+                completion()
             }
             CKRepository.container.publicCloudDatabase.add(operation2)
         }
