@@ -72,7 +72,8 @@
 		B423900526CAF047008ABDC6 /* SocialTableViewFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4238FFE26CAF046008ABDC6 /* SocialTableViewFriendCell.swift */; };
 		B423900626CAF047008ABDC6 /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4238FFF26CAF046008ABDC6 /* SocialViewController.swift */; };
 		B423900726CAF047008ABDC6 /* SocialCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B423900026CAF046008ABDC6 /* SocialCollectionViewCell.swift */; };
-		B423900826CAF047008ABDC6 /* SocialShowMoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B423900126CAF046008ABDC6 /* SocialShowMoreCollectionViewCell.swift */; };
+		B423900826CAF047008ABDC6 /* SocialCollectionViewShowMoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B423900126CAF046008ABDC6 /* SocialCollectionViewShowMoreCell.swift */; };
+		B425781B26CB23E8000F7B3F /* SocialTableViewBlockedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B425781A26CB23E8000F7B3F /* SocialTableViewBlockedCell.swift */; };
 		B44F62EA26C30EF100AD3E8A /* GameDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B44F62E826C30EF100AD3E8A /* GameDetail.storyboard */; };
 		B44F62EB26C30EF100AD3E8A /* GameDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44F62E926C30EF100AD3E8A /* GameDetailViewController.swift */; };
 		B4E00DD626C6F32900868A65 /* DiscoverCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E00DD126C6F32900868A65 /* DiscoverCollectionViewCell.swift */; };
@@ -163,7 +164,8 @@
 		B4238FFE26CAF046008ABDC6 /* SocialTableViewFriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialTableViewFriendCell.swift; sourceTree = "<group>"; };
 		B4238FFF26CAF046008ABDC6 /* SocialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
 		B423900026CAF046008ABDC6 /* SocialCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialCollectionViewCell.swift; sourceTree = "<group>"; };
-		B423900126CAF046008ABDC6 /* SocialShowMoreCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialShowMoreCollectionViewCell.swift; sourceTree = "<group>"; };
+		B423900126CAF046008ABDC6 /* SocialCollectionViewShowMoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialCollectionViewShowMoreCell.swift; sourceTree = "<group>"; };
+		B425781A26CB23E8000F7B3F /* SocialTableViewBlockedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialTableViewBlockedCell.swift; sourceTree = "<group>"; };
 		B44F62E826C30EF100AD3E8A /* GameDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GameDetail.storyboard; sourceTree = "<group>"; };
 		B44F62E926C30EF100AD3E8A /* GameDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDetailViewController.swift; sourceTree = "<group>"; };
 		B4E00DD126C6F32900868A65 /* DiscoverCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -418,12 +420,13 @@
 			isa = PBXGroup;
 			children = (
 				B4238FFB26CAF046008ABDC6 /* Social.storyboard */,
+				B4238FFF26CAF046008ABDC6 /* SocialViewController.swift */,
 				B4238FFC26CAF046008ABDC6 /* SocialTableViewReceivedRequestCell.swift */,
 				B4238FFD26CAF046008ABDC6 /* SocialTableViewSentRequestCell.swift */,
 				B4238FFE26CAF046008ABDC6 /* SocialTableViewFriendCell.swift */,
-				B4238FFF26CAF046008ABDC6 /* SocialViewController.swift */,
+				B425781A26CB23E8000F7B3F /* SocialTableViewBlockedCell.swift */,
 				B423900026CAF046008ABDC6 /* SocialCollectionViewCell.swift */,
-				B423900126CAF046008ABDC6 /* SocialShowMoreCollectionViewCell.swift */,
+				B423900126CAF046008ABDC6 /* SocialCollectionViewShowMoreCell.swift */,
 			);
 			path = Social;
 			sourceTree = "<group>";
@@ -583,7 +586,7 @@
 				489555E226A76AC1005F88A2 /* ViewController.swift in Sources */,
 				DFBDF22C26C59D49009A521F /* OtherProfileViewController.swift in Sources */,
 				DF8ADA3426CADAD0004DD292 /* NewMessageTableViewCell.swift in Sources */,
-				B423900826CAF047008ABDC6 /* SocialShowMoreCollectionViewCell.swift in Sources */,
+				B423900826CAF047008ABDC6 /* SocialCollectionViewShowMoreCell.swift in Sources */,
 				1B4E87CC26B055C000A51AF1 /* RoundedRectangleCollectionView.swift in Sources */,
 				1B767CBF26B10F5500EA4588 /* SmallLabeledImageCollectionView.swift in Sources */,
 				1B1C6D2126BED8DE00B561C6 /* UserLocationViewController.swift in Sources */,
@@ -610,6 +613,7 @@
 				B423900526CAF047008ABDC6 /* SocialTableViewFriendCell.swift in Sources */,
 				482505B726B081F900032C87 /* GameServers.swift in Sources */,
 				1B4E87C326AF630C00A51AF1 /* ProfileRatingView.swift in Sources */,
+				B425781B26CB23E8000F7B3F /* SocialTableViewBlockedCell.swift in Sources */,
 				1B767CBA26B0AFBD00EA4588 /* UserAvatarView.swift in Sources */,
 				89BF1B3D26C091450088CC5D /* GameDetailsViewController.swift in Sources */,
 				B4E00DD626C6F32900868A65 /* DiscoverCollectionViewCell.swift in Sources */,

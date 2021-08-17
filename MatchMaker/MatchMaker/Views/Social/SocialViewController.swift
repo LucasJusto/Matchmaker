@@ -33,7 +33,26 @@ class SocialViewController: UIViewController {
             self.userId = userId
             guard let userId = self.userId else { return }
             CKRepository.getFriendsById(id: userId, completion: { results in
-                self.friends = results
+                
+                var receivedRequest: [Social] = []
+                var actualFriend: [Social] = []
+                var sentRequest: [Social] = []
+                
+                for friend in results {
+                    if friend.isInvite != nil {
+                        if friend.isInviter == true {
+                            sentRequest.append(friend)
+                            continue
+                        }
+                        receivedRequest.append(friend)
+                        continue
+                    }
+                    actualFriend.append(friend)
+                }
+                self.friends = []
+                self.friends.append(contentsOf: receivedRequest)
+                self.friends.append(contentsOf: actualFriend)
+                self.friends.append(contentsOf: sentRequest)
                 self.filteredFriends = self.friends
                 DispatchQueue.main.async {
                     self.socialTableView.reloadData()
