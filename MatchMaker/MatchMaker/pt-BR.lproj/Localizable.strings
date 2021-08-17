@@ -111,6 +111,7 @@ para você escolher e encontrar jogadores";
 "LocationAsiaWest" = "Oeste Asiático";
 "LocationAfricaNorth" = "Norte da África";
 "LocationAfricaSouth" = "Sul da África";
+"LocationDontKnow" = "Não sei";
 
 "Dota2Description" = "Descrição do Dota 2";
 "LeagueOfLegendsDescription" = "Descrição do League of Legends";

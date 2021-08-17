@@ -485,7 +485,7 @@ extension OnboardingRegisterViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         
-        return (collectionView.bounds.width) - (collectionView.bounds.width * 0.31)
+        return 10
     }
 }
 
@@ -573,9 +573,7 @@ extension OnboardingRegisterViewController: GameSelectionDelegate {
         }
         
         tagGames[gameIndex] = GameOption(option: game, isFavorite: isSelected)
-        
-        let collectionIndexPath = IndexPath(row: gameIndex, section: 0)
-        
+                
         cell?.collectionView.reloadData()
     }
     
