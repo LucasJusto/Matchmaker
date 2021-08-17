@@ -105,6 +105,7 @@ without using your storage";
 "LanguagesGerman" = "German";
 
 // MARK: - Locations
+"LocationModalTitle" = "Location";
 "LocationNorthAmerica" = "North America";
 "LocationBrazil" = "Brazil";
 "LocationLatinAmericaSouth" = "Latin America South";
@@ -195,7 +196,7 @@ without using your storage";
 //MARK: - Profile Customization
 "CancelButtonLabel" = "Cancel";
 "DoneButtonLabel" = "Done";
-"ViewControllerTitle" = "Edit Profile";
+"EditingProfileModalTitle" = "Edit Profile";
 
 //MARK: - Discover
 "DiscoverScreenAddToFriendsButton" = "Add to friends";

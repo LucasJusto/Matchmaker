@@ -100,6 +100,7 @@ para você escolher e encontrar jogadores";
 "LanguagesGerman" = "Alemão";
 
 // MARK: - Locations
+"LocationModalTitle" = "Localização";
 "LocationNorthAmerica" = "America do Norte";
 "LocationBrazil" = "Brasil";
 "LocationLatinAmericaSouth" = "Sul da America Latina";
@@ -112,6 +113,7 @@ para você escolher e encontrar jogadores";
 "LocationAsiaWest" = "Oeste Asiático";
 "LocationAfricaNorth" = "Norte da África";
 "LocationAfricaSouth" = "Sul da África";
+"LocationDontKnow" = "Eu não sei onde estou";
 
 "Dota2Description" = "Descrição do Dota 2";
 "LeagueOfLegendsDescription" = "Descrição do League of Legends";
@@ -181,7 +183,7 @@ para você escolher e encontrar jogadores";
 //MARK: - Profile Customization
 "CancelButtonLabel" = "Cancelar";
 "DoneButtonLabel" = "OK";
-"ViewControllerTitle" = "Editar Perfil";
+"EditingProfileModalTitle" = "Editar Perfil";
 
 // MARK:- Rate
 "ExplainRateLabel" = "Avalie com base em sua \nexperiência de jogo com o jogador";
