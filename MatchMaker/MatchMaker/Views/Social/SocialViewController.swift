@@ -204,8 +204,16 @@ extension SocialViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension SocialViewController: SocialTableViewSentRequestCellDelegate, SocialTableViewReceivedRequestCellDelegate {
 
-    func reloadTableView(_ sender: Any) {
-        updateAndReload()
+    func updateAndReload(_ sender: Any) {
+        self.updateAndReload()
+    }
+    
+}
+
+extension SocialViewController: SocialTableViewBlockedCellDelegate {
+    
+    func updateAndReloadBlocked(_ sender: SocialTableViewBlockedCell) {
+        self.updateAndReloadBlocked()
     }
     
 }

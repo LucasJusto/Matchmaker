@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SocialTableViewReceivedRequestCellDelegate: AnyObject {
-    func reloadTableView(_ sender: Any)
+    func updateAndReload(_ sender: Any)
 }
 
 class SocialTableViewReceivedRequestCell: UITableViewCell {
@@ -27,7 +27,7 @@ class SocialTableViewReceivedRequestCell: UITableViewCell {
         CKRepository.getUserId(completion: { ownUserId in
             guard let ownUserId = ownUserId else { return }
             CKRepository.friendshipInviteAnswer(inviterUserId: userId, receiverUserId: ownUserId, response: false)
-            self.delegate?.reloadTableView(self)
+            self.delegate?.updateAndReload(self)
         })
     }
 
@@ -36,7 +36,7 @@ class SocialTableViewReceivedRequestCell: UITableViewCell {
         CKRepository.getUserId(completion: { ownUserId in
             guard let ownUserId = ownUserId else { return }
             CKRepository.friendshipInviteAnswer(inviterUserId: userId, receiverUserId: ownUserId, response: true)
-            self.delegate?.reloadTableView(self)
+            self.delegate?.updateAndReload(self)
         })
     }
     

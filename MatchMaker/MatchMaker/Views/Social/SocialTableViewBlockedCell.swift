@@ -7,9 +7,14 @@
 
 import UIKit
 
+protocol SocialTableViewBlockedCellDelegate: AnyObject {
+    func updateAndReloadBlocked(_ sender: SocialTableViewBlockedCell)
+}
+
 class SocialTableViewBlockedCell: UITableViewCell {
 
     var userId: String?
+    var delegate: SocialTableViewBlockedCellDelegate?
     
     // Outlets
     @IBOutlet weak var profileImage: UIImageView!
@@ -21,7 +26,7 @@ class SocialTableViewBlockedCell: UITableViewCell {
     @IBAction func actionUnblockButton(_ sender: UIButton) {
         CKRepository.getUserId(completion: { ownUserId in
             guard let unwrappedUserId = ownUserId else { return }
-            //TODO
+            self.delegate?.updateAndReloadBlocked(self)
         })
     }
     
