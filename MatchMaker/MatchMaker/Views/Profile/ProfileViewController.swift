@@ -44,8 +44,6 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        scrollView.contentInsetAdjustmentBehavior = .never
-        
         userAvatarView.delegate = self
             
         //2 maneira de capturar a imagem do usuario, mas usando closures
