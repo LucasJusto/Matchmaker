@@ -22,19 +22,19 @@ class RateTableViewCell: UITableViewCell {
     
     @IBOutlet var stars: [UIImageView]!
     
+    let selectedIcon = UIImage(systemName: "star.fill")
+    
+    let unselectedIcon = UIImage(systemName: "star")
+    
     weak var delegate: RateTableViewCellDelegate?
     
-    var currentRate = 0 {
-        didSet {
-            delegate?.didTap(currentRate: currentRate, tag: self.tag)
-        }
-    }
+    var currentRate: Int = 0
     
     var starsStatus: [StarStatus] = []
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+              
         for star in stars {
             let tapGesture = RateTapGestureRecognizer(target: self, action: #selector(tapSelector(sender:)))
             
@@ -46,13 +46,16 @@ class RateTableViewCell: UITableViewCell {
         }
     }
     
+    func configure() {
+        for index in 0..<5 {
+            stars[index].image = index < currentRate ? selectedIcon : unselectedIcon
+        }
+    }
+    
     @objc func tapSelector(sender: RateTapGestureRecognizer) {
         guard let starValue = sender.starValue,
               let starIndex = stars.firstIndex(where: { $0.tag == starValue })
         else { return }
-        
-        let selectedIcon = UIImage(systemName: "star.fill")
-        let unselectedIcon = UIImage(systemName: "star")
 
         if starValue < currentRate {
             
@@ -72,5 +75,7 @@ class RateTableViewCell: UITableViewCell {
         }
         
         currentRate = starValue
+        
+        delegate?.didTap(currentRate: currentRate, tag: self.tag)
     }
 }

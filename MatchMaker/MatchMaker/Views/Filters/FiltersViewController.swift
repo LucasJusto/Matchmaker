@@ -7,17 +7,28 @@
 
 import UIKit
 
+protocol FiltersViewControllerDelegate: AnyObject {
+    func setFilters(languages: [Languages], platforms: [Platform], behaviorsRate: Int, skillsRate: Int, selectedLocation: Locations?, selectedGames: [Game])
+}
+
 class FiltersViewController: UIViewController {
     
-    //MARK: - Typealias
+    // MARK: - Typealias
     typealias TagOption = (option: String, isFavorite: Bool)
     typealias GameOption = (option: Game, isFavorite: Bool)
     typealias UserLocation = (string: String, enum: Locations)
     
-    //MARK: - Outlets
+    // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
     
-    //MARK: - Variables
+    @IBOutlet weak var doneButton: LocalizableButtonLabel!
+    
+    @IBOutlet weak var buttonsStackView: UIStackView!
+    
+    // MARK: - Variables to receive
+    weak var delegate: FiltersViewControllerDelegate?
+    
+    // MARK: - Variables
     var tagLanguages: [TagOption] = []
     var tagPlatforms: [TagOption] = []
     var behaviorsRate: Int = 0
@@ -26,7 +37,7 @@ class FiltersViewController: UIViewController {
     var selectedGames: [GameOption] = []
     var selectedGame: GameOption?
     
-    //MARK: - Enums
+    // MARK: - Enums
     enum FilterOptions: Int, CaseIterable {
         case languages
         case platforms
@@ -58,7 +69,7 @@ class FiltersViewController: UIViewController {
         case skillsRate
     }
     
-    //MARK: - Functions
+    // MARK: - Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -67,32 +78,80 @@ class FiltersViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        loadData()
-    }
-    
-    func loadData() {
-        TagFilterOptions.allCases.forEach { filter in
-            switch filter {
-                case .languages:
-                    self.tagLanguages = Languages.allCases.map { TagOption(option: $0.description, isFavorite: false) }
-                    
-                case .platforms:
-                    self.tagPlatforms = Platform.allCases.map { TagOption(option: $0.description, isFavorite: false) }
-                    
-                case .games:
-                    let games = Games.buildGameArray()
-                    self.selectedGames = games.map { GameOption(option: $0, isFavorite: false) }
-            }
+        if isThereAnyFilter() {
+            doneButton.isHidden = true
+            buttonsStackView.isHidden = !doneButton.isHidden
         }
     }
     
+    func isThereAnyFilter() -> Bool {
+        let languages = tagLanguages.filter { $0.isFavorite }
+        let platforms = tagPlatforms.filter { $0.isFavorite }
+        
+        return !languages.isEmpty || !platforms.isEmpty || skillsRate >= 1 || behaviorsRate >= 1 || selectedLocation.string != "-"
+    }
+    
+    func loadData(languages: [Languages], platforms: [Platform], behaviors: Int, skills: Int, location: Locations?, games: [Game]) {
+    
+        self.tagLanguages = Languages.allCases.map { TagOption(option: $0.description, isFavorite: languages.contains($0)) }
+        
+        self.tagPlatforms = Platform.allCases.map { TagOption(option: $0.description, isFavorite: platforms.contains($0)) }
+        
+        self.behaviorsRate = behaviors
+        
+        self.skillsRate = skills
+        
+        if let location = location {
+            self.selectedLocation = UserLocation(string: location.description, enum: location)
+        } else {
+            self.selectedLocation = UserLocation(string: "-", enum: Locations.brazil)
+        }
+        
+        let allGames = Games.buildGameArray()
+        
+        self.selectedGames = allGames.map { GameOption(option: $0, isFavorite: games.contains($0)) }
+    }
+    
     @IBAction func didTapClean(_ sender: UIButton) {
-        //funcao limpar filtros
+        
+        for index in 0..<tagLanguages.count {
+            tagLanguages[index].isFavorite = false
+        }
+        
+        for index in 0..<tagPlatforms.count {
+            tagPlatforms[index].isFavorite = false
+        }
+
+        self.behaviorsRate = 0
+        self.skillsRate = 0
+        
+        self.selectedLocation = UserLocation(string: "-", enum: Locations.brazil)
+    
+        for index in 0..<selectedGames.count {
+            selectedGames[index].isFavorite = false
+        }
+        
         self.dismiss(animated: true)
     }
     
     @IBAction func didTapDone(_ sender: UIButton) {
         self.dismiss(animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        let languages = tagLanguages.filter { $0.isFavorite }.map { Languages.getLanguage(language: "Languages\($0.option)") }
+        
+        let platforms = tagPlatforms.filter { $0.isFavorite }.map { Platform.getPlatform(key: "Platform\($0.option == "PlayStation" ? "PS" : $0.option)") }
+        
+        let games = selectedGames.filter { $0.isFavorite }.map { $0.option }
+        
+        var location: Locations?
+        
+        if selectedLocation.string != "-" {
+            location = selectedLocation.enum
+        }
+        
+        delegate?.setFilters(languages: languages, platforms: platforms, behaviorsRate: behaviorsRate, skillsRate: skillsRate, selectedLocation: location, selectedGames: games)
     }
     
     // MARK: - Prepare
@@ -162,10 +221,24 @@ extension FiltersViewController: UITableViewDataSource {
     func rateCell(title: String, tag: Int) -> RateTableViewCell? {
         let cell = tableView.dequeueReusableCell(withIdentifier: "rate-cell") as? RateTableViewCell
         
+        var rate = 0
+
+        if let rateFilter = RateFilterOptions(rawValue: tag) {
+            switch rateFilter {
+                case .behaviourRate:
+                    rate = behaviorsRate
+                case .skillsRate:
+                    rate = skillsRate
+            }
+        }
+
         cell?.tag = tag
         cell?.delegate = self
         
         cell?.titleLabel.text = title
+        cell?.currentRate = rate
+        
+        cell?.configure()
         
         return cell
     }

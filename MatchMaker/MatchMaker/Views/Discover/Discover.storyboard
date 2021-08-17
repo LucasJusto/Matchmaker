@@ -276,11 +276,20 @@
                     <connections>
                         <outlet property="discoverTableView" destination="gP6-Wi-hBP" id="EtX-NT-YAM"/>
                         <segue destination="KMR-XQ-RhV" kind="show" identifier="toOtherProfile" id="4d9-bh-00V"/>
+                        <segue destination="kFw-Ml-J8F" kind="presentation" identifier="filter" id="QdV-DT-WqX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1026" y="145"/>
+            <point key="canvasLocation" x="1159" y="115"/>
+        </scene>
+        <!--Filters-->
+        <scene sceneID="Tr2-ZG-7Uf">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Filters" id="kFw-Ml-J8F" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Se-DL-wE5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1753" y="37"/>
         </scene>
         <!--OtherProfile-->
         <scene sceneID="hi4-KK-I2F">
@@ -290,7 +299,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3pg-md-ZWh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1617" y="145"/>
+            <point key="canvasLocation" x="1780" y="193"/>
         </scene>
         <!--Item-->
         <scene sceneID="RRA-z6-26H">
@@ -328,7 +337,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iC0-oM-LOe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-401" y="115"/>
+            <point key="canvasLocation" x="-516" y="115"/>
         </scene>
     </scenes>
     <resources>
@@ -339,7 +348,7 @@
         <image name="Xbox" width="204" height="188.5"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
         <namedColor name="Primary">
-            <color red="0.3880000114440918" green="0.090000003576278687" blue="0.88599997758865356" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.38823529411764707" green="0.090196078431372548" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

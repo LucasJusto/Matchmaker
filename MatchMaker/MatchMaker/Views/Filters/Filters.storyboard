@@ -410,7 +410,24 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mXR-2c-K3R">
                                 <rect key="frame" x="0.0" y="693" width="414" height="93"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="30T-4y-vpT">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xVr-uy-Td6" customClass="LocalizableButtonLabel" customModule="MatchMaker" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="12" width="382" height="41"/>
+                                        <color key="backgroundColor" name="Primary"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="filtersDoneButtonLabel"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="didTapDone:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="juW-3q-rs7"/>
+                                        </connections>
+                                    </button>
+                                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="30T-4y-vpT">
                                         <rect key="frame" x="16" y="12" width="382" height="40"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6zd-MD-lVS" customClass="LocalizableButtonLabel" customModule="MatchMaker" customModuleProvider="target">
@@ -452,7 +469,11 @@
                                 <constraints>
                                     <constraint firstItem="30T-4y-vpT" firstAttribute="leading" secondItem="mXR-2c-K3R" secondAttribute="leading" constant="16" id="GLx-GB-CHu"/>
                                     <constraint firstAttribute="height" constant="93" id="J3R-KV-2IZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="xVr-uy-Td6" secondAttribute="bottom" constant="40" id="UUT-G3-FrT"/>
+                                    <constraint firstItem="xVr-uy-Td6" firstAttribute="leading" secondItem="mXR-2c-K3R" secondAttribute="leading" constant="16" id="XcG-nd-9EJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="xVr-uy-Td6" secondAttribute="trailing" constant="16" id="YZv-cF-GcX"/>
                                     <constraint firstItem="30T-4y-vpT" firstAttribute="top" secondItem="mXR-2c-K3R" secondAttribute="top" constant="12" id="aYJ-ps-W8C"/>
+                                    <constraint firstItem="xVr-uy-Td6" firstAttribute="top" secondItem="mXR-2c-K3R" secondAttribute="top" constant="12" id="bWM-uY-dvo"/>
                                     <constraint firstAttribute="trailing" secondItem="30T-4y-vpT" secondAttribute="trailing" constant="16" id="cA2-Vo-Nib"/>
                                     <constraint firstAttribute="bottom" secondItem="30T-4y-vpT" secondAttribute="bottom" constant="41" id="g22-pH-spk"/>
                                 </constraints>
@@ -472,6 +493,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Filters" id="0DI-zy-cob"/>
                     <connections>
+                        <outlet property="buttonsStackView" destination="30T-4y-vpT" id="akO-ts-rz8"/>
+                        <outlet property="doneButton" destination="xVr-uy-Td6" id="KzC-C8-T0f"/>
                         <outlet property="tableView" destination="cZi-Gz-wb3" id="tKh-kL-5Qs"/>
                         <segue destination="zoJ-vM-qAV" kind="presentation" identifier="toUserLocations" id="lOf-kF-hbx"/>
                         <segue destination="pXG-qI-yQr" kind="presentation" identifier="selectedGame" id="HOg-Rj-Xsb"/>
