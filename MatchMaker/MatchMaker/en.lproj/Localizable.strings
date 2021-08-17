@@ -15,7 +15,8 @@
 "CKErrorDefaultMessage" = "Something unexpected ocurred, your data may not have been saved.";
 "CKErrorAlertButtonLabel" = "Ok";
 
-//MARK: - User
+//MARK: - UserProfile (Profile Tab)
+"UserGames" = "Your Games";
 "UserBehaviour" = "Behaviour";
 "UserSkills" = "Skills";
 "UserReviews" = "Reviews";
@@ -31,7 +32,7 @@
 "RemoveFriendButtonLabel" = "Remove friend";
 "PlayingFrom" = "Playing from";
 "RejectRequestButton"= "Reject friend";
-"AceptRequestButton"= "Acept friend";
+"AceptRequestButton"= "Accept friend";
 
 // MARK: - Platforms
 

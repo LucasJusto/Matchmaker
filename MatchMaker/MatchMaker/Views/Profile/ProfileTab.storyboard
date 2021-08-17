@@ -838,7 +838,7 @@
             <objects>
                 <viewController id="u8y-OU-kGZ" customClass="GameDetailsViewController" customModule="MatchMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FwW-NT-qlW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4BZ-Z2-OWi">
@@ -1109,14 +1109,6 @@
             <point key="canvasLocation" x="3341" y="941"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="lCU-RR-h9E">
-            <size key="intrinsicContentSize" width="30" height="30"/>
-        </designable>
-        <designable name="zWu-8U-StY">
-            <size key="intrinsicContentSize" width="32" height="34"/>
-        </designable>
-    </designables>
     <resources>
         <image name="CounterStrikeGO" width="585" height="390"/>
         <image name="Degrade" width="600" height="800"/>
