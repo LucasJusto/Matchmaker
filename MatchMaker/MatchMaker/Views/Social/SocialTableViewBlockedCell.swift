@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SocialBlockedTableViewCell: UITableViewCell {
+class SocialTableViewBlockedCell: UITableViewCell {
 
     var userId: String?
     

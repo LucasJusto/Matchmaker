@@ -13,6 +13,7 @@ class SocialViewController: UIViewController {
     var userId: String?
     var friends: [Social] = []
     var filteredFriends: [Social] = []
+    var blockedUsers: [Social] = []
     
     // Segue helper
     var destinationUser: User?
@@ -20,6 +21,12 @@ class SocialViewController: UIViewController {
     @IBOutlet weak var socialTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var blockedToggle: UISegmentedControl!
+    
+    @IBAction func actionBlockedToggle(_ sender: UISegmentedControl) {
+        DispatchQueue.main.async {
+            self.socialTableView.reloadData()
+        }
+    }
     
     var isSearchBarEmpty: Bool {
       return searchBar.text?.isEmpty ?? true
@@ -61,10 +68,23 @@ class SocialViewController: UIViewController {
         })
     }
     
+    func updateAndReloadBlocked() {
+        CKRepository.getBlockedUsersList(completion: { blocked in
+            self.blockedUsers = blocked
+            DispatchQueue.main.async {
+                self.socialTableView.reloadData()
+            }
+        })
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         updateAndReload()
+        
+        CKRepository.getBlockedUsersList(completion: { blocked in
+            self.blockedUsers = blocked
+        })
         
         socialTableView.delegate = self
         socialTableView.dataSource = self
@@ -131,7 +151,9 @@ extension SocialViewController: UITableViewDelegate, UITableViewDataSource {
         if isFiltering {
             return filteredFriends.count
         }
-            
+        if blockedToggle.selectedSegmentIndex == 1 {
+            return blockedUsers.count
+        }
         return friends.count
     }
     
@@ -147,6 +169,14 @@ extension SocialViewController: UITableViewDelegate, UITableViewDataSource {
         
         // Using sections to have a "rounded cell" which is actually a section
         let friend: Social
+        
+        if blockedToggle.selectedSegmentIndex == 1 {
+            friend = blockedUsers[indexPath.section]
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "BlockedCell", for: indexPath) as? SocialTableViewBlockedCell else { return UITableViewCell() }
+            cell.setup(userId: friend.id, photoURL: friend.photoURL, name: friend.name, nickname: friend.nickname)
+            return cell
+        }
+        
         if isFiltering {
             friend = filteredFriends[indexPath.section]
         } else {
