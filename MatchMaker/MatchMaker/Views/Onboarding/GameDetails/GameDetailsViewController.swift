@@ -22,6 +22,8 @@ class GameDetailsViewController: UIViewController {
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var buttonsContainerView: UIStackView!
     
+    @IBOutlet weak var gradientAboveTitle: UIImageView!
+    
     //MARK: - var a serem recebidas
     weak var delegate: GameSelectionDelegate?
     var game: Game?
@@ -35,13 +37,13 @@ class GameDetailsViewController: UIViewController {
     //sempre que forem modificados irao dar dismiss na tela
     var didTapDone: Bool = false {
         didSet {
-            self.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: false, completion: nil)
         }
     }
     
     var didTapDeselect: Bool = false {
         didSet {
-            self.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: false, completion: nil)
         }
     }
     
@@ -75,6 +77,8 @@ class GameDetailsViewController: UIViewController {
         tableView.dataSource = self
                 
         setUpData()
+        
+        gradientAboveTitle.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -195,13 +199,13 @@ extension GameDetailsViewController: UITableViewDataSource, UITableViewDelegate 
 
             cell?.setUp(title: gameDetailsSection.description)
 
-//            if gameDetailsSection == .platforms {
-//                let layout = cell?.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-//
-//                layout.scrollDirection = .horizontal
-//
-//                cell?.collectionView.setCollectionViewLayout(layout, animated: true)
-//            }
+            if gameDetailsSection == .platforms {
+                let layout = cell?.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+
+                layout.scrollDirection = .horizontal
+
+                cell?.collectionView.setCollectionViewLayout(layout, animated: true)
+            }
         }
 
         cell?.collectionView.delegate = self
@@ -212,12 +216,12 @@ extension GameDetailsViewController: UITableViewDataSource, UITableViewDelegate 
         cell?.requiredLabel.textColor = UIColor(named: "LightGray")
 
         //Setando a altura da cell e da tableView
-//        if let size = cell?.collectionView.collectionViewLayout.collectionViewContentSize {
-//            cell?.collectionViewHeight.constant = size.height
-//
+        if let size = cell?.collectionView.collectionViewLayout.collectionViewContentSize {
+            cell?.collectionViewHeight.constant = size.height
+
 //            let contentSize = tableView.contentSize.height + size.height
 //            tableViewHeight.constant = contentSize
-//        }
+        }
 
         return cell
     }
@@ -299,7 +303,7 @@ extension GameDetailsViewController: UICollectionViewDelegateFlowLayout {
 
         let modelSize = model.size(withAttributes: nil)
 
-        let size = CGSize(width: modelSize.width, height: collectionView.bounds.height)
+        let size = CGSize(width: modelSize.width, height: collectionView.bounds.height+30)
 
         return size
     }

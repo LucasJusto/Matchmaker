@@ -211,3 +211,13 @@ without using your storage";
 "DiscoverScreenAddToFriendsButton" = "Add to friends";
 "DiscoverShowMoreButton" = "Show more";
 "DiscoverScreenRequestSent" = "Request sent!";
+
+//MARK: - Social
+"SocialViewSearchUsers" = "Search Users";
+"SocialViewFriendsSectionToggle" = "Friends";
+"SocialViewBlockedSectionToggle" = "Blocked";
+"SocialViewCancelSentRequest" = "Cancel request";
+"SocialReceivedRequestAcceptInvite" = "Accept";
+"SocialReceivedRequestDeclineInvite" = "Reject";
+"SocialShowMoreButton" = "Show more";
+"SocialUnblockButton" = "Unblock";

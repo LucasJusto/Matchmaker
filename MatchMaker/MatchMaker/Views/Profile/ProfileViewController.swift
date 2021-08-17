@@ -83,7 +83,7 @@ class ProfileViewController: UIViewController {
         
         platformsView.smallLabeledImageModels = unwrappedUser.selectedPlatforms
         languagesView.titleModels = unwrappedUser.languages
-        gameCollectionView.RoundedRectangleImageModels = unwrappedUser.selectedGames
+        gameCollectionView.roundedRectangleImageModels = unwrappedUser.selectedGames
     }
     
     //MARK: ProfileViewController - Accessibility Features: Dynamic Types

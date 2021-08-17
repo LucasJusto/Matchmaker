@@ -12,13 +12,13 @@
         <!--GameDetail-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController title="GameDetail" id="Y6W-OH-hqX" customClass="GameDetailViewController" customModule="MatchMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GameDetailID" title="GameDetail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="GameDetailViewController" customModule="MatchMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="872"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="1412"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S6c-OK-7we">
-                                <rect key="frame" x="0.0" y="0.0" width="390" height="838"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S6c-OK-7we">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="1412"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mF2-2Y-1I1">
                                         <rect key="frame" x="0.0" y="0.0" width="390" height="854.66666666666663"/>
@@ -202,32 +202,38 @@
                                             <constraint firstItem="yx6-EQ-Lay" firstAttribute="top" secondItem="82b-6Q-Ju2" secondAttribute="bottom" constant="5" id="oHD-tE-XKK"/>
                                             <constraint firstItem="HSS-fq-jnI" firstAttribute="top" secondItem="pce-lc-GXc" secondAttribute="top" id="rZb-N9-SWT"/>
                                             <constraint firstItem="82b-6Q-Ju2" firstAttribute="top" secondItem="pce-lc-GXc" secondAttribute="bottom" constant="-100" id="uLJ-Qu-3ey"/>
-                                            <constraint firstAttribute="bottom" secondItem="yx6-EQ-Lay" secondAttribute="bottom" id="zLZ-dg-XVK"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="mF2-2Y-1I1" firstAttribute="leading" secondItem="S6c-OK-7we" secondAttribute="leading" id="Vve-Xx-1W9"/>
-                                    <constraint firstAttribute="trailing" secondItem="mF2-2Y-1I1" secondAttribute="trailing" id="dCk-Ra-nb6"/>
-                                    <constraint firstItem="mF2-2Y-1I1" firstAttribute="top" secondItem="S6c-OK-7we" secondAttribute="top" id="sLu-l9-QFs"/>
-                                    <constraint firstAttribute="bottom" secondItem="mF2-2Y-1I1" secondAttribute="bottom" id="uGt-Ek-uEg"/>
+                                    <constraint firstItem="mF2-2Y-1I1" firstAttribute="centerX" secondItem="S6c-OK-7we" secondAttribute="centerX" id="N8H-61-x2q"/>
+                                    <constraint firstAttribute="bottom" secondItem="mF2-2Y-1I1" secondAttribute="bottom" id="aAU-d0-I9g"/>
+                                    <constraint firstAttribute="bottom" secondItem="yx6-EQ-Lay" secondAttribute="bottom" id="kLK-f0-OMH"/>
+                                    <constraint firstItem="mF2-2Y-1I1" firstAttribute="top" secondItem="S6c-OK-7we" secondAttribute="top" id="qar-Bx-hYO"/>
+                                    <constraint firstAttribute="trailing" secondItem="mF2-2Y-1I1" secondAttribute="trailing" id="yuo-Om-2ku"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="S6c-OK-7we" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="NjJ-2G-Uhl"/>
-                            <constraint firstItem="S6c-OK-7we" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="YFy-uX-KAb"/>
-                            <constraint firstItem="S6c-OK-7we" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="kgv-BN-z6O"/>
-                            <constraint firstItem="mF2-2Y-1I1" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" id="s8C-UA-XQu"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="S6c-OK-7we" secondAttribute="bottom" id="yRO-0F-Eur"/>
+                            <constraint firstItem="S6c-OK-7we" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="7iu-zC-kct"/>
+                            <constraint firstItem="S6c-OK-7we" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="Anc-NC-fNR"/>
+                            <constraint firstItem="S6c-OK-7we" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="T4J-xm-pVk"/>
+                            <constraint firstItem="S6c-OK-7we" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="gUh-Y1-RwK"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Game Detail" id="1Av-cg-meL"/>
+                    <navigationItem key="navigationItem" title="Game Detail" id="1Av-cg-meL">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="INH-WH-uQC">
+                            <color key="tintColor" name="Primary"/>
+                            <connections>
+                                <action selector="doneButtonAction:" destination="Y6W-OH-hqX" id="OK8-5Z-omS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="390" height="960"/>
+                    <size key="freeformSize" width="390" height="1500"/>
                     <connections>
                         <outlet property="AddToMyGamesButton" destination="Ngm-dr-XyX" id="MLf-Cn-RP7"/>
                         <outlet property="FindPlayersButton" destination="lqH-bf-PfT" id="boU-or-bcQ"/>
@@ -246,11 +252,12 @@
                         <outlet property="playstationStack" destination="eQ5-6L-thG" id="GR5-8n-Z2o"/>
                         <outlet property="titleGameDetailScreen" destination="1Av-cg-meL" id="xJe-a5-Fs8"/>
                         <outlet property="xboxStack" destination="iOm-cu-jm7" id="qSn-PT-7pB"/>
+                        <segue destination="JQg-8z-MBx" kind="show" identifier="toGame" id="znt-hU-VfI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="978" y="155"/>
+            <point key="canvasLocation" x="976.92307692307691" y="154.97630331753552"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="p0L-of-dbG">
@@ -261,6 +268,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="LQ6-IC-HeA">
                         <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" name="Primary"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -269,7 +277,17 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ent-lN-C0A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="130.76923076923077" y="114.45497630331754"/>
+            <point key="canvasLocation" x="102" y="114"/>
+        </scene>
+        <!--GameDetailID-->
+        <scene sceneID="oT4-oQ-QhA">
+            <objects>
+                <viewControllerPlaceholder storyboardName="GameDetail" referencedIdentifier="GameDetailID" id="JQg-8z-MBx" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="JBL-Xf-VFG"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9U1-RW-hMw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1740" y="57"/>
         </scene>
     </scenes>
     <resources>
