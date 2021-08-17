@@ -20,7 +20,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aRR-Jk-aEo">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                 <subviews>
-                                    <searchBar contentMode="redraw" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="kGU-Ue-lol">
+                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="kGU-Ue-lol">
                                         <rect key="frame" x="0.0" y="49" width="414" height="51"/>
                                         <color key="barTintColor" name="DefaultBackground"/>
                                         <textInputTraits key="textInputTraits"/>

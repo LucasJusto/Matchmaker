@@ -98,6 +98,7 @@ class SocialViewController: UIViewController {
         
         // Search Controller | uses extension
         searchBar.delegate = self
+        searchBar.searchTextField.textColor = UIColor.white
         
         // LocalizableString
         searchBar.placeholder = NSLocalizedString("SocialViewSearchUsers", comment: "Placeholder text in search bar")
@@ -105,7 +106,7 @@ class SocialViewController: UIViewController {
         blockedToggle.setTitle(segment1, forSegmentAt: 0)
         let segment2 = NSLocalizedString("SocialViewBlockedSectionToggle", comment: "Blocked section title in the toggle between friends/blocked")
         blockedToggle.setTitle(segment2, forSegmentAt: 1)
-//        blockedToggle.selectedSegmentIndex
+        blockedToggle.setTitleTextAttributes([.foregroundColor:UIColor.white], for: .normal)
         
         NotificationCenter.default.addObserver(self, selector: #selector(SocialViewController.listUpdated), name: NSNotification.Name("friendsTable.tableChanged.description"), object: nil)
     }
@@ -182,19 +183,21 @@ extension SocialViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             friend = friends[indexPath.section]
         }
-        
-        if friend.isInvite != nil {
-            if friend.isInviter == true {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: "SentFriendRequestCell", for: indexPath) as? SocialTableViewSentRequestCell else { return UITableViewCell() }
+        if let res = friend.isInvite {
+            if res == IsInvite.yes {
+                if friend.isInviter == true {
+                    guard let cell = tableView.dequeueReusableCell(withIdentifier: "SentFriendRequestCell", for: indexPath) as? SocialTableViewSentRequestCell else { return UITableViewCell() }
+                    cell.setup(userId: friend.id, photoURL: friend.photoURL, name: friend.name, nickname: friend.nickname)
+                    cell.delegate = self
+                    return cell
+                }
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "ReceivedFriendRequestCell", for: indexPath) as? SocialTableViewReceivedRequestCell else { return UITableViewCell() }
                 cell.setup(userId: friend.id, photoURL: friend.photoURL, name: friend.name, nickname: friend.nickname)
                 cell.delegate = self
                 return cell
             }
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ReceivedFriendRequestCell", for: indexPath) as? SocialTableViewReceivedRequestCell else { return UITableViewCell() }
-            cell.setup(userId: friend.id, photoURL: friend.photoURL, name: friend.name, nickname: friend.nickname)
-            cell.delegate = self
-            return cell
         }
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendProfileCell", for: indexPath) as? SocialTableViewFriendCell else { return UITableViewCell() }
         cell.setup(url: friend.photoURL, nameText: friend.name, nickText: friend.nickname, userGames: friend.games!)
         return cell
