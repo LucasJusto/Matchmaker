@@ -257,6 +257,16 @@
             </objects>
             <point key="canvasLocation" x="892.75362318840587" y="93.75"/>
         </scene>
+        <!--Home-->
+        <scene sceneID="1aT-It-5BE">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="toHome" storyboardName="Home" id="67a-2h-5ty" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="WgG-2b-3or"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HgB-kq-Ynt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2280" y="-29"/>
+        </scene>
         <!--Onboarding Register View Controller-->
         <scene sceneID="bpP-Uo-bly">
             <objects>
@@ -803,6 +813,7 @@
                         <outlet property="tableView" destination="Ri0-tv-Wfd" id="WM3-9Y-8oz"/>
                         <segue destination="nG5-GQ-Aea" kind="presentation" identifier="toUserLocations" id="CFx-gc-RK6"/>
                         <segue destination="3Nr-Wa-8NZ" kind="presentation" identifier="selectedGame" id="UH4-zC-ZoT"/>
+                        <segue destination="67a-2h-5ty" kind="show" identifier="toHome" id="idT-1V-Rmi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qq5-ut-g7R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1142,7 +1153,7 @@
             <color red="0.24313725490196078" green="0.24313725490196078" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Primary">
-            <color red="0.38823529411764707" green="0.090196078431372548" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.3880000114440918" green="0.090000003576278687" blue="0.88599997758865356" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
