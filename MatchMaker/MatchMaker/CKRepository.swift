@@ -14,30 +14,30 @@ enum UserTable: CustomStringConvertible {
     
     var description: String {
         switch self {
-        case .recordType:
-            return "User"
-        case .id:
-            return "id"
-        case .name:
-            return "name"
-        case .nickname:
-            return "nickname"
-        case .location:
-            return "location"
-        case .description:
-            return "description"
-        case .photo:
-            return "photo"
-        case .selectedPlatforms:
-            return "selectedPlatforms"
-        case .languages:
-            return "languages"
-        case .storeFailMessage:
-            return "couldntStoreUserData"
-        case .averageBehaviourRate:
-            return "averageBehaviourRate"
-        case .averageSkillRate:
-            return "averageSkillRate"
+            case .recordType:
+                return "User"
+            case .id:
+                return "id"
+            case .name:
+                return "name"
+            case .nickname:
+                return "nickname"
+            case .location:
+                return "location"
+            case .description:
+                return "description"
+            case .photo:
+                return "photo"
+            case .selectedPlatforms:
+                return "selectedPlatforms"
+            case .languages:
+                return "languages"
+            case .storeFailMessage:
+                return "couldntStoreUserData"
+            case .averageBehaviourRate:
+                return "averageBehaviourRate"
+            case .averageSkillRate:
+                return "averageSkillRate"
         }
     }
 }
@@ -47,18 +47,18 @@ enum UserGamesTable: CustomStringConvertible {
     
     var description: String {
         switch self {
-        case .recordType:
-            return "UserGames"
-        case .userId:
-            return "userId"
-        case .gameId:
-            return "gameId"
-        case .selectedPlatforms:
-            return "selectedPlatforms"
-        case .selectedServers:
-            return "selectedServers"
-        case .storeFailMessage:
-            return "couldntStoreUserGameData"
+            case .recordType:
+                return "UserGames"
+            case .userId:
+                return "userId"
+            case .gameId:
+                return "gameId"
+            case .selectedPlatforms:
+                return "selectedPlatforms"
+            case .selectedServers:
+                return "selectedServers"
+            case .storeFailMessage:
+                return "couldntStoreUserGameData"
         }
     }
 }
@@ -68,18 +68,18 @@ enum FriendsTable: CustomStringConvertible {
     
     var description: String {
         switch self {
-        case .recordType:
-            return "Friends"
-        case .inviterId:
-            return "inviterId"
-        case .receiverId:
-            return "receiverId"
-        case .isInvite:
-            return "isInvite"
-        case .storeFailMessage:
-            return "couldntStoreFriendshipData"
-        case .tableChanged:
-            return "FriendsTableChanged"
+            case .recordType:
+                return "Friends"
+            case .inviterId:
+                return "inviterId"
+            case .receiverId:
+                return "receiverId"
+            case .isInvite:
+                return "isInvite"
+            case .storeFailMessage:
+                return "couldntStoreFriendshipData"
+            case .tableChanged:
+                return "FriendsTableChanged"
         }
     }
 }
@@ -89,12 +89,12 @@ enum BlockedTable: CustomStringConvertible {
     
     var description: String {
         switch self {
-        case .recordType:
-            return "Blocked"
-        case .userId:
-            return "userId"
-        case .blockedId:
-            return "blockedId"
+            case .recordType:
+                return "Blocked"
+            case .userId:
+                return "userId"
+            case .blockedId:
+                return "blockedId"
         }
     }
 }
@@ -104,14 +104,14 @@ enum SkillRatingsTable: CustomStringConvertible {
     
     var description: String {
         switch self {
-        case .recordType:
-            return "SkillRatings"
-        case .raterUserId:
-            return "raterUserId"
-        case .ratedUserId:
-            return "ratedUserId"
-        case .rate:
-            return "rate"
+            case .recordType:
+                return "SkillRatings"
+            case .raterUserId:
+                return "raterUserId"
+            case .ratedUserId:
+                return "ratedUserId"
+            case .rate:
+                return "rate"
         }
     }
 }
@@ -121,14 +121,14 @@ enum BehaviourRatingsTable: CustomStringConvertible {
     
     var description: String {
         switch self {
-        case .recordType:
-            return "BehaviourRatings"
-        case .raterUserId:
-            return "raterUserId"
-        case .ratedUserId:
-            return "ratedUserId"
-        case .rate:
-            return "rate"
+            case .recordType:
+                return "BehaviourRatings"
+            case .raterUserId:
+                return "raterUserId"
+            case .ratedUserId:
+                return "ratedUserId"
+            case .rate:
+                return "rate"
         }
     }
 }
@@ -137,13 +137,15 @@ public class CKRepository {
     static var user: User? //singleton user
     public static let container: CKContainer = CKContainer(identifier: "iCloud.MatchMaker")
     
-    static func setOnboardingInfo(name: String, nickname: String, photoURL: URL?, location: Locations, description: String, languages: [Languages], selectedPlatforms: [Platform], selectedGames: [Game]){
+    static func setOnboardingInfo(name: String, nickname: String, photoURL: URL?, location: Locations, description: String, languages: [Languages], selectedPlatforms: [Platform], selectedGames: [Game], completion: @escaping (CKRecord?, Error?) -> Void) {
         
         //getUserId
         CKRepository.getUserId { id in
             if let idNotNull = id {
                 //storing user data at CloudKit
-                storeUserData(id: idNotNull, name: name, nickname: nickname, location: location, description: description, photo: photoURL, selectedPlatforms: selectedPlatforms, selectedGames: selectedGames, languages: languages)
+                storeUserData(id: idNotNull, name: name, nickname: nickname, location: location, description: description, photo: photoURL, selectedPlatforms: selectedPlatforms, selectedGames: selectedGames, languages: languages, completion: { record, error in
+                    completion(record, error)
+                })
                 
                 //creating user singleton
                 user = User(id: idNotNull, name: name, nickname: nickname, photoURL: photoURL, location: location, description: description, behaviourRate: 0, skillRate: 0, languages: languages, selectedPlatforms: selectedPlatforms, selectedGames: selectedGames)
@@ -212,7 +214,7 @@ public class CKRepository {
         
     }
     
-    private static func storeUserData(id: String, name: String, nickname: String, location: Locations, description: String, photo: URL?, selectedPlatforms: [Platform], selectedGames: [Game], languages: [Languages]){
+    private static func storeUserData(id: String, name: String, nickname: String, location: Locations, description: String, photo: URL?, selectedPlatforms: [Platform], selectedGames: [Game], languages: [Languages], completion: @escaping (CKRecord?, Error?) -> Void){
         
         let recordID = CKRecord.ID(recordName: id)
         let record = CKRecord(recordType: UserTable.recordType.description, recordID: recordID)
@@ -240,6 +242,7 @@ public class CKRepository {
             if let ckError = error as? CKError {
                 CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
             }
+            completion(savedRecord, error)
         }
         
         storeUserGamesData(userId: id, selectedGames: selectedGames)
@@ -376,7 +379,7 @@ public class CKRepository {
         else {
             //friendshipInviteDenied
             deleteFriendship(inviterId: inviterUserId, receiverId: receiverUserId, completion: {
-
+                
             })
         }
     }
@@ -606,7 +609,7 @@ public class CKRepository {
                                         if let userIdNotNull = userId {
                                             blockedUsersId.append(userIdNotNull)
                                         }
-                                
+                                        
                                         //if the user has blocked users
                                         if blockedUsersId.count > 0 {
                                             //remove them from the search
@@ -796,11 +799,11 @@ public class CKRepository {
             guard !isAlertOn else { return }
             
             switch CKErrorCode {
-            case .notAuthenticated:
-                //user is not logged in iCloud
-                topController?.present(prepareAlert(title: notLoggedInTitle, message: notLoggedInMessage), animated: true)
-            default:
-                topController?.present(prepareAlert(title: defaultTitle, message: defaultMessage), animated: true)
+                case .notAuthenticated:
+                    //user is not logged in iCloud
+                    topController?.present(prepareAlert(title: notLoggedInTitle, message: notLoggedInMessage), animated: true)
+                default:
+                    topController?.present(prepareAlert(title: defaultTitle, message: defaultMessage), animated: true)
             }
         }
     }

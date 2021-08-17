@@ -208,3 +208,14 @@ para você escolher e encontrar jogadores";
 "limitedGalleryAction" = "Permitir acesso a mais fotos";
 "fullGalleryAction" = "Permitir acesso a todas as fotos";
 "cameraError" = "Você não possui uma câmera";
+
+// MARK: - Filters
+"filtersNavigationTitle" = "Filtros";
+"filtersCleanButtonLabel" = "Limpar filtros";
+"filtersDoneButtonLabel" = "Pronto";
+"filtersLanguagesLabel" = "Linguagens";
+"filtersPlatformsLabel" = "Plataformas";
+"filtersBehaviorsRateLabel" = "Comportamento";
+"filtersSkillsRateLabel" = "Habilidade";
+"filtersLocationLabel" = "Localidade";
+"filtersGamesLabel" = "Jogos";
