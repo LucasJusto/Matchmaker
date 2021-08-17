@@ -32,7 +32,7 @@
 "RemoveFriendButtonLabel" = "Remove friend";
 "PlayingFrom" = "Playing from";
 "RejectRequestButton"= "Reject friend";
-"AceptRequestButton"= "Accept friend";
+"AcceptRequestButton"= "Accept friend";
 
 // MARK: - Platforms
 
@@ -195,7 +195,7 @@ without using your storage";
 //MARK: - Profile Customization
 "CancelButtonLabel" = "Cancel";
 "DoneButtonLabel" = "Done";
-"viewControllerTitle" = "Edit Profile";
+"ViewControllerTitle" = "Edit Profile";
 
 //MARK: - Discover
 "DiscoverScreenAddToFriendsButton" = "Add to friends";
@@ -211,3 +211,19 @@ without using your storage";
 "SocialReceivedRequestDeclineInvite" = "Reject";
 "SocialShowMoreButton" = "Show more";
 "SocialUnblockButton" = "Unblock";
+
+//MARK: - ImagePickerManager
+"galleryAccessMessage" = "In order to set a profile image, you must grant access to your gallery. Go to Settings > Matchmaker > Photos.";
+"cameraAccessMessage" = "In order to set a profile image, you must grant access to your camera. Go to Settings > Matchmaker > Camera.";
+"cameraGallerySheet" = "Edit profile picture";
+"cameraAction" = "Camera";
+"galleryAction" = "Gallery";
+"cancelAction" = "Cancel";
+"warningTitle" = "Warning";
+"OKAction" = "OK";
+"avatarUploadSheetTitle" = "Avatar upload";
+"avatarUploadSheetMessage" = "Select one photo as your profile picture or Allow more photos from your gallery or go to Settings to allow access to all photos.";
+"selectImageAction" = "Select a profile picture";
+"limitedGalleryAction" = "Allow more photos";
+"fullGalleryAction" = "Allow access to all photos";
+"cameraError" = "You don't have camera";

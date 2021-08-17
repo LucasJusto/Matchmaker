@@ -129,7 +129,7 @@ class OtherProfileViewController: UIViewController {
         } else if friendRequestOrNonFriendControl == isFriend.requestReceived {
             aceptOrRejectStack.isHidden = false
             requestFriendButton.isHidden = true
-            aceptButton.setTitle(NSLocalizedString("AceptRequestButton", comment: ""), for: .normal)
+            aceptButton.setTitle(NSLocalizedString("AcceptRequestButton", comment: ""), for: .normal)
             rejectButton.setTitle(NSLocalizedString("RejectRequestButton", comment: ""), for: .normal)
         }
     }
@@ -183,7 +183,7 @@ extension OtherProfileViewController {
         requestFriendButton.isHidden = false
         
         requestFriendButton.layer.backgroundColor = UIColor(named: "LightGray")?.cgColor
-        aceptButton.setTitle(NSLocalizedString("AceptRequestButton", comment: ""), for: .normal)
+        aceptButton.setTitle(NSLocalizedString("AcceptRequestButton", comment: ""), for: .normal)
         rejectButton.setTitle(NSLocalizedString("RejectRequestButton", comment: ""), for: .normal)
         //MARK: - Do BackEnd to acept friend
     }
