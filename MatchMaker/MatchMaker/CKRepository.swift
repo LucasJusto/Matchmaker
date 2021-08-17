@@ -14,30 +14,30 @@ enum UserTable: CustomStringConvertible {
     
     var description: String {
         switch self {
-            case .recordType:
-                return "User"
-            case .id:
-                return "id"
-            case .name:
-                return "name"
-            case .nickname:
-                return "nickname"
-            case .location:
-                return "location"
-            case .description:
-                return "description"
-            case .photo:
-                return "photo"
-            case .selectedPlatforms:
-                return "selectedPlatforms"
-            case .languages:
-                return "languages"
-            case .storeFailMessage:
-                return "couldntStoreUserData"
-            case .averageBehaviourRate:
-                return "averageBehaviourRate"
-            case .averageSkillRate:
-                return "averageSkillRate"
+        case .recordType:
+            return "User"
+        case .id:
+            return "id"
+        case .name:
+            return "name"
+        case .nickname:
+            return "nickname"
+        case .location:
+            return "location"
+        case .description:
+            return "description"
+        case .photo:
+            return "photo"
+        case .selectedPlatforms:
+            return "selectedPlatforms"
+        case .languages:
+            return "languages"
+        case .storeFailMessage:
+            return "couldntStoreUserData"
+        case .averageBehaviourRate:
+            return "averageBehaviourRate"
+        case .averageSkillRate:
+            return "averageSkillRate"
         }
     }
 }
@@ -47,18 +47,18 @@ enum UserGamesTable: CustomStringConvertible {
     
     var description: String {
         switch self {
-            case .recordType:
-                return "UserGames"
-            case .userId:
-                return "userId"
-            case .gameId:
-                return "gameId"
-            case .selectedPlatforms:
-                return "selectedPlatforms"
-            case .selectedServers:
-                return "selectedServers"
-            case .storeFailMessage:
-                return "couldntStoreUserGameData"
+        case .recordType:
+            return "UserGames"
+        case .userId:
+            return "userId"
+        case .gameId:
+            return "gameId"
+        case .selectedPlatforms:
+            return "selectedPlatforms"
+        case .selectedServers:
+            return "selectedServers"
+        case .storeFailMessage:
+            return "couldntStoreUserGameData"
         }
     }
 }
@@ -68,18 +68,18 @@ enum FriendsTable: CustomStringConvertible {
     
     var description: String {
         switch self {
-            case .recordType:
-                return "Friends"
-            case .inviterId:
-                return "inviterId"
-            case .receiverId:
-                return "receiverId"
-            case .isInvite:
-                return "isInvite"
-            case .storeFailMessage:
-                return "couldntStoreFriendshipData"
-            case .tableChanged:
-                return "FriendsTableChanged"
+        case .recordType:
+            return "Friends"
+        case .inviterId:
+            return "inviterId"
+        case .receiverId:
+            return "receiverId"
+        case .isInvite:
+            return "isInvite"
+        case .storeFailMessage:
+            return "couldntStoreFriendshipData"
+        case .tableChanged:
+            return "FriendsTableChanged"
         }
     }
 }
@@ -89,12 +89,12 @@ enum BlockedTable: CustomStringConvertible {
     
     var description: String {
         switch self {
-            case .recordType:
-                return "Blocked"
-            case .userId:
-                return "userId"
-            case .blockedId:
-                return "blockedId"
+        case .recordType:
+            return "Blocked"
+        case .userId:
+            return "userId"
+        case .blockedId:
+            return "blockedId"
         }
     }
 }
@@ -104,14 +104,14 @@ enum SkillRatingsTable: CustomStringConvertible {
     
     var description: String {
         switch self {
-            case .recordType:
-                return "SkillRatings"
-            case .raterUserId:
-                return "raterUserId"
-            case .ratedUserId:
-                return "ratedUserId"
-            case .rate:
-                return "rate"
+        case .recordType:
+            return "SkillRatings"
+        case .raterUserId:
+            return "raterUserId"
+        case .ratedUserId:
+            return "ratedUserId"
+        case .rate:
+            return "rate"
         }
     }
 }
@@ -121,14 +121,14 @@ enum BehaviourRatingsTable: CustomStringConvertible {
     
     var description: String {
         switch self {
-            case .recordType:
-                return "BehaviourRatings"
-            case .raterUserId:
-                return "raterUserId"
-            case .ratedUserId:
-                return "ratedUserId"
-            case .rate:
-                return "rate"
+        case .recordType:
+            return "BehaviourRatings"
+        case .raterUserId:
+            return "raterUserId"
+        case .ratedUserId:
+            return "ratedUserId"
+        case .rate:
+            return "rate"
         }
     }
 }
@@ -375,11 +375,13 @@ public class CKRepository {
         }
         else {
             //friendshipInviteDenied
-            deleteFriendship(inviterId: inviterUserId, receiverId: receiverUserId)
+            deleteFriendship(inviterId: inviterUserId, receiverId: receiverUserId, completion: {
+
+            })
         }
     }
     
-    static func deleteFriendship(inviterId: String, receiverId: String) {
+    static func deleteFriendship(inviterId: String, receiverId: String, completion: @escaping () -> Void) {
         let publicDB = container.publicCloudDatabase
         let recordID = CKRecord.ID(recordName:"\(inviterId)\(receiverId)")
         
@@ -390,10 +392,14 @@ public class CKRepository {
             else {
                 if error == nil {
                     if let u = CKRepository.user {
-                        for i in 0...u.friends.count-1 {
-                            if u.friends[i].id == inviterId || u.friends[i].id == receiverId {
-                                CKRepository.user?.friends.remove(at: i)
-                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: FriendsTable.tableChanged.description), object: nil)
+                        if u.friends.count > 0 {
+                            for i in 0...u.friends.count-1 {
+                                if u.friends[i].id == inviterId || u.friends[i].id == receiverId {
+                                    CKRepository.user?.friends.remove(at: i)
+                                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: FriendsTable.tableChanged.description), object: nil)
+                                    completion()
+                                    break
+                                }
                             }
                         }
                     }
@@ -404,6 +410,7 @@ public class CKRepository {
     
     static func getFriendsById(id: String, completion: @escaping ([Social]) -> Void) {
         var friends: [Social] = [Social]()
+        let semaphore = DispatchSemaphore(value: 1)
         
         let publicDB = container.publicCloudDatabase
         let inviterPredicate = NSPredicate(format: "\(FriendsTable.inviterId.description) == '\(id)'")
@@ -414,34 +421,72 @@ public class CKRepository {
                 CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
             }
             if let resultsNotNull = results {
-                for result in resultsNotNull {
-                    if let receiverFriendId = result.value(forKey: FriendsTable.receiverId.description) as? String {
-                        getUserById(id: receiverFriendId) { user in
-                            let isInvite = IsInvite.getIsInvite(string: result.value(forKey: FriendsTable.isInvite.description) as? String ?? "")
-                            friends.append(Social(id: user.id, name: user.name, nickname: user.nickname, photoURL: user.photoURL, games: user.selectedGames, isInvite: isInvite, isInviter: true))
-                            if friends.count == resultsNotNull.count {
-                                let receiverPredicate = NSPredicate(format: "\(FriendsTable.receiverId.description) == '\(id)'")
-                                let receiverQuery = CKQuery(recordType: FriendsTable.recordType.description, predicate: receiverPredicate)
-                                publicDB.perform(receiverQuery, inZoneWith: nil) { receiverResults, receiverError in
-                                    if let ckError = receiverError as? CKError {
-                                        CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
-                                    }
-                                    if let receiverResultsNotNull = receiverResults {
-                                        for receiverResult in receiverResultsNotNull {
-                                            if let inviterFriendId = receiverResult.value(forKey: FriendsTable.inviterId.description) as? String {
-                                                getUserById(id: inviterFriendId) { user in
-                                                    let receiverIsInvite = IsInvite.getIsInvite(string: receiverResult.value(forKey: FriendsTable.isInvite.description) as? String ?? "")
-                                                    friends.append(Social(id: user.id, name: user.name, nickname: user.nickname, photoURL: user.photoURL, games: user.selectedGames, isInvite: receiverIsInvite, isInviter: false))
-                                                    if friends.count == (resultsNotNull.count + receiverResultsNotNull.count) {
-                                                        CKRepository.user?.friends = friends
-                                                        completion(friends)
+                if resultsNotNull.count > 0 {
+                    for result in resultsNotNull {
+                        if let receiverFriendId = result.value(forKey: FriendsTable.receiverId.description) as? String {
+                            getUserById(id: receiverFriendId) { user in
+                                let isInvite = IsInvite.getIsInvite(string: result.value(forKey: FriendsTable.isInvite.description) as? String ?? "")
+                                semaphore.wait()
+                                friends.append(Social(id: user.id, name: user.name, nickname: user.nickname, photoURL: user.photoURL, games: user.selectedGames, isInvite: isInvite, isInviter: true))
+                                semaphore.signal()
+                                if friends.count == resultsNotNull.count {
+                                    let receiverPredicate = NSPredicate(format: "\(FriendsTable.receiverId.description) == '\(id)'")
+                                    let receiverQuery = CKQuery(recordType: FriendsTable.recordType.description, predicate: receiverPredicate)
+                                    publicDB.perform(receiverQuery, inZoneWith: nil) { receiverResults, receiverError in
+                                        if let ckError = receiverError as? CKError {
+                                            CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                                        }
+                                        if let receiverResultsNotNull = receiverResults {
+                                            if receiverResultsNotNull.count > 0 {
+                                                for receiverResult in receiverResultsNotNull {
+                                                    if let inviterFriendId = receiverResult.value(forKey: FriendsTable.inviterId.description) as? String {
+                                                        getUserById(id: inviterFriendId) { user in
+                                                            let receiverIsInvite = IsInvite.getIsInvite(string: receiverResult.value(forKey: FriendsTable.isInvite.description) as? String ?? "")
+                                                            semaphore.wait()
+                                                            friends.append(Social(id: user.id, name: user.name, nickname: user.nickname, photoURL: user.photoURL, games: user.selectedGames, isInvite: receiverIsInvite, isInviter: false))
+                                                            semaphore.signal()
+                                                            if friends.count == (resultsNotNull.count + receiverResultsNotNull.count) {
+                                                                
+                                                                CKRepository.user?.friends = friends
+                                                                completion(friends)
+                                                            }
+                                                        }
                                                     }
                                                 }
+                                            }
+                                            completion(friends)
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    let receiverPredicate = NSPredicate(format: "\(FriendsTable.receiverId.description) == '\(id)'")
+                    let receiverQuery = CKQuery(recordType: FriendsTable.recordType.description, predicate: receiverPredicate)
+                    publicDB.perform(receiverQuery, inZoneWith: nil) { receiverResults, receiverError in
+                        if let ckError = receiverError as? CKError {
+                            CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                        }
+                        if let receiverResultsNotNull = receiverResults {
+                            if receiverResultsNotNull.count > 0 {
+                                for receiverResult in receiverResultsNotNull {
+                                    if let inviterFriendId = receiverResult.value(forKey: FriendsTable.inviterId.description) as? String {
+                                        getUserById(id: inviterFriendId) { user in
+                                            let receiverIsInvite = IsInvite.getIsInvite(string: receiverResult.value(forKey: FriendsTable.isInvite.description) as? String ?? "")
+                                            semaphore.wait()
+                                            friends.append(Social(id: user.id, name: user.name, nickname: user.nickname, photoURL: user.photoURL, games: user.selectedGames, isInvite: receiverIsInvite, isInviter: false))
+                                            semaphore.signal()
+                                            if friends.count == (resultsNotNull.count + receiverResultsNotNull.count) {
+                                                
+                                                CKRepository.user?.friends = friends
+                                                completion(friends)
                                             }
                                         }
                                     }
                                 }
                             }
+                            completion(friends)
                         }
                     }
                 }
@@ -557,18 +602,21 @@ public class CKRepository {
                                         filterPerGames(filterBy: games, userGames: user.games ?? [])
                                     }
                                     
-                                    if let u = CKRepository.user {
-                                        blockedUsersId.append(u.id)
-                                    }
-                                    //if the user has blocked users
-                                    if blockedUsersId.count > 0 {
-                                        //remove them from the search
-                                        usersFound = usersFound.filter({ user in
-                                            !blockedUsersId.contains(user.id)
-                                        })
-                                    }
+                                    getUserId(completion: { userId in
+                                        if let userIdNotNull = userId {
+                                            blockedUsersId.append(userIdNotNull)
+                                        }
+                                
+                                        //if the user has blocked users
+                                        if blockedUsersId.count > 0 {
+                                            //remove them from the search
+                                            usersFound = usersFound.filter({ user in
+                                                !blockedUsersId.contains(user.id)
+                                            })
+                                        }
+                                        completion(usersFound)
+                                    })
                                     
-                                    completion(usersFound)
                                 }
                             }
                         }
@@ -737,7 +785,7 @@ public class CKRepository {
         DispatchQueue.main.async {
             let keyWindow = UIApplication.shared.windows.first(where: \.isKeyWindow)
             var topController = keyWindow?.rootViewController
-                        
+            
             // get topmost view controller to present alert
             while let presentedViewController = topController?.presentedViewController {
                 topController = presentedViewController
@@ -748,11 +796,11 @@ public class CKRepository {
             guard !isAlertOn else { return }
             
             switch CKErrorCode {
-                case .notAuthenticated:
-                    //user is not logged in iCloud
-                    topController?.present(prepareAlert(title: notLoggedInTitle, message: notLoggedInMessage), animated: true)
-                default:
-                    topController?.present(prepareAlert(title: defaultTitle, message: defaultMessage), animated: true)
+            case .notAuthenticated:
+                //user is not logged in iCloud
+                topController?.present(prepareAlert(title: notLoggedInTitle, message: notLoggedInMessage), animated: true)
+            default:
+                topController?.present(prepareAlert(title: defaultTitle, message: defaultMessage), animated: true)
             }
         }
     }
@@ -764,7 +812,7 @@ public class CKRepository {
         
         let ok = UIAlertAction(title: alertButtonLabel, style: .default, handler: { (action) -> Void in
             //make things when alert button is clicked
-          })
+        })
         
         dialogMessage.addAction(ok)
         
@@ -777,7 +825,7 @@ public class CKRepository {
             if let userId = id {
                 
                 let recordID = CKRecord.ID(recordName: "skillRatings\(userId)\(friendId)")
-    
+                
                 //check if the rating already exists
                 publicDB.fetch(withRecordID: recordID) { result, error in
                     if let ckError = error as? CKError {
@@ -859,7 +907,7 @@ public class CKRepository {
             if let userId = id {
                 
                 let recordID = CKRecord.ID(recordName: "behaviourRatings\(userId)\(friendId)")
-    
+                
                 //check if the rating already exists
                 publicDB.fetch(withRecordID: recordID) { result, error in
                     if let ckError = error as? CKError {
