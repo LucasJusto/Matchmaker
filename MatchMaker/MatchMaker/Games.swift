@@ -89,7 +89,11 @@ protocol Servers {
 }
 
 // MARK: - Game: Struct
-struct Game {
+struct Game: Equatable {
+    static func == (lhs: Game, rhs: Game) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
     let id: String
     let name: String
     let description: String

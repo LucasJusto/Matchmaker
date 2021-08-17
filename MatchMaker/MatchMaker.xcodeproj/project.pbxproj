@@ -45,6 +45,8 @@
 		489555F426A9F493005F88A2 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 489555F326A9F493005F88A2 /* CloudKit.framework */; };
 		89015F8426BC6F43009C70B1 /* UITextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89015F8326BC6F43009C70B1 /* UITextView+Extensions.swift */; };
 		8906588826B8749D00E1B5D4 /* TextViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8906588726B8749D00E1B5D4 /* TextViewTableViewCell.swift */; };
+		8920440826C59B4600C541F9 /* Filters.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8920440726C59B4600C541F9 /* Filters.storyboard */; };
+		8920440A26C59B5F00C541F9 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8920440926C59B5F00C541F9 /* FiltersViewController.swift */; };
 		892A642C26B1D90D00B375CC /* SelectableTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892A642B26B1D90D00B375CC /* SelectableTagCollectionViewCell.swift */; };
 		892FE5BF26A9E345004B4F7F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 892FE5C126A9E345004B4F7F /* Localizable.strings */; };
 		892FE5DD26AA010A004B4F7F /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 892FE5DC26AA010A004B4F7F /* Onboarding.storyboard */; };
@@ -65,6 +67,7 @@
 		89AC95BB26B09E3300EC92F6 /* TextViewField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AC95BA26B09E3300EC92F6 /* TextViewField.swift */; };
 		89AC95BD26B0A79F00EC92F6 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AC95BC26B0A79F00EC92F6 /* String+Extensions.swift */; };
 		89BF1B3D26C091450088CC5D /* GameDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BF1B3C26C091450088CC5D /* GameDetailsViewController.swift */; };
+		89CB8A7D26C6DF6F00C19002 /* RateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CB8A7C26C6DF6F00C19002 /* RateTableViewCell.swift */; };
 		89CC467726B9DF69001B7C13 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CC467626B9DF69001B7C13 /* ButtonView.swift */; };
 		B44F62EA26C30EF100AD3E8A /* GameDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B44F62E826C30EF100AD3E8A /* GameDetail.storyboard */; };
 		B44F62EB26C30EF100AD3E8A /* GameDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44F62E926C30EF100AD3E8A /* GameDetailViewController.swift */; };
@@ -128,6 +131,8 @@
 		489555F326A9F493005F88A2 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		89015F8326BC6F43009C70B1 /* UITextView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extensions.swift"; sourceTree = "<group>"; };
 		8906588726B8749D00E1B5D4 /* TextViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewTableViewCell.swift; sourceTree = "<group>"; };
+		8920440726C59B4600C541F9 /* Filters.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Filters.storyboard; sourceTree = "<group>"; };
+		8920440926C59B5F00C541F9 /* FiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
 		892A642B26B1D90D00B375CC /* SelectableTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		892FE5C026A9E345004B4F7F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		892FE5DC26AA010A004B4F7F /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
@@ -149,6 +154,7 @@
 		89AC95BA26B09E3300EC92F6 /* TextViewField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewField.swift; sourceTree = "<group>"; };
 		89AC95BC26B0A79F00EC92F6 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		89BF1B3C26C091450088CC5D /* GameDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailsViewController.swift; sourceTree = "<group>"; };
+		89CB8A7C26C6DF6F00C19002 /* RateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateTableViewCell.swift; sourceTree = "<group>"; };
 		89CC467626B9DF69001B7C13 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		B44F62E826C30EF100AD3E8A /* GameDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GameDetail.storyboard; sourceTree = "<group>"; };
 		B44F62E926C30EF100AD3E8A /* GameDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDetailViewController.swift; sourceTree = "<group>"; };
@@ -307,9 +313,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8920440626C59B3300C541F9 /* Filters */ = {
+			isa = PBXGroup;
+			children = (
+				89CB8A7B26C6DF5100C19002 /* Cells */,
+				8920440726C59B4600C541F9 /* Filters.storyboard */,
+				8920440926C59B5F00C541F9 /* FiltersViewController.swift */,
+			);
+			path = Filters;
+			sourceTree = "<group>";
+		};
 		892FE5CD26A9EC8E004B4F7F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8920440626C59B3300C541F9 /* Filters */,
 				DF8ADA2926CADAD0004DD292 /* Panel */,
 				1B4E87BF26AF62A600A51AF1 /* Xibs */,
 				1B4E87BC26AF434100A51AF1 /* Profile */,
@@ -336,15 +353,8 @@
 		895A605926AF439000BE18C9 /* Register */ = {
 			isa = PBXGroup;
 			children = (
+				89CB8A7A26C6DEFB00C19002 /* Cells */,
 				895A605A26AF43B300BE18C9 /* OnboardingRegisterViewController.swift */,
-				895A605C26AF556400BE18C9 /* ProfileImageTableViewCell.swift */,
-				89AC95B326B076BF00EC92F6 /* TextFieldTableViewCell.swift */,
-				89AC95B526B09B9C00EC92F6 /* SelectorTableViewCell.swift */,
-				892A642B26B1D90D00B375CC /* SelectableTagCollectionViewCell.swift */,
-				89971AEA26B325FB00A421C1 /* GamesSelectionTableViewCell.swift */,
-				89971AEC26B3279C00A421C1 /* SelectableImageCollectionViewCell.swift */,
-				8906588726B8749D00E1B5D4 /* TextViewTableViewCell.swift */,
-				8998785326BAFF1C0042DF4C /* PickerTableViewCell.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -397,6 +407,29 @@
 				89BF1B3C26C091450088CC5D /* GameDetailsViewController.swift */,
 			);
 			path = GameDetails;
+			sourceTree = "<group>";
+		};
+		89CB8A7A26C6DEFB00C19002 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				895A605C26AF556400BE18C9 /* ProfileImageTableViewCell.swift */,
+				89AC95B326B076BF00EC92F6 /* TextFieldTableViewCell.swift */,
+				89AC95B526B09B9C00EC92F6 /* SelectorTableViewCell.swift */,
+				892A642B26B1D90D00B375CC /* SelectableTagCollectionViewCell.swift */,
+				89971AEA26B325FB00A421C1 /* GamesSelectionTableViewCell.swift */,
+				89971AEC26B3279C00A421C1 /* SelectableImageCollectionViewCell.swift */,
+				8906588726B8749D00E1B5D4 /* TextViewTableViewCell.swift */,
+				8998785326BAFF1C0042DF4C /* PickerTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		89CB8A7B26C6DF5100C19002 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				89CB8A7C26C6DF6F00C19002 /* RateTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		B44F62E726C30EF100AD3E8A /* GameDetail */ = {
@@ -525,6 +558,7 @@
 				1B767CC826B1D0E200EA4588 /* TitleCollectionView.xib in Resources */,
 				1B4E87C126AF62D800A51AF1 /* ProfileRatingView.xib in Resources */,
 				489555EA26A76AC3005F88A2 /* LaunchScreen.storyboard in Resources */,
+				8920440826C59B4600C541F9 /* Filters.storyboard in Resources */,
 				B4E00DDA26C6F32900868A65 /* Discover.storyboard in Resources */,
 				1B767CC126B110A900EA4588 /* SmallLabeledImageCollectionCell.xib in Resources */,
 				1B767CBD26B10EA500EA4588 /* SmallLabeledImageCollectionView.xib in Resources */,
@@ -596,12 +630,14 @@
 				1B767CCE26B1D80100EA4588 /* TitleCell.swift in Sources */,
 				89A9130426AA6F0500D3B1D2 /* OnboardingCollectionViewCell.swift in Sources */,
 				1B767CCA26B1D10500EA4588 /* TitleCollectionView.swift in Sources */,
+				89CB8A7D26C6DF6F00C19002 /* RateTableViewCell.swift in Sources */,
 				1BD7D25126C442E5007BF2C5 /* EditingProfileViewController.swift in Sources */,
 				489555E026A76AC1005F88A2 /* SceneDelegate.swift in Sources */,
 				B4E00DD926C6F32900868A65 /* DiscoverShowMoreCollectionViewCell.swift in Sources */,
 				1B767CB526B0864900EA4588 /* RoundedRectangleViewCell.swift in Sources */,
 				89971AEB26B325FB00A421C1 /* GamesSelectionTableViewCell.swift in Sources */,
 				1B4E87C526AF696900A51AF1 /* NibLoadable.swift in Sources */,
+				8920440A26C59B5F00C541F9 /* FiltersViewController.swift in Sources */,
 				89A912FF26AA677700D3B1D2 /* OnboardingViewController.swift in Sources */,
 				DF8ADA3226CADAD0004DD292 /* HomeMidTableViewCell.swift in Sources */,
 			);
