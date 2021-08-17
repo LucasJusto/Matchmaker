@@ -13,6 +13,7 @@ class ProfileViewController: UIViewController {
     
     //MARK: ProfileViewController - Variables and Outlets Setup
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var backgroundCoverImage: UIImageView!
     
     @IBOutlet weak var userAvatarView: UserAvatarView!
@@ -42,6 +43,8 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        scrollView.contentInsetAdjustmentBehavior = .never
         
         userAvatarView.delegate = self
             

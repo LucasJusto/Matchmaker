@@ -32,7 +32,7 @@
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nIp-O6-TS7">
-                                                <rect key="frame" x="374" y="16" width="26" height="26"/>
+                                                <rect key="frame" x="374" y="40" width="26" height="26"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="26" id="4bO-J6-Tqm"/>
                                                     <constraint firstAttribute="height" constant="26" id="7lk-Yr-BRy"/>
@@ -169,7 +169,7 @@
                                             <constraint firstItem="0NT-h4-Gv2" firstAttribute="top" secondItem="3Y3-gy-gw2" secondAttribute="bottom" constant="5" id="JVY-dM-de0"/>
                                             <constraint firstAttribute="trailing" secondItem="E8i-Ta-eaW" secondAttribute="trailing" id="KDi-Hk-nIm"/>
                                             <constraint firstItem="wwI-PQ-nfS" firstAttribute="centerX" secondItem="zxB-LB-83o" secondAttribute="centerX" id="KpX-YA-T4c"/>
-                                            <constraint firstItem="nIp-O6-TS7" firstAttribute="top" secondItem="zxB-LB-83o" secondAttribute="top" constant="16" id="NZL-1q-1Ab"/>
+                                            <constraint firstItem="nIp-O6-TS7" firstAttribute="top" secondItem="zxB-LB-83o" secondAttribute="top" constant="40" id="NZL-1q-1Ab"/>
                                             <constraint firstItem="jpy-L5-jRJ" firstAttribute="top" secondItem="Nlr-sj-B2L" secondAttribute="bottom" constant="16" id="PQs-p3-CoX"/>
                                             <constraint firstItem="Nlr-sj-B2L" firstAttribute="leading" secondItem="zxB-LB-83o" secondAttribute="leading" constant="20" id="Plo-FA-dW7"/>
                                             <constraint firstItem="wwI-PQ-nfS" firstAttribute="leading" secondItem="zxB-LB-83o" secondAttribute="leading" id="SUI-Yl-ylD"/>
@@ -208,7 +208,7 @@
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="lQM-yi-rgY" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="H6x-PG-eu4"/>
                             <constraint firstItem="lQM-yi-rgY" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Wrv-Fg-KzL"/>
@@ -229,6 +229,7 @@
                         <outlet property="platformsTitleLabel" destination="thb-ZM-4ut" id="gDw-cv-viQ"/>
                         <outlet property="platformsView" destination="E8i-Ta-eaW" id="adR-c5-YmU"/>
                         <outlet property="ratingsTitleLabel" destination="Iri-UU-lvc" id="OlZ-Zb-8pZ"/>
+                        <outlet property="scrollView" destination="lQM-yi-rgY" id="Wok-CG-3u0"/>
                         <outlet property="skillsRatingView" destination="u4L-27-qBv" id="TuN-Rh-PIY"/>
                         <outlet property="userAvatarView" destination="wyL-4I-PoK" id="fA0-FO-bP7"/>
                         <outlet property="userProfileBioLabel" destination="U58-xx-tEV" id="qjg-Qo-xjc"/>
@@ -839,7 +840,7 @@
             <objects>
                 <viewController id="u8y-OU-kGZ" customClass="GameDetailsViewController" customModule="MatchMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FwW-NT-qlW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4BZ-Z2-OWi">
@@ -1136,7 +1137,7 @@
             <color red="0.24313725490196078" green="0.24313725490196078" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Primary">
-            <color red="0.3880000114440918" green="0.090000003576278687" blue="0.88599997758865356" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.38823529411764707" green="0.090196078431372548" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
