@@ -105,6 +105,9 @@
                                                                     </constraints>
                                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <state key="normal" image="person.circle" catalog="system"/>
+                                                                    <connections>
+                                                                        <action selector="actionProfileButton:" destination="ZzG-1O-w5n" eventType="touchUpInside" id="i8v-gl-cTN"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                             <constraints>
@@ -262,7 +265,7 @@
                                             <outlet property="collectionView" destination="Zja-IG-i2R" id="IjC-lr-5Hn"/>
                                             <outlet property="nameLabel" destination="od5-bB-aed" id="nBb-Sq-hO6"/>
                                             <outlet property="nickLabel" destination="MjN-ub-148" id="JN8-gf-Osh"/>
-                                            <outlet property="profileButton" destination="lm6-bp-ybe" id="1Tx-Kw-gZT"/>
+                                            <outlet property="profileButton" destination="lm6-bp-ybe" id="Dug-HU-XLP"/>
                                             <outlet property="profileImage" destination="v7L-Hr-GrY" id="9MB-9d-3Ue"/>
                                         </connections>
                                     </tableViewCell>
@@ -538,10 +541,10 @@
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="114.50892857142857"/>
         </scene>
-        <!--Storyboard Reference-->
+        <!--OtherProfile-->
         <scene sceneID="mNF-x9-u3C">
             <objects>
-                <viewControllerPlaceholder id="FuE-q8-cYS" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="OtherProfile" id="FuE-q8-cYS" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="ZtE-L0-WR8"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="17k-i6-v9O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

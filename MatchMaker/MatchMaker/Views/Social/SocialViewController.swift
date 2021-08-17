@@ -199,7 +199,8 @@ extension SocialViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendProfileCell", for: indexPath) as? SocialTableViewFriendCell else { return UITableViewCell() }
-        cell.setup(url: friend.photoURL, nameText: friend.name, nickText: friend.nickname, userGames: friend.games!)
+        cell.setup(userId: friend.id, url: friend.photoURL, nameText: friend.name, nickText: friend.nickname, userGames: friend.games!)
+        cell.delegate = self
         return cell
     }
     

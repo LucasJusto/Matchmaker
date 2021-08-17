@@ -24,6 +24,10 @@ class SocialTableViewFriendCell: UITableViewCell {
     @IBOutlet weak var profileButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBAction func actionProfileButton(_ sender: UIButton) {
+        delegate?.didPressShowProfile(self)
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -39,7 +43,7 @@ class SocialTableViewFriendCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setup(url: URL?, nameText: String, nickText: String, userGames: [Game]) {
+    func setup(userId: String, url: URL?, nameText: String, nickText: String, userGames: [Game]) {
         
         // Trying to unwrap, get image data and set it in the UI
         if let url = url {
@@ -51,7 +55,7 @@ class SocialTableViewFriendCell: UITableViewCell {
                 }
             }
         }
-        
+        self.userId = userId
         self.userGames = userGames
         nameLabel.text = nameText
         nickLabel.text = nickText
