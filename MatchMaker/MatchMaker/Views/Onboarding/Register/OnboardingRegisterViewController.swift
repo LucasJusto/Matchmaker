@@ -477,7 +477,7 @@ extension OnboardingRegisterViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
 
-        return 10
+        return (collectionView.bounds.width) - (collectionView.bounds.width * 0.31)
     }
 }
 
