@@ -390,16 +390,6 @@
             </objects>
             <point key="canvasLocation" x="1752" y="19"/>
         </scene>
-        <!--Discover-->
-        <scene sceneID="AFI-e0-FdO">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Discover" id="k1z-9k-sF6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="90J-QF-Q5M"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RgO-TO-5Cw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-192" y="613"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Ds6-mb-moj">
             <objects>
@@ -415,23 +405,44 @@
                     </tabBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="Yyf-0f-uN7"/>
-                        <segue destination="XPq-Rk-Bxb" kind="relationship" relationship="viewControllers" id="jRc-Pf-cfP"/>
-                        <segue destination="k1z-9k-sF6" kind="relationship" relationship="viewControllers" id="nBN-ea-jcP"/>
+                        <segue destination="Izw-ip-Di5" kind="relationship" relationship="viewControllers" id="41c-8Q-RRC"/>
+                        <segue destination="nxl-Be-OHf" kind="relationship" relationship="viewControllers" id="yw3-1L-DVb"/>
+                        <segue destination="Cwl-XG-iw0" kind="relationship" relationship="viewControllers" id="iW2-Dd-17d"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tOV-4W-hie" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-14" y="137"/>
         </scene>
-        <!--ProfileTab-->
-        <scene sceneID="NG0-8o-7gx">
+        <!--Social-->
+        <scene sceneID="22W-9V-VfD">
             <objects>
-                <viewControllerPlaceholder storyboardName="ProfileTab" id="XPq-Rk-Bxb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="H7b-kg-mBn"/>
+                <viewControllerPlaceholder storyboardName="Social" id="Izw-ip-Di5" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="2cq-6T-HRM"/>
                 </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RLg-Uf-iyo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ycX-RV-LkH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="178" y="613"/>
+            <point key="canvasLocation" x="-342" y="563"/>
+        </scene>
+        <!--Discover-->
+        <scene sceneID="k6r-q8-50J">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Discover" id="nxl-Be-OHf" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="sZV-tb-845"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6BV-gU-Y6X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-15" y="563"/>
+        </scene>
+        <!--ProfileTab-->
+        <scene sceneID="ZKn-QW-ze6">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ProfileTab" id="Cwl-XG-iw0" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="oFW-Qy-pIP"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3kg-No-dcq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="310" y="563"/>
         </scene>
     </scenes>
     <resources>
