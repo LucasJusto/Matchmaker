@@ -1,12 +1,8 @@
-/* 
-  Localizable.strings
-  MatchMaker
-
-  Created by Thaís Fernandes on 22/07/21.
-  
-*/
-
-"titleLabel" = "Hello World";
+//MARK: - Tab Bar
+"tabBarPanel" = "Panel";
+"tabBarProfile" = "Profile";
+"tabBarSocial" = "Social";
+"tabBarDiscover" = "Discover";
 
 //MARK: - CKErrorAlert
 "CKErrorNotLoggedInTitle" = "Not logged in iCloud";
