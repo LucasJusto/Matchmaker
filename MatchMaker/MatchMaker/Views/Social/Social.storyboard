@@ -528,7 +528,7 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Social" image="person.3.fill" catalog="system" id="Zp8-BC-jEf"/>
-                    <navigationItem key="navigationItem" title="Social" id="yGJ-eI-cbc"/>
+                    <navigationItem key="navigationItem" title="Social" largeTitleDisplayMode="always" id="yGJ-eI-cbc"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
