@@ -7,24 +7,30 @@
 
 import UIKit
 
+//MARK: - OtherProfileViewController Class
+
 class OtherProfileViewController: UIViewController {
     
-    enum isFriend: CustomStringConvertible {
-        case friend, request, nonFriend, requestReceived
+    //MARK: FriendshipStatus Enum
+    
+    enum FriendshipStatus: CustomStringConvertible {
+        case friendsAlready, requestedFriendship, nonFriend, pendingRequest
         
         var description: String {
             switch self {
-            case .friend:
+            case .friendsAlready:
                 return NSLocalizedString("RemoveFriendButtonLabel", comment: "")
-            case .request:
+            case .requestedFriendship:
                 return NSLocalizedString("CancelRequestButtonLabel", comment: "")
             case .nonFriend:
                 return NSLocalizedString("RequestFriendButtonLabel", comment: "")
-            case .requestReceived:
+            case .pendingRequest:
                 return ""
             }
         }
     }
+    
+    //MARK: OtherProfileViewController Outlets setup
 
     @IBOutlet weak var titleViewLabel: UINavigationItem!
     
@@ -53,26 +59,42 @@ class OtherProfileViewController: UIViewController {
     @IBOutlet weak var skillRateLabel: UILabel!
     @IBOutlet weak var amaountOfReviewsSKillLaber: UILabel!
     
-    @IBOutlet weak var aceptOrRejectStack: UIStackView!
+    @IBOutlet weak var acceptOrRejectStack: UIStackView!
+    @IBOutlet weak var acceptButton: UIButton!
     @IBOutlet weak var rejectButton: UIButton!
+    @IBOutlet weak var requestFriendButton: UIButton!
+    
+    //MARK: OtherProfileViewController Outlet functions
+    
     @IBAction func rejectButtonAction(_ sender: Any) {
-        rejeitaAmigo()
-    }
-    @IBOutlet weak var aceptButton: UIButton!
-    @IBAction func aceptButtonAction(_ sender: Any) {
-        aceitaAmigo()
+        denyFriendshipRequest()
     }
     
-    @IBOutlet weak var requestFriendButton: UIButton!
+    @IBAction func acceptButtonAction(_ sender: Any) {
+        acceptFriendshipRequest()
+    }
+    
     @IBAction func requestFriendButton(_ sender: Any) {
-        if friendRequestOrNonFriendControl == isFriend.friend {
-            removeFriend()
-
-        } else if friendRequestOrNonFriendControl == isFriend.request {
+        guard let social = social else { return }
+        
+        if ((social.isInviter == nil) && (social.isInvite == nil)) {
+            sendFriendshipRequest()
+        } else if (!(social.isInviter ?? false) && (social.isInvite == .yes)) {
             cancelFriendRequest()
+        } else if social.isInvite == IsInvite.no {
+            if social.isInviter == true {
+                CKRepository.getUserId { userID in
+                    guard let userID = userID else { return }
+                    self.removeFriend(inviterId: social.id, receiverId: userID)
+                }
+            }
+            else {
+                CKRepository.getUserId { userID in
+                    guard let userID = userID else { return }
+                    self.removeFriend(inviterId: userID, receiverId: social.id)
+                }
+            }
             
-        } else if friendRequestOrNonFriendControl == isFriend.nonFriend {
-            addFriend()
         }
     }
     
@@ -84,15 +106,21 @@ class OtherProfileViewController: UIViewController {
         //MARK: - open rate screen to rate
     }
     
+    //MARK: OtherProfileViewController Variables setup
+    
     var user: User?
-    
-    //MARK: - Status of friend
-    var friendRequestOrNonFriendControl: isFriend? = isFriend.requestReceived
-    
+    var social: Social?
+    var friendshipStatus: FriendshipStatus?
     var marinaGames: [Game] = Games.buildGameArray()
+    
+    //MARK: OtherProfileViewController Class setup
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let mockedSocial = Social(id: "id_ee3aeda325ddb726141b73fc1d1d908a", name: "Marina", nickname: "CUI CUI", photoURL: nil, games: [], isInvite: .no, isInviter: nil)
+        
+        social = mockedSocial
         
         setupUserProfile()
         
@@ -106,33 +134,37 @@ class OtherProfileViewController: UIViewController {
         
         requestFriendButton.layer.cornerRadius = 10
         rejectButton.layer.cornerRadius = 10
-        aceptButton.layer.cornerRadius = 10
+        acceptButton.layer.cornerRadius = 10
+                
+        guard let social = social else { return }
         
-        if friendRequestOrNonFriendControl == isFriend.friend {
-            aceptOrRejectStack.isHidden = true
-            requestFriendButton.isHidden = false
-            requestFriendButton.layer.backgroundColor = UIColor(named: "LightGray")?.cgColor
-            requestFriendButton.setTitle(isFriend.friend.description, for: .normal)
-
-        } else if friendRequestOrNonFriendControl == isFriend.request {
-            aceptOrRejectStack.isHidden = true
-            requestFriendButton.isHidden = false
-            requestFriendButton.layer.backgroundColor = UIColor(named: "LightGray")?.cgColor
-            requestFriendButton.setTitle(isFriend.request.description, for: .normal)
-            
-        } else if friendRequestOrNonFriendControl == isFriend.nonFriend {
-            aceptOrRejectStack.isHidden = true
+        if ((social.isInviter == nil) && (social.isInvite == nil)) {
+            acceptOrRejectStack.isHidden = true
             requestFriendButton.isHidden = false
             requestFriendButton.layer.backgroundColor = UIColor(named: "Primary")?.cgColor
-            requestFriendButton.setTitle(isFriend.nonFriend.description, for: .normal)
+            requestFriendButton.setTitle(FriendshipStatus.nonFriend.description, for: .normal)
             
-        } else if friendRequestOrNonFriendControl == isFriend.requestReceived {
-            aceptOrRejectStack.isHidden = false
+        } else if social.isInvite == IsInvite.no {
+            acceptOrRejectStack.isHidden = true
+            requestFriendButton.isHidden = false
+            requestFriendButton.layer.backgroundColor = UIColor(named: "LightGray")?.cgColor
+            requestFriendButton.setTitle(FriendshipStatus.friendsAlready.description, for: .normal)
+
+        } else if (!(social.isInviter ?? true) && (social.isInvite == .yes))  {
+            acceptOrRejectStack.isHidden = true
+            requestFriendButton.isHidden = false
+            requestFriendButton.layer.backgroundColor = UIColor(named: "LightGray")?.cgColor
+            requestFriendButton.setTitle(FriendshipStatus.requestedFriendship.description, for: .normal)
+            
+        } else if ((social.isInviter ?? false) && (social.isInvite == .yes)) {
+            acceptOrRejectStack.isHidden = false
             requestFriendButton.isHidden = true
-            aceptButton.setTitle(NSLocalizedString("AcceptRequestButton", comment: ""), for: .normal)
+            acceptButton.setTitle(NSLocalizedString("AceptRequestButton", comment: ""), for: .normal)
             rejectButton.setTitle(NSLocalizedString("RejectRequestButton", comment: ""), for: .normal)
         }
     }
+    
+    //MARK: OtherProfileViewController Class functions
     
     func setCornerContainerRate() {
         behavioursRateContainer.layer.cornerRadius = 10
@@ -151,7 +183,7 @@ class OtherProfileViewController: UIViewController {
         
         //MARK: - Implement user informations here (The data that are already here are mocked
         
-        //user = User(id: "teste", name: "Marina de Pazzi", nickname: "Prolene", photoURL: nil, location: Locations.brazil, description: "fala fellas, voce que curte um cszinho, bora fazer um projetinho na mansao arromba", behaviourRate: 5.0, skillRate: 5.0, languages: [Languages.english, Languages.portuguese, Languages.russian, Languages.german], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: [marinaGames[1], marinaGames[2]])
+        user = User(id: "teste", name: "Marina de Pazzi", nickname: "Prolene", photoURL: nil, location: Locations.brazil, description: "fala fellas, voce que curte um cszinho, bora fazer um projetinho na mansao arromba", behaviourRate: 5.0, skillRate: 5.0, languages: [Languages.english, Languages.portuguese, Languages.russian, Languages.german], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: [marinaGames[1], marinaGames[2]])
         
         guard let unwrappedUser = user else { return }
         
@@ -177,24 +209,49 @@ class OtherProfileViewController: UIViewController {
 extension OtherProfileViewController {
     //funções dos botões
     
-    func aceitaAmigo() {
-        friendRequestOrNonFriendControl = isFriend.friend
-        aceptOrRejectStack.isHidden = true
+    /**
+     This function is responsible for accepting a friend request to another user.
+     
+     - Parameters: Void
+     - Returns: Void
+     */
+    //TA FUNCIONANDO ESSE AQUI
+    func acceptFriendshipRequest() {
+        friendshipStatus = FriendshipStatus.friendsAlready
+        acceptOrRejectStack.isHidden = true
         requestFriendButton.isHidden = false
         
         requestFriendButton.layer.backgroundColor = UIColor(named: "LightGray")?.cgColor
-        aceptButton.setTitle(NSLocalizedString("AcceptRequestButton", comment: ""), for: .normal)
-        rejectButton.setTitle(NSLocalizedString("RejectRequestButton", comment: ""), for: .normal)
+        requestFriendButton.setTitle(FriendshipStatus.friendsAlready.description, for: .normal)
         //MARK: - Do BackEnd to acept friend
+        
+        guard let user = user else { return }
+        CKRepository.getUserId { id in
+            guard let id = id else { return }
+            CKRepository.friendshipInviteAnswer(inviterUserId: id, receiverUserId: user.id, response: true)
+        }
     }
-
-    func rejeitaAmigo() {
-        friendRequestOrNonFriendControl = isFriend.nonFriend
+    
+    /**
+     This function is responsible for rejecting a friend request to another user.
+     
+     - Parameters: Void
+     - Returns: Void
+     */
+    //TA FUNCIONANDO ESSE AQUI
+    func denyFriendshipRequest() {
+        friendshipStatus = FriendshipStatus.nonFriend
         requestFriendButton.layer.backgroundColor = UIColor(named: "Primary")?.cgColor
-        requestFriendButton.setTitle(isFriend.nonFriend.description, for: .normal)
-        aceptOrRejectStack.isHidden = true
+        requestFriendButton.setTitle(FriendshipStatus.nonFriend.description, for: .normal)
+        acceptOrRejectStack.isHidden = true
         requestFriendButton.isHidden = false
         //MARK: - Do BackEnd to reject friend
+        
+        guard let user = user else { return }
+        CKRepository.getUserId { id in
+            guard let id = id else { return }
+            CKRepository.friendshipInviteAnswer(inviterUserId: id, receiverUserId: user.id, response: false)
+        }
     }
     
     /**
@@ -204,17 +261,18 @@ extension OtherProfileViewController {
      - Returns: Void
      */
     //TA FUNCIONANDO ESSE AQUI
-    func addFriend() {
-        friendRequestOrNonFriendControl = isFriend.request
+    func sendFriendshipRequest() {
+        friendshipStatus = FriendshipStatus.requestedFriendship
         requestFriendButton.layer.backgroundColor = UIColor(named: "LightGray")?.cgColor
-        requestFriendButton.setTitle(isFriend.request.description, for: .normal)
-        aceptOrRejectStack.isHidden = true
+        requestFriendButton.setTitle(FriendshipStatus.requestedFriendship.description, for: .normal)
+        acceptOrRejectStack.isHidden = true
         requestFriendButton.isHidden = false
         //MARK: - Do BackEnd to add to friends
+        
         guard let user = user else { return }
         CKRepository.getUserId { id in
-            //guard let id = id else { return }
-            CKRepository.sendFriendshipInvite(inviterUserId: "teste", receiverUserId: "id_4a5b2282b915488c3e99174c1ea0ddef")
+            guard let id = id else { return }
+            CKRepository.sendFriendshipInvite(inviterUserId: id, receiverUserId: user.id)
         }
     }
     
@@ -226,25 +284,28 @@ extension OtherProfileViewController {
      */
     //TA FUNCIONANDO ESSE AQUI
     func cancelFriendRequest() {
-        friendRequestOrNonFriendControl = isFriend.nonFriend
+        friendshipStatus = FriendshipStatus.nonFriend
         requestFriendButton.layer.backgroundColor = UIColor(named: "Primary")?.cgColor
-        requestFriendButton.setTitle(isFriend.nonFriend.description, for: .normal)
-        aceptOrRejectStack.isHidden = true
+        requestFriendButton.setTitle(FriendshipStatus.nonFriend.description, for: .normal)
+        acceptOrRejectStack.isHidden = true
         requestFriendButton.isHidden = false
         //MARK: - Do BackEnd to cancel request
+        
         guard let user = user else { return }
         CKRepository.getUserId { id in
             guard let id = id else { return }
-            CKRepository.deleteFriendship(inviterId: id, receiverId: user.id, completion: {})
+            CKRepository.deleteFriendship(inviterId: id, receiverId: user.id) { }
         }
     }
     
-    func removeFriend() {
-        friendRequestOrNonFriendControl = isFriend.nonFriend
+    func removeFriend(inviterId: String, receiverId: String) {
+        friendshipStatus = FriendshipStatus.nonFriend
         requestFriendButton.layer.backgroundColor = UIColor(named: "Primary")?.cgColor
-        requestFriendButton.setTitle(isFriend.nonFriend.description, for: .normal)
-        aceptOrRejectStack.isHidden = true
+        requestFriendButton.setTitle(FriendshipStatus.nonFriend.description, for: .normal)
+        acceptOrRejectStack.isHidden = true
         requestFriendButton.isHidden = false
         //MARK: - Do BackEnd to remove friend
+        
+        CKRepository.deleteFriendship(inviterId: inviterId, receiverId: receiverId) { }
     }
 }
