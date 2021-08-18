@@ -244,8 +244,9 @@ public class CKRepository {
             }
             completion(savedRecord, error)
         }
-        
-        storeUserGamesData(userId: id, selectedGames: selectedGames)
+        if selectedGames.count > 0 {
+            storeUserGamesData(userId: id, selectedGames: selectedGames)
+        }
     }
     
     private static func storeUserGamesData(userId: String, selectedGames: [Game]) {
@@ -270,6 +271,79 @@ public class CKRepository {
             publicDB.save(record) { savedRecord, error in
                 if let ckError = error as? CKError {
                     CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                }
+            }
+        }
+    }
+    
+    private static func editUserData(id: String, name: String, nickname: String, location: Locations, description: String, photo: URL?, selectedPlatforms: [Platform], selectedGames: [Game], languages: [Languages], completion: @escaping (CKRecord?, Error?) -> Void){
+        
+        let recordID = CKRecord.ID(recordName: id)
+        let publicDB = container.publicCloudDatabase
+        
+        publicDB.fetch(withRecordID: recordID) { recordOptional, error in
+            if let ckError = error as? CKError {
+                CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+            }
+            if let record = recordOptional {
+                record.setObject(id as CKRecordValue?, forKey: UserTable.id.description)
+                record.setObject(name as CKRecordValue?, forKey: UserTable.name.description)
+                record.setObject(nickname as CKRecordValue?, forKey: UserTable.nickname.description)
+                record.setObject(location.key as CKRecordValue?, forKey: UserTable.location.description)
+                record.setObject(description as CKRecordValue?, forKey: UserTable.description.description)
+                let languagesKeys = languages.map({ language in
+                    language.key
+                })
+                record.setObject(languagesKeys as CKRecordValue?, forKey: UserTable.languages.description)
+                if let photoNotNil = photo {
+                    let photoAsset = CKAsset(fileURL: photoNotNil)
+                    record.setObject(photoAsset as CKRecordValue?, forKey: UserTable.photo.description)
+                }
+                let platformsIds = selectedPlatforms.map { platform in
+                    platform.key
+                }
+                record.setObject(platformsIds as CKRecordValue?, forKey: UserTable.selectedPlatforms.description)
+                
+                publicDB.save(record) { savedRecord, error in
+                    if let ckError = error as? CKError {
+                        CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                    }
+                    completion(savedRecord, error)
+                }
+                if selectedGames.count > 0 {
+                    editUserGamesData(userId: id, selectedGames: selectedGames)
+                }
+            }
+        }
+    }
+    
+    private static func editUserGamesData(userId: String, selectedGames: [Game]) {
+        let publicDB = container.publicCloudDatabase
+        for game in selectedGames {
+            let recordID = CKRecord.ID(recordName: "\(userId)\(game.id)")
+            publicDB.fetch(withRecordID: recordID) { recordOptional, error in
+                if let ckError = error as? CKError {
+                    CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                }
+                if let record = recordOptional {
+                    record.setObject(userId as CKRecordValue?, forKey: UserGamesTable.userId.description)
+                    record.setObject(game.id as CKRecordValue?, forKey: UserGamesTable.gameId.description)
+                    
+                    let platformsIds = game.selectedPlatforms.map { platform in
+                        platform.key
+                    }
+                    record.setObject(platformsIds as CKRecordValue?, forKey: UserGamesTable.selectedPlatforms.description)
+                    
+                    let selectedServers = game.selectedServers.map { server in
+                        server.key
+                    }
+                    record.setObject(selectedServers as CKRecordValue?, forKey: UserGamesTable.selectedServers.description)
+                    
+                    publicDB.save(record) { savedRecord, error in
+                        if let ckError = error as? CKError {
+                            CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                        }
+                    }
                 }
             }
         }
@@ -319,7 +393,6 @@ public class CKRepository {
                 }
             }
         }
-        
     }
     
     static func sendFriendshipInvite(inviterUserId: String, receiverUserId: String) {
