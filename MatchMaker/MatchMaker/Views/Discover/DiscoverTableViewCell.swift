@@ -62,6 +62,8 @@ class DiscoverTableViewCell: UITableViewCell {
     
     func setup(userId: String, url: URL?, nameText: String, nickText: String, userGames: [Game]) {
         
+        self.profileImage.image = UIImage(named: "profile_default")
+        
         // Trying to unwrap, get image data and set it in the UI
         if let url = url {
             DispatchQueue.global().async {
