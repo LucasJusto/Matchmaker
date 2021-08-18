@@ -246,11 +246,11 @@
             <objects>
                 <viewController id="LOZ-WC-D0h" customClass="EditingProfileViewController" customModule="MatchMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kDh-9T-8Nh">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tOs-Sw-RMg">
-                                <rect key="frame" x="0.0" y="56" width="414" height="694"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="694"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="profile-image-cell" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="profile-image-cell" rowHeight="165" id="D6i-oF-QJI" customClass="ProfileImageTableViewCell" customModule="MatchMaker" customModuleProvider="target">
@@ -727,7 +727,7 @@
                                 <sections/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PEA-YX-fQn">
-                                <rect key="frame" x="0.0" y="750" width="414" height="92"/>
+                                <rect key="frame" x="0.0" y="694" width="414" height="92"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="1Y3-xq-ZQi">
                                         <rect key="frame" x="16" y="14" width="382" height="32"/>
@@ -820,9 +820,14 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nfn-4O-7Ln" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mZ5-cP-WM5">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="mZ5-cP-WM5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" name="DarkGray"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -838,7 +843,7 @@
             <objects>
                 <viewController id="u8y-OU-kGZ" customClass="GameDetailsViewController" customModule="MatchMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FwW-NT-qlW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4BZ-Z2-OWi">
