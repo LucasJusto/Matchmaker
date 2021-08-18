@@ -104,6 +104,7 @@ class SocialViewController: UIViewController {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = UIColor.black
+        appearance.largeTitleTextAttributes = [.foregroundColor:UIColor.white]
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         

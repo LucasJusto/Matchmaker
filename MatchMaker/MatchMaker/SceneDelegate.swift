@@ -22,7 +22,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     let storyboard = UIStoryboard.init(name: "Onboarding", bundle: nil)
 
                     let viewController = storyboard.instantiateInitialViewController()!
-//                    let viewController = storyboard.instantiateViewController(withIdentifier: "OnboardingViewController") as! OnboardingViewController
 
                     self.window?.rootViewController = viewController
                     self.window?.makeKeyAndVisible()

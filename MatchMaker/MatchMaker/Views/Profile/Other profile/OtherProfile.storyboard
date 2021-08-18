@@ -9,6 +9,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--GameDetail-->
+        <scene sceneID="HWE-jf-UH5">
+            <objects>
+                <viewControllerPlaceholder storyboardName="GameDetail" id="tH4-Lc-KHy" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RrN-ms-ghP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1603" y="92"/>
+        </scene>
         <!--Profile-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
@@ -416,6 +424,7 @@
                         <outlet property="userProfileImage" destination="edp-PN-sM3" id="aA6-U8-VKu"/>
                         <outlet property="userProfileLocationLabel" destination="QCK-4b-tAs" id="E2v-nv-82H"/>
                         <outlet property="userProfileNameLabel" destination="X4g-a4-DA4" id="YgK-AR-aNS"/>
+                        <segue destination="tH4-Lc-KHy" kind="presentation" identifier="toGameDetail" id="RGv-jB-pIs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -447,7 +456,7 @@
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Primary">
-            <color red="0.3880000114440918" green="0.090000003576278687" blue="0.88599997758865356" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.38823529411764707" green="0.090196078431372548" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

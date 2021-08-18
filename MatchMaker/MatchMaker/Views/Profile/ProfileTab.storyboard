@@ -10,6 +10,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--GameDetail-->
+        <scene sceneID="QBQ-DF-gYn">
+            <objects>
+                <viewControllerPlaceholder storyboardName="GameDetail" id="Y4N-rM-P3k" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HbD-41-THH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="987" y="7"/>
+        </scene>
         <!--Profile-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
@@ -247,6 +255,7 @@
                         <outlet property="userProfileGamertagLabel" destination="GGE-Ma-MJm" id="mSN-qP-rGS"/>
                         <outlet property="userProfileNameLabel" destination="Sjd-jp-NAW" id="FM8-ka-3Ae"/>
                         <segue destination="nfn-4O-7Ln" kind="presentation" identifier="toEditProfile" id="oUb-fw-n7K"/>
+                        <segue destination="Y4N-rM-P3k" kind="presentation" identifier="toGameDetail" id="lCB-zi-Au1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

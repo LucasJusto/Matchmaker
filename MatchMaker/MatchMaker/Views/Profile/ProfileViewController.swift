@@ -101,6 +101,8 @@ class ProfileViewController: UIViewController {
         platformsView.smallLabeledImageModels = unwrappedUser.selectedPlatforms
         languagesView.titleModels = unwrappedUser.languages
         gameCollectionView.roundedRectangleImageModels = unwrappedUser.selectedGames
+        
+        gameCollectionView.delegate = self
     }
     
     //MARK: ProfileViewController - Accessibility Features: Dynamic Types
@@ -149,6 +151,17 @@ class ProfileViewController: UIViewController {
             
             destination.user = self.user
         }
+        
+        if segue.identifier == "toGameDetail" {
+            
+            guard let game = sender as? Game else { return }
+            
+            let navViewController = segue.destination as! UINavigationController
+            
+            let destination = navViewController.topViewController as! GameDetailViewController
+            
+            destination.game = game
+        }
     }
 }
 
@@ -174,4 +187,14 @@ extension ProfileViewController: UIScrollViewDelegate {
         backgroundImageHeightConstraint.constant = 242 - 48 + (-1 * scrollView.contentOffset.y)
         view.layoutIfNeeded()
     }
+}
+
+extension ProfileViewController: RoundedRectangleCollectionViewDelegate {
+    
+    func didSelectRoundedRectangleModel(model: RoundedRectangleModel) {
+        guard let game = model as? Game else { return }
+        performSegue(withIdentifier: "toGameDetail", sender: game)
+    }
+    
+    
 }

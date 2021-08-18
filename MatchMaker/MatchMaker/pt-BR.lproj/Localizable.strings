@@ -222,6 +222,15 @@ para você escolher e encontrar jogadores";
 
 // MARK: - Discover
 "DiscoverScreenAddToFriendsButton" = "Adicionar";
-"DiscoverShowMoreButton" = "Mostrar mais";
+"DiscoverShowMoreButton" = "Ver mais";
 "DiscoverScreenRequestSent" = "Solicitação enviada!";
 
+//MARK: - Social
+"SocialViewSearchUsers" = "Pesquisar usuários";
+"SocialViewFriendsSectionToggle" = "Amigos";
+"SocialViewBlockedSectionToggle" = "Bloqueados";
+"SocialViewCancelSentRequest" = "Cancelar solicitação";
+"SocialReceivedRequestAcceptInvite" = "Aceitar";
+"SocialReceivedRequestDeclineInvite" = "Rejeitar";
+"SocialShowMoreButton" = "Ver mais";
+"SocialUnblockButton" = "Desbloquear";

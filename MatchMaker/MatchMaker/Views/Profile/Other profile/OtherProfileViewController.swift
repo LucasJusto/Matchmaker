@@ -203,6 +203,8 @@ class OtherProfileViewController: UIViewController {
         platformsView.smallLabeledImageModels = unwrappedUser.selectedPlatforms
         languagesView.titleModels = unwrappedUser.languages
         gameCollectionView.roundedRectangleImageModels = unwrappedUser.selectedGames
+        
+        gameCollectionView.delegate = self
     }
 }
 
@@ -238,7 +240,6 @@ extension OtherProfileViewController {
      - Parameters: Void
      - Returns: Void
      */
-    //TA FUNCIONANDO ESSE AQUI
     func denyFriendshipRequest() {
         friendshipStatus = FriendshipStatus.nonFriend
         requestFriendButton.layer.backgroundColor = UIColor(named: "Primary")?.cgColor
@@ -260,7 +261,6 @@ extension OtherProfileViewController {
      - Parameters: Void
      - Returns: Void
      */
-    //TA FUNCIONANDO ESSE AQUI
     func sendFriendshipRequest() {
         friendshipStatus = FriendshipStatus.requestedFriendship
         requestFriendButton.layer.backgroundColor = UIColor(named: "LightGray")?.cgColor
@@ -282,7 +282,6 @@ extension OtherProfileViewController {
      - Parameters: Void
      - Returns: Void
      */
-    //TA FUNCIONANDO ESSE AQUI
     func cancelFriendRequest() {
         friendshipStatus = FriendshipStatus.nonFriend
         requestFriendButton.layer.backgroundColor = UIColor(named: "Primary")?.cgColor
@@ -307,5 +306,26 @@ extension OtherProfileViewController {
         //MARK: - Do BackEnd to remove friend
         
         CKRepository.deleteFriendship(inviterId: inviterId, receiverId: receiverId) { }
+    }
+}
+
+extension OtherProfileViewController: RoundedRectangleCollectionViewDelegate {
+    
+    func didSelectRoundedRectangleModel(model: RoundedRectangleModel) {
+        guard let game = model as? Game else { return }
+        performSegue(withIdentifier: "toGameDetail", sender: game)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toGameDetail" {
+            
+            guard let game = sender as? Game else { return }
+            
+            let navViewController = segue.destination as! UINavigationController
+            
+            let destination = navViewController.topViewController as! GameDetailViewController
+            
+            destination.game = game
+        }
     }
 }

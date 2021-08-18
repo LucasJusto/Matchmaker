@@ -139,7 +139,6 @@ extension HomeViewController: RoundedRectangleCollectionViewDelegate {
     func didSelectRoundedRectangleModel(model: RoundedRectangleModel) {
         
         guard let game = model as? Game else { return }
-        print(game.name)
         performSegue(withIdentifier: "toGame", sender: game)
     }
 }
