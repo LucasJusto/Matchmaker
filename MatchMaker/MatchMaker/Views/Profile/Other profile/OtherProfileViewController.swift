@@ -66,6 +66,10 @@ class OtherProfileViewController: UIViewController {
     
     //MARK: OtherProfileViewController Outlet functions
     
+ 
+    @IBAction func didTapUpperDone(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
     @IBAction func rejectButtonAction(_ sender: Any) {
         denyFriendshipRequest()
     }
@@ -99,11 +103,11 @@ class OtherProfileViewController: UIViewController {
     }
     
     @IBAction func rateBehaviourButton(_ sender: Any) {
-        //MARK: - open rate screen to rate
+        performSegue(withIdentifier: "toRateUser", sender: nil)
     }
     
     @IBAction func rateSkillButton(_ sender: Any) {
-        //MARK: - open rate screen to rate
+        performSegue(withIdentifier: "toRateUser", sender: nil)
     }
     
     //MARK: OtherProfileViewController Variables setup
@@ -111,7 +115,7 @@ class OtherProfileViewController: UIViewController {
     var user: User?
     var social: Social?
     var friendshipStatus: FriendshipStatus?
-    var marinaGames: [Game] = Games.buildGameArray()
+    var userGames: [Game] = []
     
     //MARK: OtherProfileViewController Class setup
     
@@ -131,6 +135,16 @@ class OtherProfileViewController: UIViewController {
         requestFriendButton.layer.cornerRadius = 10
         rejectButton.layer.cornerRadius = 10
         acceptButton.layer.cornerRadius = 10
+        
+        let amigo = (social?.isInvite == .no ? true : false) ?? false
+        
+        if amigo {
+            skillRateButton.isHidden = false
+            behavioursRateButton.isHidden = false
+        } else {
+            skillRateButton.isHidden = true
+            behavioursRateButton.isHidden = true
+        }
                 
         guard let social = social else { return }
         
@@ -179,22 +193,44 @@ class OtherProfileViewController: UIViewController {
         
         guard let unwrappedUser = user else { return }
         
+        if let url = unwrappedUser.photoURL {
+            DispatchQueue.global().async {
+                if let data = try? Data(contentsOf: url) {
+                    DispatchQueue.main.async {
+                        self.userProfileImage.image = UIImage(data: data)
+                    }
+                }
+            }
+        }
+        
         behaviourRateLabel.text = String(unwrappedUser.behaviourRate)
-        amountOfReviewsBehavioursLabel.text = "0 " + NSLocalizedString("UserReviews", comment: "This is the key for 'reviews' translation")
+        //amountOfReviewsBehavioursLabel.text = "0" + NSLocalizedString("UserReviews", comment: "This is the key for 'reviews' translation")
         
         skillRateLabel.text = String(unwrappedUser.skillRate)
-        amaountOfReviewsSKillLaber.text = "0 " + NSLocalizedString("UserReviews", comment: "This is the key for 'reviews' translation")
+        //amaountOfReviewsSKillLaber.text = "0 " + NSLocalizedString("UserReviews", comment: "This is the key for 'reviews' translation")
         
         userProfileNameLabel.text = unwrappedUser.name
         userProfileGamertagLabel.text = "@" + unwrappedUser.nickname
         userProfileBioLabel.text = unwrappedUser.description
-        userProfileLocationLabel.text = NSLocalizedString("PlayingFrom", comment: "") + " colocar a localização aqui "
+        userProfileLocationLabel.text = NSLocalizedString("Playing from ", comment: "") + "\(unwrappedUser.location)"
         
         //userProfileImage.image = colocar imagem do usuário
         
         platformsView.smallLabeledImageModels = unwrappedUser.selectedPlatforms
         languagesView.titleModels = unwrappedUser.languages
         gameCollectionView.roundedRectangleImageModels = unwrappedUser.selectedGames
+    }
+    
+    //MARK: OtherProfileViewController Segue
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toRateUser" {
+            let rootVC = segue.destination as! UINavigationController
+            let destination = rootVC.topViewController as! RateViewController
+            
+            destination.user = user
+            destination.social = social
+        }
     }
 }
 
@@ -207,7 +243,6 @@ extension OtherProfileViewController {
      - Parameters: Void
      - Returns: Void
      */
-    //TA FUNCIONANDO ESSE AQUI
     func acceptFriendshipRequest() {
         friendshipStatus = FriendshipStatus.friendsAlready
         acceptOrRejectStack.isHidden = true
@@ -230,7 +265,6 @@ extension OtherProfileViewController {
      - Parameters: Void
      - Returns: Void
      */
-    //TA FUNCIONANDO ESSE AQUI
     func denyFriendshipRequest() {
         friendshipStatus = FriendshipStatus.nonFriend
         requestFriendButton.layer.backgroundColor = UIColor(named: "Primary")?.cgColor
@@ -252,7 +286,6 @@ extension OtherProfileViewController {
      - Parameters: Void
      - Returns: Void
      */
-    //TA FUNCIONANDO ESSE AQUI
     func sendFriendshipRequest() {
         friendshipStatus = FriendshipStatus.requestedFriendship
         requestFriendButton.layer.backgroundColor = UIColor(named: "LightGray")?.cgColor
@@ -274,7 +307,6 @@ extension OtherProfileViewController {
      - Parameters: Void
      - Returns: Void
      */
-    //TA FUNCIONANDO ESSE AQUI
     func cancelFriendRequest() {
         friendshipStatus = FriendshipStatus.nonFriend
         requestFriendButton.layer.backgroundColor = UIColor(named: "Primary")?.cgColor
@@ -290,6 +322,12 @@ extension OtherProfileViewController {
         }
     }
     
+    /**
+     This function is responsible for removing a friend from the friends list.
+     
+     - Parameters: Void
+     - Returns: Void
+     */
     func removeFriend(inviterId: String, receiverId: String) {
         friendshipStatus = FriendshipStatus.nonFriend
         requestFriendButton.layer.backgroundColor = UIColor(named: "Primary")?.cgColor
