@@ -235,7 +235,7 @@ extension OtherProfileViewController {
         guard let user = user else { return }
         CKRepository.getUserId { id in
             guard let id = id else { return }
-            CKRepository.deleteFriendship(inviterId: id, receiverId: user.id)
+            CKRepository.deleteFriendship(inviterId: id, receiverId: user.id, completion: {})
         }
     }
     

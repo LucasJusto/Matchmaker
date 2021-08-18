@@ -104,7 +104,7 @@ class OnboardingRegisterViewController: UIViewController {
             self.tableView.reloadData()
         }
         
-        CKRepository.setOnboardingInfo(name: self.nameField, nickname: self.usernameField, photoURL: nil, location: Locations.africaNorth, description: self.descriptionField, languages: languages, selectedPlatforms: platforms, selectedGames: games, completion: { record, error in
+        CKRepository.setOnboardingInfo(name: self.nameField, nickname: self.usernameField, photoURL: profileImageUrl, location: Locations.africaNorth, description: self.descriptionField, languages: languages, selectedPlatforms: platforms, selectedGames: games, completion: { record, error in
             
             if error == nil && record != nil {
                 
