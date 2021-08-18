@@ -184,3 +184,14 @@ para você escolher e encontrar jogadores";
 "ConfirmButtonLabel" = "Confirmar";
 "CancelButtonLabel" = "Cancelar";
 "TitleRateModalView"= "Avaliação";
+
+// MARK: - Filters
+"filtersNavigationTitle" = "Filtros";
+"filtersCleanButtonLabel" = "Limpar filtros";
+"filtersDoneButtonLabel" = "Pronto";
+"filtersLanguagesLabel" = "Linguagens";
+"filtersPlatformsLabel" = "Plataformas";
+"filtersBehaviorsRateLabel" = "Comportamento";
+"filtersSkillsRateLabel" = "Habilidade";
+"filtersLocationLabel" = "Localidade";
+"filtersGamesLabel" = "Jogos";

@@ -17,18 +17,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         CKRepository.isUserRegistered { bool in
             if bool {
                 CKRepository.setUserFromCloudKit()
+            } else {
+                DispatchQueue.main.async {
+                    let storyboard = UIStoryboard.init(name: "Onboarding", bundle: nil)
+
+                    let viewController = storyboard.instantiateInitialViewController()!
+//                    let viewController = storyboard.instantiateViewController(withIdentifier: "OnboardingViewController") as! OnboardingViewController
+
+                    self.window?.rootViewController = viewController
+                    self.window?.makeKeyAndVisible()
+                }
             }
-//            else {
-//                DispatchQueue.main.async {
-//                    let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-//
-//                    let viewController = storyboard.instantiateInitialViewController()!
-//                    //let viewController = storyboard.instantiateViewController(withIdentifier: "OnboardingViewController") as! OnboardingViewController
-//
-//                    self.window?.rootViewController = viewController
-//                    self.window?.makeKeyAndVisible()
-//                }
-//            }
         }
     }
 

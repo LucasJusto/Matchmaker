@@ -191,10 +191,26 @@ without using your storage";
 "CancelButtonLabel" = "Cancel";
 "TitleRateModalView"= "Rate";
 
-//MARK: - Profile Customization
+// MARK: - Filters
+"filtersNavigationTitle" = "Filters";
+"filtersCleanButtonLabel" = "Clean filter";
+"filtersDoneButtonLabel" = "Done";
+"filtersLanguagesLabel" = "Languages";
+"filtersPlatformsLabel" = "Platforms";
+"filtersBehaviorsRateLabel" = "Behaviors rate";
+"filtersSkillsRateLabel" = "Skills rate";
+"filtersLocationLabel" = "Location";
+"filtersGamesLabel" = "Games";
+
+// MARK: - Profile Customization
 "CancelButtonLabel" = "Cancel";
 "DoneButtonLabel" = "Done";
 "viewControllerTitle" = "Edit Profile";
+
+// MARK: - Discover
+"DiscoverScreenAddToFriendsButton" = "Add to friends";
+"DiscoverShowMoreButton" = "Show more";
+"DiscoverScreenRequestSent" = "Request sent!";
 
 //MARK: - Social
 "SocialViewSearchUsers" = "Search Users";
@@ -205,8 +221,3 @@ without using your storage";
 "SocialReceivedRequestDeclineInvite" = "Reject";
 "SocialShowMoreButton" = "Show more";
 "SocialUnblockButton" = "Unblock";
-
-//MARK: - Discover
-"DiscoverScreenAddToFriendsButton" = "Add to friends";
-"DiscoverShowMoreButton" = "Show more";
-"DiscoverScreenRequestSent" = "Request sent!";

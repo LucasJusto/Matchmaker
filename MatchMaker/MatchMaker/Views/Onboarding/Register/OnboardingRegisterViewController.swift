@@ -15,13 +15,13 @@ class OnboardingRegisterViewController: UIViewController {
     typealias TagOption = (option: String, isFavorite: Bool)
     typealias GameOption = (option: Game, isFavorite: Bool)
     typealias UserLocation = (string: String, enum: Locations)
-
+    
     // MARK: - outlets
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - variables
     var didTapDone = false
-
+    
     var tagLanguages: [TagOption] = []
     var tagPlatforms: [TagOption] = []
     var tagGames: [GameOption] = []
@@ -46,7 +46,7 @@ class OnboardingRegisterViewController: UIViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
-                
+        
         setUpTagCategories()
     }
     
@@ -104,7 +104,15 @@ class OnboardingRegisterViewController: UIViewController {
             self.tableView.reloadData()
         }
         
-        CKRepository.setOnboardingInfo(name: self.nameField, nickname: self.usernameField, photoURL: nil, location: Locations.africaNorth, description: self.descriptionField, languages: languages, selectedPlatforms: platforms, selectedGames: games)
+        CKRepository.setOnboardingInfo(name: self.nameField, nickname: self.usernameField, photoURL: nil, location: Locations.africaNorth, description: self.descriptionField, languages: languages, selectedPlatforms: platforms, selectedGames: games, completion: { record, error in
+            
+            if error == nil && record != nil {
+                
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "toHome", sender: nil)
+                }
+            }
+        })
     }
     
     func alertEmptyFields() -> UIAlertController {
@@ -118,7 +126,7 @@ class OnboardingRegisterViewController: UIViewController {
         
         let ok = UIAlertAction(title: buttonLabel, style: .default, handler: { (action) -> Void in
             self.tableView.reloadData()
-          })
+        })
         
         dialogMessage.addAction(ok)
         
@@ -189,63 +197,63 @@ extension OnboardingRegisterViewController: UITableViewDelegate {
 
 // MARK: - UITableViewDataSource
 extension OnboardingRegisterViewController: UITableViewDataSource {
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        
         let onboardingField = onboardingFields[indexPath.row]
-
+        
         let defaultCell = UITableViewCell()
-
+        
         switch onboardingField {
             case .profileImage: return profileImageCell()
-
+                
             case .nameField: return textFieldCell(titleKey: "onboarding5NameLabel", tag: OnboardingTextFields.nameField.rawValue)
-
+                
             case .usernameField: return textFieldCell(titleKey: "onboarding5UsernameLabel", tag: OnboardingTextFields.usernameField.rawValue)
-
+                
             case .descriptionField: return textViewCell()
-
+                
             case .locations: return pickerCell()
-
+                
             case .languages: return selectorCell(titleKey: "onboarding5LanguagesLabel", tag: OnboardingTagCategory.languages.rawValue) ?? defaultCell
-
+                
             case .platforms: return selectorCell(titleKey: "onboarding5PlatformsLabel", tag: OnboardingTagCategory.platforms.rawValue) ?? defaultCell
-
+                
             case .games: return gameCell() ?? defaultCell
         }
     }
-
+    
     // MARK: - CELLS
     func profileImageCell() -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "profile-image-cell") as? ProfileImageTableViewCell else {
-                return UITableViewCell()
+            return UITableViewCell()
         }
-
+        
         cell.userAvatarView.delegate = self
-
+        
         cell.tag = OnboardingFields.profileImage.rawValue
-
+        
         return cell
     }
-
+    
     func textFieldCell(titleKey: String, tag: Int) -> UITableViewCell {
-
+        
         let string = NSLocalizedString(titleKey, comment: "text field label")
-
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "text-field-cell") as? TextFieldTableViewCell
-              else {
-                return UITableViewCell()
+        else {
+            return UITableViewCell()
         }
-
+        
         cell.textField.delegate = self
         cell.textField.tag = tag
-
+        
         cell.setUp(title: string)
-
+        
         var text = ""
-
+        
         if let onboardingTextField = OnboardingTextFields(rawValue: tag) {
-
+            
             switch onboardingTextField {
                 case .nameField: text = nameField
                 case .usernameField: text = usernameField
@@ -255,106 +263,106 @@ extension OnboardingRegisterViewController: UITableViewDataSource {
         //Tratamento de erros
         if didTapDone && text.isEmpty {
             cell.textField.borderColor = .red
-
+            
         } else {
             cell.textField.borderColor = UIColor(named: "Primary")
         }
-
+        
         return cell
     }
-
+    
     func textViewCell() -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "text-view-cell") as? TextViewTableViewCell else {
-                return UITableViewCell()
+            return UITableViewCell()
         }
-
+        
         cell.textViewField.delegate = self
         cell.textViewField.text = descriptionField
         cell.counterLabelView.text = "\(descriptionField.count)/300"
         cell.textViewField.addDoneButton(title: NSLocalizedString("onboarding5KeyboardButton", comment: "Keyboard done Button"), target: self, selector: #selector(closeKeyboard(sender:)))
-
+        
         //Tratamento de erros
         if didTapDone && descriptionField.isEmpty {
             cell.textViewField.borderColor = .red
         } else {
             cell.textViewField.borderColor = UIColor(named: "Primary")
         }
-
+        
         return cell
     }
-
+    
     func pickerCell() -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "picker-cell") as? PickerTableViewCell else {
             return UITableViewCell()
         }
-
+        
         cell.delegate = self
         cell.currentSelectionLabel.text = selectedLocation.string
-
+        
         //Tratamento de erros
         if didTapDone && (selectedLocation.string.isEmpty || selectedLocation.string == "-") {
             cell.buttonView.borderColor = .red
         } else {
             cell.buttonView.borderColor = UIColor(named: "Primary")
         }
-
+        
         return cell
     }
-
+    
     func selectorCell(titleKey: String, tag: Int) -> SelectorTableViewCell? {
         let cell = tableView.dequeueReusableCell(withIdentifier: "selector-cell") as? SelectorTableViewCell
         
         cell?.collectionView.tag = tag
         cell?.collectionView.delegate = self
         cell?.collectionView.dataSource = self
-
+        
         let string = NSLocalizedString(titleKey, comment: "selector cell label")
-
+        
         cell?.setUp(title: string)
-
+        
         DispatchQueue.main.async {
             cell?.collectionView.reloadData()
         }
         
-//        Setando altura da CollectionView
-//        if let height = cell?.collectionView.collectionViewLayout.collectionViewContentSize.height {
-//            cell?.collectionViewHeight.constant = height
-//        }
-
+        //        Setando altura da CollectionView
+        //        if let height = cell?.collectionView.collectionViewLayout.collectionViewContentSize.height {
+        //            cell?.collectionViewHeight.constant = height
+        //        }
+        
         var selections = 0
-
+        
         if let onboardingTags = OnboardingTagCategory(rawValue: tag) {
-
+            
             switch onboardingTags {
                 case .languages: selections = tagLanguages.filter { $0.isFavorite }.count
                 case .platforms: selections = tagPlatforms.filter { $0.isFavorite }.count
                 default: return cell
             }
         }
-
+        
         //Tratamento de erros
         if didTapDone && selections == 0 {
             cell?.requiredLabel.isHidden = false
-
+            
         } else {
             cell?.requiredLabel.isHidden = true
         }
         
         return cell
     }
-
+    
     func gameCell() -> GamesSelectionTableViewCell? {
         let cell = tableView.dequeueReusableCell(withIdentifier: "game-selection-cell") as? GamesSelectionTableViewCell
-
+        
         cell?.collectionView.delegate = self
         cell?.collectionView.dataSource = self
         cell?.collectionView.tag = OnboardingTagCategory.games.rawValue
-
+        
         //Setando altura da CollectionView
         if let height = cell?.collectionView.collectionViewLayout.collectionViewContentSize.height {
             cell?.collectionViewHeight.constant = height
         }
-
+        
         return cell
     }
 }
@@ -363,11 +371,11 @@ extension OnboardingRegisterViewController: UITableViewDataSource {
 extension OnboardingRegisterViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-
+        
         guard let onboardingTagCategory = OnboardingTagCategory(rawValue: collectionView.tag) else {
             return 0
         }
-
+        
         switch onboardingTagCategory {
             case .languages: return tagLanguages.count
             case .platforms: return tagPlatforms.count
@@ -376,70 +384,70 @@ extension OnboardingRegisterViewController: UICollectionViewDataSource, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+        
         guard let onboardingTagCategory = OnboardingTagCategory(rawValue: collectionView.tag) else {
             return
         }
-
+        
         switch onboardingTagCategory {
             case .languages:
                 tagLanguages[indexPath.row].isFavorite.toggle()
-
+                
             case .platforms:
                 tagPlatforms[indexPath.row].isFavorite.toggle()
-
+                
             case .games:
                 //Seta um game selecionado e abre a tela de jogo selecionado
                 self.selectedGame = tagGames[indexPath.row]
                 performSegue(withIdentifier: "selectedGame", sender: nil)
         }
-
+        
         collectionView.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
+        
         guard let onboardingTagCategory = OnboardingTagCategory(rawValue: collectionView.tag) else {
             return UICollectionViewCell()
         }
-
+        
         switch onboardingTagCategory {
             case .languages:
                 let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "selectable-tag-cell", for: indexPath) as! SelectableTagCollectionViewCell
-
+                
                 let supportedLanguage = tagLanguages[indexPath.row]
-
+                
                 collectionCell.labelView.text = supportedLanguage.option
-
+                
                 collectionCell.containerView.backgroundColor = supportedLanguage.isFavorite ? UIColor(named: "Primary") : .clear
-
+                
                 return collectionCell
-
-
+                
+                
             case .platforms:
-
+                
                 let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "selectable-tag-cell", for: indexPath) as! SelectableTagCollectionViewCell
-
+                
                 let supportedPlatform = tagPlatforms[indexPath.row]
-
+                
                 collectionCell.labelView.text = supportedPlatform.option
-
+                
                 collectionCell.containerView.backgroundColor = supportedPlatform.isFavorite ? UIColor(named: "Primary") : .clear
-
+                
                 return collectionCell
-
+                
             case .games:
                 let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "selectable-image-cell", for: indexPath) as! SelectableImageCollectionViewCell
-
+                
                 let game = tagGames[indexPath.row]
-
+                
                 collectionCell.imageView.image = game.option.image
-
+                
                 collectionCell.selectionTag.isHidden = !game.isFavorite
-
+                
                 return collectionCell
         }
-
+        
     }
     
 }
@@ -448,36 +456,36 @@ extension OnboardingRegisterViewController: UICollectionViewDataSource, UICollec
 extension OnboardingRegisterViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
+        
         guard let onboardingTagCategory = OnboardingTagCategory(rawValue: collectionView.tag) else {
             return CGSize(width: 0, height: 0)
         }
-
+        
         var model: String
-
+        
         switch onboardingTagCategory {
             case .languages:
                 model = tagLanguages[indexPath.row].option
-
+                
             case .platforms:
                 model = tagPlatforms[indexPath.row].option
-
+                
             case .games:
                 let width = collectionView.bounds.width * 0.31
-
+                
                 return CGSize(width: width, height: width * 1.37)
         }
-
+        
         let modelSize = model.size(withAttributes: nil)
-
+        
         let size = CGSize(width: modelSize.width, height: collectionView.bounds.height)
-
+        
         return size
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-
-        return 10
+        
+        return (collectionView.bounds.width) - (collectionView.bounds.width * 0.31)
     }
 }
 
@@ -512,7 +520,7 @@ extension OnboardingRegisterViewController: UITextViewDelegate {
         //Setando placeholder
         if textView.text.isEmpty {
             let cell = tableView.cellForRow(at: IndexPath(row: OnboardingFields.descriptionField.rawValue, section: 0)) as? TextViewTableViewCell
-
+            
             cell?.placeholder.isHidden = false
         }
     }
@@ -524,13 +532,13 @@ extension OnboardingRegisterViewController: UITextViewDelegate {
         
         cell?.placeholder.isHidden = true
     }
-
+    
     func textViewDidChange(_ textView: UITextView) {
         let cell = tableView.cellForRow(at: IndexPath(row: OnboardingFields.descriptionField.rawValue, section: 0)) as? TextViewTableViewCell
-    
+        
         cell?.counterLabelView.text = "\(textView.text.count)/300"
     }
-
+    
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
         return textView.text.count + (text.count - range.length) <= 300
@@ -542,7 +550,7 @@ extension OnboardingRegisterViewController: UserAvatarViewDelegate {
     
     func didChooseImage() {
         let cell = tableView.cellForRow(at: IndexPath(row: OnboardingFields.profileImage.rawValue, section: 0)) as? ProfileImageTableViewCell
-    
+        
         imagePicker.pickImage(self) { [unowned self] image, url in
             DispatchQueue.main.async {
                 cell?.userAvatarView.contentImage.image = image
@@ -557,9 +565,9 @@ extension OnboardingRegisterViewController: GameSelectionDelegate {
     
     func updateGame(_ game: Game, isSelected: Bool) {
         let indexPath = IndexPath(row: OnboardingFields.games.rawValue, section: 0)
-
+        
         let cell = tableView.cellForRow(at: indexPath) as? GamesSelectionTableViewCell
-    
+        
         guard let gameIndex = tagGames.firstIndex(where: { $0.option.id == game.id }) else {
             return
         }
