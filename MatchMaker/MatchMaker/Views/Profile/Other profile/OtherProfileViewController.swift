@@ -118,10 +118,6 @@ class OtherProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let mockedSocial = Social(id: "id_ee3aeda325ddb726141b73fc1d1d908a", name: "Marina", nickname: "CUI CUI", photoURL: nil, games: [], isInvite: .no, isInviter: nil)
-        
-        social = mockedSocial
-        
         setupUserProfile()
         
         setCornerContainerRate()
@@ -180,10 +176,6 @@ class OtherProfileViewController: UIViewController {
     }
     
     private func setupUserProfile() {
-        
-        //MARK: - Implement user informations here (The data that are already here are mocked
-        
-        user = User(id: "teste", name: "Marina de Pazzi", nickname: "Prolene", photoURL: nil, location: Locations.brazil, description: "fala fellas, voce que curte um cszinho, bora fazer um projetinho na mansao arromba", behaviourRate: 5.0, skillRate: 5.0, languages: [Languages.english, Languages.portuguese, Languages.russian, Languages.german], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: [marinaGames[1], marinaGames[2]])
         
         guard let unwrappedUser = user else { return }
         
