@@ -239,3 +239,6 @@ without using your storage";
 "limitedGalleryAction" = "Allow more photos";
 "fullGalleryAction" = "Allow access to all photos";
 "cameraError" = "You don't have camera";
+
+//MARK: AppDelegate Push Notification
+"friendRequestAlert" = "You have a new friend request!";

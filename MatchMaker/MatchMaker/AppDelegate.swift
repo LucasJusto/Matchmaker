@@ -50,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                                            options: [.firesOnRecordCreation])
                     
                     let friendReqNotification = CKSubscription.NotificationInfo()
-                    friendReqNotification.alertBody = "You have a new friend request!"
+                    friendReqNotification.alertBody = NSLocalizedString("friendRequestAlert", comment: "This is the translation for 'friendRequestAlert' at the Friend Profile (OtherPrifile) section of Localizable.strings")
                     friendReqNotification.soundName = "default"
                     newFriendReqSubscription.notificationInfo = friendReqNotification
                     

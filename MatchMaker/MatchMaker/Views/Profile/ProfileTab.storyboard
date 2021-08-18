@@ -258,7 +258,7 @@
             <objects>
                 <viewController id="LOZ-WC-D0h" customClass="EditingProfileViewController" customModule="MatchMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kDh-9T-8Nh">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="786"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tOs-Sw-RMg">
@@ -366,7 +366,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Title section" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GvD-gD-QXL" customClass="LocalizableLabel" customModule="MatchMaker" customModuleProvider="target">
-                                                    <rect key="frame" x="20" y="0.0" width="297.5" height="27"/>
+                                                    <rect key="frame" x="20" y="0.0" width="337.5" height="27"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -375,7 +375,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/300" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11d-S4-RHP">
-                                                    <rect key="frame" x="327.5" y="10" width="26.5" height="16"/>
+                                                    <rect key="frame" x="367.5" y="10" width="26.5" height="16"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -422,7 +422,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="bTZ-cR-05R" secondAttribute="trailing" constant="20" id="TrE-RT-ebQ"/>
                                                 <constraint firstAttribute="bottom" secondItem="bTZ-cR-05R" secondAttribute="bottom" constant="10" id="Wne-1C-Gun"/>
                                                 <constraint firstItem="11d-S4-RHP" firstAttribute="leading" secondItem="GvD-gD-QXL" secondAttribute="trailing" constant="10" id="XJB-Hh-963"/>
-                                                <constraint firstAttribute="trailing" secondItem="11d-S4-RHP" secondAttribute="trailing" constant="60" id="eWi-eK-7Cf"/>
+                                                <constraint firstAttribute="trailing" secondItem="11d-S4-RHP" secondAttribute="trailing" constant="20" id="eWi-eK-7Cf"/>
                                                 <constraint firstItem="11d-S4-RHP" firstAttribute="top" secondItem="kF4-s7-caf" secondAttribute="top" constant="10" id="f5l-me-VSm"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="tnk-OJ-fUG" secondAttribute="trailing" constant="10" id="hEh-Um-6AT"/>
                                                 <constraint firstItem="tnk-OJ-fUG" firstAttribute="leading" secondItem="kF4-s7-caf" secondAttribute="leadingMargin" constant="10" id="nWf-TT-9aF"/>
@@ -600,12 +600,15 @@
                                                         </collectionViewCell>
                                                     </cells>
                                                 </collectionView>
-                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Required" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LsJ-km-5lg">
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Required" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LsJ-km-5lg" customClass="LocalizableLabel" customModule="MatchMaker" customModuleProvider="target">
                                                     <rect key="frame" x="167" y="9" width="43" height="12"/>
                                                     <color key="tintColor" systemColor="systemRedColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" systemColor="systemRedColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="onboarding5RequiredLabel"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -856,7 +859,7 @@
             <objects>
                 <viewController id="u8y-OU-kGZ" customClass="GameDetailsViewController" customModule="MatchMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FwW-NT-qlW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4BZ-Z2-OWi">
