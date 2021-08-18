@@ -41,9 +41,7 @@ class ProfileViewController: UIViewController {
     var customPicker: ImagePickerManager = ImagePickerManager()
     
     private var user: User?
-    
-    var marinaGames: [Game] = Games.buildGameArray()
-    
+        
     //MARK: ProfileViewController - View Setup
     
     override func viewDidLoad() {
@@ -150,6 +148,7 @@ class ProfileViewController: UIViewController {
             
             let destination = navViewController.topViewController as! EditingProfileViewController
             
+            destination.delegate = self
             destination.user = self.user
         }
         
@@ -172,7 +171,6 @@ extension ProfileViewController: UserAvatarViewDelegate {
     func didChooseImage() {
         customPicker.pickImage(self) { [unowned self] image, url in
             DispatchQueue.main.async {
-                print(url)
                 self.userAvatarView.imageURL = url
                 self.userAvatarView.contentImage.image = image
                 self.userAvatarView.contentImage.contentMode = .scaleAspectFill
@@ -196,6 +194,10 @@ extension ProfileViewController: RoundedRectangleCollectionViewDelegate {
         guard let game = model as? Game else { return }
         performSegue(withIdentifier: "toGameDetail", sender: game)
     }
-    
-    
+}
+
+extension ProfileViewController: EditingProfileViewControllerDelegate {
+    func didTapDone() {
+        //atualizar o user
+    }
 }

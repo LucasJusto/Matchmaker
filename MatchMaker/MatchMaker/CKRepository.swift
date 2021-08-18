@@ -276,7 +276,7 @@ public class CKRepository {
         }
     }
     
-    private static func editUserData(id: String, name: String, nickname: String, location: Locations, description: String, photo: URL?, selectedPlatforms: [Platform], selectedGames: [Game], languages: [Languages], completion: @escaping (CKRecord?, Error?) -> Void){
+    static func editUserData(id: String, name: String, nickname: String, location: Locations, description: String, photo: URL?, selectedPlatforms: [Platform], selectedGames: [Game], languages: [Languages], completion: @escaping (CKRecord?, Error?) -> Void){
         
         let recordID = CKRecord.ID(recordName: id)
         let publicDB = container.publicCloudDatabase
