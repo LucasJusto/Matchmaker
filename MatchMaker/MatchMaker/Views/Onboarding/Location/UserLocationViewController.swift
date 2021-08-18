@@ -48,6 +48,8 @@ class UserLocationViewController: UIViewController {
         tableView.dataSource = self
         
         locations = Locations.allCases
+        
+        self.title = NSLocalizedString("LocationModalTitle", comment: "This is the translation for 'LocationModalTitle' at the Profile Customization section of Localizable.strings")
     }
     
     override func viewWillAppear(_ animated: Bool) {

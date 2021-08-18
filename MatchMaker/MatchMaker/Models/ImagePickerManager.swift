@@ -30,8 +30,8 @@ class ImagePickerManager: NSObject, UINavigationControllerDelegate {
     private weak var viewController: UIViewController?
     private var pickImageCallback : ((UIImage, URL) -> ())?
     
-    private let galleryAccessMessage: String = "In order to set a profile image, you must grant access to your gallery. Go to Settings > Matchmaker > Photos."
-    private let cameraAccessMessage: String = "In order to set a profile image, you must grant access to your camera. Go to Settings > Matchmaker > Camera."
+    private let galleryAccessMessage: String = NSLocalizedString("galleryAccessMessage", comment: "This is the translation for 'galleryAccessMessage' at the ImagePickerManager section of Localizable.strings")
+    private let cameraAccessMessage: String = NSLocalizedString("cameraAccessMessage", comment: "This is the translation for 'cameraAccessMessage' at the ImagePickerManager section of Localizable.strings")
 
     //MARK: ImagePickerManager - Class init
     
@@ -56,19 +56,19 @@ class ImagePickerManager: NSObject, UINavigationControllerDelegate {
      - returns: Void
      */
     func pickImage(_ viewController: UIViewController, _ callback: @escaping ((UIImage, URL) -> ())) {
-        let alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: NSLocalizedString("cameraGallerySheet", comment: "This is the translation for 'cameraGallerySheet' at the ImagePickerManager section of Localizable.strings"), message: nil, preferredStyle: .actionSheet)
         
-        let cameraAction = UIAlertAction(title: "Camera", style: .default){ [weak self] UIAlertAction in
+        let cameraAction = UIAlertAction(title: NSLocalizedString("cameraAction", comment: "This is the translation for 'cameraAction' at the ImagePickerManager section of Localizable.strings"), style: .default){ [weak self] UIAlertAction in
             guard let self = self else { return }
             self.requestUserPermissionForCamera()
         }
         
-        let galleryAction = UIAlertAction(title: "Gallery", style: .default){ [weak self] UIAlertAction in
+        let galleryAction = UIAlertAction(title: NSLocalizedString("galleryAction", comment: "This is the translation for 'galleryAction' at the ImagePickerManager section of Localizable.strings"), style: .default){ [weak self] UIAlertAction in
             guard let self = self else { return }
             self.requestPermissionForPhotoLibrary()
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel){ [weak self] UIAlertAction in
+        let cancelAction = UIAlertAction(title: NSLocalizedString("cancelAction", comment: "This is the translation for 'cancelAction' at the ImagePickerManager section of Localizable.strings"), style: .cancel){ [weak self] UIAlertAction in
         }
         
         alert.addAction(cameraAction)
@@ -104,8 +104,8 @@ class ImagePickerManager: NSObject, UINavigationControllerDelegate {
         else {
             DispatchQueue.main.async {
                 let alertController: UIAlertController = {
-                    let controller = UIAlertController(title: "Warning", message: "You don't have camera", preferredStyle: .alert)
-                    let action = UIAlertAction(title: "OK", style: .default)
+                    let controller = UIAlertController(title: NSLocalizedString("warningTitle", comment: "This is the translation for 'warningTitle' at the ImagePickerManager section of Localizable.strings"), message: NSLocalizedString("cameraError", comment: "This is the translation for 'cameraError' at the ImagePickerManager section of Localizable.strings"), preferredStyle: .alert)
+                    let action = UIAlertAction(title: NSLocalizedString("OKAction", comment: "This is the translation for 'OKAction' at the ImagePickerManager section of Localizable.strings"), style: .default)
                     controller.addAction(action)
                     
                     return controller
@@ -139,9 +139,9 @@ class ImagePickerManager: NSObject, UINavigationControllerDelegate {
      - returns: Void
      */
     private func openLimitedGallery(){
-        let actionSheet = UIAlertController(title: "Avatar upload", message: "Select one photo as your profile picture or Allow more photos from your gallery or go to Settings to allow access to all photos.", preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: NSLocalizedString("avatarUploadSheetTitle", comment: "This is the translation for 'avatarUploadSheetTitle' at the ImagePickerManager section of Localizable.strings"), message: NSLocalizedString("avatarUploadSheetMessage", comment: "This is the translation for 'avatarUploadSheetMessage' at the ImagePickerManager section of Localizable.strings"), preferredStyle: .actionSheet)
         
-        let selectProfileImage = UIAlertAction(title: "Select a profile picture", style: .default) { [unowned self] (_) in
+        let selectProfileImage = UIAlertAction(title: NSLocalizedString("selectImageAction", comment: "This is the translation for 'selectImageAction' at the ImagePickerManager section of Localizable.strings"), style: .default) { [unowned self] (_) in
             DispatchQueue.main.async {
                 //self.viewController?.dismiss(animated: true, completion: nil)
                 
@@ -159,20 +159,20 @@ class ImagePickerManager: NSObject, UINavigationControllerDelegate {
         }
         actionSheet.addAction(selectProfileImage)
 
-        let selectPhotosAction = UIAlertAction(title: "Allow more photos", style: .default) { [unowned self] (_) in
+        let selectPhotosAction = UIAlertAction(title: NSLocalizedString("limitedGalleryAction", comment: "This is the translation for 'limitedGalleryAction' at the ImagePickerManager section of Localizable.strings"), style: .default) { [unowned self] (_) in
             // Show limited library picker
             guard let viewController = self.viewController else { return }
             PHPhotoLibrary.shared().presentLimitedLibraryPicker(from: viewController)
         }
         actionSheet.addAction(selectPhotosAction)
 
-        let allowFullAccessAction = UIAlertAction(title: "Allow access to all photos", style: .default) { [unowned self] (_) in
+        let allowFullAccessAction = UIAlertAction(title: NSLocalizedString("fullGalleryAction", comment: "This is the translation for 'fullGalleryAction' at the ImagePickerManager section of Localizable.strings"), style: .default) { [unowned self] (_) in
             // Open app privacy settings
             gotoAppPrivacySettings()
         }
         actionSheet.addAction(allowFullAccessAction)
 
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: NSLocalizedString("cancelAction", comment: "This is the translation for 'cancelAction' at the ImagePickerManager section of Localizable.strings"), style: .cancel, handler: nil)
         actionSheet.addAction(cancelAction)
 
         self.viewController?.present(actionSheet, animated: true, completion: nil)
@@ -218,8 +218,8 @@ class ImagePickerManager: NSObject, UINavigationControllerDelegate {
                     case .denied:
                         DispatchQueue.main.async {
                             let alertController: UIAlertController = {
-                                let controller = UIAlertController(title: "Warning", message: self.galleryAccessMessage, preferredStyle: .alert)
-                                let action = UIAlertAction(title: "OK", style: .default)
+                                let controller = UIAlertController(title: NSLocalizedString("warningTitle", comment: "This is the translation for 'warningTitle' at the ImagePickerManager section of Localizable.strings"), message: self.galleryAccessMessage, preferredStyle: .alert)
+                                let action = UIAlertAction(title: NSLocalizedString("OKAction", comment: "This is the translation for 'OKAction' at the ImagePickerManager section of Localizable.strings"), style: .default)
                                 controller.addAction(action)
                                 
                                 return controller
@@ -231,8 +231,8 @@ class ImagePickerManager: NSObject, UINavigationControllerDelegate {
                     case .limited:
                         DispatchQueue.main.async {
                             let alertController: UIAlertController = {
-                                let controller = UIAlertController(title: "Warning", message: self.galleryAccessMessage, preferredStyle: .alert)
-                                let action = UIAlertAction(title: "OK", style: .default)
+                                let controller = UIAlertController(title: NSLocalizedString("warningTitle", comment: "This is the translation for 'warningTitle' at the ImagePickerManager section of Localizable.strings"), message: self.galleryAccessMessage, preferredStyle: .alert)
+                                let action = UIAlertAction(title: NSLocalizedString("OKAction", comment: "This is the translation for 'OKAction' at the ImagePickerManager section of Localizable.strings"), style: .default)
                                 controller.addAction(action)
                                 
                                 return controller
@@ -244,8 +244,8 @@ class ImagePickerManager: NSObject, UINavigationControllerDelegate {
                     case .notDetermined:
                         DispatchQueue.main.async {
                             let alertController: UIAlertController = {
-                                let controller = UIAlertController(title: "Warning", message: self.galleryAccessMessage, preferredStyle: .alert)
-                                let action = UIAlertAction(title: "OK", style: .default)
+                                let controller = UIAlertController(title: NSLocalizedString("warningTitle", comment: "This is the translation for 'warningTitle' at the ImagePickerManager section of Localizable.strings"), message: self.galleryAccessMessage, preferredStyle: .alert)
+                                let action = UIAlertAction(title: NSLocalizedString("OKAction", comment: "This is the translation for 'OKAction' at the ImagePickerManager section of Localizable.strings"), style: .default)
                                 controller.addAction(action)
                                 
                                 return controller
@@ -257,8 +257,8 @@ class ImagePickerManager: NSObject, UINavigationControllerDelegate {
                     case .restricted:
                         DispatchQueue.main.async {
                             let alertController: UIAlertController = {
-                                let controller = UIAlertController(title: "Warning", message: self.galleryAccessMessage, preferredStyle: .alert)
-                                let action = UIAlertAction(title: "OK", style: .default)
+                                let controller = UIAlertController(title: NSLocalizedString("warningTitle", comment: "This is the translation for 'warningTitle' at the ImagePickerManager section of Localizable.strings"), message: self.galleryAccessMessage, preferredStyle: .alert)
+                                let action = UIAlertAction(title: NSLocalizedString("OKAction", comment: "This is the translation for 'OKAction' at the ImagePickerManager section of Localizable.strings"), style: .default)
                                 controller.addAction(action)
                                 
                                 return controller
@@ -276,8 +276,8 @@ class ImagePickerManager: NSObject, UINavigationControllerDelegate {
             case .restricted:
                 DispatchQueue.main.async {
                     let alertController: UIAlertController = {
-                        let controller = UIAlertController(title: "Warning", message: self.galleryAccessMessage, preferredStyle: .alert)
-                        let action = UIAlertAction(title: "OK", style: .default)
+                        let controller = UIAlertController(title: NSLocalizedString("warningTitle", comment: "This is the translation for 'warningTitle' at the ImagePickerManager section of Localizable.strings"), message: self.galleryAccessMessage, preferredStyle: .alert)
+                        let action = UIAlertAction(title: NSLocalizedString("OKAction", comment: "This is the translation for 'OKAction' at the ImagePickerManager section of Localizable.strings"), style: .default)
                         controller.addAction(action)
                         
                         return controller
@@ -290,8 +290,8 @@ class ImagePickerManager: NSObject, UINavigationControllerDelegate {
             case .denied:
                 DispatchQueue.main.async {
                     let alertController: UIAlertController = {
-                        let controller = UIAlertController(title: "Warning", message: self.galleryAccessMessage, preferredStyle: .alert)
-                        let action = UIAlertAction(title: "OK", style: .default)
+                        let controller = UIAlertController(title: NSLocalizedString("warningTitle", comment: "This is the translation for 'warningTitle' at the ImagePickerManager section of Localizable.strings"), message: self.galleryAccessMessage, preferredStyle: .alert)
+                        let action = UIAlertAction(title: NSLocalizedString("OKAction", comment: "This is the translation for 'OKAction' at the ImagePickerManager section of Localizable.strings"), style: .default)
                         controller.addAction(action)
                         
                         return controller
@@ -304,8 +304,8 @@ class ImagePickerManager: NSObject, UINavigationControllerDelegate {
             case .limited:
                 DispatchQueue.main.async {
                     let alertController: UIAlertController = {
-                        let controller = UIAlertController(title: "Warning", message: self.galleryAccessMessage, preferredStyle: .alert)
-                        let action = UIAlertAction(title: "OK", style: .default)
+                        let controller = UIAlertController(title: NSLocalizedString("warningTitle", comment: "This is the translation for 'warningTitle' at the ImagePickerManager section of Localizable.strings"), message: self.galleryAccessMessage, preferredStyle: .alert)
+                        let action = UIAlertAction(title: NSLocalizedString("OKAction", comment: "This is the translation for 'OKAction' at the ImagePickerManager section of Localizable.strings"), style: .default)
                         controller.addAction(action)
                         
                         return controller
@@ -317,8 +317,8 @@ class ImagePickerManager: NSObject, UINavigationControllerDelegate {
             @unknown default:
                 DispatchQueue.main.async {
                     let alertController: UIAlertController = {
-                        let controller = UIAlertController(title: "Warning", message: self.galleryAccessMessage, preferredStyle: .alert)
-                        let action = UIAlertAction(title: "OK", style: .default)
+                        let controller = UIAlertController(title: NSLocalizedString("warningTitle", comment: "This is the translation for 'warningTitle' at the ImagePickerManager section of Localizable.strings"), message: self.galleryAccessMessage, preferredStyle: .alert)
+                        let action = UIAlertAction(title: NSLocalizedString("OKAction", comment: "This is the translation for 'OKAction' at the ImagePickerManager section of Localizable.strings"), style: .default)
                         controller.addAction(action)
                         
                         return controller
@@ -347,8 +347,8 @@ class ImagePickerManager: NSObject, UINavigationControllerDelegate {
                 else {
                     DispatchQueue.main.async {
                         let alertController: UIAlertController = {
-                            let controller = UIAlertController(title: "Warning", message: self.cameraAccessMessage, preferredStyle: .alert)
-                            let action = UIAlertAction(title: "OK", style: .default)
+                            let controller = UIAlertController(title: NSLocalizedString("warningTitle", comment: "This is the translation for 'warningTitle' at the ImagePickerManager section of Localizable.strings"), message: self.galleryAccessMessage, preferredStyle: .alert)
+                            let action = UIAlertAction(title: NSLocalizedString("OKAction", comment: "This is the translation for 'OKAction' at the ImagePickerManager section of Localizable.strings"), style: .default)
                             controller.addAction(action)
                             
                             return controller
@@ -363,8 +363,8 @@ class ImagePickerManager: NSObject, UINavigationControllerDelegate {
         case .restricted:
             DispatchQueue.main.async {
                 let alertController: UIAlertController = {
-                    let controller = UIAlertController(title: "Warning", message: self.cameraAccessMessage, preferredStyle: .alert)
-                    let action = UIAlertAction(title: "OK", style: .default)
+                    let controller = UIAlertController(title: NSLocalizedString("warningTitle", comment: "This is the translation for 'warningTitle' at the ImagePickerManager section of Localizable.strings"), message: self.galleryAccessMessage, preferredStyle: .alert)
+                    let action = UIAlertAction(title: NSLocalizedString("OKAction", comment: "This is the translation for 'OKAction' at the ImagePickerManager section of Localizable.strings"), style: .default)
                     controller.addAction(action)
                     
                     return controller
@@ -377,8 +377,8 @@ class ImagePickerManager: NSObject, UINavigationControllerDelegate {
         case .denied:
             DispatchQueue.main.async {
                 let alertController: UIAlertController = {
-                    let controller = UIAlertController(title: "Warning", message: self.cameraAccessMessage, preferredStyle: .alert)
-                    let action = UIAlertAction(title: "OK", style: .default)
+                    let controller = UIAlertController(title: NSLocalizedString("warningTitle", comment: "This is the translation for 'warningTitle' at the ImagePickerManager section of Localizable.strings"), message: self.galleryAccessMessage, preferredStyle: .alert)
+                    let action = UIAlertAction(title: NSLocalizedString("OKAction", comment: "This is the translation for 'OKAction' at the ImagePickerManager section of Localizable.strings"), style: .default)
                     controller.addAction(action)
                     
                     return controller
@@ -391,8 +391,8 @@ class ImagePickerManager: NSObject, UINavigationControllerDelegate {
         @unknown default:
             DispatchQueue.main.async {
                 let alertController: UIAlertController = {
-                    let controller = UIAlertController(title: "Warning", message: self.galleryAccessMessage, preferredStyle: .alert)
-                    let action = UIAlertAction(title: "OK", style: .default)
+                    let controller = UIAlertController(title: NSLocalizedString("warningTitle", comment: "This is the translation for 'warningTitle' at the ImagePickerManager section of Localizable.strings"), message: self.galleryAccessMessage, preferredStyle: .alert)
+                    let action = UIAlertAction(title: NSLocalizedString("OKAction", comment: "This is the translation for 'OKAction' at the ImagePickerManager section of Localizable.strings"), style: .default)
                     controller.addAction(action)
                     
                     return controller

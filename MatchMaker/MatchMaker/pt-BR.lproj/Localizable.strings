@@ -15,7 +15,8 @@
 "CKErrorDefaultMessage" = "Algo inesperado ocorreu, talvez seus dados não tenham sido salvos.";
 "CKErrorAlertButtonLabel" = "Ok";
 
-//MARK: - User
+//MARK: - UserProfile (Profile Tab)
+"UserGames" = "Seus jogos";
 "UserBehaviour" = "Comportamento";
 "UserSkills" = "Habilidades";
 "UserReviews" = "Avaliações";
@@ -31,7 +32,7 @@
 "RemoveFriendButtonLabel" = "Remover amigos";
 "PlayingFrom" = "Jogando de";
 "RejectRequestButton"= "Rejeitar amigo";
-"AceptRequestButton"= "Aceitar amigo";
+"AcceptRequestButton"= "Aceitar amigo";
 
 // MARK: - Platforms
 
@@ -99,6 +100,7 @@ para você escolher e encontrar jogadores";
 "LanguagesGerman" = "Alemão";
 
 // MARK: - Locations
+"LocationModalTitle" = "Localização";
 "LocationNorthAmerica" = "America do Norte";
 "LocationBrazil" = "Brasil";
 "LocationLatinAmericaSouth" = "Sul da America Latina";
@@ -111,6 +113,7 @@ para você escolher e encontrar jogadores";
 "LocationAsiaWest" = "Oeste Asiático";
 "LocationAfricaNorth" = "Norte da África";
 "LocationAfricaSouth" = "Sul da África";
+"LocationDontKnow" = "Eu não sei onde estou";
 
 "Dota2Description" = "Descrição do Dota 2";
 "LeagueOfLegendsDescription" = "Descrição do League of Legends";
@@ -177,6 +180,11 @@ para você escolher e encontrar jogadores";
 "AceptRequestFriendButtonLabel" = "Aceitar";
 "NotificationRequestFriendLabel" = "enviou uma solicitação de amizade";
 
+//MARK: - Profile Customization
+"CancelButtonLabel" = "Cancelar";
+"DoneButtonLabel" = "OK";
+"EditingProfileModalTitle" = "Editar Perfil";
+
 // MARK:- Rate
 "ExplainRateLabel" = "Avalie com base em sua \nexperiência de jogo com o jogador";
 "SkillRateLabel" = "Avaliação de habilidades";
@@ -184,6 +192,22 @@ para você escolher e encontrar jogadores";
 "ConfirmButtonLabel" = "Confirmar";
 "CancelButtonLabel" = "Cancelar";
 "TitleRateModalView"= "Avaliação";
+
+//MARK: - ImagePickerManager
+"galleryAccessMessage" = "Para poder colocar uma foto de perfil você precisa permitir acesso a sua galeria de fotos. Entre em Configurações > Matchmaker > Galeria de fotos.";
+"cameraAccessMessage" = "Para poder colocar uma foto de perfil você precisa permitir acesso a sua câmera. Entre em Configurações > Matchmaker > Câmera";
+"cameraGallerySheet" = "Editar foto de perfil";
+"cameraAction" = "Câmera";
+"galleryAction" = "Galeria";
+"cancelAction" = "Cancelar";
+"warningTitle" = "Aviso";
+"OKAction" = "OK";
+"avatarUploadSheetTitle" = "Upload de avatar";
+"avatarUploadSheetMessage" = "Selecione uma foto como sua foto de perfil ou Permitir acesso a mais fotos ou va em Configurações e permita acesso a todas as fotos";
+"selectImageAction" = "Selecione uma foto de perfil";
+"limitedGalleryAction" = "Permitir acesso a mais fotos";
+"fullGalleryAction" = "Permitir acesso a todas as fotos";
+"cameraError" = "Você não possui uma câmera";
 
 // MARK: - Filters
 "filtersNavigationTitle" = "Filtros";

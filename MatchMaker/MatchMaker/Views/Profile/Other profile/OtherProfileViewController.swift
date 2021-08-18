@@ -129,7 +129,7 @@ class OtherProfileViewController: UIViewController {
         } else if friendRequestOrNonFriendControl == isFriend.requestReceived {
             aceptOrRejectStack.isHidden = false
             requestFriendButton.isHidden = true
-            aceptButton.setTitle(NSLocalizedString("AceptRequestButton", comment: ""), for: .normal)
+            aceptButton.setTitle(NSLocalizedString("AcceptRequestButton", comment: ""), for: .normal)
             rejectButton.setTitle(NSLocalizedString("RejectRequestButton", comment: ""), for: .normal)
         }
     }
@@ -183,7 +183,7 @@ extension OtherProfileViewController {
         requestFriendButton.isHidden = false
         
         requestFriendButton.layer.backgroundColor = UIColor(named: "LightGray")?.cgColor
-        aceptButton.setTitle(NSLocalizedString("AceptRequestButton", comment: ""), for: .normal)
+        aceptButton.setTitle(NSLocalizedString("AcceptRequestButton", comment: ""), for: .normal)
         rejectButton.setTitle(NSLocalizedString("RejectRequestButton", comment: ""), for: .normal)
         //MARK: - Do BackEnd to acept friend
     }
@@ -197,6 +197,13 @@ extension OtherProfileViewController {
         //MARK: - Do BackEnd to reject friend
     }
     
+    /**
+     This function is responsible for sending a friend request to another user.
+     
+     - Parameters: Void
+     - Returns: Void
+     */
+    //TA FUNCIONANDO ESSE AQUI
     func addFriend() {
         friendRequestOrNonFriendControl = isFriend.request
         requestFriendButton.layer.backgroundColor = UIColor(named: "LightGray")?.cgColor
@@ -204,8 +211,20 @@ extension OtherProfileViewController {
         aceptOrRejectStack.isHidden = true
         requestFriendButton.isHidden = false
         //MARK: - Do BackEnd to add to friends
+        guard let user = user else { return }
+        CKRepository.getUserId { id in
+            //guard let id = id else { return }
+            CKRepository.sendFriendshipInvite(inviterUserId: "teste", receiverUserId: "id_4a5b2282b915488c3e99174c1ea0ddef")
+        }
     }
     
+    /**
+     This function is responsible for canceling a friend request to another user.
+     
+     - Parameters: Void
+     - Returns: Void
+     */
+    //TA FUNCIONANDO ESSE AQUI
     func cancelFriendRequest() {
         friendRequestOrNonFriendControl = isFriend.nonFriend
         requestFriendButton.layer.backgroundColor = UIColor(named: "Primary")?.cgColor
@@ -213,6 +232,11 @@ extension OtherProfileViewController {
         aceptOrRejectStack.isHidden = true
         requestFriendButton.isHidden = false
         //MARK: - Do BackEnd to cancel request
+        guard let user = user else { return }
+        CKRepository.getUserId { id in
+            guard let id = id else { return }
+            CKRepository.deleteFriendship(inviterId: id, receiverId: user.id, completion: {})
+        }
     }
     
     func removeFriend() {

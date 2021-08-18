@@ -13,6 +13,8 @@ class ProfileViewController: UIViewController {
     
     //MARK: ProfileViewController - Variables and Outlets Setup
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     @IBOutlet weak var backgroundCoverImage: UIImageView!
     
     @IBOutlet weak var userAvatarView: UserAvatarView!
@@ -32,6 +34,10 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var languagesView: TitleCollectionView!
     @IBOutlet weak var gameCollectionView: RoundedRectangleCollectionView!
     
+    @IBOutlet weak var backgroundImageTopConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var backgroundImageHeightConstraint: NSLayoutConstraint!
+    
     var customPicker: ImagePickerManager = ImagePickerManager()
     
     private var user: User?
@@ -44,6 +50,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         userAvatarView.delegate = self
+        scrollView.delegate = self
             
         //2 maneira de capturar a imagem do usuario, mas usando closures
 //        userAvatarView.didChooseImage = { [weak self] in
@@ -70,17 +77,27 @@ class ProfileViewController: UIViewController {
         
         guard let unwrappedUser = user else { return }
         
+        //User info
         userProfileNameLabel.text = unwrappedUser.name
         userProfileGamertagLabel.text = "@" + unwrappedUser.nickname
         userProfileBioLabel.text = unwrappedUser.description
         
-        behaviourRatingView.ratingLabel.text = String(unwrappedUser.behaviourRate)
-        behaviourRatingView.categoryOfRatingLabel.text = NSLocalizedString("UserBehaviour", comment: "This is the key for 'behaviour' translation")
-        behaviourRatingView.amountOfReviewsLabel.text = "0 " + NSLocalizedString("UserReviews", comment: "This is the key for 'reviews' translation")
-        skillsRatingView.ratingLabel.text = String(unwrappedUser.skillRate)
-        skillsRatingView.categoryOfRatingLabel.text = NSLocalizedString("UserSkills", comment: "This is the key for 'skills' translation")
-        skillsRatingView.amountOfReviewsLabel.text = "0 " + NSLocalizedString("UserReviews", comment: "This is the key for 'reviews' translation")
+        //Screen titles
+        ratingsTitleLabel.text = NSLocalizedString("Ratings", comment: "This is the translation for 'Ratings' at the Friend Profile (OtherPrifile) section of Localizable.strings")
+        platformsTitleLabel.text = NSLocalizedString("Platforms", comment: "This is the translation for 'Platforms' at the Friend Profile (OtherPrifile) section of Localizable.strings")
+        languagesTitleLabel.text = NSLocalizedString("Languages", comment: "This is the translation for 'Languages' at the Friend Profile (OtherPrifile) section of Localizable.strings")
+        gamesTitleLabel.text = NSLocalizedString("UserGames", comment: "This is the translation for 'Your Games' at the UserProfile (Profile Tab) section of Localizable.strings")
         
+        //User profile ratings
+        behaviourRatingView.ratingLabel.text = String(unwrappedUser.behaviourRate)
+        behaviourRatingView.categoryOfRatingLabel.text = NSLocalizedString("UserBehaviour", comment: "This is the translation for 'Behaviour' at the UserProfile (Profile Tab) section of Localizable.strings")
+        behaviourRatingView.amountOfReviewsLabel.text = "0 " + NSLocalizedString("UserReviews", comment: "This is the translation for 'Reviews' at the UserProfile (Profile Tab) section of Localizable.strings")
+        
+        skillsRatingView.ratingLabel.text = String(unwrappedUser.skillRate)
+        skillsRatingView.categoryOfRatingLabel.text = NSLocalizedString("UserSkills", comment: "This is the translation for 'Skills' at the UserProfile (Profile Tab) section of Localizable.strings")
+        skillsRatingView.amountOfReviewsLabel.text = "0 " + NSLocalizedString("UserReviews", comment: "This is the translation for 'Reviews' at the UserProfile (Profile Tab) section of Localizable.strings")
+        
+        //user game details 
         platformsView.smallLabeledImageModels = unwrappedUser.selectedPlatforms
         languagesView.titleModels = unwrappedUser.languages
         gameCollectionView.roundedRectangleImageModels = unwrappedUser.selectedGames
@@ -147,5 +164,14 @@ extension ProfileViewController: UserAvatarViewDelegate {
                 self.userAvatarView.contentImage.contentMode = .scaleAspectFill
             }
         }
+    }
+}
+//MARK: - UIScrollViewDelegate
+
+extension ProfileViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        backgroundImageHeightConstraint.constant = 242 - 48 + (-1 * scrollView.contentOffset.y)
+        view.layoutIfNeeded()
     }
 }
