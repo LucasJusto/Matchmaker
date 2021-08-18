@@ -820,16 +820,22 @@ public class CKRepository {
     
     static func getBlockedUsersList(completion: @escaping ([Social]) -> Void) {
         var blockedUsers: [Social] = [Social]()
+        let semaphore = DispatchSemaphore(value: 1)
         
         CKRepository.getBlockedUsersId { blockedUsersIds in
-            for id in blockedUsersIds {
-                getUserById(id: id) { user in
-                    blockedUsers.append(Social(id: user.id, name: user.name, nickname: user.nickname, photoURL: user.photoURL, games: user.selectedGames, isInvite: nil, isInviter: nil))
-                    if blockedUsers.count == blockedUsersIds.count {
-                        completion(blockedUsers)
+            if blockedUsersIds.count > 0 {
+                for id in blockedUsersIds {
+                    getUserById(id: id) { user in
+                        semaphore.wait()
+                        blockedUsers.append(Social(id: user.id, name: user.name, nickname: user.nickname, photoURL: user.photoURL, games: user.selectedGames, isInvite: nil, isInviter: nil))
+                        semaphore.signal()
+                        if blockedUsers.count == blockedUsersIds.count {
+                            completion(blockedUsers)
+                        }
                     }
                 }
             }
+            completion(blockedUsers)
         }
     }
     
