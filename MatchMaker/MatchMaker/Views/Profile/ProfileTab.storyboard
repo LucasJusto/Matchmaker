@@ -208,11 +208,11 @@
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="lQM-yi-rgY" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="H6x-PG-eu4"/>
-                            <constraint firstItem="lQM-yi-rgY" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Wrv-Fg-KzL"/>
-                            <constraint firstItem="lQM-yi-rgY" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="jEU-OL-5lt"/>
+                            <constraint firstItem="lQM-yi-rgY" firstAttribute="bottom" secondItem="5EZ-qb-Rvc" secondAttribute="bottom" id="H6x-PG-eu4"/>
+                            <constraint firstItem="lQM-yi-rgY" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="Wrv-Fg-KzL"/>
+                            <constraint firstItem="lQM-yi-rgY" firstAttribute="trailing" secondItem="5EZ-qb-Rvc" secondAttribute="trailing" id="jEU-OL-5lt"/>
                             <constraint firstItem="lQM-yi-rgY" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="sAQ-Xf-ne1"/>
                         </constraints>
                     </view>
@@ -229,6 +229,7 @@
                         <outlet property="platformsTitleLabel" destination="thb-ZM-4ut" id="gDw-cv-viQ"/>
                         <outlet property="platformsView" destination="E8i-Ta-eaW" id="adR-c5-YmU"/>
                         <outlet property="ratingsTitleLabel" destination="Iri-UU-lvc" id="OlZ-Zb-8pZ"/>
+                        <outlet property="scrollView" destination="lQM-yi-rgY" id="Wok-CG-3u0"/>
                         <outlet property="skillsRatingView" destination="u4L-27-qBv" id="TuN-Rh-PIY"/>
                         <outlet property="userAvatarView" destination="wyL-4I-PoK" id="fA0-FO-bP7"/>
                         <outlet property="userProfileBioLabel" destination="U58-xx-tEV" id="qjg-Qo-xjc"/>
@@ -246,7 +247,7 @@
             <objects>
                 <viewController id="LOZ-WC-D0h" customClass="EditingProfileViewController" customModule="MatchMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kDh-9T-8Nh">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="786"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tOs-Sw-RMg">
@@ -820,7 +821,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nfn-4O-7Ln" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="mZ5-cP-WM5">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="mZ5-cP-WM5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -843,7 +845,7 @@
             <objects>
                 <viewController id="u8y-OU-kGZ" customClass="GameDetailsViewController" customModule="MatchMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FwW-NT-qlW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4BZ-Z2-OWi">
