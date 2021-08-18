@@ -219,3 +219,9 @@ para você escolher e encontrar jogadores";
 "filtersSkillsRateLabel" = "Habilidade";
 "filtersLocationLabel" = "Localidade";
 "filtersGamesLabel" = "Jogos";
+
+// MARK: - Discover
+"DiscoverScreenAddToFriendsButton" = "Adicionar";
+"DiscoverShowMoreButton" = "Mostrar mais";
+"DiscoverScreenRequestSent" = "Solicitação enviada!";
+
