@@ -7,39 +7,25 @@
 
 import UIKit
 
-protocol DiscoverTableViewCellDelegate: AnyObject {
-    func didPressShowProfile(_ sender: DiscoverTableViewCell)
-    func didPressShowProfileCollection(_ sender: DiscoverShowMoreCollectionViewCell)
+protocol SocialTableViewFriendCellDelegate: AnyObject {
+    func didPressShowProfile(_ sender: SocialTableViewFriendCell)
+    func didPressShowProfileCollection(_ sender: SocialCollectionViewShowMoreCell)
 }
 
-class DiscoverTableViewCell: UITableViewCell {
+class SocialTableViewFriendCell: UITableViewCell {
 
     var userId: String?
     var userGames: [Game] = []
-    var delegate: DiscoverTableViewCellDelegate?
+    var delegate: SocialTableViewFriendCellDelegate?
     
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var nickLabel: UILabel!
     @IBOutlet weak var profileButton: UIButton!
-    @IBOutlet weak var addToFriendsButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    // Action outlets
-    @IBAction func actionAvatarIcon(_ sender: UIButton) {
+    @IBAction func actionProfileButton(_ sender: UIButton) {
         delegate?.didPressShowProfile(self)
-    }
-    
-    @IBAction func actionAddToFriendsButton(_ sender: UIButton) {
-        CKRepository.getUserId(completion: { ownUserId in
-            guard let ownUserId: String = ownUserId else { return }
-            guard let userId: String = self.userId else { return }
-            CKRepository.sendFriendshipInvite(inviterUserId: ownUserId, receiverUserId: userId)
-            DispatchQueue.main.async {
-                self.addToFriendsButton.setTitle(NSLocalizedString("DiscoverScreenRequestSent", comment: "Message shown when the request was sent"), for: .normal)
-                self.addToFriendsButton.isEnabled = false
-            }
-        })
     }
     
     override func awakeFromNib() {
@@ -48,12 +34,9 @@ class DiscoverTableViewCell: UITableViewCell {
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        // Initialization code
-        addToFriendsButton.setTitle(NSLocalizedString("DiscoverScreenAddToFriendsButton", comment: "Add to friends button text in the Discover Screen."), for: .normal)
-        addToFriendsButton.cornerRadius = 10
         profileImage.cornerRadius = 10
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         //super.setSelected(selected, animated: animated)
 
@@ -72,7 +55,6 @@ class DiscoverTableViewCell: UITableViewCell {
                 }
             }
         }
-        
         self.userId = userId
         self.userGames = userGames
         nameLabel.text = nameText
@@ -81,7 +63,7 @@ class DiscoverTableViewCell: UITableViewCell {
 
 }
 
-extension DiscoverTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension SocialTableViewFriendCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 71, height: 120)
@@ -101,7 +83,7 @@ extension DiscoverTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if indexPath.row == 3 && userGames.count > 4{
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DiscoverCollectionShowMoreButton", for: indexPath) as? DiscoverShowMoreCollectionViewCell
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SocialShowMoreCollectionViewCell", for: indexPath) as? SocialCollectionViewShowMoreCell
             else {
                     return UICollectionViewCell()
             }
@@ -113,7 +95,7 @@ extension DiscoverTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
             return cell
         }
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DiscoverCollectionCell", for: indexPath) as? DiscoverCollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SocialCollectionViewCell", for: indexPath) as? SocialCollectionViewCell
         else {
                 return UICollectionViewCell()
         }

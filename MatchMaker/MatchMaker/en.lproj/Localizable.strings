@@ -15,7 +15,8 @@
 "CKErrorDefaultMessage" = "Something unexpected ocurred, your data may not have been saved.";
 "CKErrorAlertButtonLabel" = "Ok";
 
-//MARK: - User
+//MARK: - UserProfile (Profile Tab)
+"UserGames" = "Your Games";
 "UserBehaviour" = "Behaviour";
 "UserSkills" = "Skills";
 "UserReviews" = "Reviews";
@@ -31,7 +32,7 @@
 "RemoveFriendButtonLabel" = "Remove friend";
 "PlayingFrom" = "Playing from";
 "RejectRequestButton"= "Reject friend";
-"AceptRequestButton"= "Acept friend";
+"AcceptRequestButton"= "Accept friend";
 
 // MARK: - Platforms
 
@@ -104,6 +105,7 @@ without using your storage";
 "LanguagesGerman" = "German";
 
 // MARK: - Locations
+"LocationModalTitle" = "Location";
 "LocationNorthAmerica" = "North America";
 "LocationBrazil" = "Brazil";
 "LocationLatinAmericaSouth" = "Latin America South";
@@ -191,12 +193,49 @@ without using your storage";
 "CancelButtonLabel" = "Cancel";
 "TitleRateModalView"= "Rate";
 
-//MARK: - Profile Customization
+// MARK: - Filters
+"filtersNavigationTitle" = "Filters";
+"filtersCleanButtonLabel" = "Clean filter";
+"filtersDoneButtonLabel" = "Done";
+"filtersLanguagesLabel" = "Languages";
+"filtersPlatformsLabel" = "Platforms";
+"filtersBehaviorsRateLabel" = "Behaviors rate";
+"filtersSkillsRateLabel" = "Skills rate";
+"filtersLocationLabel" = "Location";
+"filtersGamesLabel" = "Games";
+
+// MARK: - Profile Customization
 "CancelButtonLabel" = "Cancel";
 "DoneButtonLabel" = "Done";
-"viewControllerTitle" = "Edit Profile";
+"EditingProfileModalTitle" = "Edit Profile";
 
-//MARK: - Discover
+// MARK: - Discover
 "DiscoverScreenAddToFriendsButton" = "Add to friends";
 "DiscoverShowMoreButton" = "Show more";
 "DiscoverScreenRequestSent" = "Request sent!";
+
+//MARK: - Social
+"SocialViewSearchUsers" = "Search Users";
+"SocialViewFriendsSectionToggle" = "Friends";
+"SocialViewBlockedSectionToggle" = "Blocked";
+"SocialViewCancelSentRequest" = "Cancel request";
+"SocialReceivedRequestAcceptInvite" = "Accept";
+"SocialReceivedRequestDeclineInvite" = "Reject";
+"SocialShowMoreButton" = "Show more";
+"SocialUnblockButton" = "Unblock";
+
+//MARK: - ImagePickerManager
+"galleryAccessMessage" = "In order to set a profile image, you must grant access to your gallery. Go to Settings > Matchmaker > Photos.";
+"cameraAccessMessage" = "In order to set a profile image, you must grant access to your camera. Go to Settings > Matchmaker > Camera.";
+"cameraGallerySheet" = "Edit profile picture";
+"cameraAction" = "Camera";
+"galleryAction" = "Gallery";
+"cancelAction" = "Cancel";
+"warningTitle" = "Warning";
+"OKAction" = "OK";
+"avatarUploadSheetTitle" = "Avatar upload";
+"avatarUploadSheetMessage" = "Select one photo as your profile picture or Allow more photos from your gallery or go to Settings to allow access to all photos.";
+"selectImageAction" = "Select a profile picture";
+"limitedGalleryAction" = "Allow more photos";
+"fullGalleryAction" = "Allow access to all photos";
+"cameraError" = "You don't have camera";

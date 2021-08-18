@@ -11,35 +11,55 @@ class DiscoverViewController: UIViewController {
     
     @IBOutlet weak var discoverTableView: UITableView!
     
-    // User data and searching
+    // MARK: - Filters
+    var selectedLanguages: [Languages] = []
+    var selectedPlatforms: [Platform] = []
+    var behaviorsRate: Int = 0
+    var skillsRate: Int = 0
+    var selectedLocation: Locations?
+    var selectedGames: [Game] = []
+    
+    // MARK: - User data and searching
     var users: [Social] = []
     var filteredUsers: [Social] = []
     
-    // Segue helper
+    // MARK: - Segue helper
     var destinationUser: User?
     
-    // Search
+    // MARK: - Search
     let searchController = UISearchController(searchResultsController: nil)
+    
     var isSearchBarEmpty: Bool {
       return searchController.searchBar.text?.isEmpty ?? true
     }
+    
     var isFiltering: Bool {
       return searchController.isActive && !isSearchBarEmpty
     }
     
+    func getSelectedLocations() -> [Locations] {
+        if let selectedLocation = selectedLocation {
+            return [selectedLocation]
+        }
+        return []
+    }
     
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
-        CKRepository.searchUsers(languages: [], platforms: [], behaviourRate: 0, skillRate: 0, locations: [], games: []) { result in
+    func updateAndReload() {
+        CKRepository.searchUsers(languages: selectedLanguages, platforms: selectedPlatforms, behaviourRate: Double(behaviorsRate), skillRate: Double(skillsRate), locations: getSelectedLocations(), games: selectedGames) { result in
+            
             self.users = result
             self.filteredUsers = result
+            
             DispatchQueue.main.async {
                 self.discoverTableView.reloadData()
             }
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+                
+        updateAndReload()
         
         discoverTableView.delegate = self
         discoverTableView.dataSource = self
@@ -66,17 +86,6 @@ class DiscoverViewController: UIViewController {
         searchController.searchBar.setImage(UIImage(systemName: "line.horizontal.3.decrease.circle"), for: .bookmark, state: .normal)
         
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension DiscoverViewController: UISearchBarDelegate, UISearchResultsUpdating {
@@ -89,7 +98,7 @@ extension DiscoverViewController: UISearchBarDelegate, UISearchResultsUpdating {
     }
     
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
-        // SHOW FILTER SCREEN
+        performSegue(withIdentifier: "filter", sender: nil)
     }
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -166,10 +175,33 @@ extension DiscoverViewController: DiscoverTableViewCellDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier=="toOtherProfile" {
+        if segue.identifier == "toOtherProfile" {
             let navigationController = segue.destination as! UINavigationController
             let destination = navigationController.topViewController as! OtherProfileViewController
             destination.user = self.destinationUser
         }
+        
+        if segue.identifier == "filter" {
+            let navigationController = segue.destination as! UINavigationController
+            let destination = navigationController.topViewController as! FiltersViewController
+            
+            destination.delegate = self
+            
+            destination.loadData(languages: selectedLanguages, platforms: selectedPlatforms, behaviors: behaviorsRate, skills: skillsRate, location: selectedLocation, games: selectedGames)
+        }
+    }
+}
+
+extension DiscoverViewController: FiltersViewControllerDelegate {
+    func setFilters(languages: [Languages], platforms: [Platform], behaviorsRate: Int, skillsRate: Int, selectedLocation: Locations?, selectedGames: [Game]) {
+        
+        self.selectedLanguages = languages
+        self.selectedPlatforms = platforms
+        self.behaviorsRate = behaviorsRate
+        self.skillsRate = skillsRate
+        self.selectedLocation = selectedLocation
+        self.selectedGames = selectedGames
+        
+        updateAndReload()
     }
 }
