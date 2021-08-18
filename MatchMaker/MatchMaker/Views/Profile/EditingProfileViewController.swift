@@ -70,7 +70,7 @@ class EditingProfileViewController: UIViewController {
         tableView.dataSource = self
         setUpTagCategories()
                 
-        self.title = NSLocalizedString("viewControllerTitle", comment: "This key is used to set the title of the screen")
+        self.title = NSLocalizedString("EditingProfileModalTitle", comment: "This is the translation for 'EditingProfileModalTitle' at the Profile Customization section of Localizable.strings")
     }
     
     private func setUpTagCategories() {
