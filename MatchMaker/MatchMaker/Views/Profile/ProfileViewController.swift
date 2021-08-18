@@ -14,6 +14,7 @@ class ProfileViewController: UIViewController {
     //MARK: ProfileViewController - Variables and Outlets Setup
     
     @IBOutlet weak var scrollView: UIScrollView!
+    
     @IBOutlet weak var backgroundCoverImage: UIImageView!
     
     @IBOutlet weak var userAvatarView: UserAvatarView!
@@ -33,6 +34,10 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var languagesView: TitleCollectionView!
     @IBOutlet weak var gameCollectionView: RoundedRectangleCollectionView!
     
+    @IBOutlet weak var backgroundImageTopConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var backgroundImageHeightConstraint: NSLayoutConstraint!
+    
     var customPicker: ImagePickerManager = ImagePickerManager()
     
     private var user: User?
@@ -45,6 +50,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         userAvatarView.delegate = self
+        scrollView.delegate = self
             
         //2 maneira de capturar a imagem do usuario, mas usando closures
 //        userAvatarView.didChooseImage = { [weak self] in
@@ -158,5 +164,14 @@ extension ProfileViewController: UserAvatarViewDelegate {
                 self.userAvatarView.contentImage.contentMode = .scaleAspectFill
             }
         }
+    }
+}
+//MARK: - UIScrollViewDelegate
+
+extension ProfileViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        backgroundImageHeightConstraint.constant = 242 - 48 + (-1 * scrollView.contentOffset.y)
+        view.layoutIfNeeded()
     }
 }
