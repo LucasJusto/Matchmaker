@@ -104,7 +104,7 @@ class OnboardingRegisterViewController: UIViewController {
             self.tableView.reloadData()
         }
         
-        CKRepository.setOnboardingInfo(name: self.nameField, nickname: self.usernameField, photoURL: nil, location: Locations.africaNorth, description: self.descriptionField, languages: languages, selectedPlatforms: platforms, selectedGames: games, completion: { record, error in
+        CKRepository.setOnboardingInfo(name: self.nameField, nickname: self.usernameField, photoURL: profileImageUrl, location: Locations.africaNorth, description: self.descriptionField, languages: languages, selectedPlatforms: platforms, selectedGames: games, completion: { record, error in
             
             if error == nil && record != nil {
                 
@@ -485,7 +485,7 @@ extension OnboardingRegisterViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         
-        return (collectionView.bounds.width) - (collectionView.bounds.width * 0.31)
+        return 10
     }
 }
 
@@ -573,9 +573,7 @@ extension OnboardingRegisterViewController: GameSelectionDelegate {
         }
         
         tagGames[gameIndex] = GameOption(option: game, isFavorite: isSelected)
-        
-        let collectionIndexPath = IndexPath(row: gameIndex, section: 0)
-        
+                
         cell?.collectionView.reloadData()
     }
     
