@@ -16,13 +16,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         UIApplication.shared.registerForRemoteNotifications()
         
-        if UserDefaults.standard.bool(forKey: "FriendsTableSubscription") {
-            
-        } else {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+            if let error = error {
+                print("D'oh: \(error.localizedDescription)")
+            }
+            else {
+                DispatchQueue.main.async {
+                    application.registerForRemoteNotifications()
+                }
+            }
+        }
+        
+        UNUserNotificationCenter.current().delegate = self
+        
+        //TODO: Uncomment this line to flush existing subscriptions
+        flushContainerSubscriptions() {
             CKRepository.getUserId { id in
                 if let idNotNull = id {
                     // 1. Create a Query Subscription used on iCloud to filter what shoud be triggered when record type changes
-                    let newSubscription = CKQuerySubscription(recordType: FriendsTable.recordType.description,
+                    let silentSubscription = CKQuerySubscription(recordType: FriendsTable.recordType.description,
                                                               predicate: NSPredicate(format: "\(FriendsTable.receiverId.description) == %@", idNotNull),
                                                               options: [.firesOnRecordCreation,
                                                                         .firesOnRecordDeletion,
@@ -31,22 +43,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     // 2. Creating a Subscription which will be sent to iCloud as a wrapper
                     let notification = CKSubscription.NotificationInfo()
                     notification.shouldSendContentAvailable = true
+                    silentSubscription.notificationInfo = notification
+
+                    let newFriendReqSubscription = CKQuerySubscription(recordType: FriendsTable.recordType.description,
+                                                                           predicate: NSPredicate(format: "\(FriendsTable.receiverId.description) == %@", idNotNull),
+                                                                           options: [.firesOnRecordCreation])
                     
-                    newSubscription.notificationInfo = notification
+                    let friendReqNotification = CKSubscription.NotificationInfo()
+                    friendReqNotification.alertBody = "You have a new friend request!"
+                    friendReqNotification.soundName = "default"
+                    newFriendReqSubscription.notificationInfo = friendReqNotification
                     
                     // 3. Create a public database where it is going to be placed at
                     let database = CKRepository.container.publicCloudDatabase
                     
+                    let operation = CKModifySubscriptionsOperation(subscriptionsToSave: [silentSubscription, newFriendReqSubscription], subscriptionIDsToDelete: nil)
+                    
                     // 4. Save the new subscription to iCloud
-                    database.save(newSubscription) { subscription, error in
-                        if let err = error {
+                    operation.modifySubscriptionsCompletionBlock = { subscriptions, _ , error in
+                        if let _ = error {
                             return
                         }
-                        
-                        if let _ = subscription {
-                            UserDefaults.standard.set(true, forKey: "FriendsTableSubscription")
-                        }
                     }
+                    
+                    database.add(operation)
                 }
             }
         }
@@ -54,6 +74,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    /**
+     Flushes all current subscriptions active by the user. 
+     */
+    func flushContainerSubscriptions (completion: @escaping () -> Void){
+        let operation = CKFetchSubscriptionsOperation.fetchAllSubscriptionsOperation()
+        operation.fetchSubscriptionCompletionBlock = { a, b in
+            //print(a, b)
+            let operation2 = CKModifySubscriptionsOperation(subscriptionsToSave: nil, subscriptionIDsToDelete: a?.keys.map({ $0 }))
+            operation2.modifySubscriptionsCompletionBlock = { _ , deleted, error in
+                //print("deleted: \(deleted)")
+                //print("error: \(error)")
+                completion()
+            }
+            CKRepository.container.publicCloudDatabase.add(operation2)
+        }
+        
+        CKRepository.container.publicCloudDatabase.add(operation)
+    }
+    
+    /**
+     This function handles the silent notifications for the user. The silent notifications are used for friends update inside the app. 
+     */
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
         if let _ = CKNotification(fromRemoteNotificationDictionary: userInfo) {
@@ -85,3 +127,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 }
 
+//MARK: - UNUserNotificationCenterDelegate
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    /**
+     This functions handles the push notifications received by the user.
+     */
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.banner, .sound, .badge, .list])
+    }
+}

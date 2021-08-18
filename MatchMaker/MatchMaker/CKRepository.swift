@@ -727,6 +727,63 @@ public class CKRepository {
         }
     }
     
+    static func blockUser(userToBeBlockedId: String) {
+        CKRepository.getUserId { id in
+            if let idNotNull = id {
+                let recordID = CKRecord.ID(recordName:"block\(idNotNull)\(userToBeBlockedId)")
+                let record = CKRecord(recordType: BlockedTable.recordType.description, recordID: recordID)
+                let publicDB = container.publicCloudDatabase
+                
+                record.setObject(idNotNull as CKRecordValue?, forKey: BlockedTable.userId.description)
+                record.setObject(userToBeBlockedId as CKRecordValue?, forKey: BlockedTable.blockedId.description)
+                
+                publicDB.save(record) { record, error in
+                    if let ckError = error as? CKError {
+                        CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                    }
+                    else {
+                        if error == nil {
+                            getUserById(id: userToBeBlockedId) { user in
+                                CKRepository.user?.blocked.append(Social(id: user.id, name: user.name, nickname: user.nickname, photoURL: user.photoURL, games: user.selectedGames, isInvite: IsInvite.yes, isInviter: false))
+                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: FriendsTable.tableChanged.description), object: nil)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    static func unblockUser(userToBeUnblockedId: String) {
+        CKRepository.getUserId { id in
+            if let idNotNull = id {
+                let publicDB = container.publicCloudDatabase
+                let recordID = CKRecord.ID(recordName:"block\(idNotNull)\(userToBeUnblockedId)")
+                
+                publicDB.delete(withRecordID: recordID) { id, error in
+                    if let ckError = error as? CKError {
+                        CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                    }
+                    else {
+                        if error == nil {
+                            if let u = CKRepository.user {
+                                if u.blocked.count > 0 {
+                                    for i in 0...u.blocked.count-1 {
+                                        if u.blocked[i].id == userToBeUnblockedId {
+                                            CKRepository.user?.blocked.remove(at: i)
+                                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: FriendsTable.tableChanged.description), object: nil)
+                                            break
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     static func getBlockedUsersId(completion: @escaping ([String]) -> Void) {
         var blockedUsersIds = [String]()
         
@@ -763,16 +820,22 @@ public class CKRepository {
     
     static func getBlockedUsersList(completion: @escaping ([Social]) -> Void) {
         var blockedUsers: [Social] = [Social]()
+        let semaphore = DispatchSemaphore(value: 1)
         
         CKRepository.getBlockedUsersId { blockedUsersIds in
-            for id in blockedUsersIds {
-                getUserById(id: id) { user in
-                    blockedUsers.append(Social(id: user.id, name: user.name, nickname: user.nickname, photoURL: user.photoURL, games: user.selectedGames, isInvite: nil, isInviter: nil))
-                    if blockedUsers.count == blockedUsersIds.count {
-                        completion(blockedUsers)
+            if blockedUsersIds.count > 0 {
+                for id in blockedUsersIds {
+                    getUserById(id: id) { user in
+                        semaphore.wait()
+                        blockedUsers.append(Social(id: user.id, name: user.name, nickname: user.nickname, photoURL: user.photoURL, games: user.selectedGames, isInvite: nil, isInviter: nil))
+                        semaphore.signal()
+                        if blockedUsers.count == blockedUsersIds.count {
+                            completion(blockedUsers)
+                        }
                     }
                 }
             }
+            completion(blockedUsers)
         }
     }
     
