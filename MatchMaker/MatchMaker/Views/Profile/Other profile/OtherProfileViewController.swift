@@ -159,7 +159,7 @@ class OtherProfileViewController: UIViewController {
         } else if ((social.isInviter ?? false) && (social.isInvite == .yes)) {
             acceptOrRejectStack.isHidden = false
             requestFriendButton.isHidden = true
-            acceptButton.setTitle(NSLocalizedString("AceptRequestButton", comment: ""), for: .normal)
+            acceptButton.setTitle(NSLocalizedString("AcceptRequestButton", comment: ""), for: .normal)
             rejectButton.setTitle(NSLocalizedString("RejectRequestButton", comment: ""), for: .normal)
         }
     }
