@@ -24,10 +24,9 @@ class SocialTableViewBlockedCell: UITableViewCell {
     
     // Actions
     @IBAction func actionUnblockButton(_ sender: UIButton) {
-        CKRepository.getUserId(completion: { ownUserId in
-            guard let unwrappedUserId = ownUserId else { return }
-            self.delegate?.updateAndReloadBlocked(self)
-        })
+        guard let unwrappedUserId = userId else { return }
+        CKRepository.unblockUser(userToBeUnblockedId: unwrappedUserId)
+        delegate?.updateAndReloadBlocked(self)
     }
     
     override func awakeFromNib() {

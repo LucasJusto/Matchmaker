@@ -14,6 +14,7 @@ class SocialViewController: UIViewController {
     var friends: [Social] = []
     var filteredFriends: [Social] = []
     var blockedUsers: [Social] = []
+    var filteredBlocked: [Social] = []
     
     // Segue helper
     var destinationUser: User?
@@ -35,7 +36,7 @@ class SocialViewController: UIViewController {
         return !isSearchBarEmpty
     }
     
-    func updateAndReload() {
+    func updateFriends(completion: @escaping () -> ()) {
         CKRepository.getUserId(completion: { userId in
             self.userId = userId
             guard let userId = self.userId else { return }
@@ -61,30 +62,40 @@ class SocialViewController: UIViewController {
                 self.friends.append(contentsOf: actualFriend)
                 self.friends.append(contentsOf: sentRequest)
                 self.filteredFriends = self.friends
-                DispatchQueue.main.async {
-                    self.socialTableView.reloadData()
-                }
+                completion()
             })
         })
     }
     
-    func updateAndReloadBlocked() {
-        CKRepository.getBlockedUsersList(completion: { blocked in
-            self.blockedUsers = blocked
+    func updateAndReloadFriends() {
+        updateFriends {
             DispatchQueue.main.async {
                 self.socialTableView.reloadData()
             }
+        }
+    }
+    
+    func updateBlocked(completion: @escaping () -> ()) {
+        CKRepository.getBlockedUsersList(completion: { blocked in
+            self.blockedUsers = blocked
+            self.filteredBlocked = blocked
+            completion()
         })
+    }
+    
+    func updateAndReloadBlocked() {
+        updateBlocked {
+            DispatchQueue.main.async {
+                self.socialTableView.reloadData()
+            }
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        updateAndReload()
-        
-        CKRepository.getBlockedUsersList(completion: { blocked in
-            self.blockedUsers = blocked
-        })
+        updateAndReloadFriends()
+        updateBlocked{}
         
         socialTableView.delegate = self
         socialTableView.dataSource = self
@@ -108,11 +119,12 @@ class SocialViewController: UIViewController {
         blockedToggle.setTitle(segment2, forSegmentAt: 1)
         blockedToggle.setTitleTextAttributes([.foregroundColor:UIColor.white], for: .normal)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(SocialViewController.listUpdated), name: NSNotification.Name("friendsTable.tableChanged.description"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SocialViewController.listUpdated), name: NSNotification.Name(FriendsTable.tableChanged.description), object: nil)
     }
     
     @objc func listUpdated() {
-        updateAndReload()
+        updateAndReloadBlocked()
+        updateAndReloadFriends()
     }
     
     /*
@@ -134,8 +146,14 @@ extension SocialViewController: UISearchBarDelegate {
     }
     
     func filterContentForSearchText(_ searchText: String) {
-        filteredFriends = friends.filter { (friend: Social) -> Bool in
-            return friend.name.lowercased().contains(searchText.lowercased())
+        if blockedToggle.selectedSegmentIndex == 0 {
+            filteredFriends = friends.filter { (friend: Social) -> Bool in
+                return friend.name.lowercased().contains(searchText.lowercased())
+            }
+        } else {
+            filteredBlocked = blockedUsers.filter { (blocked: Social) -> Bool in
+                return blocked.name.lowercased().contains(searchText.lowercased())
+            }
         }
         socialTableView.reloadData()
     }
@@ -149,13 +167,16 @@ extension SocialViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        if blockedToggle.selectedSegmentIndex == 0 {
+            if isFiltering {
+                return filteredFriends.count
+            }
+            return friends.count
+        }
         if isFiltering {
-            return filteredFriends.count
+            return filteredBlocked.count
         }
-        if blockedToggle.selectedSegmentIndex == 1 {
-            return blockedUsers.count
-        }
-        return friends.count
+        return blockedUsers.count
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -175,6 +196,7 @@ extension SocialViewController: UITableViewDelegate, UITableViewDataSource {
             friend = blockedUsers[indexPath.section]
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "BlockedCell", for: indexPath) as? SocialTableViewBlockedCell else { return UITableViewCell() }
             cell.setup(userId: friend.id, photoURL: friend.photoURL, name: friend.name, nickname: friend.nickname)
+            cell.delegate = self
             return cell
         }
         
@@ -209,7 +231,8 @@ extension SocialViewController: UITableViewDelegate, UITableViewDataSource {
 extension SocialViewController: SocialTableViewSentRequestCellDelegate, SocialTableViewReceivedRequestCellDelegate {
 
     func updateAndReload(_ sender: Any) {
-        self.updateAndReload()
+        //update not necessary because of the silent notification integration
+        //self.updateAndReloadFriends()
     }
     
 }
@@ -217,7 +240,8 @@ extension SocialViewController: SocialTableViewSentRequestCellDelegate, SocialTa
 extension SocialViewController: SocialTableViewBlockedCellDelegate {
     
     func updateAndReloadBlocked(_ sender: SocialTableViewBlockedCell) {
-        self.updateAndReloadBlocked()
+        //update not necessary because of the silent notification integration
+        //self.updateAndReloadBlocked()
     }
     
 }
