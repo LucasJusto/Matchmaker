@@ -26,9 +26,7 @@ class SocialTableViewReceivedRequestCell: UITableViewCell {
         guard let userId = self.userId else { return }
         CKRepository.getUserId(completion: { ownUserId in
             guard let ownUserId = ownUserId else { return }
-            CKRepository.friendshipInviteAnswer(inviterUserId: userId, receiverUserId: ownUserId, response: false) { answer, error in
-                
-            }
+            CKRepository.friendshipInviteAnswer(inviterUserId: userId, receiverUserId: ownUserId, response: false)
             self.delegate?.updateAndReload(self)
         })
     }
@@ -37,9 +35,7 @@ class SocialTableViewReceivedRequestCell: UITableViewCell {
         guard let userId = self.userId else { return }
         CKRepository.getUserId(completion: { ownUserId in
             guard let ownUserId = ownUserId else { return }
-            CKRepository.friendshipInviteAnswer(inviterUserId: userId, receiverUserId: ownUserId, response: true) { answer, error in
-                
-            }
+            CKRepository.friendshipInviteAnswer(inviterUserId: userId, receiverUserId: ownUserId, response: true)
             self.delegate?.updateAndReload(self)
         })
     }
