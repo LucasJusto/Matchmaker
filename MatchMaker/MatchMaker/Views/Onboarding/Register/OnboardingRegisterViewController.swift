@@ -8,7 +8,6 @@
 import UIKit
 
 //MARK: - OnboardingRegisterViewController Class
-
 class OnboardingRegisterViewController: UIViewController {
     
     // MARK: - typealias

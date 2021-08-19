@@ -77,6 +77,7 @@ class DiscoverViewController: UIViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Users"
         searchController.searchBar.barStyle = .black
+        searchController.searchBar.tintColor = UIColor(named: "Primary")
         navigationItem.searchController = searchController
         definesPresentationContext = true
         

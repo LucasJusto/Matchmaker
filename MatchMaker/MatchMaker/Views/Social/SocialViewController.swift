@@ -19,6 +19,13 @@ class SocialViewController: UIViewController {
     // Segue helper
     var destinationUser: User?
     
+    // Keyboard
+    var keyboardIsShowing = false {
+        didSet {
+            searchBar.showsCancelButton = keyboardIsShowing
+        }
+    }
+    
     @IBOutlet weak var socialTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var blockedToggle: UISegmentedControl!
@@ -111,6 +118,7 @@ class SocialViewController: UIViewController {
         // Search Controller | uses extension
         searchBar.delegate = self
         searchBar.searchTextField.textColor = UIColor.white
+        searchBar.tintColor = UIColor(named: "Primary")
         
         // LocalizableString
         searchBar.placeholder = NSLocalizedString("SocialViewSearchUsers", comment: "Placeholder text in search bar")
@@ -144,6 +152,20 @@ extension SocialViewController: UISearchBarDelegate {
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filterContentForSearchText(searchText)
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        self.keyboardIsShowing = true
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.keyboardIsShowing = false
+        self.searchBar.endEditing(true)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.keyboardIsShowing = false
+        self.searchBar.endEditing(true)
     }
     
     func filterContentForSearchText(_ searchText: String) {
