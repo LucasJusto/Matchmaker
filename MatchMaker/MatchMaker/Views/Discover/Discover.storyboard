@@ -254,7 +254,7 @@
                                                 <constraint firstItem="Fov-Xd-vIp" firstAttribute="leading" secondItem="rOV-ws-jyC" secondAttribute="leading" id="zoM-Ji-LCa"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.14117647058823529" green="0.14117647058823529" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" name="MediumGray"/>
                                         <connections>
                                             <outlet property="CollectionView" destination="Zja-IG-i2R" id="fQ9-Sj-9w1"/>
                                             <outlet property="addToFriendsButton" destination="gEM-jJ-AMW" id="Hsg-RE-Tas"/>
@@ -338,6 +338,9 @@
         <image name="Xbox" width="204" height="188.5"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
+        <namedColor name="MediumGray">
+            <color red="0.14117647058823529" green="0.14117647058823529" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="Primary">
             <color red="0.3880000114440918" green="0.090000003576278687" blue="0.88599997758865356" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

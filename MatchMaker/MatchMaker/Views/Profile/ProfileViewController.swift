@@ -197,6 +197,10 @@ extension ProfileViewController: RoundedRectangleCollectionViewDelegate {
 
 extension ProfileViewController: EditingProfileViewControllerDelegate {
     func didTapDone() {
-        //atualizar o user
+        if let userUpdated = CKRepository.user {
+            self.user = userUpdated
+                        
+            self.viewDidLoad()
+        }
     }
 }

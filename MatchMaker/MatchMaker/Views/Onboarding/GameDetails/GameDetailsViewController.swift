@@ -277,7 +277,6 @@ extension GameDetailsViewController: UICollectionViewDelegate, UICollectionViewD
 
         collectionView.reloadData()
     }
-
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout

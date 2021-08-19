@@ -278,6 +278,9 @@ public class CKRepository {
     
     static func editUserData(id: String, name: String, nickname: String, location: Locations, description: String, photo: URL?, selectedPlatforms: [Platform], selectedGames: [Game], languages: [Languages], completion: @escaping (CKRecord?, Error?) -> Void){
         
+        if let _user = CKRepository.user {
+        CKRepository.user = User(id: id, name: name, nickname: nickname, photoURL: photo, location: location, description: description, behaviourRate: Double(_user.behaviourRate), skillRate: Double(_user.skillRate), languages: languages, selectedPlatforms: selectedPlatforms, selectedGames: selectedGames)
+        }
         let recordID = CKRecord.ID(recordName: id)
         let publicDB = container.publicCloudDatabase
         
