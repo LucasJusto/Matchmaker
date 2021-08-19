@@ -151,6 +151,10 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "toOtherProfile", sender: nil)
+    }
+    
 }
 
 extension DiscoverViewController: DiscoverTableViewCellDelegate {
