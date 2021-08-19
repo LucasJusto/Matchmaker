@@ -18,7 +18,14 @@ class HomeViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-
+        if let tabBarItems = self.tabBarController?.tabBar.items {
+            if tabBarItems.count == 4 {
+                tabBarItems[0].title = NSLocalizedString("tabBarPanel", comment: "Panel")
+                tabBarItems[1].title = NSLocalizedString("tabBarSocial", comment: "Social")
+                tabBarItems[2].title = NSLocalizedString("tabBarDiscover", comment: "Discover")
+                tabBarItems[3].title = NSLocalizedString("tabBarProfile", comment: "Profile")
+            }
+        }
         tableView.dataSource = self
         tableView.delegate = self
         

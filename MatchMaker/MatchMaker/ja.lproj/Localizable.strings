@@ -1,0 +1,235 @@
+// MARK: --Tab Bar
+"tabBarPanel" = "パネル";
+"tabBarProfile" = "プロフィール";
+"tabBarSocial" = "ソーシャル";
+"tabBarDiscover" = "発見";
+
+// MARK: --CKErrorAlert
+"CKErrorNotLoggedInTitle" = "iCloudにログインしていません";
+"CKErrorNotLoggedInMessage" = "このアプリを使用するには、iCloudにログインする必要があります。このアプリを閉じてiCloudにログインしてから、もう一度開いてください。";
+"CKErrorDefaultTitle" = "エラーが発生しました";
+"CKErrorDefaultMessage" = "予期しない問題が発生しました。データが保存されていない可能性があります。";
+"CKErrorAlertButtonLabel" = "OK";
+
+// MARK: --UserProfile (Profile Tab)
+"UserGames" = "あなたのゲーム";
+"UserBehaviour" = "動作";
+"UserSkills" = "スキル";
+"UserReviews" = "レビュー";
+
+// MARK: --Friend Profile (OtherPrifile)
+"TitleViewRate" = "プロフィール";
+"Ratings" = "評価";
+"Platforms" = "プラットフォーム";
+"Languages" = "言語";
+"Games" = "ゲーム";
+"RequestFriendButtonLabel" = "友達申請";
+"CancelRequestButtonLabel" = "友達申請のキャンセル";
+"RemoveFriendButtonLabel" = "友達削除";
+"PlayingFrom" = "プレイ元";
+"RejectRequestButton" = "友達申請の拒否";
+"AcceptRequestButton" = "友達申請の許可";
+
+// MARK: --Platforms
+
+// MARK: --ONBOARDING 1
+"onboarding1Title" = "ようこそ";
+"onboarding1Deion" = "指定した条件で友達を探す";
+
+// MARK: --ONBOARDING 2
+"onboarding2Title" = "好きなゲーム ";
+"onboarding2Deion" = "人気のあるゲームやプレイヤーを探す";
+
+// MARK: --ONBOARDING 3
+"onboarding3Title" = "プレイヤーとゲーム時間を調整する";
+"onboarding3Deion" = "内部チャットでプレイヤーとゲーム時間を調整する ";
+
+// MARK: --ONBOARDING 4
+"onboarding4TitleLabel" = "iCloudと同期";
+"onboarding4Deion" = "アカウントの心配はありません。容量を消費せずに自動で同期します";
+"onboarding4ButtonLabel" = "OK";
+
+// MARK: --ONBOARDING 5
+"onboarding5ButtonLabel" = "完了";
+"onboarding5ImageLabel" = "プロフィール画像";
+"onboarding5NameLabel" = "名前";
+"onboarding5UsernameLabel" = "ユーザー名";
+"onboarding5DeionLabel" = "説明";
+"onboarding5DeionPlaceholder" = "自己紹介を設定し、他のプレイヤーにも連絡先を提供する。";
+"onboarding5LocationLabel" = "場所";
+"onboarding5ChangePickerLabel" = "変更";
+"onboarding5LanguagesLabel" = "言語";
+"onboarding5PlatformsLabel" = "プラットフォーム";
+"onboarding5GamesLabel" = "ゲーム";
+"onboarding5SelectedLabel" = "選択済み";
+
+// MARK: --ONBOARDING 5 --Warning
+"onboarding5AlertTitleLabel" = "フィールドが空欄です";
+"onboarding5AlertTextLabel" = "プロファイルを作成するには必須フィールドに入力する必要があります";
+"onboarding5AlertButtonLabel" = "OK";
+"onboarding5RequiredLabel" = "必須";
+
+// MARK: --ONBOARDING 5 --Keyboard
+"onboarding5KeyboardButton" = "完了";
+
+// MARK: --ONBOARDING GAME
+"onboardingGameServersLabel" = "サーバー";
+"onboardingGameDoneButtonLabel" = "完了";
+"onboardingGameDeselectButtonLabel" = "選択解除";
+
+// MARK: --Platforms
+"PlatformPC" = "PC";
+"PlatformPS" = "PlayStation";
+"PlatformXbox" = "Xbox";
+"PlatformMobile" = "モバイル";
+
+// MARK: - Languages
+"LanguagesPortuguese" = "ポルトガル語";
+"LanguagesEnglish" = "英語";
+"LanguagesChinese" = "中国語";
+"LanguagesJapanese" = "日本語";
+"LanguagesSpanish" = "スペイン語";
+"LanguagesRussian" = "ロシア語";
+"LanguagesGerman" = "ドイツ語";
+
+// MARK: - Locations
+"LocationModalTitle" = "場所";
+"LocationNorthAmerica" = "北アメリカ";
+"LocationBrazil" = "ブラジル";
+"LocationLatinAmericaSouth" = "南アメリカ南部";
+"LocationLatinAmericaNorth" = "南アメリカ北部";
+"LocationEuropeEast" = "東ヨーロッパ";
+"LocationEuropeWest" = "西ヨーロッパ";
+"LocationChina" = "中国";
+"LocationOceania" = "オセアニア";
+"LocationAsiaEast" = "アジア東部";
+"LocationAsiaWest" = "アジア西部";
+"LocationAfricaNorth" = "アフリカ北部";
+"LocationAfricaSouth" = "アフリカ南部";
+"LocationDontKnow" = "わからない";
+
+"Dota2Deion" = "これはデータ2の説明です";
+"LeagueOfLegendsDeion" = "League of Legendsの説明";
+"CounterStrikeGODeion" = "Counter Strike: Global Offensiveの説明";
+
+//MARK: - Servers
+"Australia" = "オーストラリア";
+"Europe East" = "東ヨーロッパ";
+"Europe West" = "西ヨーロッパ";
+"Russia" = "ロシア";
+"SE Asia" = "東南アジア";
+"South Africa" = "南アフリカ";
+"South America" = "南アメリカ";
+"US East" = "アメリカ東部";
+"US West" = "アメリカ西部";
+"Brazil" = "ブラジル";
+"Europe Nordic & East" = "ヨーロッパ北東部";
+"Europe West" = "西ヨーロッパ";
+"Japan" = "日本";
+"Korea" = "韓国";
+"Latin America North" = "南アメリカ北部";
+"Latin America South" = "南アメリカ南部";
+"North America" = "北アメリカ";
+"Oceania" = "オセアニア";
+"Turkey" = "トルコ";
+"EU North" = "EU北部";
+"Chile" = "地理";
+"Dubai" = "ドバイ";
+"EU East" = "EU東部";
+"EU West" = "EU西部";
+"Hong Kong" = "香港";
+"India East" = "インド東部";
+"India West" = "インド西部";
+"PW Guangdong" = "PW 広東";
+"PW Shanghai" = "PW 上海";
+"PW Tianjin" = "PW 天津";
+"Peru" = "ペルー";
+"Poland" = "ポーランド";
+"Singapore" = "シンガポール";
+"South Africa" = "南アフリカ";
+"South America" = "南アメリカ";
+"Spain" = "スペイン";
+"US North Central" = "アメリカ中央北部";
+"US South East" = "アメリカ南東部";
+"US South West" = "アメリカ南西部";
+
+// MARK: - Detail Game
+// MARK: - /Views/GameDetail
+"TitleGameDetailScreen" = "ゲーム詳細";
+"FindPlayersButton" = "プレーヤーを検索";
+"AddToMyGamesButton" = "ゲームに追加";
+"PlatformsLabel" = "プラットフォーム";
+"OtherGamesLabel" = "その他のゲーム";
+
+// MARK: - Home
+// MARK: - Highlight image
+"GamesTitleLabel" = "ゲーム";
+"HighlightTitileAboveImage" = "利用可能な新しいゲーム";
+"TitleButtonHiglighAboveImage" = "今すぐプレーヤーを検索";
+
+// MARK: - Frind request cell
+"RejectRequestFriendButtonLabel" = "拒否";
+"AceptRequestFriendButtonLabel" = "承認";
+"NotificationRequestFriendLabel" = "友達リクエストを送信しました";
+"RecentNotificationsLabel" = "新しいお知らせ";
+
+// MARK: - Rate
+"ExplainRateLabel" = "プレイヤーとしての評価";
+"SkillRateLabel" = "スキルレート";
+"BehaviorRateLabel" = "稼働率";
+"ConfirmButtonLabel" = "確認";
+"CancelButtonLabel" = "キャンセル";
+"TitleRateModalView"= "評価";
+
+// MARK: - Filters
+"filtersNavigationTitle" = "フィルター";
+"filtersCleanButtonLabel" = "フィルターをクリア";
+"filtersDoneButtonLabel" = "完了";
+"filtersLanguagesLabel" = "言語";
+"filtersPlatformsLabel" = "プラットフォーム";
+"filtersBehaviorsRateLabel" = "稼働率";
+"filtersSkillsRateLabel" = "スキルレート";
+"filtersLocationLabel" = "場所";
+"filtersGamesLabel" = "ゲーム";
+
+// MARK: - Profile Customization
+"CancelButtonLabel" = "キャンセル";
+"DoneButtonLabel" = "完了";
+"EditingProfileModalTitle" = "プロファイルの編集";
+
+// MARK: - Discover
+"DiscoverScreenAddToFriendsButton" = "友達に追加";
+"DiscoverShowMoreButton" = "もっと探す";
+"DiscoverScreenRequestSent" = "リクエストが送信されました！";
+"DiscoverSearchBarPlaceholder" = "ユーザーを検索";
+
+
+//MARK: - Social
+"SocialViewSearchUsers" = "ユーザーの検索";
+"SocialViewFriendsSectionToggle" = "友達";
+"SocialViewBlockedSectionToggle" = "ブロック済み";
+"SocialViewCancelSentRequest" = "リクエストのキャンセル";
+"SocialReceivedRequestAcceptInvite" = "承認";
+"SocialReceivedRequestDeclineInvite" = "拒否";
+"SocialShowMoreButton" = "もっと探す";
+"SocialUnblockButton" = "ブロック解除";
+
+//MARK: - ImagePickerManager
+"galleryAccessMessage" = "プロフィール画像を設定するには、ギャラリーへのアクセスを許可する必要があります。[設定]> [マッチメーカー]> [写真]に移動します。";
+"cameraAccessMessage" = "プロフィール画像を設定するには、カメラへのアクセスを許可する必要があります。[設定]> [マッチメーカー]> [カメラ]に移動します。";
+"cameraGallerySheet" = "プロフィール写真の編集";
+"cameraAction" = "カメラ";
+"galleryAction" = "ギャラリー";
+"cancelAction" = "キャンセル";
+"warningTitle" = "警告";
+"OKAction" = "OK";
+"avatarUploadSheetTitle" = "アバターのアップロード";
+"avatarUploadSheetMessage" = "プロフィール写真として1枚の写真を選択するか、ギャラリーからの写真をさらに許可するか、[設定]に移動してすべての写真へのアクセスを許可します。";
+"selectImageAction" = "プロフィール写真を選択";
+"limitedGalleryAction" = "もっと写真を許可する";
+"fullGalleryAction" = "すべての写真へのアクセスを許可する";
+"cameraError" = "カメラがありません";
+
+//MARK: AppDelegate Push Notification
+"friendRequestAlert" = "新しい友達リクエストがあります！";
+

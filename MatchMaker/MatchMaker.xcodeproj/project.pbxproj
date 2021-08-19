@@ -124,6 +124,7 @@
 		1B767CCD26B1D80100EA4588 /* TitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
 		1BD7D25026C442E5007BF2C5 /* EditingProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingProfileViewController.swift; sourceTree = "<group>"; };
 		1BD7D25226C455D1007BF2C5 /* userImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userImageTableViewCell.swift; sourceTree = "<group>"; };
+		4807428226CDEAA800EBA119 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		48763E1A26AB3BF4000618D8 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		48763E1C26AB495B000618D8 /* CKRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKRepository.swift; sourceTree = "<group>"; };
 		4893E4B526B07E6400F3FEC1 /* GameServers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameServers.swift; sourceTree = "<group>"; };
@@ -567,6 +568,7 @@
 				en,
 				Base,
 				"pt-BR",
+				ja,
 			);
 			mainGroup = 489555D126A76AC1005F88A2;
 			productRefGroup = 489555DB26A76AC1005F88A2 /* Products */;
@@ -707,6 +709,7 @@
 			children = (
 				892FE5C026A9E345004B4F7F /* en */,
 				897A147126B9BA5F005DEAE0 /* pt-BR */,
+				4807428226CDEAA800EBA119 /* ja */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

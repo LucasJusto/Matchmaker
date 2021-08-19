@@ -209,6 +209,7 @@ without using your storage";
 "DiscoverScreenAddToFriendsButton" = "Add to friends";
 "DiscoverShowMoreButton" = "Show more";
 "DiscoverScreenRequestSent" = "Request sent!";
+"DiscoverSearchBarPlaceholder" = "Search Users";
 
 //MARK: - Social
 "SocialViewSearchUsers" = "Search Users";
