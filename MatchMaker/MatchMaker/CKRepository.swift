@@ -279,7 +279,7 @@ public class CKRepository {
     static func editUserData(id: String, name: String, nickname: String, location: Locations, description: String, photo: URL?, selectedPlatforms: [Platform], selectedGames: [Game], languages: [Languages], completion: @escaping (CKRecord?, Error?) -> Void){
         
         if let _user = CKRepository.user {
-        CKRepository.user = User(id: id, name: name, nickname: nickname, photoURL: photo, location: location, description: description, behaviourRate: Double(_user.behaviourRate), skillRate: Double(_user.skillRate), languages: languages, selectedPlatforms: selectedPlatforms, selectedGames: selectedGames)
+            CKRepository.user = User(id: id, name: name, nickname: nickname, photoURL: photo, location: location, description: description, behaviourRate: Double(_user.behaviourRate), skillRate: Double(_user.skillRate), languages: languages, selectedPlatforms: selectedPlatforms, selectedGames: selectedGames)
         }
         let recordID = CKRecord.ID(recordName: id)
         let publicDB = container.publicCloudDatabase
@@ -342,23 +342,23 @@ public class CKRepository {
         }
     }
     
-//    private static func deleteAllGamesFromEveryone() {
-//        let publicDB = container.publicCloudDatabase
-//        let predicate = NSPredicate(value: true)
-//        let query = CKQuery(recordType: UserGamesTable.recordType.description, predicate: predicate)
-//
-//        publicDB.perform(query, inZoneWith: nil) { results, error in
-//            if let ckError = error as? CKError {
-//                CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
-//            }
-//            if let resultsNotNull = results {
-//                let operation = CKModifyRecordsOperation(recordsToSave: nil, recordIDsToDelete: resultsNotNull.map({ record in
-//                    record.recordID
-//                }))
-//                publicDB.add(operation)
-//            }
-//        }
-//    }
+    //    private static func deleteAllGamesFromEveryone() {
+    //        let publicDB = container.publicCloudDatabase
+    //        let predicate = NSPredicate(value: true)
+    //        let query = CKQuery(recordType: UserGamesTable.recordType.description, predicate: predicate)
+    //
+    //        publicDB.perform(query, inZoneWith: nil) { results, error in
+    //            if let ckError = error as? CKError {
+    //                CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+    //            }
+    //            if let resultsNotNull = results {
+    //                let operation = CKModifyRecordsOperation(recordsToSave: nil, recordIDsToDelete: resultsNotNull.map({ record in
+    //                    record.recordID
+    //                }))
+    //                publicDB.add(operation)
+    //            }
+    //        }
+    //    }
     
     static func getUserById(id: String, completion: @escaping (User) -> Void){
         let publicDB = container.publicCloudDatabase
