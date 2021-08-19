@@ -193,21 +193,18 @@ class EditingProfileViewController: UIViewController {
             guard let location = selectedLocation.enum else { return }
             
             CKRepository.editUserData(id: user.id, name: nameField, nickname: usernameField, location: location, description: descriptionField, photo: profileImageUrl, selectedPlatforms: platforms, selectedGames: games, languages: languages, completion: { record, error in
-                                
-                if error == nil && record != nil {
-                    DispatchQueue.main.async {
-                        
-                        self.delegate?.didTapDone()
-                    
-                        self.dismiss(animated: true)
+                    if error == nil && record != nil {
+                        DispatchQueue.main.async {
+
+                            self.delegate?.didTapDone()
+
+                            self.dismiss(animated: true)
+                        }
                     }
-                }
             })
         } else {
             self.dismiss(animated: true)
         }
-        
-        
     }
     
     @IBAction func didTapBottomCancel(_ sender: UIButton) {

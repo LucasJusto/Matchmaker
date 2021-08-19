@@ -173,8 +173,13 @@ extension ProfileViewController: UserAvatarViewDelegate {
                 self.userAvatarView.imageURL = url
                 self.userAvatarView.contentImage.image = image
                 self.userAvatarView.contentImage.contentMode = .scaleAspectFill
+                
+                if let unwrappedUser = user {
+                    CKRepository.editUserData(id: unwrappedUser.id, name: unwrappedUser.name, nickname: unwrappedUser.nickname, location: unwrappedUser.location, description: unwrappedUser.description, photo: url, selectedPlatforms: unwrappedUser.selectedPlatforms, selectedGames: unwrappedUser.selectedGames, languages: unwrappedUser.languages, completion: { _, _ in })
+                }
             }
         }
+        
     }
 }
 //MARK: - UIScrollViewDelegate
@@ -193,10 +198,15 @@ extension ProfileViewController: RoundedRectangleCollectionViewDelegate {
         guard let game = model as? Game else { return }
         performSegue(withIdentifier: "toGameDetail", sender: game)
     }
+    
 }
 
 extension ProfileViewController: EditingProfileViewControllerDelegate {
     func didTapDone() {
-        //atualizar o user
+        self.viewDidLoad()
+        
+        platformsView.collectionView.reloadData()
+        languagesView.collectionView.reloadData()
+        gameCollectionView.collectionView.reloadData()
     }
 }
