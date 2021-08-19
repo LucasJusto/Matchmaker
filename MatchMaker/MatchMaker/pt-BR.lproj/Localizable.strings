@@ -1,12 +1,8 @@
-/*
-  Localizable.strings
-  MatchMaker
-
-  Created by Thaís Fernandes on 22/07/21.
-  
-*/
-
-"titleLabel" = "Hello World";
+//MARK: - Tab Bar
+"tabBarPanel" = "Painel";
+"tabBarProfile" = "Perfil";
+"tabBarSocial" = "Social";
+"tabBarDiscover" = "Descobrir";
 
 //MARK: - CKErrorAlert
 "CKErrorNotLoggedInTitle" = "Não logado no iCloud";
@@ -224,6 +220,7 @@ para você escolher e encontrar jogadores";
 "DiscoverScreenAddToFriendsButton" = "Adicionar";
 "DiscoverShowMoreButton" = "Ver mais";
 "DiscoverScreenRequestSent" = "Solicitação enviada!";
+"DiscoverSearchBarPlaceholder" = "Procurar Usuários";
 
 //MARK: - Social
 "SocialViewSearchUsers" = "Pesquisar usuários";

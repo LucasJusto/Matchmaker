@@ -96,6 +96,7 @@ class SocialViewController: UIViewController {
         // Do any additional setup after loading the view.
         updateAndReloadFriends()
         updateBlocked{}
+        self.title = NSLocalizedString("tabBarSocial", comment: "Social")
         
         socialTableView.delegate = self
         socialTableView.dataSource = self
