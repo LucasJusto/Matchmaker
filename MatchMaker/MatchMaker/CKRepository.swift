@@ -595,7 +595,7 @@ public class CKRepository {
                             }
                             CKRepository.getUserGamesById(id: id) { userGames in
                                 semaphore.wait()
-                                usersFound.append(Social(id: id, name: name, nickname: nickName, photoURL: photoURL, games: userGames, isInvite: nil))
+                                usersFound.append(Social(id: id, name: name, nickname: nickName, photoURL: photoURL, games: userGames, isInvite: nil, isInviter: nil))
                                 semaphore.signal()
                                 if usersFound.count == resultsNotNull.count {
                                     //if usersFound is completlty filled

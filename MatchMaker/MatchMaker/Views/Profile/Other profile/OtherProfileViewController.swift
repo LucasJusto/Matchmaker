@@ -292,6 +292,8 @@ extension OtherProfileViewController {
         requestFriendButton.setTitle(FriendshipStatus.requestedFriendship.description, for: .normal)
         acceptOrRejectStack.isHidden = true
         requestFriendButton.isHidden = false
+        social?.isInvite = .yes
+        social?.isInviter = false
         //MARK: - Do BackEnd to add to friends
         
         guard let user = user else { return }
