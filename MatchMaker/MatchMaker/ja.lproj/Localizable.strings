@@ -1,8 +1,8 @@
 // MARK: --Tab Bar
-"tabBarPanel" = "パネル";
+"tabBarPanel" = "ホーム";
 "tabBarProfile" = "プロフィール";
 "tabBarSocial" = "ソーシャル";
-"tabBarDiscover" = "発見";
+"tabBarDiscover" = "検索";
 
 // MARK: --CKErrorAlert
 "CKErrorNotLoggedInTitle" = "iCloudにログインしていません";
@@ -17,7 +17,7 @@
 "UserSkills" = "スキル";
 "UserReviews" = "レビュー";
 
-// MARK: --Friend Profile (OtherPrifile)
+// MARK: --Friend Profile (OtherProfile)
 "TitleViewRate" = "プロフィール";
 "Ratings" = "評価";
 "Platforms" = "プラットフォーム";
@@ -108,9 +108,9 @@
 "LocationAfricaSouth" = "アフリカ南部";
 "LocationDontKnow" = "わからない";
 
-"Dota2Deion" = "これはデータ2の説明です";
-"LeagueOfLegendsDeion" = "League of Legendsの説明";
-"CounterStrikeGODeion" = "Counter Strike: Global Offensiveの説明";
+"Dota2Description" = "これはデータ2の説明です";
+"LeagueOfLegendsDescription" = "League of Legendsの説明";
+"CounterStrikeGODescription" = "Counter Strike: Global Offensiveの説明";
 
 //MARK: - Servers
 "Australia" = "オーストラリア";
@@ -201,8 +201,6 @@
 "DiscoverScreenAddToFriendsButton" = "友達に追加";
 "DiscoverShowMoreButton" = "もっと探す";
 "DiscoverScreenRequestSent" = "リクエストが送信されました！";
-"DiscoverSearchBarPlaceholder" = "ユーザーを検索";
-
 
 //MARK: - Social
 "SocialViewSearchUsers" = "ユーザーの検索";
@@ -232,4 +230,3 @@
 
 //MARK: AppDelegate Push Notification
 "friendRequestAlert" = "新しい友達リクエストがあります！";
-
