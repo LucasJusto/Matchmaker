@@ -46,7 +46,6 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         userAvatarView.delegate = self
         scrollView.delegate = self
         

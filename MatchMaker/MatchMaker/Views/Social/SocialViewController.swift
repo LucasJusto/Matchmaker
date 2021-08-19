@@ -100,9 +100,11 @@ class SocialViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view.
         updateAndReloadFriends()
         updateBlocked{}
+        self.title = NSLocalizedString("tabBarSocial", comment: "Social")
         
         socialTableView.delegate = self
         socialTableView.dataSource = self
@@ -208,6 +210,10 @@ extension SocialViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 5
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "toOtherProfile", sender: nil)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

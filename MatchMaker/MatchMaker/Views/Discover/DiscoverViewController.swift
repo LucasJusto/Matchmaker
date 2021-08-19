@@ -58,7 +58,7 @@ class DiscoverViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        self.title = NSLocalizedString("tabBarDiscover", comment: "Discover")
         updateAndReload()
         
         discoverTableView.delegate = self
@@ -75,7 +75,7 @@ class DiscoverViewController: UIViewController {
         // Search Controller | uses extension
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Users"
+        searchController.searchBar.placeholder = NSLocalizedString("DiscoverSearchBarPlaceholder", comment: "Discover")
         searchController.searchBar.barStyle = .black
         searchController.searchBar.tintColor = UIColor(named: "Primary")
         navigationItem.searchController = searchController
@@ -150,6 +150,10 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
         cell.setup(userId: user.id,url: user.photoURL, nameText: user.name, nickText: user.nickname, userGames: user.games!)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "toOtherProfile", sender: nil)
     }
     
 }
