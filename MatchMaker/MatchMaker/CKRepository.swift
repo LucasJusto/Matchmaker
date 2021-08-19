@@ -570,6 +570,78 @@ public class CKRepository {
         }
     }
     
+    static func getFriendsIdsById(id: String, completion: @escaping ([String]) -> Void) {
+        var friendsIds: [String] = [String]()
+        let semaphore = DispatchSemaphore(value: 1)
+        
+        let publicDB = container.publicCloudDatabase
+        let inviterPredicate = NSPredicate(format: "\(FriendsTable.inviterId.description) == '\(id)'")
+        let query = CKQuery(recordType: FriendsTable.recordType.description, predicate: inviterPredicate)
+        
+        publicDB.perform(query, inZoneWith: nil) { results, error in
+            if let ckError = error as? CKError {
+                CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+            }
+            if let resultsNotNull = results {
+                if resultsNotNull.count > 0 {
+                    for result in resultsNotNull {
+                        semaphore.wait()
+                        if let friendId = result.value(forKey: FriendsTable.receiverId.description) as? String {
+                            friendsIds.append(friendId)
+                        }
+                        semaphore.signal()
+                        if friendsIds.count == resultsNotNull.count {
+                            let receiverPredicate = NSPredicate(format: "\(FriendsTable.receiverId.description) == '\(id)'")
+                            let receiverQuery = CKQuery(recordType: FriendsTable.recordType.description, predicate: receiverPredicate)
+                            publicDB.perform(receiverQuery, inZoneWith: nil) { receiverResults, receiverError in
+                                if let ckError = error as? CKError {
+                                    CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                                }
+                                if let receiverResultsNotNull = receiverResults {
+                                    if receiverResultsNotNull.count > 0 {
+                                        for receiverResult in receiverResultsNotNull {
+                                            semaphore.wait()
+                                            if let friendId = receiverResult.value(forKey: FriendsTable.inviterId.description) as? String {
+                                                friendsIds.append(friendId)
+                                            }
+                                            semaphore.signal()
+                                            if friendsIds.count == (resultsNotNull.count + receiverResultsNotNull.count) {
+                                                completion(friendsIds)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                else {
+                    let receiverPredicate = NSPredicate(format: "\(FriendsTable.receiverId.description) == '\(id)'")
+                    let receiverQuery = CKQuery(recordType: FriendsTable.recordType.description, predicate: receiverPredicate)
+                    publicDB.perform(receiverQuery, inZoneWith: nil) { receiverResults, receiverError in
+                        if let ckError = error as? CKError {
+                            CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                        }
+                        if let receiverResultsNotNull = receiverResults {
+                            if receiverResultsNotNull.count > 0 {
+                                for receiverResult in receiverResultsNotNull {
+                                    semaphore.wait()
+                                    if let friendId = receiverResult.value(forKey: FriendsTable.inviterId.description) as? String {
+                                        friendsIds.append(friendId)
+                                    }
+                                    semaphore.signal()
+                                    if friendsIds.count == (receiverResultsNotNull.count) {
+                                        completion(friendsIds)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     static func searchUsers(languages: [Languages], platforms: [Platform], behaviourRate: Double, skillRate: Double, locations: [Locations], games: [Game], completion: @escaping ([Social]) -> Void) {
         //creating user array to be returned
         var usersFound: [Social] = [Social]()
