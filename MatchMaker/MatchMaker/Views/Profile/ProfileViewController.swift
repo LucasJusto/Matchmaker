@@ -193,14 +193,15 @@ extension ProfileViewController: RoundedRectangleCollectionViewDelegate {
         guard let game = model as? Game else { return }
         performSegue(withIdentifier: "toGameDetail", sender: game)
     }
+    
 }
 
 extension ProfileViewController: EditingProfileViewControllerDelegate {
     func didTapDone() {
-        if let userUpdated = CKRepository.user {
-            self.user = userUpdated
-                        
-            self.viewDidLoad()
-        }
+        self.viewDidLoad()
+        
+        platformsView.collectionView.reloadData()
+        languagesView.collectionView.reloadData()
+        gameCollectionView.collectionView.reloadData()
     }
 }
