@@ -46,7 +46,7 @@
 
 // MARK: --ONBOARDING 4
 "onboarding4TitleLabel" = "iCloudと同期";
-"onboarding4Descrption" = "アカウントの心配はありません。容量を消費せずに自動で同期します";
+"onboarding4Description" = "アカウントの心配はありません。容量を消費せずに自動で同期します";
 "onboarding4ButtonLabel" = "OK";
 
 // MARK: --ONBOARDING 5
