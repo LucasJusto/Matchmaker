@@ -58,7 +58,7 @@ class DiscoverViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        self.title = NSLocalizedString("tabBarDiscover", comment: "Discover")
         updateAndReload()
         
         discoverTableView.delegate = self
@@ -75,7 +75,7 @@ class DiscoverViewController: UIViewController {
         // Search Controller | uses extension
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Users"
+        searchController.searchBar.placeholder = NSLocalizedString("DiscoverSearchBarPlaceholder", comment: "Discover")
         searchController.searchBar.barStyle = .black
         navigationItem.searchController = searchController
         definesPresentationContext = true
