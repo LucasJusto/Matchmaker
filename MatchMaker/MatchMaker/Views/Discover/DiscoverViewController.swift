@@ -58,7 +58,7 @@ class DiscoverViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        self.title = NSLocalizedString("tabBarDiscover", comment: "Discover")
         updateAndReload()
         
         discoverTableView.delegate = self
@@ -75,8 +75,9 @@ class DiscoverViewController: UIViewController {
         // Search Controller | uses extension
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Users"
+        searchController.searchBar.placeholder = NSLocalizedString("DiscoverSearchBarPlaceholder", comment: "Discover")
         searchController.searchBar.barStyle = .black
+        searchController.searchBar.tintColor = UIColor(named: "Primary")
         navigationItem.searchController = searchController
         definesPresentationContext = true
         
@@ -151,6 +152,10 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "toOtherProfile", sender: nil)
+    }
+    
 }
 
 extension DiscoverViewController: DiscoverTableViewCellDelegate {
@@ -200,14 +205,14 @@ extension DiscoverViewController: DiscoverTableViewCellDelegate {
 
 extension DiscoverViewController: FiltersViewControllerDelegate {
     func setFilters(languages: [Languages], platforms: [Platform], behaviorsRate: Int, skillsRate: Int, selectedLocation: Locations?, selectedGames: [Game]) {
-        
+
         self.selectedLanguages = languages
         self.selectedPlatforms = platforms
         self.behaviorsRate = behaviorsRate
         self.skillsRate = skillsRate
         self.selectedLocation = selectedLocation
         self.selectedGames = selectedGames
-        
+
         updateAndReload()
     }
 }

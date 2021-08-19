@@ -823,7 +823,7 @@
         <!--Server-->
         <scene sceneID="IeX-cW-7fd">
             <objects>
-                <viewController interfaceStyle="dark" id="Bk8-Ao-2Z6" customClass="GameDetailsViewController" customModule="MatchMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GameDetailsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" interfaceStyle="dark" id="Bk8-Ao-2Z6" customClass="GameDetailsViewController" customModule="MatchMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yOr-zT-9Cl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1035,7 +1035,7 @@
                                     <constraint firstItem="hgO-bz-bP3" firstAttribute="top" secondItem="eSR-y9-UTp" secondAttribute="top" constant="12" id="xtD-iC-sJN"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Degrade" translatesAutoresizingMaskIntoConstraints="NO" id="1L5-Zx-VaL">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Degrade_invertido" translatesAutoresizingMaskIntoConstraints="NO" id="1L5-Zx-VaL">
                                 <rect key="frame" x="0.0" y="410" width="414" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="umu-Jh-WZs"/>
@@ -1141,6 +1141,7 @@
     <resources>
         <image name="CounterStrikeGO" width="585" height="390"/>
         <image name="Degrade" width="600" height="800"/>
+        <image name="Degrade_invertido" width="593" height="808.5"/>
         <image name="logo" width="232" height="246"/>
         <image name="person.icloud" catalog="system" width="128" height="88"/>
         <namedColor name="DarkGray">
@@ -1153,7 +1154,7 @@
             <color red="0.24313725490196078" green="0.24313725490196078" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Primary">
-            <color red="0.38823529411764707" green="0.090196078431372548" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.3880000114440918" green="0.090000003576278687" blue="0.88599997758865356" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

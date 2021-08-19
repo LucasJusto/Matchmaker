@@ -78,7 +78,6 @@ class GameDetailsViewController: UIViewController {
                 
         setUpData()
         
-        gradientAboveTitle.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

@@ -10,6 +10,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--GameDetail-->
+        <scene sceneID="QBQ-DF-gYn">
+            <objects>
+                <viewControllerPlaceholder storyboardName="GameDetail" id="Y4N-rM-P3k" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HbD-41-THH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="987" y="7"/>
+        </scene>
         <!--Profile-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
@@ -247,6 +255,7 @@
                         <outlet property="userProfileGamertagLabel" destination="GGE-Ma-MJm" id="mSN-qP-rGS"/>
                         <outlet property="userProfileNameLabel" destination="Sjd-jp-NAW" id="FM8-ka-3Ae"/>
                         <segue destination="nfn-4O-7Ln" kind="presentation" identifier="toEditProfile" id="oUb-fw-n7K"/>
+                        <segue destination="Y4N-rM-P3k" kind="presentation" identifier="toGameDetail" id="lCB-zi-Au1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -778,7 +787,7 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="DoneButtonLabel"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="didTapBottomDone:" destination="LOZ-WC-D0h" eventType="touchUpInside" id="fVX-V8-qD6"/>
+                                                    <action selector="didTapDone:" destination="LOZ-WC-D0h" eventType="touchUpInside" id="2wu-P7-IMF"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -808,7 +817,7 @@
                     <navigationItem key="navigationItem" title="Editing Profile" id="L3m-Gs-tv4">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="uri-ag-mxL">
                             <connections>
-                                <action selector="didTapUpperDone:" destination="LOZ-WC-D0h" id="L52-R0-x3P"/>
+                                <action selector="didTapDone:" destination="LOZ-WC-D0h" id="IhR-ry-CmL"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1156,7 +1165,7 @@
             <color red="0.24313725490196078" green="0.24313725490196078" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Primary">
-            <color red="0.38823529411764707" green="0.090196078431372548" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.3880000114440918" green="0.090000003576278687" blue="0.88599997758865356" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

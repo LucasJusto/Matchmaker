@@ -41,46 +41,34 @@ class ProfileViewController: UIViewController {
     var customPicker: ImagePickerManager = ImagePickerManager()
     
     private var user: User?
-    
-    var marinaGames: [Game] = Games.buildGameArray()
-    
+        
     //MARK: ProfileViewController - View Setup
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         userAvatarView.delegate = self
         scrollView.delegate = self
-            
-        //2 maneira de capturar a imagem do usuario, mas usando closures
-//        userAvatarView.didChooseImage = { [weak self] in
-//            guard let self = self else { return }
-//            ImagePickerManager().pickImage(self) { image in
-//                DispatchQueue.main.async {
-//                    self.userAvatarView.contentImage.image = image
-//                    self.userAvatarView.contentImage.contentMode = .scaleAspectFill
-//                }
-//            }
-//        }
         
-//        CKRepository.setOnboardingInfo(name: "Marina de Pazzi", nickname: "Prolene", photoURL: nil, location: Locations.brazil, description: "fala fellas, voce que curte um cszinho, bora fazer um projetinho na mansao arromba", languages: [Languages.english, Languages.portuguese, Languages.russian], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: [userGames[1], userGames[2]])
-        
+        user = CKRepository.user
+                
         setupUserProfile()
-
-        backgroundCoverImage.accessibilityIgnoresInvertColors = true
-        dynamicTypesFontConfig()
         
+        backgroundCoverImage.accessibilityIgnoresInvertColors = true
+        
+        dynamicTypesFontConfig()
     }
     
     private func setupUserProfile() {
-        user = User(id: "teste", name: "Marina de Pazzi", nickname: "Prolene", photoURL: nil, location: Locations.brazil, description: "fala fellas, voce que curte um cszinho, bora fazer um projetinho na mansao arromba", behaviourRate: 5.0, skillRate: 5.0, languages: [Languages.english, Languages.portuguese, Languages.russian, Languages.german], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: [marinaGames[1], marinaGames[2]])
-        
         guard let unwrappedUser = user else { return }
         
         //User info
         userProfileNameLabel.text = unwrappedUser.name
         userProfileGamertagLabel.text = "@" + unwrappedUser.nickname
         userProfileBioLabel.text = unwrappedUser.description
+        
+        if let avatar = getAvatar(url: unwrappedUser.photoURL) {
+            userAvatarView.contentImage.image = avatar
+        }
         
         //Screen titles
         ratingsTitleLabel.text = NSLocalizedString("Ratings", comment: "This is the translation for 'Ratings' at the Friend Profile (OtherPrifile) section of Localizable.strings")
@@ -101,6 +89,18 @@ class ProfileViewController: UIViewController {
         platformsView.smallLabeledImageModels = unwrappedUser.selectedPlatforms
         languagesView.titleModels = unwrappedUser.languages
         gameCollectionView.roundedRectangleImageModels = unwrappedUser.selectedGames
+        
+        gameCollectionView.delegate = self
+    }
+    
+    func getAvatar(url: URL?) -> UIImage? {
+        
+        if let url = url,
+           let data = try? Data(contentsOf: url) {
+            return UIImage(data: data)
+        }
+        
+        return UIImage(named: "profile_default")
     }
     
     //MARK: ProfileViewController - Accessibility Features: Dynamic Types
@@ -147,7 +147,19 @@ class ProfileViewController: UIViewController {
             
             let destination = navViewController.topViewController as! EditingProfileViewController
             
+            destination.delegate = self
             destination.user = self.user
+        }
+        
+        if segue.identifier == "toGameDetail" {
+            
+            guard let game = sender as? Game else { return }
+            
+            let navViewController = segue.destination as! UINavigationController
+            
+            let destination = navViewController.topViewController as! GameDetailViewController
+            
+            destination.game = game
         }
     }
 }
@@ -158,7 +170,6 @@ extension ProfileViewController: UserAvatarViewDelegate {
     func didChooseImage() {
         customPicker.pickImage(self) { [unowned self] image, url in
             DispatchQueue.main.async {
-                print(url)
                 self.userAvatarView.imageURL = url
                 self.userAvatarView.contentImage.image = image
                 self.userAvatarView.contentImage.contentMode = .scaleAspectFill
@@ -173,5 +184,19 @@ extension ProfileViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         backgroundImageHeightConstraint.constant = 242 - 48 + (-1 * scrollView.contentOffset.y)
         view.layoutIfNeeded()
+    }
+}
+
+extension ProfileViewController: RoundedRectangleCollectionViewDelegate {
+    
+    func didSelectRoundedRectangleModel(model: RoundedRectangleModel) {
+        guard let game = model as? Game else { return }
+        performSegue(withIdentifier: "toGameDetail", sender: game)
+    }
+}
+
+extension ProfileViewController: EditingProfileViewControllerDelegate {
+    func didTapDone() {
+        //atualizar o user
     }
 }

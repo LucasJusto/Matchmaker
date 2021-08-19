@@ -9,6 +9,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--GameDetail-->
+        <scene sceneID="HWE-jf-UH5">
+            <objects>
+                <viewControllerPlaceholder storyboardName="GameDetail" id="tH4-Lc-KHy" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RrN-ms-ghP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1603" y="92"/>
+        </scene>
         <!--Profile-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
@@ -423,6 +431,7 @@
                         <outlet property="userProfileLocationLabel" destination="QCK-4b-tAs" id="E2v-nv-82H"/>
                         <outlet property="userProfileNameLabel" destination="X4g-a4-DA4" id="YgK-AR-aNS"/>
                         <segue destination="g7t-A4-8vE" kind="presentation" identifier="toRateUser" id="hOj-Wr-odh"/>
+                        <segue destination="tH4-Lc-KHy" kind="presentation" identifier="toGameDetail" id="RGv-jB-pIs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -443,9 +452,13 @@
                 <navigationController title="Profile" automaticallyAdjustsScrollViewInsets="NO" id="uCw-Ec-nLe" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="KIr-6x-N84">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="KIr-6x-N84">
                         <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" name="DarkGray"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -458,11 +471,14 @@
         </scene>
     </scenes>
     <resources>
+        <namedColor name="DarkGray">
+            <color red="0.11372549019607843" green="0.11372549019607843" blue="0.11372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="DefaultBackground">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Primary">
-            <color red="0.3880000114440918" green="0.090000003576278687" blue="0.88599997758865356" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.38823529411764707" green="0.090196078431372548" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -19,6 +19,13 @@ class SocialViewController: UIViewController {
     // Segue helper
     var destinationUser: User?
     
+    // Keyboard
+    var keyboardIsShowing = false {
+        didSet {
+            searchBar.showsCancelButton = keyboardIsShowing
+        }
+    }
+    
     @IBOutlet weak var socialTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var blockedToggle: UISegmentedControl!
@@ -93,9 +100,11 @@ class SocialViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view.
         updateAndReloadFriends()
         updateBlocked{}
+        self.title = NSLocalizedString("tabBarSocial", comment: "Social")
         
         socialTableView.delegate = self
         socialTableView.dataSource = self
@@ -104,12 +113,14 @@ class SocialViewController: UIViewController {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = UIColor.black
+        appearance.largeTitleTextAttributes = [.foregroundColor:UIColor.white]
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         
         // Search Controller | uses extension
         searchBar.delegate = self
         searchBar.searchTextField.textColor = UIColor.white
+        searchBar.tintColor = UIColor(named: "Primary")
         
         // LocalizableString
         searchBar.placeholder = NSLocalizedString("SocialViewSearchUsers", comment: "Placeholder text in search bar")
@@ -143,6 +154,20 @@ extension SocialViewController: UISearchBarDelegate {
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filterContentForSearchText(searchText)
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        self.keyboardIsShowing = true
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.keyboardIsShowing = false
+        self.searchBar.endEditing(true)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.keyboardIsShowing = false
+        self.searchBar.endEditing(true)
     }
     
     func filterContentForSearchText(_ searchText: String) {
@@ -185,6 +210,10 @@ extension SocialViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 5
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "toOtherProfile", sender: nil)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -75,19 +75,19 @@ enum Languages: CustomStringConvertible, CaseIterable {
     
     static func getLanguage(language: String) -> Languages {
         switch language {
-            case "LanguagesPortuguese":
+            case "Languages\(Languages.portuguese.description)":
                 return Languages.portuguese
-            case "LanguagesEnglish":
+            case "Languages\(Languages.english.description)":
                 return Languages.english
-            case "LanguagesRussian":
+            case "Languages\(Languages.russian.description)":
                 return Languages.russian
-            case "LanguagesChinese":
+            case "Languages\(Languages.chinese.description)":
                 return Languages.chinese
-            case "LanguagesJapanese":
+            case "Languages\(Languages.japanese.description)":
                 return Languages.japanese
-            case "LanguagesGerman":
+            case "Languages\(Languages.german.description)":
                 return Languages.german
-            case "LanguagesSpanish":
+            case "Languages\(Languages.spanish.description)":
                 return Languages.spanish
             default:
                 return Languages.english

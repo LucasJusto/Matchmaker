@@ -13,12 +13,23 @@ class HomeViewController: UIViewController{
     
     var notifications:[String] = ["friend", "message", "friend", "message"]
     
+    @IBAction func discoverButtonView(_ sender: Any) {
+        performSegue(withIdentifier: "toGameServers", sender: nil)
+    }
+    
     var games: [Game] = Games.buildGameArray()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-
+        if let tabBarItems = self.tabBarController?.tabBar.items {
+            if tabBarItems.count == 4 {
+                tabBarItems[0].title = NSLocalizedString("tabBarPanel", comment: "Panel")
+                tabBarItems[1].title = NSLocalizedString("tabBarSocial", comment: "Social")
+                tabBarItems[2].title = NSLocalizedString("tabBarDiscover", comment: "Discover")
+                tabBarItems[3].title = NSLocalizedString("tabBarProfile", comment: "Profile")
+            }
+        }
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -130,16 +141,36 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
 
             destination?.game = game
         }
+        
+        if segue.identifier == "toGameServers" {
+            
+            if let destination = segue.destination as? GameDetailsViewController {
+                destination.delegate = self
+                destination.game = games.first
+            }
+        }
     }
 }
-
 
 extension HomeViewController: RoundedRectangleCollectionViewDelegate {
     
     func didSelectRoundedRectangleModel(model: RoundedRectangleModel) {
         
         guard let game = model as? Game else { return }
-        print(game.name)
         performSegue(withIdentifier: "toGame", sender: game)
+    }
+}
+
+extension HomeViewController: GameSelectionDelegate {
+    func updateGame(_ game: Game, isSelected: Bool) {
+        self.tabBarController?.selectedIndex = 2
+                
+        let rootController = self.tabBarController?.selectedViewController as? UINavigationController
+        
+        let destination = rootController?.topViewController as? DiscoverViewController
+        
+        destination?.selectedGames = [game]
+        
+        destination?.updateAndReload()
     }
 }
