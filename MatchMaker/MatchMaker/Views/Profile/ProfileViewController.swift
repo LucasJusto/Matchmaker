@@ -58,6 +58,11 @@ class ProfileViewController: UIViewController {
         dynamicTypesFontConfig()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        user = CKRepository.user
+        setupUserProfile()
+    }
+    
     private func setupUserProfile() {
         guard let unwrappedUser = user else { return }
         

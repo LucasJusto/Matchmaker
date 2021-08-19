@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol OtherProfileViewDelegate: AnyObject {
+    func didChangeSocial()
+}
+
 //MARK: - OtherProfileViewController Class
 
 class OtherProfileViewController: UIViewController {
@@ -116,6 +120,7 @@ class OtherProfileViewController: UIViewController {
     var social: Social?
     var friendshipStatus: FriendshipStatus?
     var userGames: [Game] = []
+    var discoverViewController: DiscoverViewController?
     
     //MARK: OtherProfileViewController Class setup
     
@@ -233,6 +238,17 @@ class OtherProfileViewController: UIViewController {
             destination.user = user
             destination.social = social
         }
+        
+        if segue.identifier == "toGameDetail" {
+            
+            guard let game = sender as? Game else { return }
+            
+            let navViewController = segue.destination as! UINavigationController
+            
+            let destination = navViewController.topViewController as! GameDetailViewController
+            
+            destination.game = game
+        }
     }
 }
 
@@ -246,13 +262,13 @@ extension OtherProfileViewController {
      - Returns: Void
      */
     func acceptFriendshipRequest() {
-        friendshipStatus = FriendshipStatus.friendsAlready
+        //friendshipStatus = FriendshipStatus.friendsAlready
         acceptOrRejectStack.isHidden = true
         requestFriendButton.isHidden = false
         
         requestFriendButton.layer.backgroundColor = UIColor(named: "LightGray")?.cgColor
         requestFriendButton.setTitle(FriendshipStatus.friendsAlready.description, for: .normal)
-        //MARK: - Do BackEnd to acept friend
+        //MARK: - Do BackEnd to accept friend
         
         guard let user = user else { return }
         CKRepository.getUserId { id in
@@ -289,7 +305,7 @@ extension OtherProfileViewController {
      - Returns: Void
      */
     func sendFriendshipRequest() {
-        friendshipStatus = FriendshipStatus.requestedFriendship
+        //friendshipStatus = FriendshipStatus.requestedFriendship
         requestFriendButton.layer.backgroundColor = UIColor(named: "LightGray")?.cgColor
         requestFriendButton.setTitle(FriendshipStatus.requestedFriendship.description, for: .normal)
         acceptOrRejectStack.isHidden = true
@@ -301,7 +317,30 @@ extension OtherProfileViewController {
         guard let user = user else { return }
         CKRepository.getUserId { id in
             guard let id = id else { return }
-            CKRepository.sendFriendshipInvite(inviterUserId: id, receiverUserId: user.id)
+            CKRepository.sendFriendshipInvite(inviterUserId: id, receiverUserId: user.id) { inviteSuccessful in
+                if inviteSuccessful {
+                    self.social?.isInvite = .yes
+                    self.social?.isInviter = true
+                    DispatchQueue.main.async {
+                        if let unwrappedParent = self.discoverViewController {
+                            for i in 0..<unwrappedParent.users.count {
+                                if unwrappedParent.users[i].id == self.social?.id {
+                                    unwrappedParent.users.remove(at: i)
+                                    unwrappedParent.discoverTableView.reloadData()
+                                    break
+                                }
+                            }
+                            for i in 0..<unwrappedParent.filteredUsers.count {
+                                if unwrappedParent.filteredUsers[i].id == self.social?.id {
+                                    unwrappedParent.filteredUsers.remove(at: i)
+                                    unwrappedParent.discoverTableView.reloadData()
+                                    break
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
     
@@ -351,16 +390,4 @@ extension OtherProfileViewController: RoundedRectangleCollectionViewDelegate {
         performSegue(withIdentifier: "toGameDetail", sender: game)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toGameDetail" {
-            
-            guard let game = sender as? Game else { return }
-            
-            let navViewController = segue.destination as! UINavigationController
-            
-            let destination = navViewController.topViewController as! GameDetailViewController
-            
-            destination.game = game
-        }
-    }
 }
