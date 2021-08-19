@@ -138,6 +138,7 @@
 		489555EB26A76AC3005F88A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		489555F126A9F47A005F88A2 /* MatchMaker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MatchMaker.entitlements; sourceTree = "<group>"; };
 		489555F326A9F493005F88A2 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		48E8B64A26CEEC8600A7BF52 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		89015F8326BC6F43009C70B1 /* UITextView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extensions.swift"; sourceTree = "<group>"; };
 		8906588726B8749D00E1B5D4 /* TextViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewTableViewCell.swift; sourceTree = "<group>"; };
 		8920440726C59B4600C541F9 /* Filters.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Filters.storyboard; sourceTree = "<group>"; };
@@ -569,6 +570,7 @@
 				Base,
 				"pt-BR",
 				ja,
+				de,
 			);
 			mainGroup = 489555D126A76AC1005F88A2;
 			productRefGroup = 489555DB26A76AC1005F88A2 /* Products */;
@@ -710,6 +712,7 @@
 				892FE5C026A9E345004B4F7F /* en */,
 				897A147126B9BA5F005DEAE0 /* pt-BR */,
 				4807428226CDEAA800EBA119 /* ja */,
+				48E8B64A26CEEC8600A7BF52 /* de */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

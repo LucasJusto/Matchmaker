@@ -1,0 +1,234 @@
+//MARK: - Tab Bar
+"tabBarPanel" = "Panel";
+"tabBarProfile" = "Profil";
+"tabBarSocial" = "Sozial";
+"tabBarDiscover" = "Suchen";
+
+//MARK: - CKErrorAlert
+"CKErrorNotLoggedInTitle" = "Nicht in der iCloud eingeloggt";
+"CKErrorNotLoggedInMessage" = "Du musst in der iCloud eingeloggt sein um diese App verwenden zu können. Bitte schließe diese App und logg dich in die iCloud ein, bevor du sie wieder öffnest.";
+"CKErrorDefaultTitle" = "Es ist ein Fehler aufgetreten";
+"CKErrorDefaultMessage" = "Es ist etwas unerwartetes passiert, es kann sein das deine Daten nicht gespeichert wurden.";
+"CKErrorAlertButtonLabel" = "Ok";
+
+//MARK: - UserProfile (Profile Tab)
+"UserGames" = "Deine Spiele";
+"UserBehaviour" = "Verhalten";
+"UserSkills" = "Kompetenzen";
+"UserReviews" = "Rezensionen";
+
+// MARK: - Friend Profile (OtherProfile)
+"TitleViewRate" = "Profil";
+"Ratings" = "Bewertungen";
+"Platforms" = "Plattformen";
+"Languages" = "Sprachen";
+"Games" = "Spiele";
+"RequestFriendButtonLabel" = "Zu meinen Freunden hinzufügen";
+"CancelRequestButtonLabel" = "Anfrage stornieren";
+"RemoveFriendButtonLabel" = "Freund entfernen";
+"PlayingFrom" = "Spielen von";
+"RejectRequestButton"= "Freund ablehnen";
+"AcceptRequestButton"= "Freund akzeptieren";
+
+// MARK: - Platforms
+
+// MARK: - ONBOARDING 1
+"onboarding1Title" = "Willkommen zu";
+"onboarding1Description" = "Finden sie Spieler, die einem personalisierten Filter entsprechen";
+
+// MARK: - ONBOARDING 2
+"onboarding2Title" = "Wähle Spiele, die du gerne spielen möchtest";
+"onboarding2Description" = "Du kannst die beliebtesten Spiele auswählen und Spieler dafür finden";
+
+// MARK: - ONBOARDING 3
+"onboarding3Title" = "Spreche mit Spielern und plane ein Spiel";
+"onboarding3Description" = "Verwende den internen Chat um mit Spielern zu sprechen und Spiele zu planen";
+
+// MARK: - ONBOARDING 4
+"onboarding4TitleLabel" = "Synchronisierung mit iCloud";
+"onboarding4Description" = "Mach dir keine Sorgen über Konten, wir synchronisieren deine Daten automatisch, ohne deinen Speicherplatz zu belegen";
+"onboarding4ButtonLabel" = "Das war's !";
+
+// MARK: - ONBOARDING 5
+"onboarding5ButtonLabel" = "Fertig";
+"onboarding5ImageLabel" = "Profilbild";
+"onboarding5NameLabel" = "Name";
+"onboarding5UsernameLabel" = "Benutzername";
+"onboarding5DescriptionLabel" = "Beschreibung";
+"onboarding5DescriptionPlaceholder" = "Beschreibe dich selbst und gib eine Kontaktadresse für andere Spieler an.";
+"onboarding5LocationLabel" = "Standort";
+"onboarding5ChangePickerLabel" = "Ändern";
+"onboarding5LanguagesLabel" = "Sprachen";
+"onboarding5PlatformsLabel" = "Plattformen";
+"onboarding5GamesLabel" = "Spiele";
+"onboarding5SelectedLabel" = "Ausgewählt";
+
+// MARK: - ONBOARDING 5 - Warning
+"onboarding5AlertTitleLabel" = "Leere Felder";
+"onboarding5AlertTextLabel" = "Du musst die benötigten Felder ausfüllen, um dein Profil zu erstellen";
+"onboarding5AlertButtonLabel" = "Ok";
+"onboarding5RequiredLabel" = "Benötigt";
+
+// MARK: - ONBOARDING 5 - Keyboard
+"onboarding5KeyboardButton" = "Fertig";
+
+// MARK: - ONBOARDING GAME
+"onboardingGameServersLabel" = "Server";
+"onboardingGameDoneButtonLabel" = "Fertig";
+"onboardingGameDeselectButtonLabel" = "Deselektieren";
+
+// MARK: - Platforms
+"PlatformPC" = "PC";
+"PlatformPS" = "PlayStation";
+"PlatformXbox" = "Xbox";
+"PlatformMobile" = "Mobile";
+
+// MARK: - Languages
+"LanguagesPortuguese" = "Portugiesisch";
+"LanguagesEnglish" = "Englisch";
+"LanguagesChinese" = "Chinesisch";
+"LanguagesJapanese" = "Japanisch";
+"LanguagesSpanish" = "Spanisch";
+"LanguagesRussian" = "Russisch";
+"LanguagesGerman" = "Deutsch";
+
+// MARK: - Locations
+"LocationModalTitle" = "Standort";
+"LocationNorthAmerica" = "Nordamerika";
+"LocationBrazil" = "Brasilien";
+"LocationLatinAmericaSouth" = "Lateinamerika Süd";
+"LocationLatinAmericaNorth" = "Lateinamerika Nord";
+"LocationEuropeEast" = "Osteuropa";
+"LocationEuropeWest" = "Westeuropa";
+"LocationChina" = "China";
+"LocationOceania" = "Ozeanien";
+"LocationAsiaEast" = "Ostasien";
+"LocationAsiaWest" = "Westasien";
+"LocationAfricaNorth" = "Nordafrika";
+"LocationAfricaSouth" = "Südafrika";
+"LocationDontKnow" = "Unbekannt";
+
+"Dota2Description" = "Das ist die Beschreibung von Dota 2";
+"LeagueOfLegendsDescription" = "Das ist die Beschreibung von League of Legends";
+"CounterStrikeGODescription" = "Das ist die Beschreibung von Counter Strike: Global Offensive";
+
+//MARK: - Servers
+"Australia" = "Australien";
+"Europe East" = "Osteuropa";
+"Europe West" = "Westeuropa";
+"Russia" = "Russland";
+"SE Asia" = "Südostasien";
+"South Africa" = "Südafrika";
+"South America" = "Südamerika";
+"US East" = "USA Ost";
+"US West" = "USA West";
+"Brazil" = "Brasilien";
+"Europe Nordic & East" = "Nord & Osteuropa";
+"Europe West" = "Westeuropa";
+"Japan" = "Japan";
+"Korea" = "Korea";
+"Latin America North" = "Lateinamerika Nord";
+"Latin America South" = "Lateinamerika Süd";
+"North America" = "Nordamerika";
+"Oceania" = "Ozeanien";
+"Turkey" = "Türkei";
+"EU North" = "EU Nord";
+"Chile" = "Chile";
+"Dubai" = "Dubai";
+"EU East" = "EU Ost";
+"EU West" = "EU West";
+"Hong Kong" = "Hong Kong";
+"India East" = "Ostindien";
+"India West" = "Westindien";
+"PW Guangdong" = "PW Guangdong";
+"PW Shanghai" = "PW Shanghai";
+"PW Tianjin" = "PW Tianjin";
+"Peru" = "Peru";
+"Poland" = "Polen";
+"Singapore" = "Singapur";
+"South Africa" = "Südafrika";
+"South America" = "Südamerika";
+"Spain" = "Spanien";
+"US North Central" = "US Nord Zentral";
+"US South East" = "US Süd Ost";
+"US South West" = "US Süd West";
+
+// MARK: - Detail Game
+// MARK: - /Views/GameDetail
+"TitleGameDetailScreen" = "Spieldetails";
+"FindPlayersButton" = "Finde Spieler";
+"AddToMyGamesButton" = "Zu meinen Spielen hinzufügen";
+"PlatformsLabel" = "Plattformen";
+"OtherGamesLabel" = "Andere Spiele";
+
+// MARK: - Home
+// MARK: - Highlight image
+"GamesTitleLabel" = "Spiele";
+"HighlightTitileAboveImage" = "Neues Spiel erhältlich";
+"TitleButtonHiglighAboveImage" = "Spieler jetzt finden";
+
+// MARK: - Frind request cell
+"RejectRequestFriendButtonLabel" = "Ablehnen";
+"AceptRequestFriendButtonLabel" = "Annehmen";
+"NotificationRequestFriendLabel" = "schickte dir eine Freundschaftsanfrage";
+"RecentNotificationsLabel" = "Aktuelle Benachrichtigungen";
+
+// MARK: - Rate
+"ExplainRateLabel" = "Bewerte nach der Spielerfahrung mit dem Spieler";
+"SkillRateLabel" = "Fertigkeit bewerten";
+"BehaviorRateLabel" = "Verhalten bewerten";
+"ConfirmButtonLabel" = "Bestätigen";
+"CancelButtonLabel" = "Abbrechen";
+"TitleRateModalView"= "bewerten";
+
+// MARK: - Filters
+"filtersNavigationTitle" = "Filter";
+"filtersCleanButtonLabel" = "Filter löschen";
+"filtersDoneButtonLabel" = "Fertig";
+"filtersLanguagesLabel" = "Sprachen";
+"filtersPlatformsLabel" = "Plattformen";
+"filtersBehaviorsRateLabel" = "Verhalten bewerten";
+"filtersSkillsRateLabel" = "Fertigkeit bewerten";
+"filtersLocationLabel" = "Standort";
+"filtersGamesLabel" = "Spiele";
+
+// MARK: - Profile Customization
+"CancelButtonLabel" = "Abbrechen";
+"DoneButtonLabel" = "Fertig";
+"EditingProfileModalTitle" = "Profil editieren";
+
+// MARK: - Discover
+"DiscoverScreenAddToFriendsButton" = "Zu Freunden hinzufügen";
+"DiscoverShowMoreButton" = "Zeig mehr";
+"DiscoverScreenRequestSent" = "Anfrage gesendet!";
+"DiscoverSearchBarPlaceholder" = "Suche Benutzer";
+
+//MARK: - Social
+"SocialViewSearchUsers" = "Suche Benutzer";
+"SocialViewFriendsSectionToggle" = "Freunde";
+"SocialViewBlockedSectionToggle" = "Blockiert";
+"SocialViewCancelSentRequest" = "Anfrage abbrechen";
+"SocialReceivedRequestAcceptInvite" = "Akzeptieren";
+"SocialReceivedRequestDeclineInvite" = "Ablehnen";
+"SocialShowMoreButton" = "Zeig mehr";
+"SocialUnblockButton" = "Blockierung aufheben";
+
+//MARK: - ImagePickerManager
+"galleryAccessMessage" = "Um ein Profilbild einstellen zu können, musst du den Zugriff auf deine Galerie erlauben. Gehe zu Einstellungen > Matchmaker > Fotos.";
+"cameraAccessMessage" = "Um ein Profilbild einstellen zu können, musst du den Zugriff auf deine Kamera erlauben. Gehe zu Einstellungen > Matchmaker > Kamera.";
+"cameraGallerySheet" = "Profilbild editieren";
+"cameraAction" = "Kamera";
+"galleryAction" = "Galerie";
+"cancelAction" = "Abbrechen";
+"warningTitle" = "Warnung";
+"OKAction" = "OK";
+"avatarUploadSheetTitle" = "Avatar hochladen";
+"avatarUploadSheetMessage" = "Wähle ein Foto als dein Profilbild oder erlaube mehrere Fotos von deiner Galerie oder gehe zu den Einstellungen um den Zugriff auf alle Fotos zu erlauben.";
+"selectImageAction" = "Wähle ein Profilbild";
+"limitedGalleryAction" = "Gib mehrere Fotos frei";
+"fullGalleryAction" = "Erlaube Zugriff auf alle Fotos";
+"cameraError" = "Du hast keine Kamera";
+
+//MARK: AppDelegate Push Notification
+"friendRequestAlert" = "Du hast eine neue Freundschaftsanfrage!";
+
