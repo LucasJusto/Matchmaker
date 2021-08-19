@@ -144,7 +144,7 @@ class FiltersViewController: UIViewController {
         let platforms = tagPlatforms.filter { $0.isFavorite }.map { Platform.getPlatform(key: "Platform\($0.option == "PlayStation" ? "PS" : $0.option)") }
         
         let games = selectedGames.filter { $0.isFavorite }.map { $0.option }
-        
+                
         var location: Locations?
         
         if selectedLocation.string != "-" {

@@ -23,7 +23,7 @@
                                     <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="kGU-Ue-lol">
                                         <rect key="frame" x="0.0" y="49" width="414" height="51"/>
                                         <color key="barTintColor" name="DefaultBackground"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" textContentType="name"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="search" enablesReturnKeyAutomatically="YES" smartDashesType="no"/>
                                     </searchBar>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="N1J-pj-Ghp" userLabel="Friends|Blocked">
                                         <rect key="frame" x="71" y="10" width="273" height="32"/>

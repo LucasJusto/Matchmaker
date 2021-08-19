@@ -7,9 +7,15 @@
 
 import UIKit
 
+protocol EditingProfileViewControllerDelegate: AnyObject {
+    func didTapDone()
+}
+
 //MARK: - EditingProfileViewController Class
 
 class EditingProfileViewController: UIViewController {
+    
+    weak var delegate: EditingProfileViewControllerDelegate?
     
     //MARK: EditingProfileViewController Enums
     
@@ -39,12 +45,12 @@ class EditingProfileViewController: UIViewController {
     
     typealias TagOption = (option: String, isFavorite: Bool)
     typealias GameOption = (option: Game, isFavorite: Bool)
-    typealias UserLocation = (string: String, enum: Locations)
+    typealias UserLocation = (string: String, enum: Locations?)
     
     var tagLanguages: [TagOption] = []
     var tagPlatforms: [TagOption] = []
     var tagGames: [GameOption] = []
-    var selectedLocation: UserLocation = UserLocation(string: Locations.africaNorth.description, enum: Locations.africaNorth)
+    var selectedLocation: UserLocation = UserLocation(string: "-", enum: nil)
     
     //MARK: EditingProfileViewController Variables Setup
     
@@ -67,10 +73,25 @@ class EditingProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.dataSource = self
+        
+        setUpData()
+        
         setUpTagCategories()
                 
         self.title = NSLocalizedString("EditingProfileModalTitle", comment: "This is the translation for 'EditingProfileModalTitle' at the Profile Customization section of Localizable.strings")
+    }
+    
+    private func setUpData() {
+        
+        guard let user = user else { return }
+        
+        nameField = user.name
+        usernameField = user.nickname
+        descriptionField = user.description
+        profileImageUrl = user.photoURL
+        selectedLocation = UserLocation(string: user.location.description, enum: user.location)
     }
     
     private func setUpTagCategories() {
@@ -82,21 +103,40 @@ class EditingProfileViewController: UIViewController {
         
         let allTagCategories = EditingTagCategory.allCases
         
+        
         allTagCategories.forEach { category in
             switch category {
                 case .languages:
-                    let tagLanguages = supportedLanguages.map { TagOption(option: $0, isFavorite: false) }
+                    let tagLanguages = supportedLanguages.map { TagOption(option: $0, isFavorite: isLanguageSelected($0)) }
                     self.tagLanguages = tagLanguages
                     
                 case .platforms:
-                    let tagPlatforms = supportedPlatforms.map { TagOption(option: $0, isFavorite: false) }
+                    let tagPlatforms = supportedPlatforms.map { TagOption(option: $0, isFavorite: isPlatformSelected($0)) }
                     self.tagPlatforms = tagPlatforms
                     
                 case .games:
-                    let tagGames = supportedGames.map { GameOption(option: $0, isFavorite: false) }
+                    let tagGames = supportedGames.map { GameOption(option: $0, isFavorite: isGameSelected($0)) }
                     self.tagGames = tagGames
             }
         }
+    }
+    
+    func isLanguageSelected(_ language: String) -> Bool {
+        guard let user = user else { return false }
+        
+        return user.languages.contains(Languages.getLanguage(language: "Languages\(language)"))
+    }
+    
+    func isPlatformSelected(_ platform: String) -> Bool {
+        guard let user = user else { return false }
+        
+        return user.selectedPlatforms.contains(Platform.getPlatform(key: "Platform\(platform == "PlayStation" ? "PS" : platform)"))
+    }
+    
+    func isGameSelected(_ game: Game) -> Bool {
+        guard let user = user else { return false }
+        
+        return user.selectedGames.contains(game)
     }
     
     //MARK: EditingProfileViewController Class Functions
@@ -120,45 +160,54 @@ class EditingProfileViewController: UIViewController {
     }
     
     //MARK: EditingProfileViewController Button actions
-        
-    @IBAction func didTapUpperDone(_ sender: UIBarButtonItem) {
-        
-        let isIncomplete = nameField.isEmpty || usernameField.isEmpty || selectedLocation.string.isEmpty || tagLanguages.filter { $0.isFavorite }.count < 1 || tagPlatforms.filter { $0.isFavorite }.count < 1
-        
-        didTapDone = true
-                
-        if isIncomplete {
-            self.present(alertEmptyFields(), animated: true, completion: nil)
-        } else {
-            self.tableView.reloadData()
-            self.dismiss(animated: true)
-        }
-        
-        let languages = tagLanguages.filter { $0.isFavorite }.map { Languages.getLanguage(language: "Languages\($0.option)") }
-        let platforms = tagPlatforms.filter { $0.isFavorite }.map { Platform.getPlatform(key: "Platform\($0.option == "PlayStation" ? "PS" : $0.option)") }
-        let games = tagGames.filter { $0.isFavorite }.map { $0.option }
-                
-//        CKRepository.setOnboardingInfo(name: self.nameField, nickname: self.usernameField, photoURL: nil, location: Locations.africaNorth, description: self.descriptionField, languages: languages, selectedPlatforms: platforms, selectedGames: games)
-    }
     
-    @IBAction func didTapBottomDone(_ sender: UIButton) {
-        
-        let isIncomplete = nameField.isEmpty || usernameField.isEmpty || selectedLocation.string.isEmpty || tagLanguages.filter { $0.isFavorite }.count < 1 || tagPlatforms.filter { $0.isFavorite }.count < 1
-        
-        didTapDone = true
-                
-        if isIncomplete {
-            self.present(alertEmptyFields(), animated: true, completion: nil)
-        } else {
-            self.tableView.reloadData()
-            self.dismiss(animated: true)
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        if let editingTextField = EditingTextFields(rawValue: textField.tag), let text = textField.text {
+            
+            switch editingTextField {
+                case .nameField: nameField = text
+                case .usernameField: usernameField = text
+            }
         }
+    }
+        
+    @IBAction func didTapDone(_ sender: Any) {
+        
+        guard let user = user else { return }
         
         let languages = tagLanguages.filter { $0.isFavorite }.map { Languages.getLanguage(language: "Languages\($0.option)") }
         let platforms = tagPlatforms.filter { $0.isFavorite }.map { Platform.getPlatform(key: "Platform\($0.option == "PlayStation" ? "PS" : $0.option)") }
         let games = tagGames.filter { $0.isFavorite }.map { $0.option }
-                
-//        CKRepository.setOnboardingInfo(name: self.nameField, nickname: self.usernameField, photoURL: nil, location: Locations.africaNorth, description: self.descriptionField, languages: languages, selectedPlatforms: platforms, selectedGames: games)
+        
+        let hasChanged = nameField != user.name || usernameField != user.nickname || descriptionField != user.description || selectedLocation.enum != user.location || languages != user.languages || platforms != user.selectedPlatforms || games != user.selectedGames
+        
+        let isIncomplete = nameField.isEmpty || usernameField.isEmpty || selectedLocation.string.isEmpty || tagLanguages.filter { $0.isFavorite }.count < 1 || tagPlatforms.filter { $0.isFavorite }.count < 1
+        
+        didTapDone = true
+        
+        if isIncomplete {
+            self.present(alertEmptyFields(), animated: true, completion: nil)
+        }
+
+        if !isIncomplete && hasChanged {
+            guard let location = selectedLocation.enum else { return }
+            
+            CKRepository.editUserData(id: user.id, name: nameField, nickname: usernameField, location: location, description: descriptionField, photo: profileImageUrl, selectedPlatforms: platforms, selectedGames: games, languages: languages, completion: { record, error in
+                                
+                if error == nil && record != nil {
+                    DispatchQueue.main.async {
+                        
+                        self.delegate?.didTapDone()
+                    
+                        self.dismiss(animated: true)
+                    }
+                }
+            })
+        } else {
+            self.dismiss(animated: true)
+        }
+        
+        
     }
     
     @IBAction func didTapBottomCancel(_ sender: UIButton) {
@@ -169,6 +218,16 @@ class EditingProfileViewController: UIViewController {
     
     @objc func closeKeyboard(sender: Any) {
         self.view.endEditing(true)
+    }
+    
+    func getAvatar(url: URL?) -> UIImage? {
+        
+        if let url = url,
+           let data = try? Data(contentsOf: url) {
+            return UIImage(data: data)
+        }
+        
+        return UIImage(named: "profile_default")
     }
 }
 //MARK: - UITableViewDataSource
@@ -215,6 +274,8 @@ extension EditingProfileViewController: UITableViewDataSource {
         
         cell.userAvatarView.delegate = self
         
+        cell.userAvatarView.contentImage.image = getAvatar(url: profileImageUrl)
+        
         cell.tag = EditingFields.profileImage.rawValue
         
         return cell
@@ -244,6 +305,10 @@ extension EditingProfileViewController: UITableViewDataSource {
             }
         }
         
+        cell.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+
+        cell.textField.text = text
+        
         if didTapDone && text.isEmpty {
             cell.textField.borderColor = .red
             
@@ -260,8 +325,15 @@ extension EditingProfileViewController: UITableViewDataSource {
         }
         
         cell.textViewField.delegate = self
+        
         cell.textViewField.text = descriptionField
+        
+        if !cell.textViewField.text.isEmpty {
+            cell.placeholder.isHidden = true
+        }
+        
         cell.counterLabelView.text = "\(descriptionField.count)/300"
+        
         cell.textViewField.addDoneButton(title: NSLocalizedString("onboarding5KeyboardButton", comment: "Keyboard done Button"), target: self, selector: #selector(closeKeyboard(sender:)))
 
         return cell
@@ -273,6 +345,7 @@ extension EditingProfileViewController: UITableViewDataSource {
         }
         
         cell.delegate = self
+        
         cell.currentSelectionLabel.text = selectedLocation.string
         
         if didTapDone && selectedLocation.string.isEmpty {
@@ -291,10 +364,14 @@ extension EditingProfileViewController: UITableViewDataSource {
         cell?.collectionView.delegate = self
         cell?.collectionView.dataSource = self
         cell?.collectionView.tag = tag
-        
+                
         let string = NSLocalizedString(titleKey, comment: "selector cell label")
 
         cell?.setUp(title: string)
+        
+        DispatchQueue.main.async {
+            cell?.collectionView.reloadData()
+        }
         
         var selections = 0
         
@@ -483,6 +560,8 @@ extension EditingProfileViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+    
+    
 }
 //MARK: - UITextViewDelegate
 
@@ -509,6 +588,10 @@ extension EditingProfileViewController: UITextViewDelegate {
 
     func textViewDidChange(_ textView: UITextView) {
         let cell = tableView.cellForRow(at: IndexPath(row: EditingFields.descriptionField.rawValue, section: 0)) as? TextViewTableViewCell
+        
+        if let text = cell?.textViewField.text, descriptionField != text {
+            descriptionField = text
+        }
         
         cell?.counterLabelView.text = "\(textView.text.count)/300"
     }
@@ -558,7 +641,10 @@ extension EditingProfileViewController: PickerCellDelegate {
             let destination = rootVC.topViewController as! UserLocationViewController
             
             destination.delegate = self
-            destination.selectedLocation = selectedLocation.enum
+            
+            if let locationEnum = selectedLocation.enum {
+                destination.selectedLocation = locationEnum
+            }
         }
         
         if segue.identifier == "selectedGame" {

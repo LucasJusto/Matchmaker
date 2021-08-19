@@ -787,7 +787,7 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="DoneButtonLabel"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="didTapBottomDone:" destination="LOZ-WC-D0h" eventType="touchUpInside" id="fVX-V8-qD6"/>
+                                                    <action selector="didTapDone:" destination="LOZ-WC-D0h" eventType="touchUpInside" id="2wu-P7-IMF"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -817,7 +817,7 @@
                     <navigationItem key="navigationItem" title="Editing Profile" id="L3m-Gs-tv4">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="uri-ag-mxL">
                             <connections>
-                                <action selector="didTapUpperDone:" destination="LOZ-WC-D0h" id="L52-R0-x3P"/>
+                                <action selector="didTapDone:" destination="LOZ-WC-D0h" id="IhR-ry-CmL"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

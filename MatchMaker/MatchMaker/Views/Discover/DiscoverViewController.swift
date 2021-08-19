@@ -77,6 +77,7 @@ class DiscoverViewController: UIViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = NSLocalizedString("DiscoverSearchBarPlaceholder", comment: "Discover")
         searchController.searchBar.barStyle = .black
+        searchController.searchBar.tintColor = UIColor(named: "Primary")
         navigationItem.searchController = searchController
         definesPresentationContext = true
         
@@ -198,14 +199,14 @@ extension DiscoverViewController: DiscoverTableViewCellDelegate {
 
 extension DiscoverViewController: FiltersViewControllerDelegate {
     func setFilters(languages: [Languages], platforms: [Platform], behaviorsRate: Int, skillsRate: Int, selectedLocation: Locations?, selectedGames: [Game]) {
-        
+
         self.selectedLanguages = languages
         self.selectedPlatforms = platforms
         self.behaviorsRate = behaviorsRate
         self.skillsRate = skillsRate
         self.selectedLocation = selectedLocation
         self.selectedGames = selectedGames
-        
+
         updateAndReload()
     }
 }
