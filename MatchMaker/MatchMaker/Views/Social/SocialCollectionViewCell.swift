@@ -22,17 +22,22 @@ class SocialCollectionViewCell: UICollectionViewCell {
         self.gameImage.cornerRadius = 10
         self.gameTitleLabel.text = GameTitle
         
+        playstationImage.isHidden = true
+        xboxImage.isHidden = true
+        pcImage.isHidden = true
+        mobileImage.isHidden = true
+        
         if(isPlaystation) {
-            playstationImage.image = UIImage(named: "Play_selected")
+            playstationImage.isHidden = false
         }
         if(isXbox) {
-            xboxImage.image = UIImage(named: "Xbox_selected")
+            xboxImage.isHidden = false
         }
         if(isPC) {
-            pcImage.image = UIImage(named: "PC_selected")
+            pcImage.isHidden = false
         }
         if(isMobile) {
-            mobileImage.image = UIImage(named: "Mobile_selected")
+            mobileImage.isHidden = false
         }
     }
     
