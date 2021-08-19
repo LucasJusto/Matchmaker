@@ -618,6 +618,8 @@ public class CKRepository {
                                                 completion(friendsIds)
                                             }
                                         }
+                                    } else {
+                                        completion(friendsIds)
                                     }
                                 }
                             }
