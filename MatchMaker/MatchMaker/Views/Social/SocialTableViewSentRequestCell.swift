@@ -33,6 +33,7 @@ class SocialTableViewSentRequestCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        avatar.cornerRadius = 10
         // Initialization code
     }
     
