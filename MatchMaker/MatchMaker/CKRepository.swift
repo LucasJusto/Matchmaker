@@ -644,7 +644,7 @@ public class CKRepository {
             //creating necessary variables to use cloudkit
             let publicDB = container.publicCloudDatabase
             var predicate = NSPredicate(value: true)
-            if languages.count > 0 || platforms.count > 0 || behaviourRate > 0 || skillRate > 0 || locations.count > 0 || games.count > 0 {
+            if languages.count > 0 || platforms.count > 0 || behaviourRate > 0 || skillRate > 0 || locations.count > 0 {
                 //there is at least one filter
                 predicate = NSPredicate(format: fullPredicate)
             }

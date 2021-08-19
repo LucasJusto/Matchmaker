@@ -145,6 +145,8 @@ class FiltersViewController: UIViewController {
         
         let games = selectedGames.filter { $0.isFavorite }.map { $0.option }
         
+        print(games)
+        
         var location: Locations?
         
         if selectedLocation.string != "-" {

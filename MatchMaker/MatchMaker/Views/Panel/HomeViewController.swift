@@ -13,6 +13,10 @@ class HomeViewController: UIViewController{
     
     var notifications:[String] = ["friend", "message", "friend", "message"]
     
+    @IBAction func discoverButtonView(_ sender: Any) {
+        performSegue(withIdentifier: "toGameServers", sender: nil)
+    }
+    
     var games: [Game] = Games.buildGameArray()
 
     override func viewDidLoad() {
@@ -130,6 +134,14 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
 
             destination?.game = game
         }
+        
+        if segue.identifier == "toGameServers" {
+            
+            if let destination = segue.destination as? GameDetailsViewController {
+                destination.delegate = self
+                destination.game = games.first
+            }
+        }
     }
 }
 
@@ -140,5 +152,22 @@ extension HomeViewController: RoundedRectangleCollectionViewDelegate {
         
         guard let game = model as? Game else { return }
         performSegue(withIdentifier: "toGame", sender: game)
+    }
+}
+
+extension HomeViewController: GameSelectionDelegate {
+    func updateGame(_ game: Game, isSelected: Bool) {
+        print(game.name)
+        print(game.selectedServers)
+        
+        self.tabBarController?.selectedIndex = 2
+                
+        let rootController = self.tabBarController?.selectedViewController as? UINavigationController
+        
+        let destination = rootController?.topViewController as? DiscoverViewController
+        
+        destination?.selectedGames = [game]
+        
+        destination?.updateAndReload()
     }
 }
