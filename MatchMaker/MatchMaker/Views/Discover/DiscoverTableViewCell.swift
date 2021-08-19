@@ -79,6 +79,10 @@ class DiscoverTableViewCell: UITableViewCell {
         self.userGames = userGames
         nameLabel.text = nameText
         nickLabel.text = nickText
+
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
 
 }
