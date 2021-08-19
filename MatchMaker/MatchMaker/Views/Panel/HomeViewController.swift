@@ -152,7 +152,6 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-
 extension HomeViewController: RoundedRectangleCollectionViewDelegate {
     
     func didSelectRoundedRectangleModel(model: RoundedRectangleModel) {
@@ -164,9 +163,6 @@ extension HomeViewController: RoundedRectangleCollectionViewDelegate {
 
 extension HomeViewController: GameSelectionDelegate {
     func updateGame(_ game: Game, isSelected: Bool) {
-        print(game.name)
-        print(game.selectedServers)
-        
         self.tabBarController?.selectedIndex = 2
                 
         let rootController = self.tabBarController?.selectedViewController as? UINavigationController
