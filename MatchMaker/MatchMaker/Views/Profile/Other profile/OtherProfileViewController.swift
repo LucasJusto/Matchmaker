@@ -107,11 +107,11 @@ class OtherProfileViewController: UIViewController {
     }
     
     @IBAction func rateBehaviourButton(_ sender: Any) {
-        performSegue(withIdentifier: "toRateUser", sender: nil)
+        performSegue(withIdentifier: "toRateUser", sender: RateType.behaviour)
     }
     
     @IBAction func rateSkillButton(_ sender: Any) {
-        performSegue(withIdentifier: "toRateUser", sender: nil)
+        performSegue(withIdentifier: "toRateUser", sender: RateType.skill)
     }
     
     //MARK: OtherProfileViewController Variables setup
@@ -237,6 +237,9 @@ class OtherProfileViewController: UIViewController {
             
             destination.user = user
             destination.social = social
+            if let sender = sender as? RateType {
+                destination.typeRate = sender == .skill ? .skill : .behaviour
+            }
         }
         
         if segue.identifier == "toGameDetail" {
@@ -262,7 +265,7 @@ extension OtherProfileViewController {
      - Returns: Void
      */
     func acceptFriendshipRequest() {
-        //friendshipStatus = FriendshipStatus.friendsAlready
+        friendshipStatus = FriendshipStatus.friendsAlready
         acceptOrRejectStack.isHidden = true
         requestFriendButton.isHidden = false
         
@@ -305,7 +308,7 @@ extension OtherProfileViewController {
      - Returns: Void
      */
     func sendFriendshipRequest() {
-        //friendshipStatus = FriendshipStatus.requestedFriendship
+        friendshipStatus = FriendshipStatus.requestedFriendship
         requestFriendButton.layer.backgroundColor = UIColor(named: "LightGray")?.cgColor
         requestFriendButton.setTitle(FriendshipStatus.requestedFriendship.description, for: .normal)
         acceptOrRejectStack.isHidden = true
