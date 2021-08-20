@@ -26,6 +26,7 @@ class SocialTableViewFriendCell: UITableViewCell {
     
     @IBAction func actionProfileButton(_ sender: UIButton) {
         delegate?.didPressShowProfile(self)
+        profileButton.isEnabled = false
     }
     
     override func awakeFromNib() {
@@ -44,7 +45,7 @@ class SocialTableViewFriendCell: UITableViewCell {
     }
     
     func setup(userId: String, url: URL?, nameText: String, nickText: String, userGames: [Game]) {
-        
+        profileButton.isEnabled = true
         self.profileImage.image = UIImage(named: "profile_default")
         
         // Trying to unwrap, get image data and set it in the UI

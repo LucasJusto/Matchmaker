@@ -49,7 +49,7 @@ class RateViewController: UIViewController {
     var typeRate: RateType?
     var user: User?
     var social: Social?
-    
+    var otherProfileViewController: OtherProfileViewController?
     //MARK: RateViewController Outlets actions
     
     @IBAction func doneButtonAction(_ sender: Any) {
@@ -57,9 +57,27 @@ class RateViewController: UIViewController {
         
         switch typeRate {
         case .skill:
-            CKRepository.skillRateFriend(friendId: social.id, rate: Double(Rate))
+            CKRepository.skillRateFriend(friendId: social.id, rate: Double(Rate), completion: {
+                DispatchQueue.main.async {
+                    if let userNotNull = self.user {
+                        CKRepository.getUserById(id: userNotNull.id) { userA in
+                            self.otherProfileViewController?.user = userA
+                            self.otherProfileViewController?.setupUserProfile()
+                        }
+                    }
+                }
+            })
         case .behaviour:
-            CKRepository.behaviourRateFriend(friendId: social.id, rate: Double(Rate))
+            CKRepository.behaviourRateFriend(friendId: social.id, rate: Double(Rate), completion: {
+                DispatchQueue.main.async {
+                    if let userNotNull = self.user {
+                        CKRepository.getUserById(id: userNotNull.id) { userA in
+                            self.otherProfileViewController?.user = userA
+                            self.otherProfileViewController?.setupUserProfile()
+                        }
+                    }
+                }
+            })
         case .none:
             CKRepository.errorAlertHandler(CKErrorCode: .invalidArguments)
         }
@@ -71,9 +89,27 @@ class RateViewController: UIViewController {
         
         switch typeRate {
         case .skill:
-            CKRepository.skillRateFriend(friendId: social.id, rate: Double(Rate))
+            CKRepository.skillRateFriend(friendId: social.id, rate: Double(Rate), completion: {
+                DispatchQueue.main.async {
+                    if let userNotNull = self.user {
+                        CKRepository.getUserById(id: userNotNull.id) { userA in
+                            self.otherProfileViewController?.user = userA
+                            self.otherProfileViewController?.setupUserProfile()
+                        }
+                    }
+                }
+            })
         case .behaviour:
-            CKRepository.behaviourRateFriend(friendId: social.id, rate: Double(Rate))
+            CKRepository.behaviourRateFriend(friendId: social.id, rate: Double(Rate), completion: {
+                DispatchQueue.main.async {
+                    if let userNotNull = self.user {
+                        CKRepository.getUserById(id: userNotNull.id) { userA in
+                            self.otherProfileViewController?.user = userA
+                            self.otherProfileViewController?.setupUserProfile()
+                        }
+                    }
+                }
+            })
         case .none:
             CKRepository.errorAlertHandler(CKErrorCode: .invalidArguments)
         }
