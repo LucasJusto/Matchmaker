@@ -406,7 +406,7 @@ public class CKRepository {
         }
     }
     
-    static func sendFriendshipInvite(inviterUserId: String, receiverUserId: String) {
+    static func sendFriendshipInvite(inviterUserId: String, receiverUserId: String, completion: @escaping (Bool) -> Void) {
         let recordID = CKRecord.ID(recordName:"\(inviterUserId)\(receiverUserId)")
         let record = CKRecord(recordType: FriendsTable.recordType.description, recordID: recordID)
         let publicDB = container.publicCloudDatabase
@@ -418,6 +418,7 @@ public class CKRepository {
         publicDB.save(record) { record, error in
             if let ckError = error as? CKError {
                 CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                completion(false)
             }
             else {
                 if error == nil {
@@ -425,6 +426,10 @@ public class CKRepository {
                         CKRepository.user?.friends.append(Social(id: user.id, name: user.name, nickname: user.nickname, photoURL: user.photoURL, games: user.selectedGames, isInvite: IsInvite.yes, isInviter: false))
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: FriendsTable.tableChanged.description), object: nil)
                     }
+                    completion(true)
+                }
+                else {
+                    completion(false)
                 }
             }
         }
