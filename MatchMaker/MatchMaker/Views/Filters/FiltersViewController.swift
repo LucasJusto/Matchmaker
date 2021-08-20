@@ -88,7 +88,7 @@ class FiltersViewController: UIViewController {
         let languages = tagLanguages.filter { $0.isFavorite }
         let platforms = tagPlatforms.filter { $0.isFavorite }
         
-        return !languages.isEmpty || !platforms.isEmpty || skillsRate >= 1 || behaviorsRate >= 1 || selectedLocation.string != "-"
+        return !languages.isEmpty || !platforms.isEmpty || skillsRate >= 1 || behaviorsRate >= 1 || selectedLocation.string != "-" || selectedGames.count >= 1
     }
     
     func loadData(languages: [Languages], platforms: [Platform], behaviors: Int, skills: Int, location: Locations?, games: [Game]) {
