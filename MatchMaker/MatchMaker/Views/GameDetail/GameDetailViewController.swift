@@ -7,10 +7,18 @@
 
 import UIKit
 
+protocol GameDetailViewControllerDelegate: AnyObject {
+    func didTapDone(game: Game)
+}
+
 class GameDetailViewController: UIViewController {
 
+    weak var delegate: GameDetailViewControllerDelegate?
+    
     // Game mock
     var game: Game = Games.games[0]
+    
+    var hasGame: Bool = false
     
     // Game info
     @IBOutlet weak var GameImage: UIImageView!
@@ -44,8 +52,33 @@ class GameDetailViewController: UIViewController {
     @IBOutlet weak var pcStack: UIStackView!
     @IBOutlet weak var mobileStack: UIStackView!
     
+    @IBAction func gameButton(_ sender: Any) {
+        if let user = CKRepository.user {
+            var games: [Game] = []
+        
+            if hasGame {
+                games = user.selectedGames.filter { $0.id != game.id }
+            } else {
+                games = user.selectedGames
+                games.append(game)
+            }
+            
+            CKRepository.editUserGamesData(userId: user.id, selectedGames: games)
+            
+            self.hasGame.toggle()
+            
+            let btnLabelText = hasGame ?  NSLocalizedString("RemoveFromMyGamesButton", comment: "Button on GameDetailView to remove a game from the user's games") : NSLocalizedString("AddToMyGamesButton", comment: "Button on GameDetailView to add a game to the user's games")
+        
+            AddToMyGamesButton.setTitle(btnLabelText, for: UIControl.State.init())
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let user = CKRepository.user {
+            hasGame = user.selectedGames.contains { $0.id == game.id }
+        }
         
         titleGameDetailScreen.title = NSLocalizedString("TitleGameDetailScreen", comment: "Screen title")
         
@@ -60,9 +93,13 @@ class GameDetailViewController: UIViewController {
         // Button setup
         FindPlayersButton.cornerRadius = 10
         AddToMyGamesButton.cornerRadius = 10
-        FindPlayersButton.setTitle(NSLocalizedString("FindPlayersButton", comment: "Button on GameDetailView for searching players to play with"), for: UIControl.State.init())
-        AddToMyGamesButton.setTitle(NSLocalizedString("AddToMyGamesButton", comment: "Button on GameDetailView to add a game to the user's games"), for: UIControl.State.init())
         
+        FindPlayersButton.setTitle(NSLocalizedString("FindPlayersButton", comment: "Button on GameDetailView for searching players to play with"), for: UIControl.State.init())
+        
+        let btnLabelText = hasGame ?  NSLocalizedString("RemoveFromMyGamesButton", comment: "Button on GameDetailView to remove a game from the user's games") : NSLocalizedString("AddToMyGamesButton", comment: "Button on GameDetailView to add a game to the user's games")
+    
+        AddToMyGamesButton.setTitle(btnLabelText, for: UIControl.State.init())
+    
         // Game info
         GameImage.image = game.image
         GameTitle.text = game.name
@@ -128,15 +165,7 @@ extension GameDetailViewController: RoundedRectangleCollectionViewDelegate {
 extension GameDetailViewController: GameSelectionDelegate {
     func updateGame(_ game: Game, isSelected: Bool) {
         self.dismiss(animated: true, completion: {
-            self.tabBarController?.selectedIndex = 2
-                    
-            let rootController = self.tabBarController?.selectedViewController as? UINavigationController
-            
-            let destination = rootController?.topViewController as? DiscoverViewController
-            
-            destination?.selectedGames = [game]
-            
-            destination?.updateAndReload()
+            self.delegate?.didTapDone(game: game)
         })
         
     }

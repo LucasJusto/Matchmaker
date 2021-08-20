@@ -166,6 +166,7 @@ without using your storage";
 "TitleGameDetailScreen" = "Game Detail";
 "FindPlayersButton" = "Find players";
 "AddToMyGamesButton" = "Add to my games";
+"RemoveFromMyGamesButton" = "Remove from my games";
 "PlatformsLabel" = "Platforms";
 "OtherGamesLabel" = "Other Games";
 

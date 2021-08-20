@@ -74,6 +74,9 @@
                                                                 <state key="normal" title="Add to my games">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="gameButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="ZgM-2N-2Mt"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <constraints>
