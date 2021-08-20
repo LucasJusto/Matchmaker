@@ -158,6 +158,7 @@
 "TitleGameDetailScreen" = "ゲーム詳細";
 "FindPlayersButton" = "プレーヤーを検索";
 "AddToMyGamesButton" = "ゲームに追加";
+"RemoveFromMyGamesButton" = "Remove from my games"; //minha amiga vai traduzir
 "PlatformsLabel" = "プラットフォーム";
 "OtherGamesLabel" = "その他のゲーム";
 

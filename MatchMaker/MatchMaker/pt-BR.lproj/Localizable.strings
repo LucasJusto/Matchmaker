@@ -161,6 +161,7 @@ para você escolher e encontrar jogadores";
 "TitleGameDetailScreen" = "Detalhes do jogo";
 "FindPlayersButton" = "Encontrar jogadores";
 "AddToMyGamesButton" = "Adicionar aos meus jogos";
+"RemoveFromMyGamesButton" = "Remover dos meus jogos";
 "PlatformsLabel" = "Plataformas";
 "OtherGamesLabel" = "Outros jogos";
 

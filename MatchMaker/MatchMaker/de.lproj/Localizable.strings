@@ -158,6 +158,7 @@
 "TitleGameDetailScreen" = "Spieldetails";
 "FindPlayersButton" = "Finde Spieler";
 "AddToMyGamesButton" = "Zu meinen Spielen hinzufügen";
+"RemoveFromMyGamesButton" = "Aus meinen Spielen entfernen";
 "PlatformsLabel" = "Plattformen";
 "OtherGamesLabel" = "Andere Spiele";
 
