@@ -511,7 +511,7 @@ public class CKRepository {
                             getUserById(id: receiverFriendId) { user in
                                 let isInvite = IsInvite.getIsInvite(string: result.value(forKey: FriendsTable.isInvite.description) as? String ?? "")
                                 semaphore.wait()
-                                friends.append(Social(id: user.id, name: user.name, nickname: user.nickname, photoURL: user.photoURL, games: user.selectedGames, isInvite: isInvite, isInviter: true))
+                                friends.append(Social(id: user.id, name: user.name, nickname: user.nickname, photoURL: user.photoURL, games: user.selectedGames, isInvite: isInvite, isInviter: false))
                                 semaphore.signal()
                                 if friends.count == resultsNotNull.count {
                                     let receiverPredicate = NSPredicate(format: "\(FriendsTable.receiverId.description) == '\(id)'")
@@ -527,7 +527,7 @@ public class CKRepository {
                                                         getUserById(id: inviterFriendId) { user in
                                                             let receiverIsInvite = IsInvite.getIsInvite(string: receiverResult.value(forKey: FriendsTable.isInvite.description) as? String ?? "")
                                                             semaphore.wait()
-                                                            friends.append(Social(id: user.id, name: user.name, nickname: user.nickname, photoURL: user.photoURL, games: user.selectedGames, isInvite: receiverIsInvite, isInviter: false))
+                                                            friends.append(Social(id: user.id, name: user.name, nickname: user.nickname, photoURL: user.photoURL, games: user.selectedGames, isInvite: receiverIsInvite, isInviter: true))
                                                             semaphore.signal()
                                                             if friends.count == (resultsNotNull.count + receiverResultsNotNull.count) {
                                                                 
@@ -559,7 +559,7 @@ public class CKRepository {
                                         getUserById(id: inviterFriendId) { user in
                                             let receiverIsInvite = IsInvite.getIsInvite(string: receiverResult.value(forKey: FriendsTable.isInvite.description) as? String ?? "")
                                             semaphore.wait()
-                                            friends.append(Social(id: user.id, name: user.name, nickname: user.nickname, photoURL: user.photoURL, games: user.selectedGames, isInvite: receiverIsInvite, isInviter: false))
+                                            friends.append(Social(id: user.id, name: user.name, nickname: user.nickname, photoURL: user.photoURL, games: user.selectedGames, isInvite: receiverIsInvite, isInviter: true))
                                             semaphore.signal()
                                             if friends.count == (resultsNotNull.count + receiverResultsNotNull.count) {
                                                 
