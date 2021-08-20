@@ -206,6 +206,8 @@ class OtherProfileViewController: UIViewController {
                     }
                 }
             }
+        } else {
+            self.userProfileImage.image = UIImage(named: "photoDefault")
         }
         
         behaviourRateLabel.text = String(unwrappedUser.behaviourRate)
