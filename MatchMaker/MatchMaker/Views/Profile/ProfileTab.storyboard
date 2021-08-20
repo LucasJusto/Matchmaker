@@ -823,7 +823,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bottomCancelButton" destination="YnP-c3-Wfd" id="LX9-N5-wFe"/>
+                        <outlet property="bottomDoneButton" destination="rkr-lv-ONj" id="EYC-zq-4pe"/>
                         <outlet property="tableView" destination="tOs-Sw-RMg" id="nVl-Xb-uCY"/>
+                        <outlet property="upperDoneButton" destination="uri-ag-mxL" id="kVi-rM-nEY"/>
                         <segue destination="MNT-Np-EOM" kind="presentation" identifier="toUserLocations" id="DFg-rG-bQ9"/>
                         <segue destination="OL0-hL-alX" kind="presentation" identifier="selectedGame" id="vbj-Dw-Pmu"/>
                     </connections>

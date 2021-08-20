@@ -35,6 +35,13 @@ class PickerTableViewCell: UITableViewCell {
         
     override func awakeFromNib() {
         super.awakeFromNib()
+        setupAccessibilityFeatures()
+    }
+    
+    func setupAccessibilityFeatures(){
+        //voice over
+        buttonView.accessibilityValue = NSLocalizedString("ACchangeLocationButton", comment: "This is the translation for 'ACchangeLocationButton' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        buttonView.accessibilityHint = NSLocalizedString("ACchangeLocationButtonHint", comment: "This is the translation for 'ACchangeLocationButtonHint' at the Accessibility - Profile/Other Profile section of Localizable.strings")
     }
     
     @IBAction func didTapButton(_ sender: Any) {

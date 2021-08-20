@@ -268,6 +268,15 @@ without using your storage";
 "ACdeleteFriendshipHint" = "Double tap to remove ";
 "ACdeleteFriendshipHint2" = " from your friends list";
 "ACcancelFriendRequestHint" = "Double tap to cancel this friend request to ";
+//profile/onboarding editing buttons
+"ACcancelButton" = "Cancel";
+"ACcancelButtonHint" = "Double tap to cancel and discard any changes. This action will dismiss this screen and go back to the previous one";
+"ACchangeLocationButton" = "Change location";
+"ACchangeLocationButtonHint" = "Double tap to go to Locations screen and change your location";
+"ACbottomDoneButton" = "Done";
+"ACbottomDoneButtonHint" = "Double tap to save your changes. Your changes will only be saved if you filled the name and username field";
+
+
 //discover/social buttons
 "ACuserProfileButton" = "User's profile";
 "ACuserProfileButtonHint" = "Double tap to go to this user's profile";
