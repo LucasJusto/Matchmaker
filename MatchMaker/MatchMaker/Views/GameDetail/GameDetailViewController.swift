@@ -88,7 +88,13 @@ class GameDetailViewController: UIViewController {
         }
     }
     
-
+    
+    @IBAction func findPlayersBtn(_ sender: Any) {
+        
+        performSegue(withIdentifier: "toGameServers", sender: nil)
+        
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "toGame" {
@@ -99,18 +105,14 @@ class GameDetailViewController: UIViewController {
 
             destination?.game = game
         }
-    }
-    
-    /*
-    // MARK: - Navigation
+        
+        if segue.identifier == "toGameServers" {
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+            let destination = segue.destination as? GameDetailsViewController
 
+            destination?.game = game
+        }
+    }
 }
 
 extension GameDetailViewController: RoundedRectangleCollectionViewDelegate {

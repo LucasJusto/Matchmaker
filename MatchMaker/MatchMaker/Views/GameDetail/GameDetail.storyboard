@@ -64,6 +64,9 @@
                                                                 <state key="normal" title="Find players">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="findPlayersBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Rpq-Yo-nNV"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ngm-dr-XyX">
                                                                 <rect key="frame" x="180" y="0.0" width="170" height="40"/>
@@ -253,6 +256,7 @@
                         <outlet property="titleGameDetailScreen" destination="1Av-cg-meL" id="xJe-a5-Fs8"/>
                         <outlet property="xboxStack" destination="iOm-cu-jm7" id="qSn-PT-7pB"/>
                         <segue destination="JQg-8z-MBx" kind="show" identifier="toGame" id="znt-hU-VfI"/>
+                        <segue destination="If2-L7-qAo" kind="presentation" identifier="toGameServers" id="nFZ-TM-eTc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -283,6 +287,14 @@
             </objects>
             <point key="canvasLocation" x="102" y="114"/>
         </scene>
+        <!--GameDetailsViewController-->
+        <scene sceneID="B4Q-wC-F41">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Onboarding" referencedIdentifier="GameDetailsViewController" id="If2-L7-qAo" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bI9-bB-UTN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1704" y="68"/>
+        </scene>
         <!--GameDetailID-->
         <scene sceneID="oT4-oQ-QhA">
             <objects>
@@ -291,7 +303,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9U1-RW-hMw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1740" y="57"/>
+            <point key="canvasLocation" x="1639" y="235"/>
         </scene>
     </scenes>
     <resources>
@@ -308,7 +320,7 @@
             <color red="0.43900001049041748" green="0.43900001049041748" blue="0.43900001049041748" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Primary">
-            <color red="0.38823529411764707" green="0.090196078431372548" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.3880000114440918" green="0.090000003576278687" blue="0.88599997758865356" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
