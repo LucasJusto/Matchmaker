@@ -18,14 +18,14 @@ class OtherProfileViewController: UIViewController {
         
         var description: String {
             switch self {
-            case .friendsAlready:
-                return NSLocalizedString("RemoveFriendButtonLabel", comment: "")
-            case .requestedFriendship:
-                return NSLocalizedString("CancelRequestButtonLabel", comment: "")
-            case .nonFriend:
-                return NSLocalizedString("RequestFriendButtonLabel", comment: "")
-            case .pendingRequest:
-                return ""
+                case .friendsAlready:
+                    return NSLocalizedString("RemoveFriendButtonLabel", comment: "")
+                case .requestedFriendship:
+                    return NSLocalizedString("CancelRequestButtonLabel", comment: "")
+                case .nonFriend:
+                    return NSLocalizedString("RequestFriendButtonLabel", comment: "")
+                case .pendingRequest:
+                    return ""
             }
         }
     }
@@ -33,9 +33,10 @@ class OtherProfileViewController: UIViewController {
     var socialViewController: SocialViewController?
     
     //MARK: OtherProfileViewController Outlets setup
-
+    
     @IBOutlet weak var titleViewLabel: UINavigationItem!
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var platformsView: SmallLabeledImageCollectionView!
     @IBOutlet weak var languagesView: TitleCollectionView!
     @IBOutlet weak var gameCollectionView: RoundedRectangleCollectionView!
@@ -73,7 +74,7 @@ class OtherProfileViewController: UIViewController {
     
     //MARK: OtherProfileViewController Outlet functions
     
- 
+    
     @IBAction func didTapUpperDone(_ sender: Any) {
         self.dismiss(animated: true)
     }
@@ -159,7 +160,7 @@ class OtherProfileViewController: UIViewController {
             behaviourRateButton.isHidden = true
             skillRateButton.isHidden = true
         }
-                
+        
         guard let social = social else { return }
         
         if ((social.isInviter == nil) && (social.isInvite == nil)) {
@@ -173,7 +174,7 @@ class OtherProfileViewController: UIViewController {
             requestFriendButton.isHidden = false
             requestFriendButton.layer.backgroundColor = UIColor(named: "LightGray")?.cgColor
             requestFriendButton.setTitle(FriendshipStatus.friendsAlready.description, for: .normal)
-
+            
         } else if (!(social.isInviter ?? true) && (social.isInvite == .yes))  {
             acceptOrRejectStack.isHidden = true
             requestFriendButton.isHidden = false
@@ -203,47 +204,48 @@ class OtherProfileViewController: UIViewController {
         skillRateButton.layer.cornerRadius = 8
     }
     
-    private func setupUserProfile() {
-        
-        guard let unwrappedUser = user else { return }
-        
-        if let url = unwrappedUser.photoURL {
-            DispatchQueue.global().async {
-                if let data = try? Data(contentsOf: url) {
-                    DispatchQueue.main.async {
-                        self.userProfileImage.image = UIImage(data: data)
+    func setupUserProfile() {
+        DispatchQueue.main.async {
+            guard let unwrappedUser = self.user else { return }
+            
+            if let url = unwrappedUser.photoURL {
+                DispatchQueue.global().async {
+                    if let data = try? Data(contentsOf: url) {
+                        DispatchQueue.main.async {
+                            self.userProfileImage.image = UIImage(data: data)
+                        }
                     }
                 }
+            } else {
+                self.userProfileImage.image = UIImage(named: "photoDefault")
             }
-        } else {
-            self.userProfileImage.image = UIImage(named: "photoDefault")
+            
+            self.behaviourRateLabel.text = String(unwrappedUser.behaviourRate)
+            //amountOfReviewsBehavioursLabel.text = "0" + NSLocalizedString("UserReviews", comment: "This is the key for 'reviews' translation")
+            
+            self.skillRateLabel.text = String(unwrappedUser.skillRate)
+            //amaountOfReviewsSKillLaber.text = "0 " + NSLocalizedString("UserReviews", comment: "This is the key for 'reviews' translation")
+            
+            self.userProfileNameLabel.text = unwrappedUser.name
+            self.userProfileGamertagLabel.text = "@" + unwrappedUser.nickname
+            self.userProfileBioLabel.text = unwrappedUser.description
+            self.userProfileLocationLabel.text = NSLocalizedString("Playing from ", comment: "") + "\(unwrappedUser.location)"
+            
+            //userProfileImage.image = colocar imagem do usuário
+            
+            self.platformsView.smallLabeledImageModels = unwrappedUser.selectedPlatforms
+            self.languagesView.titleModels = unwrappedUser.languages
+            self.gameCollectionView.roundedRectangleImageModels = unwrappedUser.selectedGames
+            
+            self.gameCollectionView.delegate = self
         }
-        
-        behaviourRateLabel.text = String(unwrappedUser.behaviourRate)
-        //amountOfReviewsBehavioursLabel.text = "0" + NSLocalizedString("UserReviews", comment: "This is the key for 'reviews' translation")
-        
-        skillRateLabel.text = String(unwrappedUser.skillRate)
-        //amaountOfReviewsSKillLaber.text = "0 " + NSLocalizedString("UserReviews", comment: "This is the key for 'reviews' translation")
-        
-        userProfileNameLabel.text = unwrappedUser.name
-        userProfileGamertagLabel.text = "@" + unwrappedUser.nickname
-        userProfileBioLabel.text = unwrappedUser.description
-        userProfileLocationLabel.text = NSLocalizedString("Playing from ", comment: "") + "\(unwrappedUser.location)"
-        
-        //userProfileImage.image = colocar imagem do usuário
-        
-        platformsView.smallLabeledImageModels = unwrappedUser.selectedPlatforms
-        languagesView.titleModels = unwrappedUser.languages
-        gameCollectionView.roundedRectangleImageModels = unwrappedUser.selectedGames
-        
-        gameCollectionView.delegate = self
     }
     
     func setupAccessibiltyFeatures(){
         guard let unwrappedUser = user,
               let social = social
         else { return }
-
+        
         
         //Voice over - User profile
         userProfileNameLabel.accessibilityLabel = NSLocalizedString("ACuserName", comment: "This is the translation for 'ACuserName' at the Accessibility - Profile/Other Profile section of Localizable.strings")
@@ -266,7 +268,7 @@ class OtherProfileViewController: UIViewController {
         //friends button stack
         acceptButton.accessibilityHint = NSLocalizedString("ACacceptFriendRequestHint", comment: "This is the translation for 'ACacceptFriendRequestHint' at the Accessibility - Profile/Other Profile section of Localizable.strings") + unwrappedUser.name
         rejectButton.accessibilityHint = NSLocalizedString("ACdenyFriendRequestHint", comment: "This is the translation for 'ACdenyFriendRequestHint' at the Accessibility - Profile/Other Profile section of Localizable.strings") + unwrappedUser.name
-                
+        
         if ((social.isInviter == nil) && (social.isInvite == nil)) {
             //send friend request
             requestFriendButton.accessibilityHint = NSLocalizedString("ACsendFriendRequestHint", comment: "This is the translation for 'ACsendFriendRequestHint' at the Accessibility - Profile/Other Profile section of Localizable.strings") + unwrappedUser.name
@@ -274,7 +276,7 @@ class OtherProfileViewController: UIViewController {
         } else if social.isInvite == IsInvite.no {
             //remove friend
             requestFriendButton.accessibilityHint = NSLocalizedString("ACdeleteFriendshipHint", comment: "This is the translation for 'ACsendFriendRequestHint' at the Accessibility - Profile/Other Profile section of Localizable.strings") + unwrappedUser.name + NSLocalizedString("ACdeleteFriendshipHint2", comment: "This is the translation for 'ACdeleteFriendshipHint2' at the Accessibility - Profile/Other Profile section of Localizable.strings")
-
+            
         } else if (!(social.isInviter ?? true) && (social.isInvite == .yes))  {
             //cancel request
             requestFriendButton.accessibilityHint = NSLocalizedString("ACcancelFriendRequestHint", comment: "This is the translation for 'ACcancelFriendRequestHint' at the Accessibility - Profile/Other Profile section of Localizable.strings") + unwrappedUser.name
@@ -358,6 +360,7 @@ class OtherProfileViewController: UIViewController {
             
             destination.user = user
             destination.social = social
+            destination.otherProfileViewController = self
             if let sender = sender as? RateType {
                 destination.typeRate = sender == .skill ? .skill : .behaviour
             }

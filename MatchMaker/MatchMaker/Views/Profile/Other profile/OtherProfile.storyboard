@@ -422,6 +422,7 @@
                         <outlet property="ratingsTitleLabel" destination="cn8-FP-j0Y" id="IEW-tn-usc"/>
                         <outlet property="rejectButton" destination="tpF-Kh-Wk3" id="cOr-O2-k7r"/>
                         <outlet property="requestFriendButton" destination="KXA-9d-3ys" id="aBZ-qe-Qd0"/>
+                        <outlet property="scrollView" destination="xu9-HE-MP3" id="KDh-au-WW6"/>
                         <outlet property="skillCategory" destination="UJO-HL-A0J" id="oCc-fK-pR2"/>
                         <outlet property="skillRateButton" destination="jgM-QY-13h" id="Zo1-FL-aQf"/>
                         <outlet property="skillRateContainer" destination="I7z-4X-bHg" id="jC4-eO-72b"/>

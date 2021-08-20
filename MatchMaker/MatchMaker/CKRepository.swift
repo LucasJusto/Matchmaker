@@ -136,6 +136,7 @@ enum BehaviourRatingsTable: CustomStringConvertible {
 public class CKRepository {
     static var user: User? //singleton user
     public static let container: CKContainer = CKContainer(identifier: "iCloud.MatchMaker")
+    static var finishRecalculate = DispatchSemaphore(value: 0)
     
     static func setOnboardingInfo(name: String, nickname: String, photoURL: URL?, location: Locations, description: String, languages: [Languages], selectedPlatforms: [Platform], selectedGames: [Game], completion: @escaping (CKRecord?, Error?) -> Void) {
         
@@ -1062,7 +1063,7 @@ public class CKRepository {
         return dialogMessage
     }
     
-    static func skillRateFriend(friendId: String, rate: Double) {
+    static func skillRateFriend(friendId: String, rate: Double, completion: @escaping () -> Void) {
         let publicDB = CKRepository.container.publicCloudDatabase
         getUserId { id in
             if let userId = id {
@@ -1086,6 +1087,8 @@ public class CKRepository {
                             }
                             if let recordNotNull = ckRecord {
                                 recalculateUserSkillRateById(id: friendId, record: recordNotNull)
+                                finishRecalculate.wait()
+                                completion()
                             }
                         }
                     }
@@ -1102,6 +1105,8 @@ public class CKRepository {
                             }
                             if let recordNotNull = ckRecord {
                                 recalculateUserSkillRateById(id: friendId, record: recordNotNull)
+                                finishRecalculate.wait()
+                                completion()
                             }
                         }
                     }
@@ -1146,6 +1151,7 @@ public class CKRepository {
                                 if let ckError = error as? CKError {
                                     CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
                                 }
+                                finishRecalculate.signal()
                             }
                             publicDB.add(operation)
                         }
@@ -1155,7 +1161,7 @@ public class CKRepository {
         }
     }
     
-    static func behaviourRateFriend(friendId: String, rate: Double) {
+    static func behaviourRateFriend(friendId: String, rate: Double, completion: @escaping () -> Void) {
         let publicDB = CKRepository.container.publicCloudDatabase
         getUserId { id in
             if let userId = id {
@@ -1179,6 +1185,8 @@ public class CKRepository {
                             }
                             if let recordNotNull = ckRecord {
                                 recalculateUserBehaviourRateById(id: friendId, record: recordNotNull)
+                                finishRecalculate.wait()
+                                completion()
                             }
                         }
                     }
@@ -1195,6 +1203,8 @@ public class CKRepository {
                             }
                             if let recordNotNull = ckRecord {
                                 recalculateUserBehaviourRateById(id: friendId, record: recordNotNull)
+                                finishRecalculate.wait()
+                                completion()
                             }
                         }
                     }
@@ -1239,6 +1249,7 @@ public class CKRepository {
                                 if let ckError = error as? CKError {
                                     CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
                                 }
+                                finishRecalculate.signal()
                             }
                             publicDB.add(operation)
                         }
