@@ -1084,13 +1084,8 @@ public class CKRepository {
                             if let ckError = error as? CKError {
                                 CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
                             }
-                            recalculateUserSkillRateById(id: friendId) { success in
-                                if !success {
-                                    sleep(5)
-                                    recalculateUserSkillRateById(id: friendId) { a in
-                                        
-                                    }
-                                }
+                            if let recordNotNull = ckRecord {
+                                recalculateUserSkillRateById(id: friendId, record: recordNotNull)
                             }
                         }
                     }
@@ -1105,13 +1100,8 @@ public class CKRepository {
                             if let ckError = error as? CKError {
                                 CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
                             }
-                            recalculateUserSkillRateById(id: friendId) { success in
-                                if !success {
-                                    sleep(5)
-                                    recalculateUserSkillRateById(id: friendId) { a in
-                                        
-                                    }
-                                }
+                            if let recordNotNull = ckRecord {
+                                recalculateUserSkillRateById(id: friendId, record: recordNotNull)
                             }
                         }
                     }
@@ -1120,7 +1110,7 @@ public class CKRepository {
         }
     }
     
-    private static func recalculateUserSkillRateById(id: String, completion: @escaping (Bool) -> Void) {
+    private static func recalculateUserSkillRateById(id: String, record: CKRecord) {
         let publicDB = CKRepository.container.publicCloudDatabase
         let recordID = CKRecord.ID(recordName: id)
         
@@ -1136,7 +1126,12 @@ public class CKRepository {
                 let query = CKQuery(recordType: SkillRatingsTable.recordType.description, predicate: predicate)
                 
                 publicDB.perform(query, inZoneWith: nil) { results, error in
-                    if let resultsNotNull = results {
+                    if var resultsNotNull = results {
+                        if !resultsNotNull.contains(where: { record2 in
+                            record2.recordID == record.recordID
+                        }) {
+                            resultsNotNull.append(record)
+                        }
                         if resultsNotNull.count > 0 {
                             for r in resultsNotNull {
                                 if let rate = r.value(forKey: SkillRatingsTable.rate.description) as? Double {
@@ -1151,12 +1146,8 @@ public class CKRepository {
                                 if let ckError = error as? CKError {
                                     CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
                                 }
-                                completion(true)
                             }
                             publicDB.add(operation)
-                        }
-                        else {
-                            completion(false)
                         }
                     }
                 }
@@ -1186,13 +1177,8 @@ public class CKRepository {
                             if let ckError = error as? CKError {
                                 CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
                             }
-                            recalculateUserBehaviourRateById(id: friendId) { success in
-                                if !success {
-                                    sleep(5)
-                                    recalculateUserBehaviourRateById(id: friendId) { a in
-                                        
-                                    }
-                                }
+                            if let recordNotNull = ckRecord {
+                                recalculateUserBehaviourRateById(id: friendId, record: recordNotNull)
                             }
                         }
                     }
@@ -1207,13 +1193,8 @@ public class CKRepository {
                             if let ckError = error as? CKError {
                                 CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
                             }
-                            recalculateUserBehaviourRateById(id: friendId) { success in
-                                if !success {
-                                    sleep(5)
-                                    recalculateUserBehaviourRateById(id: friendId) { a in
-                                        
-                                    }
-                                }
+                            if let recordNotNull = ckRecord {
+                                recalculateUserBehaviourRateById(id: friendId, record: recordNotNull)
                             }
                         }
                     }
@@ -1222,7 +1203,7 @@ public class CKRepository {
         }
     }
     
-    private static func recalculateUserBehaviourRateById(id: String, completion: @escaping (Bool) -> Void) {
+    private static func recalculateUserBehaviourRateById(id: String, record: CKRecord) {
         let publicDB = CKRepository.container.publicCloudDatabase
         let recordID = CKRecord.ID(recordName: id)
         
@@ -1238,7 +1219,12 @@ public class CKRepository {
                 let query = CKQuery(recordType: BehaviourRatingsTable.recordType.description, predicate: predicate)
                 
                 publicDB.perform(query, inZoneWith: nil) { results, error in
-                    if let resultsNotNull = results {
+                    if var resultsNotNull = results {
+                        if !resultsNotNull.contains(where: { record2 in
+                            record2.recordID == record.recordID
+                        }) {
+                            resultsNotNull.append(record)
+                        }
                         if resultsNotNull.count > 0 {
                             for r in resultsNotNull {
                                 if let rate = r.value(forKey: BehaviourRatingsTable.rate.description) as? Double {
@@ -1253,12 +1239,8 @@ public class CKRepository {
                                 if let ckError = error as? CKError {
                                     CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
                                 }
-                                completion(true)
                             }
                             publicDB.add(operation)
-                        }
-                        else {
-                            completion(false)
                         }
                     }
                 }
