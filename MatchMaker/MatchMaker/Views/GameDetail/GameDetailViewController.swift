@@ -8,7 +8,7 @@
 import UIKit
 
 class GameDetailViewController: UIViewController {
-    
+
     // Game mock
     var game: Game = Games.games[0]
     
@@ -111,6 +111,7 @@ class GameDetailViewController: UIViewController {
             let destination = segue.destination as? GameDetailsViewController
 
             destination?.game = game
+            destination?.delegate = self
         }
     }
 }
@@ -120,7 +121,25 @@ extension GameDetailViewController: RoundedRectangleCollectionViewDelegate {
     func didSelectRoundedRectangleModel(model: RoundedRectangleModel) {
         
         guard let game = model as? Game else { return }
-        print(game.name)
         performSegue(withIdentifier: "toGame", sender: game)
     }
+}
+
+extension GameDetailViewController: GameSelectionDelegate {
+    func updateGame(_ game: Game, isSelected: Bool) {
+        self.dismiss(animated: true, completion: {
+            self.tabBarController?.selectedIndex = 2
+                    
+            let rootController = self.tabBarController?.selectedViewController as? UINavigationController
+            
+            let destination = rootController?.topViewController as? DiscoverViewController
+            
+            destination?.selectedGames = [game]
+            
+            destination?.updateAndReload()
+        })
+        
+    }
+    
+    
 }
