@@ -22,6 +22,14 @@ class HomeTopTableViewCell: UITableViewCell {
         highlightButtonAboveImage.layer.cornerRadius = 10
         
         highlightButtonAboveImage.setTitle(NSLocalizedString("TitleButtonHiglighAboveImage", comment: ""), for: .normal)
+        
+        setupAccessibilityFeatures()
+    }
+    
+    func setupAccessibilityFeatures() {
+        //voice over
+        highlightButtonAboveImage.accessibilityLabel = NSLocalizedString("ACfindPlayersButton", comment: "This is the translation for 'ACfindPlayersButton' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        highlightButtonAboveImage.accessibilityHint = NSLocalizedString("ACfindPlayersButtonHint", comment: "This is the translation for 'ACfindPlayersButton' at the Accessibility - Profile/Other Profile section of Localizable.strings")
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
