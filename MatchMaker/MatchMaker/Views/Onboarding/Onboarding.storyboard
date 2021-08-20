@@ -1019,6 +1019,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
+                                        <color key="backgroundColor" name="DefaultBackground"/>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" name="DefaultBackground"/>
