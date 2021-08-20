@@ -1088,7 +1088,14 @@ public class CKRepository {
                             if let ckError = error as? CKError {
                                 CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
                             }
-                            recalculateUserSkillRateById(id: friendId)
+                            recalculateUserSkillRateById(id: friendId) { success in
+                                if !success {
+                                    sleep(5)
+                                    recalculateUserSkillRateById(id: friendId) { a in
+                                        
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -1096,7 +1103,7 @@ public class CKRepository {
         }
     }
     
-    private static func recalculateUserSkillRateById(id: String) {
+    private static func recalculateUserSkillRateById(id: String, completion: @escaping (Bool) -> Void) {
         let publicDB = CKRepository.container.publicCloudDatabase
         let recordID = CKRecord.ID(recordName: id)
         
@@ -1113,21 +1120,27 @@ public class CKRepository {
                 
                 publicDB.perform(query, inZoneWith: nil) { results, error in
                     if let resultsNotNull = results {
-                        for r in resultsNotNull {
-                            if let rate = r.value(forKey: SkillRatingsTable.rate.description) as? Double {
-                                rateSum += rate
+                        if resultsNotNull.count > 0 {
+                            for r in resultsNotNull {
+                                if let rate = r.value(forKey: SkillRatingsTable.rate.description) as? Double {
+                                    rateSum += rate
+                                }
                             }
-                        }
-                        let rateAverage = rateSum/Double(resultsNotNull.count)
-                        resultNotNull.setObject(rateAverage as CKRecordValue?, forKey: UserTable.averageSkillRate.description)
-                        let operation = CKModifyRecordsOperation(recordsToSave: [resultNotNull], recordIDsToDelete: nil)
-                        operation.savePolicy = .changedKeys
-                        operation.modifyRecordsCompletionBlock = { _, _, error in
-                            if let ckError = error as? CKError {
-                                CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                            let rateAverage = rateSum/Double(resultsNotNull.count)
+                            resultNotNull.setObject(rateAverage as CKRecordValue?, forKey: UserTable.averageSkillRate.description)
+                            let operation = CKModifyRecordsOperation(recordsToSave: [resultNotNull], recordIDsToDelete: nil)
+                            operation.savePolicy = .changedKeys
+                            operation.modifyRecordsCompletionBlock = { _, _, error in
+                                if let ckError = error as? CKError {
+                                    CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                                }
+                                completion(true)
                             }
+                            publicDB.add(operation)
                         }
-                        publicDB.add(operation)
+                        else {
+                            completion(false)
+                        }
                     }
                 }
             }
