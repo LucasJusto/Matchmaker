@@ -29,11 +29,8 @@ class ProfileRatingView: UIView, NibLoadable {
         backgroundView.layer.cornerCurve = .continuous
         backgroundView.layer.borderWidth = 2
         backgroundView.layer.borderColor = UIColor(named: "Primary")?.cgColor
-
-        backgroundView.accessibilityIgnoresInvertColors = true
         
-        setDynamicTypes()
-        
+        setupAccessibilityFeatures()
     }
     
     //MARK: ProfileRatingView - Nib Setup
@@ -50,19 +47,22 @@ class ProfileRatingView: UIView, NibLoadable {
     
     //MARK: ProfileRatingView - Accessibility Features: Dynamic Types
     
-    func setDynamicTypes(){
-        let bodyMetrics = UIFontMetrics(forTextStyle: .body)
+    func setupAccessibilityFeatures(){
+        //Voice over
+        ratingLabel.accessibilityValue = NSLocalizedString("ACratingsResult", comment: "This is the translation for 'ACratingsResult' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        categoryOfRatingLabel.accessibilityValue = NSLocalizedString("ACratingsCategory", comment: "This is the translation for 'ACratingsCategory' at the Accessibility - Profile/Other Profile section of Localizable.strings")
         
-        let categoryLabelFont = UIFont.systemFont(ofSize: 13, weight: .regular)
-        let amountOfReviewsFont = UIFont.systemFont(ofSize: 8, weight: .regular)
+        //Invert Colors
+        backgroundView.accessibilityIgnoresInvertColors = true
         
-        let scaledCategoryLabelFont = bodyMetrics.scaledFont(for: categoryLabelFont)
-        let scaledAmountOfReviewsFont = bodyMetrics.scaledFont(for: amountOfReviewsFont)
+        //Dynamic Types
+        let scaled13BodyFont = AccessibilityManager.forCustomFont(forTextStyle: .body, forFontSize: 13, forFontWeight: .regular)
+        let scaled8BodyFont = AccessibilityManager.forCustomFont(forTextStyle: .body, forFontSize: 8, forFontWeight: .regular)
         
-        categoryOfRatingLabel.font = scaledCategoryLabelFont
+        categoryOfRatingLabel.font = scaled13BodyFont
         categoryOfRatingLabel.adjustsFontForContentSizeCategory = true
         
-        amountOfReviewsLabel.font = scaledAmountOfReviewsFont
+        amountOfReviewsLabel.font = scaled8BodyFont
         amountOfReviewsLabel.adjustsFontForContentSizeCategory = true
     }
 }

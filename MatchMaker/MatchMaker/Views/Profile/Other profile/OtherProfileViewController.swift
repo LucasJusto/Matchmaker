@@ -235,7 +235,7 @@ class OtherProfileViewController: UIViewController {
     func setupAccessibiltyFeatures(){
         guard let unwrappedUser = user else { return }
         
-        //Voice over
+        //Voice over - User profile
         userProfileNameLabel.accessibilityLabel = NSLocalizedString("ACuserName", comment: "This is the translation for 'ACuserName' at the Accessibility - Profile/Other Profile section of Localizable.strings")
         userProfileNameLabel.accessibilityValue = unwrappedUser.name
         
@@ -248,6 +248,10 @@ class OtherProfileViewController: UIViewController {
         userProfileLocationLabel.accessibilityLabel = NSLocalizedString("ACuserLocation", comment: "This is the translation for 'ACuserLocation' at the Accessibility - Profile/Other Profile section of Localizable.strings")
         userProfileLocationLabel.accessibilityValue = "\(unwrappedUser.location)"
         
+        //voice over - screen setup
+        ratingsTitleLabel.accessibilityLabel = NSLocalizedString("ACscreenRatingSection", comment: "This is the translation for 'ACscreenRatingSection' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        ratingsTitleLabel.accessibilityValue = NSLocalizedString("Ratings", comment: "This is the translation for 'Ratings' at the Friend Profile (OtherPrifile) section of Localizable.strings")
+            
         behaviourRateLabel.accessibilityLabel = NSLocalizedString("ACratingsResult", comment: "This is the translation for 'ACratingsResult' at the Accessibility - Profile/Other Profile section of Localizable.strings")
         behaviourRateLabel.accessibilityValue = String(unwrappedUser.behaviourRate)
         
@@ -259,6 +263,15 @@ class OtherProfileViewController: UIViewController {
         
         skillCategory.accessibilityLabel = NSLocalizedString("ACratingsCategory", comment: "This is the translation for 'ACratingsCategory' at the Accessibility - Profile/Other Profile section of Localizable.strings")
         skillCategory.accessibilityValue = NSLocalizedString("UserSkills", comment: "This is the translation for 'UserSkills' at the UserProfile section of Localizable.strings")
+        
+        platformsTitleLabel.accessibilityLabel = NSLocalizedString("ACscreenPlatformsSection", comment: "This is the translation for 'ACscreenPlatformsSection' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        platformsTitleLabel.accessibilityValue = NSLocalizedString("Platforms", comment: "This is the translation for 'Platforms' at the Friend Profile (OtherPrifile) section of Localizable.strings")
+        
+        languagesTitleLabel.accessibilityLabel = NSLocalizedString("ACscreenLanguagesSection", comment: "This is the translation for 'ACscreenLanguagesSection' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        languagesTitleLabel.accessibilityValue = NSLocalizedString("Languages", comment: "This is the translation for 'Languages' at the Friend Profile (OtherPrifile) section of Localizable.strings")
+        
+        gamesTitleLabel.accessibilityLabel = NSLocalizedString("ACscreenGamesSection", comment: "This is the translation for 'ACscreenRatingSection' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        gamesTitleLabel.accessibilityValue = NSLocalizedString("UserGames", comment: "This is the translation for 'ACscreenGamesSection' at the UserProfile (Profile Tab) section of Localizable.strings")
         
         //Color Invert
         userProfileImage.accessibilityIgnoresInvertColors = true

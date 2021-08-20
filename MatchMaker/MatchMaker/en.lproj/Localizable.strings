@@ -249,6 +249,11 @@ without using your storage";
 "ACratingsCategory" = "Category of rating";
 "ACratingsResult" = "User's grade";
 "ACeditProfileButton" = "Edit my profile";
+"ACscreenRatingSection" = "User's rating section";
+"ACscreenPlatformsSection" = "User's platforms section";
+"ACscreenLanguagesSection" = "User's languages section";
+"ACscreenGamesSection" = "User's games section";
+"ACeditProfileButtonHint" = "Double tap to go to next screen and edit your profile";
 
 //MARK: Accessibility - User Avatar
 "ACeditProfilePictureButton" = "Change my profile picture";
