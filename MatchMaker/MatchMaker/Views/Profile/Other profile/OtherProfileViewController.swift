@@ -30,6 +30,8 @@ class OtherProfileViewController: UIViewController {
         }
     }
     
+    var socialViewController: SocialViewController?
+    
     //MARK: OtherProfileViewController Outlets setup
 
     @IBOutlet weak var titleViewLabel: UINavigationItem!
@@ -81,6 +83,10 @@ class OtherProfileViewController: UIViewController {
     
     @IBAction func acceptButtonAction(_ sender: Any) {
         acceptFriendshipRequest()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        socialViewController?.socialTableView.reloadData()
     }
     
     @IBAction func requestFriendButton(_ sender: Any) {
