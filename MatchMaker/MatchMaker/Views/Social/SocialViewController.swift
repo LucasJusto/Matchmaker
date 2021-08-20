@@ -233,12 +233,12 @@ extension SocialViewController: UITableViewDelegate, UITableViewDataSource {
         if let res = friend.isInvite {
             if res == IsInvite.yes {
                 if friend.isInviter == true {
-                    guard let cell = tableView.dequeueReusableCell(withIdentifier: "SentFriendRequestCell", for: indexPath) as? SocialTableViewSentRequestCell else { return UITableViewCell() }
+                    guard let cell = tableView.dequeueReusableCell(withIdentifier: "ReceivedFriendRequestCell", for: indexPath) as? SocialTableViewReceivedRequestCell else { return UITableViewCell() }
                     cell.setup(userId: friend.id, photoURL: friend.photoURL, name: friend.name, nickname: friend.nickname)
                     cell.delegate = self
                     return cell
                 }
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: "ReceivedFriendRequestCell", for: indexPath) as? SocialTableViewReceivedRequestCell else { return UITableViewCell() }
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "SentFriendRequestCell", for: indexPath) as? SocialTableViewSentRequestCell else { return UITableViewCell() }
                 cell.setup(userId: friend.id, photoURL: friend.photoURL, name: friend.name, nickname: friend.nickname)
                 cell.delegate = self
                 return cell
