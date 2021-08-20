@@ -1084,7 +1084,14 @@ public class CKRepository {
                             if let ckError = error as? CKError {
                                 CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
                             }
-                            recalculateUserSkillRateById(id: friendId)
+                            recalculateUserSkillRateById(id: friendId) { success in
+                                if !success {
+                                    sleep(5)
+                                    recalculateUserSkillRateById(id: friendId) { a in
+                                        
+                                    }
+                                }
+                            }
                         }
                     }
                     else {
@@ -1179,7 +1186,14 @@ public class CKRepository {
                             if let ckError = error as? CKError {
                                 CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
                             }
-                            recalculateUserBehaviourRateById(id: friendId)
+                            recalculateUserBehaviourRateById(id: friendId) { success in
+                                if !success {
+                                    sleep(5)
+                                    recalculateUserBehaviourRateById(id: friendId) { a in
+                                        
+                                    }
+                                }
+                            }
                         }
                     }
                     else {
@@ -1193,7 +1207,14 @@ public class CKRepository {
                             if let ckError = error as? CKError {
                                 CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
                             }
-                            recalculateUserBehaviourRateById(id: friendId)
+                            recalculateUserBehaviourRateById(id: friendId) { success in
+                                if !success {
+                                    sleep(5)
+                                    recalculateUserBehaviourRateById(id: friendId) { a in
+                                        
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -1201,7 +1222,7 @@ public class CKRepository {
         }
     }
     
-    private static func recalculateUserBehaviourRateById(id: String) {
+    private static func recalculateUserBehaviourRateById(id: String, completion: @escaping (Bool) -> Void) {
         let publicDB = CKRepository.container.publicCloudDatabase
         let recordID = CKRecord.ID(recordName: id)
         
@@ -1218,21 +1239,27 @@ public class CKRepository {
                 
                 publicDB.perform(query, inZoneWith: nil) { results, error in
                     if let resultsNotNull = results {
-                        for r in resultsNotNull {
-                            if let rate = r.value(forKey: BehaviourRatingsTable.rate.description) as? Double {
-                                rateSum += rate
+                        if resultsNotNull.count > 0 {
+                            for r in resultsNotNull {
+                                if let rate = r.value(forKey: BehaviourRatingsTable.rate.description) as? Double {
+                                    rateSum += rate
+                                }
                             }
-                        }
-                        let rateAverage = rateSum/Double(resultsNotNull.count)
-                        resultNotNull.setObject(rateAverage as CKRecordValue?, forKey: UserTable.averageBehaviourRate.description)
-                        let operation = CKModifyRecordsOperation(recordsToSave: [resultNotNull], recordIDsToDelete: nil)
-                        operation.savePolicy = .changedKeys
-                        operation.modifyRecordsCompletionBlock = { _, _, error in
-                            if let ckError = error as? CKError {
-                                CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                            let rateAverage = rateSum/Double(resultsNotNull.count)
+                            resultNotNull.setObject(rateAverage as CKRecordValue?, forKey: UserTable.averageBehaviourRate.description)
+                            let operation = CKModifyRecordsOperation(recordsToSave: [resultNotNull], recordIDsToDelete: nil)
+                            operation.savePolicy = .changedKeys
+                            operation.modifyRecordsCompletionBlock = { _, _, error in
+                                if let ckError = error as? CKError {
+                                    CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                                }
+                                completion(true)
                             }
+                            publicDB.add(operation)
                         }
-                        publicDB.add(operation)
+                        else {
+                            completion(false)
+                        }
                     }
                 }
             }
