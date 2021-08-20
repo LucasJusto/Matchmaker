@@ -29,7 +29,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="1412"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UGh-3u-w9H">
-                                        <rect key="frame" x="0.0" y="0.0" width="390" height="1111"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="1186.6666666666667"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0Eo-Pm-LLT">
                                                 <rect key="frame" x="0.0" y="0.0" width="390" height="192"/>
@@ -65,11 +65,8 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="XEC-Hq-sOP" userLabel="userBio">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="XEC-Hq-sOP" userLabel="userBio">
                                                 <rect key="frame" x="20" y="285" width="350" height="46.666666666666686"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="nNb-fn-IhF"/>
-                                                </constraints>
                                                 <string key="text">I play ranked games but sometimes I just like to play for fun, I play ranked games but sometimes I just like to play for fun ay ranked games but sometimes I just like to play for fun</string>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -121,8 +118,8 @@
                                                     </stackView>
                                                 </subviews>
                                             </stackView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ratings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cn8-FP-j0Y" customClass="LocalizableLabel" customModule="MatchMaker" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="426.66666666666663" width="85" height="28.666666666666686"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Ratings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cn8-FP-j0Y" customClass="LocalizableLabel" customModule="MatchMaker" customModuleProvider="target">
+                                                <rect key="frame" x="20" y="426.66666666666663" width="350" height="28.666666666666686"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -252,8 +249,8 @@
                                                     <constraint firstAttribute="height" constant="160" id="j7a-Sw-waC"/>
                                                 </constraints>
                                             </stackView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Platforms" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EV2-Ju-DNp" customClass="LocalizableLabel" customModule="MatchMaker" customModuleProvider="target">
-                                                <rect key="frame" x="20.000000000000007" y="642.66666666666663" width="108.66666666666669" height="28.666666666666629"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Platforms" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EV2-Ju-DNp" customClass="LocalizableLabel" customModule="MatchMaker" customModuleProvider="target">
+                                                <rect key="frame" x="20" y="642.66666666666663" width="350" height="28.666666666666629"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -262,14 +259,14 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FKb-Sh-J1P" customClass="SmallLabeledImageCollectionView" customModule="MatchMaker" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="687.33333333333337" width="390" height="60"/>
+                                                <rect key="frame" x="0.0" y="687.33333333333337" width="390" height="100"/>
                                                 <color key="backgroundColor" systemColor="systemPinkColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="60" id="QBT-LU-qEm"/>
+                                                    <constraint firstAttribute="height" constant="100" id="QBT-LU-qEm"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Languages" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lo4-N0-ZBP" customClass="LocalizableLabel" customModule="MatchMaker" customModuleProvider="target">
-                                                <rect key="frame" x="20.000000000000007" y="763.33333333333337" width="123.66666666666669" height="28.666666666666629"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Languages" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lo4-N0-ZBP" customClass="LocalizableLabel" customModule="MatchMaker" customModuleProvider="target">
+                                                <rect key="frame" x="20" y="803.33333333333337" width="350" height="28.666666666666629"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -278,14 +275,14 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Etg-In-1fT" customClass="TitleCollectionView" customModule="MatchMaker" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="797" width="390" height="40"/>
+                                                <rect key="frame" x="0.0" y="837" width="390" height="40"/>
                                                 <color key="backgroundColor" systemColor="systemPurpleColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="Ihh-jR-ww6"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Games" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q33-5p-zm4" customClass="LocalizableLabel" customModule="MatchMaker" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="847" width="134.33333333333334" height="28.666666666666629"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Your Games" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q33-5p-zm4" customClass="LocalizableLabel" customModule="MatchMaker" customModuleProvider="target">
+                                                <rect key="frame" x="20" y="887" width="350" height="28.666666666666629"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -313,7 +310,7 @@
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Y9-op-XhF" customClass="RoundedRectangleCollectionView" customModule="MatchMaker" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="891.66666666666663" width="390" height="164.99999999999989"/>
+                                                <rect key="frame" x="0.0" y="931.66666666666663" width="390" height="164.99999999999989"/>
                                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="165" id="4RY-0W-ldb"/>
@@ -333,7 +330,6 @@
                                         <color key="backgroundColor" name="DefaultBackground"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="Etg-In-1fT" secondAttribute="trailing" id="0Qt-9w-nAs"/>
-                                            <constraint firstAttribute="height" constant="1111" id="2zT-0W-5w1"/>
                                             <constraint firstItem="Q33-5p-zm4" firstAttribute="top" secondItem="Etg-In-1fT" secondAttribute="bottom" constant="10" id="4Jr-73-ERt"/>
                                             <constraint firstAttribute="trailing" secondItem="2Y9-op-XhF" secondAttribute="trailing" id="5zJ-CU-uKx"/>
                                             <constraint firstAttribute="trailing" secondItem="0Eo-Pm-LLT" secondAttribute="trailing" id="8Kw-4F-y0d"/>
@@ -341,6 +337,7 @@
                                             <constraint firstItem="XEC-Hq-sOP" firstAttribute="top" secondItem="R4X-UT-s57" secondAttribute="bottom" constant="15" id="9Lq-iQ-xCH"/>
                                             <constraint firstItem="FKb-Sh-J1P" firstAttribute="top" secondItem="EV2-Ju-DNp" secondAttribute="bottom" constant="16" id="AKc-xu-Owx"/>
                                             <constraint firstItem="jMp-tV-CYh" firstAttribute="top" secondItem="cn8-FP-j0Y" secondAttribute="bottom" constant="8" symbolic="YES" id="BCJ-Lv-wcC"/>
+                                            <constraint firstAttribute="trailing" secondItem="cn8-FP-j0Y" secondAttribute="trailing" constant="20" id="C6a-gE-uvS"/>
                                             <constraint firstItem="0Eo-Pm-LLT" firstAttribute="leading" secondItem="UGh-3u-w9H" secondAttribute="leading" id="DSJ-Oa-7zn"/>
                                             <constraint firstItem="XEC-Hq-sOP" firstAttribute="leading" secondItem="UGh-3u-w9H" secondAttribute="leading" constant="20" id="Hbo-wX-qb4"/>
                                             <constraint firstAttribute="trailing" secondItem="X4g-a4-DA4" secondAttribute="trailing" constant="20" symbolic="YES" id="HiG-as-5zZ"/>
@@ -349,7 +346,7 @@
                                             <constraint firstItem="2Y9-op-XhF" firstAttribute="top" secondItem="Q33-5p-zm4" secondAttribute="bottom" constant="16" id="JYQ-H9-kfA"/>
                                             <constraint firstItem="EV2-Ju-DNp" firstAttribute="top" secondItem="jMp-tV-CYh" secondAttribute="bottom" constant="19.333333333333258" id="Jj5-vC-ZTb"/>
                                             <constraint firstItem="R4X-UT-s57" firstAttribute="top" secondItem="UGh-3u-w9H" secondAttribute="top" constant="148" id="PIP-lc-o8Y"/>
-                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="2Y9-op-XhF" secondAttribute="bottom" constant="25" id="QMt-dh-PeZ"/>
+                                            <constraint firstAttribute="bottom" secondItem="2Y9-op-XhF" secondAttribute="bottom" constant="90" id="QMt-dh-PeZ"/>
                                             <constraint firstItem="Lo4-N0-ZBP" firstAttribute="top" secondItem="FKb-Sh-J1P" secondAttribute="bottom" constant="16" id="RRN-z8-HCV"/>
                                             <constraint firstAttribute="trailing" secondItem="7Xm-Na-EBN" secondAttribute="trailing" constant="20" id="SLa-w5-YRu"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="7U4-BJ-SbK" secondAttribute="trailing" constant="20" id="TOJ-y6-n0Q"/>
@@ -367,7 +364,10 @@
                                             <constraint firstItem="R4X-UT-s57" firstAttribute="leading" secondItem="UGh-3u-w9H" secondAttribute="leading" constant="20" id="mu2-0H-JnS"/>
                                             <constraint firstItem="0Eo-Pm-LLT" firstAttribute="top" secondItem="UGh-3u-w9H" secondAttribute="top" id="qDE-OL-Kvc"/>
                                             <constraint firstItem="Etg-In-1fT" firstAttribute="leading" secondItem="UGh-3u-w9H" secondAttribute="leading" id="rBa-Ze-ysL"/>
+                                            <constraint firstAttribute="trailing" secondItem="Lo4-N0-ZBP" secondAttribute="trailing" constant="20" id="rH4-0C-hBd"/>
                                             <constraint firstItem="7Xm-Na-EBN" firstAttribute="leading" secondItem="UGh-3u-w9H" secondAttribute="leading" constant="20" id="t88-1O-QKj"/>
+                                            <constraint firstAttribute="trailing" secondItem="EV2-Ju-DNp" secondAttribute="trailing" constant="20" id="tQi-rH-x9a"/>
+                                            <constraint firstAttribute="trailing" secondItem="Q33-5p-zm4" secondAttribute="trailing" constant="20" id="vgB-b6-nPZ"/>
                                             <constraint firstItem="EV2-Ju-DNp" firstAttribute="leading" secondItem="UGh-3u-w9H" secondAttribute="leading" constant="20" id="vtl-e5-SJG"/>
                                             <constraint firstAttribute="trailing" secondItem="FKb-Sh-J1P" secondAttribute="trailing" id="vwR-9u-oxf"/>
                                             <constraint firstItem="cn8-FP-j0Y" firstAttribute="top" secondItem="7Xm-Na-EBN" secondAttribute="bottom" constant="9.9999999999999432" id="wp7-tg-mBw"/>
