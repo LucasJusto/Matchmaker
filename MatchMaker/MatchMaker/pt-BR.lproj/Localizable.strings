@@ -232,3 +232,13 @@ para você escolher e encontrar jogadores";
 "SocialReceivedRequestDeclineInvite" = "Rejeitar";
 "SocialShowMoreButton" = "Ver mais";
 "SocialUnblockButton" = "Desbloquear";
+
+//MARK: Accessibility - Profile/Other Profile
+"ACuserName" = "Nome do usuário";
+"ACuserGamertag" = "nickname/gamertag do usuario";
+"ACuserBio" = "Descrição do usuário";
+"ACuserLocation" = "Localização do usuário";
+"ACratingsCategory" = "Categoria de avaliação";
+"ACratingsResult" = "Nota do usuário";
+"ACeditProfileButton" = "Editar meu perfil";
+"ACeditProfilePictureButton" = "Alterar minha foto de perfil";

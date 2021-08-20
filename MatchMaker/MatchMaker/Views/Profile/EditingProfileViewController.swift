@@ -56,6 +56,10 @@ class EditingProfileViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var upperDoneButton: UIBarButtonItem!
+    @IBOutlet weak var bottomCancelButton: UIButton!
+    @IBOutlet weak var bottomDoneButton: LocalizableButtonLabel!
+    
     let editingFields = EditingFields.allCases
 
     var user: User?
@@ -79,8 +83,22 @@ class EditingProfileViewController: UIViewController {
         setUpData()
         
         setUpTagCategories()
+        
+        setupAccessibilityFeatures()
                 
         self.title = NSLocalizedString("EditingProfileModalTitle", comment: "This is the translation for 'EditingProfileModalTitle' at the Profile Customization section of Localizable.strings")
+    }
+    
+    func setupAccessibilityFeatures(){
+        //voice over
+        upperDoneButton.accessibilityLabel = NSLocalizedString("ACupperDoneButton", comment: "This is the translation for 'ACupperDoneButton' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        upperDoneButton.accessibilityHint = NSLocalizedString("ACupperDoneButtonHint", comment: "This is the translation for 'ACupperDoneButtonHint' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        
+        bottomCancelButton.accessibilityLabel = NSLocalizedString("ACcancelButton", comment: "This is the translation for 'ACcancelButton' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        bottomCancelButton.accessibilityHint = NSLocalizedString("ACcancelButtonHint", comment: "This is the translation for 'ACcancelButton' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        
+        bottomDoneButton.accessibilityLabel = NSLocalizedString("ACbottomDoneButton", comment: "This is the translation for 'ACbottomDoneButton' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        bottomDoneButton.accessibilityHint = NSLocalizedString("ACbottomDoneButtonHint", comment: "This is the translation for 'ACbottomDoneButtonHint' at the Accessibility - Profile/Other Profile section of Localizable.strings")
     }
     
     private func setUpData() {

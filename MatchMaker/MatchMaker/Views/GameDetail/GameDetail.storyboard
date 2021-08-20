@@ -257,6 +257,7 @@
                         <outlet property="pcStack" destination="SmR-r5-Qfa" id="ggM-PZ-0Le"/>
                         <outlet property="playstationStack" destination="eQ5-6L-thG" id="GR5-8n-Z2o"/>
                         <outlet property="titleGameDetailScreen" destination="1Av-cg-meL" id="xJe-a5-Fs8"/>
+                        <outlet property="upperDoneButton" destination="INH-WH-uQC" id="XYx-oO-aaT"/>
                         <outlet property="xboxStack" destination="iOm-cu-jm7" id="qSn-PT-7pB"/>
                         <segue destination="JQg-8z-MBx" kind="show" identifier="toGame" id="znt-hU-VfI"/>
                         <segue destination="If2-L7-qAo" kind="presentation" identifier="toGameServers" id="nFZ-TM-eTc"/>

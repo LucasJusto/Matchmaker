@@ -17,6 +17,8 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var backgroundCoverImage: UIImageView!
     
+    @IBOutlet weak var editProfileButton: UIButton!
+    
     @IBOutlet weak var userAvatarView: UserAvatarView!
     
     @IBOutlet weak var userProfileNameLabel: UILabel!
@@ -55,7 +57,7 @@ class ProfileViewController: UIViewController {
         
         backgroundCoverImage.accessibilityIgnoresInvertColors = true
         
-        dynamicTypesFontConfig()
+        setupAccessibiltyFeatures()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -110,7 +112,52 @@ class ProfileViewController: UIViewController {
     
     //MARK: ProfileViewController - Accessibility Features: Dynamic Types
     
-    func dynamicTypesFontConfig() {
+    func setupAccessibiltyFeatures() {
+        guard let unwrappedUser = user else { return }
+        
+        //Voice Over - user profile
+        userProfileNameLabel.accessibilityLabel = NSLocalizedString("ACuserName", comment: "This is the translation for 'ACuserName' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        userProfileNameLabel.accessibilityValue = unwrappedUser.name
+        
+        userProfileGamertagLabel.accessibilityLabel = NSLocalizedString("ACuserGamertag", comment: "This is the translation for 'ACuserGamertag' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        userProfileGamertagLabel.accessibilityValue = unwrappedUser.nickname
+            
+        userProfileBioLabel.accessibilityLabel = NSLocalizedString("ACuserBio", comment: "This is the translation for 'ACuserBio' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        userProfileBioLabel.accessibilityValue = unwrappedUser.description
+        
+        //voice over - screen setup
+        editProfileButton.accessibilityLabel = NSLocalizedString("ACeditProfileButton", comment: "This is the translation for 'ACeditProfileButton' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        editProfileButton.accessibilityHint = NSLocalizedString("ACeditProfileButtonHint", comment: "This is the translation for 'ACeditProfileButtonHint' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        
+        ratingsTitleLabel.accessibilityLabel = NSLocalizedString("ACscreenRatingSection", comment: "This is the translation for 'ACscreenRatingSection' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        //ratingsTitleLabel.accessibilityValue = NSLocalizedString("Ratings", comment: "This is the translation for 'Ratings' at the Friend Profile (OtherPrifile) section of Localizable.strings")
+        
+        //behaviour rating grade
+        behaviourRatingView.ratingLabel.accessibilityLabel = NSLocalizedString("ACratingsResult", comment: "This is the translation for 'ACratingsResult' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        behaviourRatingView.ratingLabel.accessibilityValue = "\(unwrappedUser.behaviourRate)"
+        
+        //behaviour label category
+        behaviourRatingView.categoryOfRatingLabel.accessibilityLabel = NSLocalizedString("ACratingsCategory", comment: "This is the translation for 'ACratingsCategory' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        behaviourRatingView.categoryOfRatingLabel.accessibilityValue = NSLocalizedString("UserBehaviour", comment: "This is the translation for 'UserBehaviour' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        
+        //skill rating grade
+        skillsRatingView.ratingLabel.accessibilityLabel = NSLocalizedString("ACratingsResult", comment: "This is the translation for 'ACratingsResult' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        skillsRatingView.ratingLabel.accessibilityValue = "\(unwrappedUser.skillRate)"
+        
+        //skill label category
+        skillsRatingView.categoryOfRatingLabel.accessibilityLabel = NSLocalizedString("ACratingsCategory", comment: "This is the translation for 'ACratingsCategory' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        skillsRatingView.categoryOfRatingLabel.accessibilityValue = NSLocalizedString("UserSkills", comment: "This is the translation for 'UserSkills' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+            
+        platformsTitleLabel.accessibilityLabel = NSLocalizedString("ACscreenPlatformsSection", comment: "This is the translation for 'ACscreenPlatformsSection' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        //platformsTitleLabel.accessibilityValue = NSLocalizedString("Platforms", comment: "This is the translation for 'Platforms' at the Friend Profile (OtherPrifile) section of Localizable.strings")
+        
+        languagesTitleLabel.accessibilityLabel = NSLocalizedString("ACscreenLanguagesSection", comment: "This is the translation for 'ACscreenLanguagesSection' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        //languagesTitleLabel.accessibilityValue = NSLocalizedString("Languages", comment: "This is the translation for 'Languages' at the Friend Profile (OtherPrifile) section of Localizable.strings")
+        
+        gamesTitleLabel.accessibilityLabel = NSLocalizedString("ACscreenGamesSection", comment: "This is the translation for 'ACscreenRatingSection' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        //gamesTitleLabel.accessibilityValue = NSLocalizedString("UserGames", comment: "This is the translation for 'ACscreenGamesSection' at the UserProfile (Profile Tab) section of Localizable.strings")
+        
+        //Dynamic Types
         let scaledUserProfileNameFont = AccessibilityManager
             .forCustomFont(forTextStyle: .headline, forFontSize: 22, forFontWeight: .bold)
         let scaledUserGamertagFont = AccessibilityManager
@@ -118,7 +165,7 @@ class ProfileViewController: UIViewController {
         let scaledProfileBioFont = AccessibilityManager
             .forCustomFont(forTextStyle: .body, forFontSize: 13, forFontWeight: .light)
         let scaledSectionTitle1Font = AccessibilityManager
-            .forCustomFont(forTextStyle: .title1, forFontSize: 22, forFontWeight: .bold)
+            .forCustomFont(forTextStyle: .title1, forFontSize: 24, forFontWeight: .bold)
         
         userProfileNameLabel.font = scaledUserProfileNameFont
         userProfileNameLabel.adjustsFontForContentSizeCategory = true

@@ -241,6 +241,7 @@
                         <outlet property="backgroundCoverImage" destination="wwI-PQ-nfS" id="LlN-Lk-vjM"/>
                         <outlet property="backgroundImageHeightConstraint" destination="IRE-Z4-Z0x" id="t5r-Kd-Ya0"/>
                         <outlet property="behaviourRatingView" destination="CuB-pu-WlP" id="z97-1k-A23"/>
+                        <outlet property="editProfileButton" destination="nIp-O6-TS7" id="YXy-yG-cGB"/>
                         <outlet property="gameCollectionView" destination="jpy-L5-jRJ" id="qZ1-d4-qxE"/>
                         <outlet property="gamesTitleLabel" destination="Nlr-sj-B2L" id="g3C-fb-4aq"/>
                         <outlet property="languagesTitleLabel" destination="3Y3-gy-gw2" id="Bm1-Xx-Hk4"/>
@@ -822,7 +823,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bottomCancelButton" destination="YnP-c3-Wfd" id="LX9-N5-wFe"/>
+                        <outlet property="bottomDoneButton" destination="rkr-lv-ONj" id="EYC-zq-4pe"/>
                         <outlet property="tableView" destination="tOs-Sw-RMg" id="nVl-Xb-uCY"/>
+                        <outlet property="upperDoneButton" destination="uri-ag-mxL" id="kVi-rM-nEY"/>
                         <segue destination="MNT-Np-EOM" kind="presentation" identifier="toUserLocations" id="DFg-rG-bQ9"/>
                         <segue destination="OL0-hL-alX" kind="presentation" identifier="selectedGame" id="vbj-Dw-Pmu"/>
                     </connections>

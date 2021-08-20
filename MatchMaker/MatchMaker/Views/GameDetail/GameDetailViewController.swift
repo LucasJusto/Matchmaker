@@ -46,6 +46,7 @@ class GameDetailViewController: UIViewController {
     @IBAction func doneButtonAction(_ sender: Any) {
         self.dismiss(animated: true)
     }
+    @IBOutlet weak var upperDoneButton: UIBarButtonItem!
     
     @IBOutlet weak var playstationStack: UIStackView!
     @IBOutlet weak var xboxStack: UIStackView!
@@ -123,8 +124,14 @@ class GameDetailViewController: UIViewController {
                     mobileStack.isHidden = false
             }
         }
+        
+        setupAccessibilityFeatures()
     }
     
+    func setupAccessibilityFeatures(){
+        upperDoneButton.accessibilityLabel = NSLocalizedString("ACupperDoneButton", comment: "This is the translation for 'ACupperDoneButton' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        upperDoneButton.accessibilityHint = NSLocalizedString("ACupperDoneButtonHint", comment: "This is the translation for 'ACupperDoneButtonHint' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+    }
     
     @IBAction func findPlayersBtn(_ sender: Any) {
         

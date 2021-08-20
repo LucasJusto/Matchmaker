@@ -50,6 +50,8 @@ class DiscoverTableViewCell: UITableViewCell {
         collectionView.dataSource = self
         collectionView.delegate = self
         
+        setupAccessibilityFeatures()
+        
         // Initialization code
         addToFriendsButton.setTitle(NSLocalizedString("DiscoverScreenAddToFriendsButton", comment: "Add to friends button text in the Discover Screen."), for: .normal)
         addToFriendsButton.cornerRadius = 10
@@ -87,6 +89,20 @@ class DiscoverTableViewCell: UITableViewCell {
         }
     }
 
+    func setupAccessibilityFeatures() {
+        //voice over
+        //nameLabel
+        //nickLabel
+        
+        profileButton.accessibilityLabel = NSLocalizedString("ACuserProfileButton", comment: "This is the translation for 'ACuserProfileButton' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        profileButton.accessibilityHint = NSLocalizedString("ACuserProfileButtonHint", comment: "This is the translation for 'ACuserProfileButton' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        
+        addToFriendsButton.accessibilityLabel = NSLocalizedString("ACaddToFriendsButton", comment: "This is the translation for 'ACaddToFriendsButton' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        addToFriendsButton.accessibilityHint = NSLocalizedString("ACaddToFriendsButtonHint", comment: "This is the translation for 'ACaddToFriendsButtonHint' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        
+        //invert colours
+        profileImage.accessibilityIgnoresInvertColors = true
+    }
 }
 
 extension DiscoverTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

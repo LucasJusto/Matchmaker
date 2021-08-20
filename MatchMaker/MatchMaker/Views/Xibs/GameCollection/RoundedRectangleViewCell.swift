@@ -21,5 +21,8 @@ class RoundedRectangleViewCell: UICollectionViewCell {
         super.awakeFromNib()
         
         contentImage.accessibilityIgnoresInvertColors = true
+        contentImage.isAccessibilityElement = true
+        contentImage.accessibilityLabel = NSLocalizedString("ACroundedRectangleCell", comment: "This is the translation for 'ACroundedRectangleCell' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        contentImage.accessibilityHint = NSLocalizedString("ACroundedRectangleCellHint", comment: "This is the translation for 'ACroundedRectangleCellHint' at the Accessibility - Profile/Other Profile section of Localizable.strings")
     }
 }

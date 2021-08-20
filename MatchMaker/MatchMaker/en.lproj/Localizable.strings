@@ -240,3 +240,58 @@ without using your storage";
 
 //MARK: AppDelegate Push Notification
 "friendRequestAlert" = "You have a new friend request!";
+
+//MARK: Accessibility - Profile/Other Profile
+//labels
+"ACuserName" = "User's name";
+"ACuserGamertag" = "User's nickname/gamertag";
+"ACuserBio" = "User's description";
+"ACuserLocation" = "User's location";
+"ACratingsCategory" = "Category of rating";
+"ACratingsResult" = "User's grade";
+"ACscreenRatingSection" = "User's ratings";
+"ACscreenPlatformsSection" = "User's platforms";
+"ACscreenLanguagesSection" = "User's languages";
+"ACscreenGamesSection" = "User's games";
+
+//profile-buttons
+"ACupperDoneButton" = "Done";
+"ACupperDoneButtonHint" = "Double tap to dismiss this screen and go back to the previous screen.";
+"ACeditProfileButton" = "Edit my profile";
+"ACeditProfileButtonHint" = "Double tap to go to next screen and edit your profile";
+"ACrateFriendBehaviourHint" = "Double tap to go to Ratings screen and rate ";
+"ACrateFriendBehaviourHint2" = "'s behaviour";
+"ACrateFriendSkillHint" = "Double tap to go to Ratings screen and rate";
+"ACrateFriendSkillHint2" = "'s skill";
+"ACsendFriendRequestHint" = "Double tap to send a friend request to ";
+"ACacceptFriendRequestHint" = "Double tap to accept this friend request from ";
+"ACdenyFriendRequestHint" = "Double tap to deny this friend request from ";
+"ACdeleteFriendshipHint" = "Double tap to remove ";
+"ACdeleteFriendshipHint2" = " from your friends list";
+"ACcancelFriendRequestHint" = "Double tap to cancel this friend request to ";
+
+//profile/onboarding editing buttons
+"ACcancelButton" = "Cancel";
+"ACcancelButtonHint" = "Double tap to cancel and discard any changes. This action will dismiss this screen and go back to the previous one";
+"ACchangeLocationButton" = "Change location";
+"ACchangeLocationButtonHint" = "Double tap to go to Locations screen and change your location";
+"ACbottomDoneButton" = "Done";
+"ACbottomDoneButtonHint" = "Double tap to save your changes. Your changes will only be saved if you filled the name and username field";
+
+//discover/social buttons
+"ACuserProfileButton" = "User's profile";
+"ACuserProfileButtonHint" = "Double tap to go to this user's profile";
+"ACaddToFriendsButton" = "Add to friends";
+"ACaddToFriendsButtonHint" = "Double tap to send a friend request to this user";
+
+//home buttons
+"ACfindPlayersButton" = "Find new players";
+"ACfindPlayersButtonHint" = "Double tap to go Dota 2 screen server selection to find new players";
+
+//MARK: Accessibility - User Avatar
+"ACeditProfilePictureButton" = "Change my profile picture";
+"ACeditProfilePictureButtonHint" = "Double tap to open the action sheet to choose a new profile picture";
+
+//MARK: Accessibility - Rounded rectangle cells
+"ACroundedRectangleCell" = "Game's picture";
+"ACroundedRectangleCellHint" = "Double tap to show this game's details";
