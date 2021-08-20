@@ -29,7 +29,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="1412"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UGh-3u-w9H">
-                                        <rect key="frame" x="0.0" y="0.0" width="390" height="1186.6666666666667"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="1202.3333333333333"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0Eo-Pm-LLT">
                                                 <rect key="frame" x="0.0" y="0.0" width="390" height="192"/>
@@ -41,7 +41,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R4X-UT-s57">
                                                 <rect key="frame" x="20" y="148" width="122" height="122"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="edp-PN-sM3">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photoDefault" translatesAutoresizingMaskIntoConstraints="NO" id="edp-PN-sM3">
                                                         <rect key="frame" x="0.0" y="0.0" width="122" height="122"/>
                                                         <color key="backgroundColor" systemColor="systemGreenColor"/>
                                                     </imageView>
@@ -65,15 +65,15 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="XEC-Hq-sOP" userLabel="userBio">
-                                                <rect key="frame" x="20" y="285" width="350" height="46.666666666666686"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XEC-Hq-sOP" userLabel="userBio">
+                                                <rect key="frame" x="20" y="285" width="350" height="62.333333333333314"/>
                                                 <string key="text">I play ranked games but sometimes I just like to play for fun, I play ranked games but sometimes I just like to play for fun ay ranked games but sometimes I just like to play for fun</string>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7Xm-Na-EBN" userLabel="button">
-                                                <rect key="frame" x="20" y="346.66666666666669" width="350" height="70"/>
+                                                <rect key="frame" x="20" y="362.33333333333331" width="350" height="70"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KXA-9d-3ys">
                                                         <rect key="frame" x="0.0" y="0.0" width="350" height="35"/>
@@ -119,7 +119,7 @@
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Ratings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cn8-FP-j0Y" customClass="LocalizableLabel" customModule="MatchMaker" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="426.66666666666663" width="350" height="28.666666666666686"/>
+                                                <rect key="frame" x="20" y="442.33333333333337" width="350" height="28.666666666666686"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -128,7 +128,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="jMp-tV-CYh" userLabel="Rate">
-                                                <rect key="frame" x="20" y="463.33333333333337" width="350" height="160"/>
+                                                <rect key="frame" x="20" y="479" width="350" height="160"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f06-HJ-m8N">
                                                         <rect key="frame" x="0.0" y="0.0" width="171" height="160"/>
@@ -250,7 +250,7 @@
                                                 </constraints>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Platforms" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EV2-Ju-DNp" customClass="LocalizableLabel" customModule="MatchMaker" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="642.66666666666663" width="350" height="28.666666666666629"/>
+                                                <rect key="frame" x="20" y="658.33333333333337" width="350" height="28.666666666666629"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -259,14 +259,14 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FKb-Sh-J1P" customClass="SmallLabeledImageCollectionView" customModule="MatchMaker" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="687.33333333333337" width="390" height="100"/>
+                                                <rect key="frame" x="0.0" y="703" width="390" height="100"/>
                                                 <color key="backgroundColor" systemColor="systemPinkColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="100" id="QBT-LU-qEm"/>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Languages" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lo4-N0-ZBP" customClass="LocalizableLabel" customModule="MatchMaker" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="803.33333333333337" width="350" height="28.666666666666629"/>
+                                                <rect key="frame" x="20" y="819" width="350" height="28.666666666666629"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -275,14 +275,14 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Etg-In-1fT" customClass="TitleCollectionView" customModule="MatchMaker" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="837" width="390" height="40"/>
+                                                <rect key="frame" x="0.0" y="852.66666666666663" width="390" height="40"/>
                                                 <color key="backgroundColor" systemColor="systemPurpleColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="Ihh-jR-ww6"/>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Your Games" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q33-5p-zm4" customClass="LocalizableLabel" customModule="MatchMaker" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="887" width="350" height="28.666666666666629"/>
+                                                <rect key="frame" x="20" y="902.66666666666663" width="350" height="28.666666666666629"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -310,7 +310,7 @@
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Y9-op-XhF" customClass="RoundedRectangleCollectionView" customModule="MatchMaker" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="931.66666666666663" width="390" height="164.99999999999989"/>
+                                                <rect key="frame" x="0.0" y="947.33333333333326" width="390" height="165"/>
                                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="165" id="4RY-0W-ldb"/>
@@ -474,6 +474,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="photoDefault" width="500" height="500"/>
         <namedColor name="DarkGray">
             <color red="0.11372549019607843" green="0.11372549019607843" blue="0.11372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
