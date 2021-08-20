@@ -262,12 +262,19 @@ public class CKRepository {
             let platformsIds = game.selectedPlatforms.map { platform in
                 platform.key
             }
-            record.setObject(platformsIds as CKRecordValue?, forKey: UserGamesTable.selectedPlatforms.description)
+            
+            if platformsIds.count > 0 {
+                record.setObject(platformsIds as CKRecordValue?, forKey: UserGamesTable.selectedPlatforms.description)
+            }
             
             let selectedServers = game.selectedServers.map { server in
                 server.key
             }
-            record.setObject(selectedServers as CKRecordValue?, forKey: UserGamesTable.selectedServers.description)
+            
+            if selectedServers.count > 0 {
+                record.setObject(selectedServers as CKRecordValue?, forKey: UserGamesTable.selectedServers.description)
+            }
+            
             
             publicDB.save(record) { savedRecord, error in
                 if let ckError = error as? CKError {
