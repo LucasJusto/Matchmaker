@@ -212,10 +212,6 @@ extension SocialViewController: UITableViewDelegate, UITableViewDataSource {
         return 5
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "toOtherProfile", sender: nil)
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // Using sections to have a "rounded cell" which is actually a section
