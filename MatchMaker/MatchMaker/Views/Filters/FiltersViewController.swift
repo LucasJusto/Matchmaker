@@ -87,8 +87,9 @@ class FiltersViewController: UIViewController {
     func isThereAnyFilter() -> Bool {
         let languages = tagLanguages.filter { $0.isFavorite }
         let platforms = tagPlatforms.filter { $0.isFavorite }
+        let games = selectedGames.filter { $0.isFavorite }
         
-        return !languages.isEmpty || !platforms.isEmpty || skillsRate >= 1 || behaviorsRate >= 1 || selectedLocation.string != "-"
+        return !languages.isEmpty || !platforms.isEmpty || skillsRate >= 1 || behaviorsRate >= 1 || selectedLocation.string != "-" || games.count >= 1
     }
     
     func loadData(languages: [Languages], platforms: [Platform], behaviors: Int, skills: Int, location: Locations?, games: [Game]) {
@@ -421,6 +422,14 @@ extension FiltersViewController: GameSelectionDelegate {
         let collectionIndexPath = IndexPath(row: gameIndex, section: 0)
         
         cell?.collectionView.reloadItems(at: [collectionIndexPath])
+        
+        if isThereAnyFilter() {
+            doneButton.isHidden = true
+        } else {
+            doneButton.isHidden = false
+        }
+        
+        buttonsStackView.isHidden = !doneButton.isHidden
     }
     
 }

@@ -53,6 +53,18 @@ class HomeViewController: UIViewController{
             self.tableView.reloadData()
         }
     }
+    
+    func goToDiscover(games: [Game]) {
+        self.tabBarController?.selectedIndex = 2
+                
+        let rootController = self.tabBarController?.selectedViewController as? UINavigationController
+        
+        let destination = rootController?.topViewController as? DiscoverViewController
+        
+        destination?.selectedGames = games
+        
+        destination?.updateAndReload()
+    }
 }
 
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
@@ -139,7 +151,9 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
             let rootController = segue.destination as? UINavigationController
             let destination = rootController?.topViewController as? GameDetailViewController
 
+            destination?.delegate = self
             destination?.game = game
+            
         }
         
         if segue.identifier == "toGameServers" {
@@ -163,14 +177,14 @@ extension HomeViewController: RoundedRectangleCollectionViewDelegate {
 
 extension HomeViewController: GameSelectionDelegate {
     func updateGame(_ game: Game, isSelected: Bool) {
-        self.tabBarController?.selectedIndex = 2
-                
-        let rootController = self.tabBarController?.selectedViewController as? UINavigationController
-        
-        let destination = rootController?.topViewController as? DiscoverViewController
-        
-        destination?.selectedGames = [game]
-        
-        destination?.updateAndReload()
+        goToDiscover(games: [game])
     }
+}
+
+extension HomeViewController: GameDetailViewControllerDelegate {
+    func didTapDone(game: Game) {
+        goToDiscover(games: [game])
+    }
+    
+    
 }
