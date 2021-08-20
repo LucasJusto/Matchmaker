@@ -41,7 +41,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R4X-UT-s57">
                                                 <rect key="frame" x="20" y="148" width="122" height="122"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="edp-PN-sM3">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="edp-PN-sM3">
                                                         <rect key="frame" x="0.0" y="0.0" width="122" height="122"/>
                                                         <color key="backgroundColor" systemColor="systemGreenColor"/>
                                                     </imageView>
@@ -131,25 +131,25 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="jMp-tV-CYh" userLabel="Rate">
-                                                <rect key="frame" x="20" y="463.33333333333337" width="350" height="170"/>
+                                                <rect key="frame" x="20" y="463.33333333333337" width="350" height="160"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f06-HJ-m8N">
-                                                        <rect key="frame" x="0.0" y="0.0" width="171" height="170"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="171" height="160"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="Iea-L6-Ssc">
-                                                                <rect key="frame" x="14.333333333333329" y="15" width="142.66666666666669" height="140"/>
+                                                                <rect key="frame" x="19.333333333333329" y="15" width="132.33333333333337" height="130"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="X2i-tC-ipu">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="142.66666666666666" height="100"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="132.33333333333334" height="89.666666666666671"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="4.1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zgN-Wb-zoe" userLabel="ratingLabel">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="142.66666666666666" height="68.666666666666671"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="132.33333333333334" height="71"/>
                                                                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="64"/>
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Behaviours" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.60000002384185791" translatesAutoresizingMaskIntoConstraints="NO" id="CwK-XP-IeB" userLabel="categoryOfRatingLabel" customClass="LocalizableLabel" customModule="MatchMaker" customModuleProvider="target">
-                                                                                <rect key="frame" x="0.0" y="71.666666666666629" width="142.66666666666666" height="15.666666666666671"/>
+                                                                                <rect key="frame" x="0.0" y="74" width="132.33333333333334" height="15.666666666666671"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
@@ -157,8 +157,8 @@
                                                                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="UserBehaviour"/>
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </label>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" text="115 reviews" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jqI-f9-NZ1" userLabel="amountReviewsLabel">
-                                                                                <rect key="frame" x="0.0" y="90.333333333333258" width="142.66666666666666" height="9.6666666666666714"/>
+                                                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" text="115 reviews" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jqI-f9-NZ1" userLabel="amountReviewsLabel">
+                                                                                <rect key="frame" x="0.0" y="89.666666666666629" width="132.33333333333334" height="0.0"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
@@ -166,7 +166,7 @@
                                                                         </subviews>
                                                                     </stackView>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EY5-9o-slJ">
-                                                                        <rect key="frame" x="0.0" y="113" width="142.66666666666666" height="27"/>
+                                                                        <rect key="frame" x="0.0" y="102.66666666666663" width="132.33333333333334" height="27.333333333333343"/>
                                                                         <color key="backgroundColor" name="Primary"/>
                                                                         <state key="normal" title="Rate">
                                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -190,22 +190,22 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I7z-4X-bHg">
-                                                        <rect key="frame" x="179" y="0.0" width="171" height="170"/>
+                                                        <rect key="frame" x="179" y="0.0" width="171" height="160"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="q9A-ix-fH4">
-                                                                <rect key="frame" x="14.333333333333343" y="15" width="142.66666666666666" height="140"/>
+                                                                <rect key="frame" x="19.333333333333343" y="15" width="132.33333333333334" height="130"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="QGm-Ld-rBp">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="142.66666666666666" height="100"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="132.33333333333334" height="89.666666666666671"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="4.1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nV8-VC-aFH" userLabel="ratingLabel">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="142.66666666666666" height="68.666666666666671"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="132.33333333333334" height="71"/>
                                                                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="64"/>
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Skills" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.60000002384185791" translatesAutoresizingMaskIntoConstraints="NO" id="UJO-HL-A0J" userLabel="categoryOfRatingLabel" customClass="LocalizableLabel" customModule="MatchMaker" customModuleProvider="target">
-                                                                                <rect key="frame" x="0.0" y="71.666666666666629" width="142.66666666666666" height="15.666666666666671"/>
+                                                                                <rect key="frame" x="0.0" y="74" width="132.33333333333334" height="15.666666666666671"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
@@ -213,8 +213,8 @@
                                                                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="UserSkills"/>
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </label>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" text="115 reviews" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LAF-Oa-eui" userLabel="amountReviewsLabel">
-                                                                                <rect key="frame" x="0.0" y="90.333333333333258" width="142.66666666666666" height="9.6666666666666714"/>
+                                                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" text="115 reviews" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LAF-Oa-eui" userLabel="amountReviewsLabel">
+                                                                                <rect key="frame" x="0.0" y="89.666666666666629" width="132.33333333333334" height="0.0"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
@@ -222,7 +222,7 @@
                                                                         </subviews>
                                                                     </stackView>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jgM-QY-13h">
-                                                                        <rect key="frame" x="0.0" y="113" width="142.66666666666666" height="27"/>
+                                                                        <rect key="frame" x="0.0" y="102.66666666666663" width="132.33333333333334" height="27.333333333333343"/>
                                                                         <color key="backgroundColor" name="Primary"/>
                                                                         <state key="normal" title="Rate">
                                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -249,11 +249,11 @@
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstAttribute="bottom" secondItem="Iea-L6-Ssc" secondAttribute="bottom" constant="15" id="GPE-J5-6dc"/>
-                                                    <constraint firstAttribute="height" constant="170" id="j7a-Sw-waC"/>
+                                                    <constraint firstAttribute="height" constant="160" id="j7a-Sw-waC"/>
                                                 </constraints>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Platforms" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EV2-Ju-DNp" customClass="LocalizableLabel" customModule="MatchMaker" customModuleProvider="target">
-                                                <rect key="frame" x="20.000000000000007" y="652.66666666666663" width="108.66666666666669" height="28.666666666666629"/>
+                                                <rect key="frame" x="20.000000000000007" y="642.66666666666663" width="108.66666666666669" height="28.666666666666629"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -262,14 +262,14 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FKb-Sh-J1P" customClass="SmallLabeledImageCollectionView" customModule="MatchMaker" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="697.33333333333337" width="390" height="60"/>
+                                                <rect key="frame" x="0.0" y="687.33333333333337" width="390" height="60"/>
                                                 <color key="backgroundColor" systemColor="systemPinkColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="60" id="QBT-LU-qEm"/>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Languages" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lo4-N0-ZBP" customClass="LocalizableLabel" customModule="MatchMaker" customModuleProvider="target">
-                                                <rect key="frame" x="20.000000000000007" y="773.33333333333337" width="123.66666666666669" height="28.666666666666629"/>
+                                                <rect key="frame" x="20.000000000000007" y="763.33333333333337" width="123.66666666666669" height="28.666666666666629"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -278,14 +278,14 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Etg-In-1fT" customClass="TitleCollectionView" customModule="MatchMaker" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="807" width="390" height="40"/>
+                                                <rect key="frame" x="0.0" y="797" width="390" height="40"/>
                                                 <color key="backgroundColor" systemColor="systemPurpleColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="Ihh-jR-ww6"/>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Games" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q33-5p-zm4" customClass="LocalizableLabel" customModule="MatchMaker" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="857" width="134.33333333333334" height="28.666666666666629"/>
+                                                <rect key="frame" x="20" y="847" width="134.33333333333334" height="28.666666666666629"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -313,7 +313,7 @@
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Y9-op-XhF" customClass="RoundedRectangleCollectionView" customModule="MatchMaker" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="901.66666666666663" width="390" height="164.99999999999989"/>
+                                                <rect key="frame" x="0.0" y="891.66666666666663" width="390" height="164.99999999999989"/>
                                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="165" id="4RY-0W-ldb"/>
@@ -395,7 +395,13 @@
                             <constraint firstItem="xu9-HE-MP3" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="GWJ-Nb-66X"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Profile" id="IhR-gw-kPN"/>
+                    <navigationItem key="navigationItem" title="Profile" id="IhR-gw-kPN">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="K8j-6P-1qx">
+                            <connections>
+                                <action selector="didTapUpperDone:" destination="Y6W-OH-hqX" id="5p2-Jn-TQ9"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <size key="freeformSize" width="390" height="1500"/>
                     <connections>
@@ -424,12 +430,21 @@
                         <outlet property="userProfileImage" destination="edp-PN-sM3" id="aA6-U8-VKu"/>
                         <outlet property="userProfileLocationLabel" destination="QCK-4b-tAs" id="E2v-nv-82H"/>
                         <outlet property="userProfileNameLabel" destination="X4g-a4-DA4" id="YgK-AR-aNS"/>
+                        <segue destination="g7t-A4-8vE" kind="presentation" identifier="toRateUser" id="hOj-Wr-odh"/>
                         <segue destination="tH4-Lc-KHy" kind="presentation" identifier="toGameDetail" id="RGv-jB-pIs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="973.84615384615381" y="91.706161137440759"/>
+            <point key="canvasLocation" x="1031" y="92"/>
+        </scene>
+        <!--Rate-->
+        <scene sceneID="hR9-qT-WwC">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Rate" id="g7t-A4-8vE" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UBL-le-lkF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1842" y="92"/>
         </scene>
         <!--Profile-->
         <scene sceneID="wD5-fa-q5F">

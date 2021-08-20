@@ -184,6 +184,13 @@ extension DiscoverViewController: DiscoverTableViewCellDelegate {
             let navigationController = segue.destination as! UINavigationController
             let destination = navigationController.topViewController as! OtherProfileViewController
             destination.user = self.destinationUser
+            destination.discoverViewController = self
+            for i in 0...(users.count - 1) {
+                if users[i].id == self.destinationUser?.id {
+                    destination.social = users[i]
+                    break
+                }
+            }
         }
         
         if segue.identifier == "filter" {

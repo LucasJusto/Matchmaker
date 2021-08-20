@@ -34,7 +34,9 @@ class DiscoverTableViewCell: UITableViewCell {
         CKRepository.getUserId(completion: { ownUserId in
             guard let ownUserId: String = ownUserId else { return }
             guard let userId: String = self.userId else { return }
-            CKRepository.sendFriendshipInvite(inviterUserId: ownUserId, receiverUserId: userId)
+            CKRepository.sendFriendshipInvite(inviterUserId: ownUserId, receiverUserId: userId) { inviteSuccessful in
+                
+            }
             DispatchQueue.main.async {
                 self.addToFriendsButton.setTitle(NSLocalizedString("DiscoverScreenRequestSent", comment: "Message shown when the request was sent"), for: .normal)
                 self.addToFriendsButton.isEnabled = false

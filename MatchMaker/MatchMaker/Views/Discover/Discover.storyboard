@@ -286,7 +286,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="discoverTableView" destination="gP6-Wi-hBP" id="EtX-NT-YAM"/>
-                        <segue destination="KMR-XQ-RhV" kind="show" identifier="toOtherProfile" id="4d9-bh-00V"/>
+                        <segue destination="KMR-XQ-RhV" kind="presentation" identifier="toOtherProfile" id="4d9-bh-00V"/>
                         <segue destination="kFw-Ml-J8F" kind="presentation" identifier="filter" id="QdV-DT-WqX"/>
                     </connections>
                 </viewController>

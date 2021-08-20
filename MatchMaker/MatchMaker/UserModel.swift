@@ -197,7 +197,7 @@ enum Locations: CustomStringConvertible, CaseIterable {
     }
 }
 
-public struct Social {
+public class Social {
     let id: String //iCloud ID
     let name: String //real name
     let nickname: String //in game name
@@ -205,6 +205,17 @@ public struct Social {
     let games: [Game]? //games played by this user
     var isInvite: IsInvite?
     var isInviter: Bool?
+    
+    init(id: String, name: String, nickname: String, photoURL: URL?, games: [Game]?, isInvite: IsInvite?, isInviter: Bool?) {
+        
+        self.id = id
+        self.name = name
+        self.nickname = nickname
+        self.photoURL = photoURL
+        self.games = games
+        self.isInvite = isInvite
+        self.isInviter = isInviter
+    }
 }
 
 public class User {

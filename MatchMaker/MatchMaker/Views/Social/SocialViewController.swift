@@ -302,6 +302,12 @@ extension SocialViewController: SocialTableViewFriendCellDelegate {
             let navigationController = segue.destination as! UINavigationController
             let destination = navigationController.topViewController as! OtherProfileViewController
             destination.user = self.destinationUser
+            for i in 0...(friends.count - 1) {
+                if friends[i].id == self.destinationUser?.id {
+                    destination.social = friends[i]
+                    break
+                }
+            }
         }
     }
 }

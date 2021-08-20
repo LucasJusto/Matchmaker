@@ -7,6 +7,8 @@
 
 import UIKit
 
+//MARK: - RateType Enum
+
 enum RateType: CustomStringConvertible {
     case skill, behaviour
     
@@ -20,7 +22,11 @@ enum RateType: CustomStringConvertible {
     }
 }
 
+//MARK: - RateViewController Class
+
 class RateViewController: UIViewController {
+    
+    //MARK: RateViewController Outlets setup
 
     @IBOutlet weak var backgroundStars: UIView!
     @IBOutlet weak var confirmButton: UIButton!
@@ -37,21 +43,49 @@ class RateViewController: UIViewController {
     @IBOutlet weak var navBarButtonLabel: UIBarButtonItem!
     @IBOutlet weak var titleModalView: UINavigationItem!
     
+    //MARK: RateViewController Variables setup
+    
+    var Rate: Int = 0
+    var typeRate: RateType?
+    var user: User?
+    var social: Social?
+    
+    //MARK: RateViewController Outlets actions
+    
     @IBAction func doneButtonAction(_ sender: Any) {
+        guard let social = social else { return }
+        
+        switch typeRate {
+        case .skill:
+            CKRepository.skillRateFriend(friendId: social.id, rate: Double(Rate))
+        case .behaviour:
+            CKRepository.behaviourRateFriend(friendId: social.id, rate: Double(Rate))
+        case .none:
+            CKRepository.errorAlertHandler(CKErrorCode: .invalidArguments)
+        }
+        
         self.dismiss(animated: true, completion: nil)
-        // colocar o back pra salvar a nota
     }
     @IBAction func confirmButtonAction(_ sender: Any) {
+        guard let social = social else { return }
+        
+        switch typeRate {
+        case .skill:
+            CKRepository.skillRateFriend(friendId: social.id, rate: Double(Rate))
+        case .behaviour:
+            CKRepository.behaviourRateFriend(friendId: social.id, rate: Double(Rate))
+        case .none:
+            CKRepository.errorAlertHandler(CKErrorCode: .invalidArguments)
+        }
+        
         self.dismiss(animated: true, completion: nil)
-        // colocar o back pra salvar a nota
     }
     
     @IBAction func cancelButtonAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
     
-    var Rate: Int = 0
-    var typeRate: RateType?
+    //MARK: RateViewController Class setup
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,6 +130,8 @@ class RateViewController: UIViewController {
         
     }
     
+    //MARK: RateViewController Class functions
+    
     func doLocalizebleString() {
         
         titleModalView.title = NSLocalizedString("TitleRateModalView", comment: "")
@@ -117,6 +153,8 @@ class RateViewController: UIViewController {
         
     }
 }
+
+//MARK: - RateViewController
 
 extension RateViewController {
     //This extension control the state of stars and the rate

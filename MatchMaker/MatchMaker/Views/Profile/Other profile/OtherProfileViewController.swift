@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol OtherProfileViewDelegate: AnyObject {
+    func didChangeSocial()
+}
+
 //MARK: - OtherProfileViewController Class
 
 class OtherProfileViewController: UIViewController {
@@ -66,6 +70,10 @@ class OtherProfileViewController: UIViewController {
     
     //MARK: OtherProfileViewController Outlet functions
     
+ 
+    @IBAction func didTapUpperDone(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
     @IBAction func rejectButtonAction(_ sender: Any) {
         denyFriendshipRequest()
     }
@@ -99,11 +107,11 @@ class OtherProfileViewController: UIViewController {
     }
     
     @IBAction func rateBehaviourButton(_ sender: Any) {
-        //MARK: - open rate screen to rate
+        performSegue(withIdentifier: "toRateUser", sender: RateType.behaviour)
     }
     
     @IBAction func rateSkillButton(_ sender: Any) {
-        //MARK: - open rate screen to rate
+        performSegue(withIdentifier: "toRateUser", sender: RateType.skill)
     }
     
     //MARK: OtherProfileViewController Variables setup
@@ -111,16 +119,13 @@ class OtherProfileViewController: UIViewController {
     var user: User?
     var social: Social?
     var friendshipStatus: FriendshipStatus?
-    var marinaGames: [Game] = Games.buildGameArray()
+    var userGames: [Game] = []
+    var discoverViewController: DiscoverViewController?
     
     //MARK: OtherProfileViewController Class setup
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let mockedSocial = Social(id: "id_ee3aeda325ddb726141b73fc1d1d908a", name: "Marina", nickname: "CUI CUI", photoURL: nil, games: [], isInvite: .no, isInviter: nil)
-        
-        social = mockedSocial
         
         setupUserProfile()
         
@@ -135,6 +140,16 @@ class OtherProfileViewController: UIViewController {
         requestFriendButton.layer.cornerRadius = 10
         rejectButton.layer.cornerRadius = 10
         acceptButton.layer.cornerRadius = 10
+        
+        let amigo = (social?.isInvite == .no ? true : false) ?? false
+        
+        if amigo {
+            skillRateButton.isHidden = false
+            behavioursRateButton.isHidden = false
+        } else {
+            skillRateButton.isHidden = true
+            behavioursRateButton.isHidden = true
+        }
                 
         guard let social = social else { return }
         
@@ -181,22 +196,28 @@ class OtherProfileViewController: UIViewController {
     
     private func setupUserProfile() {
         
-        //MARK: - Implement user informations here (The data that are already here are mocked
-        
-        user = User(id: "teste", name: "Marina de Pazzi", nickname: "Prolene", photoURL: nil, location: Locations.brazil, description: "fala fellas, voce que curte um cszinho, bora fazer um projetinho na mansao arromba", behaviourRate: 5.0, skillRate: 5.0, languages: [Languages.english, Languages.portuguese, Languages.russian, Languages.german], selectedPlatforms: [Platform.PC, Platform.PlayStation], selectedGames: [marinaGames[1], marinaGames[2]])
-        
         guard let unwrappedUser = user else { return }
         
+        if let url = unwrappedUser.photoURL {
+            DispatchQueue.global().async {
+                if let data = try? Data(contentsOf: url) {
+                    DispatchQueue.main.async {
+                        self.userProfileImage.image = UIImage(data: data)
+                    }
+                }
+            }
+        }
+        
         behaviourRateLabel.text = String(unwrappedUser.behaviourRate)
-        amountOfReviewsBehavioursLabel.text = "0 " + NSLocalizedString("UserReviews", comment: "This is the key for 'reviews' translation")
+        //amountOfReviewsBehavioursLabel.text = "0" + NSLocalizedString("UserReviews", comment: "This is the key for 'reviews' translation")
         
         skillRateLabel.text = String(unwrappedUser.skillRate)
-        amaountOfReviewsSKillLaber.text = "0 " + NSLocalizedString("UserReviews", comment: "This is the key for 'reviews' translation")
+        //amaountOfReviewsSKillLaber.text = "0 " + NSLocalizedString("UserReviews", comment: "This is the key for 'reviews' translation")
         
         userProfileNameLabel.text = unwrappedUser.name
         userProfileGamertagLabel.text = "@" + unwrappedUser.nickname
         userProfileBioLabel.text = unwrappedUser.description
-        userProfileLocationLabel.text = NSLocalizedString("PlayingFrom", comment: "") + " colocar a localização aqui "
+        userProfileLocationLabel.text = NSLocalizedString("Playing from ", comment: "") + "\(unwrappedUser.location)"
         
         //userProfileImage.image = colocar imagem do usuário
         
@@ -205,6 +226,32 @@ class OtherProfileViewController: UIViewController {
         gameCollectionView.roundedRectangleImageModels = unwrappedUser.selectedGames
         
         gameCollectionView.delegate = self
+    }
+    
+    //MARK: OtherProfileViewController Segue
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toRateUser" {
+            let rootVC = segue.destination as! UINavigationController
+            let destination = rootVC.topViewController as! RateViewController
+            
+            destination.user = user
+            destination.social = social
+            if let sender = sender as? RateType {
+                destination.typeRate = sender == .skill ? .skill : .behaviour
+            }
+        }
+        
+        if segue.identifier == "toGameDetail" {
+            
+            guard let game = sender as? Game else { return }
+            
+            let navViewController = segue.destination as! UINavigationController
+            
+            let destination = navViewController.topViewController as! GameDetailViewController
+            
+            destination.game = game
+        }
     }
 }
 
@@ -217,7 +264,6 @@ extension OtherProfileViewController {
      - Parameters: Void
      - Returns: Void
      */
-    //TA FUNCIONANDO ESSE AQUI
     func acceptFriendshipRequest() {
         friendshipStatus = FriendshipStatus.friendsAlready
         acceptOrRejectStack.isHidden = true
@@ -225,7 +271,7 @@ extension OtherProfileViewController {
         
         requestFriendButton.layer.backgroundColor = UIColor(named: "LightGray")?.cgColor
         requestFriendButton.setTitle(FriendshipStatus.friendsAlready.description, for: .normal)
-        //MARK: - Do BackEnd to acept friend
+        //MARK: - Do BackEnd to accept friend
         
         guard let user = user else { return }
         CKRepository.getUserId { id in
@@ -267,12 +313,37 @@ extension OtherProfileViewController {
         requestFriendButton.setTitle(FriendshipStatus.requestedFriendship.description, for: .normal)
         acceptOrRejectStack.isHidden = true
         requestFriendButton.isHidden = false
+        social?.isInvite = .yes
+        social?.isInviter = false
         //MARK: - Do BackEnd to add to friends
         
         guard let user = user else { return }
         CKRepository.getUserId { id in
             guard let id = id else { return }
-            CKRepository.sendFriendshipInvite(inviterUserId: id, receiverUserId: user.id)
+            CKRepository.sendFriendshipInvite(inviterUserId: id, receiverUserId: user.id) { inviteSuccessful in
+                if inviteSuccessful {
+                    self.social?.isInvite = .yes
+                    self.social?.isInviter = true
+                    DispatchQueue.main.async {
+                        if let unwrappedParent = self.discoverViewController {
+                            for i in 0..<unwrappedParent.users.count {
+                                if unwrappedParent.users[i].id == self.social?.id {
+                                    unwrappedParent.users.remove(at: i)
+                                    unwrappedParent.discoverTableView.reloadData()
+                                    break
+                                }
+                            }
+                            for i in 0..<unwrappedParent.filteredUsers.count {
+                                if unwrappedParent.filteredUsers[i].id == self.social?.id {
+                                    unwrappedParent.filteredUsers.remove(at: i)
+                                    unwrappedParent.discoverTableView.reloadData()
+                                    break
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
     
@@ -297,6 +368,12 @@ extension OtherProfileViewController {
         }
     }
     
+    /**
+     This function is responsible for removing a friend from the friends list.
+     
+     - Parameters: Void
+     - Returns: Void
+     */
     func removeFriend(inviterId: String, receiverId: String) {
         friendshipStatus = FriendshipStatus.nonFriend
         requestFriendButton.layer.backgroundColor = UIColor(named: "Primary")?.cgColor
@@ -316,16 +393,4 @@ extension OtherProfileViewController: RoundedRectangleCollectionViewDelegate {
         performSegue(withIdentifier: "toGameDetail", sender: game)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toGameDetail" {
-            
-            guard let game = sender as? Game else { return }
-            
-            let navViewController = segue.destination as! UINavigationController
-            
-            let destination = navViewController.topViewController as! GameDetailViewController
-            
-            destination.game = game
-        }
-    }
 }
