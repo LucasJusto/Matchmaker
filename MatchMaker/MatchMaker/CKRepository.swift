@@ -321,9 +321,7 @@ public class CKRepository {
                     }
                     completion(savedRecord, error)
                 }
-                if selectedGames.count > 0 {
-                    editUserGamesData(userId: id, selectedGames: selectedGames)
-                }
+                editUserGamesData(userId: id, selectedGames: selectedGames)
             }
         }
     }
