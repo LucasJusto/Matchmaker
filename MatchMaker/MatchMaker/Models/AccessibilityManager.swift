@@ -30,4 +30,60 @@ class AccessibilityManager {
         
         return fontMetrics.scaledFont(for: font)
     }
+    
+    /**
+     Sets up a custom font for fixed titles of size 24 and weight .bold
+     
+     - Parameters: Void
+     
+     - returns: the scaled font based on the given params
+     */
+    static func forTitle1() -> UIFont {
+        let headlineMetrics = UIFontMetrics.init(forTextStyle: .title1)
+        let font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        
+        return headlineMetrics.scaledFont(for: font)
+    }
+    
+    /**
+     Sets up a custom font for fixed headlines of size 22 and weight .bold
+     
+     - Parameters: Void
+     
+     - returns: the scaled font based on the given params
+     */
+    static func forHeadline() -> UIFont {
+        let headlineMetrics = UIFontMetrics.init(forTextStyle: .headline)
+        let font = UIFont.systemFont(ofSize: 22, weight: .bold)
+        
+        return headlineMetrics.scaledFont(for: font)
+    }
+    
+    /**
+     Sets up a custom font for fixed callouts of size 9 and weight .light
+     
+     - Parameters: Void
+     
+     - returns: the scaled font based on the given params
+     */
+    static func forCallout() -> UIFont {
+        let headlineMetrics = UIFontMetrics.init(forTextStyle: .callout)
+        let font = UIFont.systemFont(ofSize: 9, weight: .light)
+        
+        return headlineMetrics.scaledFont(for: font)
+    }
+    
+    /**
+     Sets up a custom font for fixed titles of size 13 and weight .light
+     
+     - Parameters: Void
+     
+     - returns: the scaled font based on the given params
+     */
+    static func forBody() -> UIFont {
+        let headlineMetrics = UIFontMetrics.init(forTextStyle: .body)
+        let font = UIFont.systemFont(ofSize: 13, weight: .light)
+        
+        return headlineMetrics.scaledFont(for: font)
+    }
 }

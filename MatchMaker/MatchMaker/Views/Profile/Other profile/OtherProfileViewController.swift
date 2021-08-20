@@ -62,6 +62,8 @@ class OtherProfileViewController: UIViewController {
     @IBOutlet weak var amountOfReviewsBehavioursLabel: UILabel!
     @IBOutlet weak var skillRateLabel: UILabel!
     @IBOutlet weak var amaountOfReviewsSKillLaber: UILabel!
+    @IBOutlet weak var behaviourCategory: LocalizableLabel!
+    @IBOutlet weak var skillCategory: LocalizableLabel!
     
     @IBOutlet weak var acceptOrRejectStack: UIStackView!
     @IBOutlet weak var acceptButton: UIButton!
@@ -228,6 +230,68 @@ class OtherProfileViewController: UIViewController {
         gameCollectionView.roundedRectangleImageModels = unwrappedUser.selectedGames
         
         gameCollectionView.delegate = self
+    }
+    
+    func setupAccessibiltyFeatures(){
+        guard let unwrappedUser = user else { return }
+        
+        //Voice over
+        userProfileNameLabel.accessibilityLabel = NSLocalizedString("ACuserName", comment: "This is the translation for 'ACuserName' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        userProfileNameLabel.accessibilityValue = unwrappedUser.name
+        
+        userProfileGamertagLabel.accessibilityLabel = NSLocalizedString("ACuserGamertag", comment: "This is the translation for 'ACuserGamertag' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        userProfileGamertagLabel.accessibilityValue = unwrappedUser.nickname
+        
+        userProfileBioLabel.accessibilityLabel = NSLocalizedString("ACuserBio", comment: "This is the translation for 'ACuserBio' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        userProfileBioLabel.accessibilityValue = unwrappedUser.description
+        
+        userProfileLocationLabel.accessibilityLabel = NSLocalizedString("ACuserLocation", comment: "This is the translation for 'ACuserLocation' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        userProfileLocationLabel.accessibilityValue = "\(unwrappedUser.location)"
+        
+        behaviourRateLabel.accessibilityLabel = NSLocalizedString("ACratingsResult", comment: "This is the translation for 'ACratingsResult' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        behaviourRateLabel.accessibilityValue = String(unwrappedUser.behaviourRate)
+        
+        skillRateLabel.accessibilityLabel = NSLocalizedString("ACratingsResult", comment: "This is the translation for 'ACratingsResult' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        skillRateLabel.accessibilityValue = String(unwrappedUser.skillRate)
+        
+        behaviourCategory.accessibilityLabel = NSLocalizedString("ACratingsCategory", comment: "This is the translation for 'ACratingsCategory' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        behaviourCategory.accessibilityValue = NSLocalizedString("UserBehaviour", comment: "This is the translation for 'UserBehaviour' at the UserProfile section of Localizable.strings")
+        
+        skillCategory.accessibilityLabel = NSLocalizedString("ACratingsCategory", comment: "This is the translation for 'ACratingsCategory' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        skillCategory.accessibilityValue = NSLocalizedString("UserSkills", comment: "This is the translation for 'UserSkills' at the UserProfile section of Localizable.strings")
+        
+        //Color Invert
+        userProfileImage.accessibilityIgnoresInvertColors = true
+        
+        //Setting up Dynamic types
+        let scaledHeadlineFont = AccessibilityManager.forHeadline()
+        let scaledTitleFont = AccessibilityManager.forTitle1()
+        let scaledBodyFont = AccessibilityManager.forBody()
+        let scaledCalloutFont = AccessibilityManager.forCallout()
+        
+        userProfileNameLabel.font = scaledHeadlineFont
+        userProfileNameLabel.adjustsFontForContentSizeCategory = true
+        
+        userProfileGamertagLabel.font = scaledCalloutFont
+        userProfileGamertagLabel.adjustsFontForContentSizeCategory = true
+        
+        userProfileBioLabel.font = scaledBodyFont
+        userProfileBioLabel.adjustsFontForContentSizeCategory = true
+        
+        userProfileLocationLabel.font = scaledCalloutFont
+        userProfileLocationLabel.adjustsFontForContentSizeCategory = true
+        
+        ratingsTitleLabel.font = scaledTitleFont
+        ratingsTitleLabel.adjustsFontForContentSizeCategory = true
+        
+        platformsTitleLabel.font = scaledTitleFont
+        platformsTitleLabel.adjustsFontForContentSizeCategory = true
+        
+        languagesTitleLabel.font = scaledTitleFont
+        languagesTitleLabel.adjustsFontForContentSizeCategory = true
+        
+        gamesTitleLabel.font = scaledTitleFont
+        gamesTitleLabel.adjustsFontForContentSizeCategory = true
     }
     
     //MARK: OtherProfileViewController Segue

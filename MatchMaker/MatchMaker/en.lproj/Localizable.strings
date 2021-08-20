@@ -240,3 +240,15 @@ without using your storage";
 
 //MARK: AppDelegate Push Notification
 "friendRequestAlert" = "You have a new friend request!";
+
+//MARK: Accessibility - Profile/Other Profile
+"ACuserName" = "User's name";
+"ACuserGamertag" = "User's nickname/gamertag";
+"ACuserBio" = "User's description";
+"ACuserLocation" = "User's location";
+"ACratingsCategory" = "Category of rating";
+"ACratingsResult" = "User's grade";
+"ACeditProfileButton" = "Edit my profile";
+
+//MARK: Accessibility - User Avatar
+"ACeditProfilePictureButton" = "Change my profile picture";

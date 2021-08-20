@@ -118,7 +118,7 @@ class ProfileViewController: UIViewController {
         let scaledProfileBioFont = AccessibilityManager
             .forCustomFont(forTextStyle: .body, forFontSize: 13, forFontWeight: .light)
         let scaledSectionTitle1Font = AccessibilityManager
-            .forCustomFont(forTextStyle: .title1, forFontSize: 22, forFontWeight: .bold)
+            .forCustomFont(forTextStyle: .title1, forFontSize: 24, forFontWeight: .bold)
         
         userProfileNameLabel.font = scaledUserProfileNameFont
         userProfileNameLabel.adjustsFontForContentSizeCategory = true
