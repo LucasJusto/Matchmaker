@@ -410,8 +410,8 @@
                         <outlet property="amaountOfReviewsSKillLaber" destination="LAF-Oa-eui" id="Blv-fL-1UI"/>
                         <outlet property="amountOfReviewsBehavioursLabel" destination="jqI-f9-NZ1" id="of8-9d-IZt"/>
                         <outlet property="behaviourCategory" destination="CwK-XP-IeB" id="IOe-7k-mlt"/>
+                        <outlet property="behaviourRateButton" destination="EY5-9o-slJ" id="dSn-U0-HvQ"/>
                         <outlet property="behaviourRateLabel" destination="zgN-Wb-zoe" id="w6C-O8-bO2"/>
-                        <outlet property="behavioursRateButton" destination="jgM-QY-13h" id="Zo1-FL-aQf"/>
                         <outlet property="behavioursRateContainer" destination="f06-HJ-m8N" id="mNM-bL-g96"/>
                         <outlet property="gameCollectionView" destination="2Y9-op-XhF" id="KiS-Ig-jB6"/>
                         <outlet property="gamesTitleLabel" destination="Q33-5p-zm4" id="INu-rK-G9S"/>
@@ -423,10 +423,11 @@
                         <outlet property="rejectButton" destination="tpF-Kh-Wk3" id="cOr-O2-k7r"/>
                         <outlet property="requestFriendButton" destination="KXA-9d-3ys" id="aBZ-qe-Qd0"/>
                         <outlet property="skillCategory" destination="UJO-HL-A0J" id="oCc-fK-pR2"/>
-                        <outlet property="skillRateButton" destination="EY5-9o-slJ" id="dSn-U0-HvQ"/>
+                        <outlet property="skillRateButton" destination="jgM-QY-13h" id="Zo1-FL-aQf"/>
                         <outlet property="skillRateContainer" destination="I7z-4X-bHg" id="jC4-eO-72b"/>
                         <outlet property="skillRateLabel" destination="nV8-VC-aFH" id="OVD-6t-V3L"/>
                         <outlet property="titleViewLabel" destination="IhR-gw-kPN" id="qC0-as-qqF"/>
+                        <outlet property="upperDone" destination="K8j-6P-1qx" id="6xL-Qs-5eU"/>
                         <outlet property="userProfileBioLabel" destination="XEC-Hq-sOP" id="1Pa-Mu-0qq"/>
                         <outlet property="userProfileGamertagLabel" destination="ibW-Vj-uNF" id="2ux-Wo-zcD"/>
                         <outlet property="userProfileImage" destination="edp-PN-sM3" id="aA6-U8-VKu"/>

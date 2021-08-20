@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol OtherProfileViewDelegate: AnyObject {
-    func didChangeSocial()
-}
-
 //MARK: - OtherProfileViewController Class
 
 class OtherProfileViewController: UIViewController {
@@ -55,8 +51,8 @@ class OtherProfileViewController: UIViewController {
     
     @IBOutlet weak var behavioursRateContainer: UIView!
     @IBOutlet weak var skillRateContainer: UIView!
-    @IBOutlet weak var behavioursRateButton: UIView!
-    @IBOutlet weak var skillRateButton: UIButton!
+    @IBOutlet weak var skillRateButton: UIView!
+    @IBOutlet weak var behaviourRateButton: UIButton!
     
     @IBOutlet weak var behaviourRateLabel: UILabel!
     @IBOutlet weak var amountOfReviewsBehavioursLabel: UILabel!
@@ -69,6 +65,9 @@ class OtherProfileViewController: UIViewController {
     @IBOutlet weak var acceptButton: UIButton!
     @IBOutlet weak var rejectButton: UIButton!
     @IBOutlet weak var requestFriendButton: UIButton!
+    
+    
+    @IBOutlet weak var upperDone: UIBarButtonItem!
     
     //MARK: OtherProfileViewController Outlet functions
     
@@ -131,6 +130,8 @@ class OtherProfileViewController: UIViewController {
         
         setupUserProfile()
         
+        setupAccessibiltyFeatures()
+        
         setCornerContainerRate()
         
         titleViewLabel.title = NSLocalizedString("TitleViewRate", comment: "")
@@ -146,11 +147,11 @@ class OtherProfileViewController: UIViewController {
         let amigo = (social?.isInvite == .no ? true : false) ?? false
         
         if amigo {
+            behaviourRateButton.isHidden = false
             skillRateButton.isHidden = false
-            behavioursRateButton.isHidden = false
         } else {
+            behaviourRateButton.isHidden = true
             skillRateButton.isHidden = true
-            behavioursRateButton.isHidden = true
         }
                 
         guard let social = social else { return }
@@ -192,8 +193,8 @@ class OtherProfileViewController: UIViewController {
         skillRateContainer.layer.borderWidth = 1
         skillRateContainer.layer.borderColor = UIColor(named: "Primary")?.cgColor
         
+        behaviourRateButton.layer.cornerRadius = 8
         skillRateButton.layer.cornerRadius = 8
-        behavioursRateButton.layer.cornerRadius = 8
     }
     
     private func setupUserProfile() {
@@ -233,7 +234,10 @@ class OtherProfileViewController: UIViewController {
     }
     
     func setupAccessibiltyFeatures(){
-        guard let unwrappedUser = user else { return }
+        guard let unwrappedUser = user,
+              let social = social
+        else { return }
+
         
         //Voice over - User profile
         userProfileNameLabel.accessibilityLabel = NSLocalizedString("ACuserName", comment: "This is the translation for 'ACuserName' at the Accessibility - Profile/Other Profile section of Localizable.strings")
@@ -249,29 +253,61 @@ class OtherProfileViewController: UIViewController {
         userProfileLocationLabel.accessibilityValue = "\(unwrappedUser.location)"
         
         //voice over - screen setup
-        ratingsTitleLabel.accessibilityLabel = NSLocalizedString("ACscreenRatingSection", comment: "This is the translation for 'ACscreenRatingSection' at the Accessibility - Profile/Other Profile section of Localizable.strings")
-        ratingsTitleLabel.accessibilityValue = NSLocalizedString("Ratings", comment: "This is the translation for 'Ratings' at the Friend Profile (OtherPrifile) section of Localizable.strings")
+        //bar button setup
+        upperDone.accessibilityLabel = NSLocalizedString("ACupperDoneButton", comment: "This is the translation for 'ACupperDoneButton' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        upperDone.accessibilityHint = NSLocalizedString("ACupperDoneButtonHint", comment: "This is the translation for 'ACupperDoneButtonHint' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        
+        //friends button stack
+        acceptButton.accessibilityHint = NSLocalizedString("ACacceptFriendRequestHint", comment: "This is the translation for 'ACacceptFriendRequestHint' at the Accessibility - Profile/Other Profile section of Localizable.strings") + unwrappedUser.name
+        rejectButton.accessibilityHint = NSLocalizedString("ACdenyFriendRequestHint", comment: "This is the translation for 'ACdenyFriendRequestHint' at the Accessibility - Profile/Other Profile section of Localizable.strings") + unwrappedUser.name
+                
+        if ((social.isInviter == nil) && (social.isInvite == nil)) {
+            //send friend request
+            requestFriendButton.accessibilityHint = NSLocalizedString("ACsendFriendRequestHint", comment: "This is the translation for 'ACsendFriendRequestHint' at the Accessibility - Profile/Other Profile section of Localizable.strings") + unwrappedUser.name
             
+        } else if social.isInvite == IsInvite.no {
+            //remove friend
+            requestFriendButton.accessibilityHint = NSLocalizedString("ACdeleteFriendshipHint", comment: "This is the translation for 'ACsendFriendRequestHint' at the Accessibility - Profile/Other Profile section of Localizable.strings") + unwrappedUser.name + NSLocalizedString("ACdeleteFriendshipHint2", comment: "This is the translation for 'ACdeleteFriendshipHint2' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+
+        } else if (!(social.isInviter ?? true) && (social.isInvite == .yes))  {
+            //cancel request
+            requestFriendButton.accessibilityHint = NSLocalizedString("ACcancelFriendRequestHint", comment: "This is the translation for 'ACcancelFriendRequestHint' at the Accessibility - Profile/Other Profile section of Localizable.strings") + unwrappedUser.name
+        }
+        
+        //rating view
+        //behavior rating grade
         behaviourRateLabel.accessibilityLabel = NSLocalizedString("ACratingsResult", comment: "This is the translation for 'ACratingsResult' at the Accessibility - Profile/Other Profile section of Localizable.strings")
         behaviourRateLabel.accessibilityValue = String(unwrappedUser.behaviourRate)
         
+        //skill rating grade
         skillRateLabel.accessibilityLabel = NSLocalizedString("ACratingsResult", comment: "This is the translation for 'ACratingsResult' at the Accessibility - Profile/Other Profile section of Localizable.strings")
         skillRateLabel.accessibilityValue = String(unwrappedUser.skillRate)
         
+        //behaviour rating category
         behaviourCategory.accessibilityLabel = NSLocalizedString("ACratingsCategory", comment: "This is the translation for 'ACratingsCategory' at the Accessibility - Profile/Other Profile section of Localizable.strings")
         behaviourCategory.accessibilityValue = NSLocalizedString("UserBehaviour", comment: "This is the translation for 'UserBehaviour' at the UserProfile section of Localizable.strings")
         
+        //skill rating category
         skillCategory.accessibilityLabel = NSLocalizedString("ACratingsCategory", comment: "This is the translation for 'ACratingsCategory' at the Accessibility - Profile/Other Profile section of Localizable.strings")
         skillCategory.accessibilityValue = NSLocalizedString("UserSkills", comment: "This is the translation for 'UserSkills' at the UserProfile section of Localizable.strings")
         
+        //rating buttons
+        behaviourRateButton.accessibilityHint = NSLocalizedString("ACrateFriendBehaviourHint", comment: "This is the translation for 'ACrateFriendBehaviourHint' at the Accessibility - Profile/Other Profile section of Localizable.strings") + unwrappedUser.name + NSLocalizedString("ACrateFriendBehaviourHint2", comment: "This is the translation for 'ACrateFriendBehaviourHint2' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        skillRateButton.accessibilityHint = NSLocalizedString("ACrateFriendSkillHint", comment: "This is the translation for 'ACrateFriendSkillHint' at the Accessibility - Profile/Other Profile section of Localizable.strings") + unwrappedUser.name + NSLocalizedString("ACrateFriendSkillHint2", comment: "This is the translation for 'ACrateFriendSkillHint2' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        
+        
+        //screen titles
+        ratingsTitleLabel.accessibilityLabel = NSLocalizedString("ACscreenRatingSection", comment: "This is the translation for 'ACscreenRatingSection' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        //ratingsTitleLabel.accessibilityValue = NSLocalizedString("Ratings", comment: "This is the translation for 'Ratings' at the Friend Profile (OtherPrifile) section of Localizable.strings")
+        
         platformsTitleLabel.accessibilityLabel = NSLocalizedString("ACscreenPlatformsSection", comment: "This is the translation for 'ACscreenPlatformsSection' at the Accessibility - Profile/Other Profile section of Localizable.strings")
-        platformsTitleLabel.accessibilityValue = NSLocalizedString("Platforms", comment: "This is the translation for 'Platforms' at the Friend Profile (OtherPrifile) section of Localizable.strings")
+        //platformsTitleLabel.accessibilityValue = NSLocalizedString("Platforms", comment: "This is the translation for 'Platforms' at the Friend Profile (OtherPrifile) section of Localizable.strings")
         
         languagesTitleLabel.accessibilityLabel = NSLocalizedString("ACscreenLanguagesSection", comment: "This is the translation for 'ACscreenLanguagesSection' at the Accessibility - Profile/Other Profile section of Localizable.strings")
-        languagesTitleLabel.accessibilityValue = NSLocalizedString("Languages", comment: "This is the translation for 'Languages' at the Friend Profile (OtherPrifile) section of Localizable.strings")
+        //languagesTitleLabel.accessibilityValue = NSLocalizedString("Languages", comment: "This is the translation for 'Languages' at the Friend Profile (OtherPrifile) section of Localizable.strings")
         
         gamesTitleLabel.accessibilityLabel = NSLocalizedString("ACscreenGamesSection", comment: "This is the translation for 'ACscreenRatingSection' at the Accessibility - Profile/Other Profile section of Localizable.strings")
-        gamesTitleLabel.accessibilityValue = NSLocalizedString("UserGames", comment: "This is the translation for 'ACscreenGamesSection' at the UserProfile (Profile Tab) section of Localizable.strings")
+        //gamesTitleLabel.accessibilityValue = NSLocalizedString("UserGames", comment: "This is the translation for 'ACscreenGamesSection' at the UserProfile (Profile Tab) section of Localizable.strings")
         
         //Color Invert
         userProfileImage.accessibilityIgnoresInvertColors = true

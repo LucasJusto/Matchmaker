@@ -242,18 +242,34 @@ without using your storage";
 "friendRequestAlert" = "You have a new friend request!";
 
 //MARK: Accessibility - Profile/Other Profile
+//labels
 "ACuserName" = "User's name";
 "ACuserGamertag" = "User's nickname/gamertag";
 "ACuserBio" = "User's description";
 "ACuserLocation" = "User's location";
 "ACratingsCategory" = "Category of rating";
 "ACratingsResult" = "User's grade";
-"ACeditProfileButton" = "Edit my profile";
 "ACscreenRatingSection" = "User's ratings";
 "ACscreenPlatformsSection" = "User's platforms";
 "ACscreenLanguagesSection" = "User's languages";
 "ACscreenGamesSection" = "User's games";
+//buttons
+"ACupperDoneButton" = "Done";
+"ACupperDoneButtonHint" = "Double tap to dismiss this screen and go back to the previous screen.";
+"ACeditProfileButton" = "Edit my profile";
 "ACeditProfileButtonHint" = "Double tap to go to next screen and edit your profile";
+"ACrateFriendBehaviourHint" = "Double tap to go to Ratings screen and rate ";
+"ACrateFriendBehaviourHint2" = "'s behaviour";
+"ACrateFriendSkillHint" = "Double tap to go to Ratings screen and rate";
+"ACrateFriendSkillHint2" = "'s skill";
+"ACsendFriendRequestHint" = "Double tap to send a friend request to ";
+"ACacceptFriendRequestHint" = "Double tap to accept this friend request from ";
+"ACdenyFriendRequestHint" = "Double tap to deny this friend request from ";
+"ACdeleteFriendshipHint" = "Double tap to remove ";
+"ACdeleteFriendshipHint2" = " from your friends list";
+"ACcancelFriendRequestHint" = "Double tap to cancel this friend request to ";
+
+
 
 //MARK: Accessibility - User Avatar
 "ACeditProfilePictureButton" = "Change my profile picture";
