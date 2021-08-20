@@ -253,7 +253,7 @@ without using your storage";
 "ACscreenPlatformsSection" = "User's platforms";
 "ACscreenLanguagesSection" = "User's languages";
 "ACscreenGamesSection" = "User's games";
-//buttons
+//profile-buttons
 "ACupperDoneButton" = "Done";
 "ACupperDoneButtonHint" = "Double tap to dismiss this screen and go back to the previous screen.";
 "ACeditProfileButton" = "Edit my profile";
@@ -268,7 +268,11 @@ without using your storage";
 "ACdeleteFriendshipHint" = "Double tap to remove ";
 "ACdeleteFriendshipHint2" = " from your friends list";
 "ACcancelFriendRequestHint" = "Double tap to cancel this friend request to ";
-
+//discover/social buttons
+"ACuserProfileButton" = "User's profile";
+"ACuserProfileButtonHint" = "Double tap to go to this user's profile";
+"ACaddToFriendsButton" = "Add to friends";
+"ACaddToFriendsButtonHint" = "Double tap to send a friend request to this user";
 
 
 //MARK: Accessibility - User Avatar
