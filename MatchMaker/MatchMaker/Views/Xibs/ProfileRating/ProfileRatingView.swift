@@ -48,10 +48,6 @@ class ProfileRatingView: UIView, NibLoadable {
     //MARK: ProfileRatingView - Accessibility Features: Dynamic Types
     
     func setupAccessibilityFeatures(){
-        //Voice over
-        ratingLabel.accessibilityValue = NSLocalizedString("ACratingsResult", comment: "This is the translation for 'ACratingsResult' at the Accessibility - Profile/Other Profile section of Localizable.strings")
-        categoryOfRatingLabel.accessibilityValue = NSLocalizedString("ACratingsCategory", comment: "This is the translation for 'ACratingsCategory' at the Accessibility - Profile/Other Profile section of Localizable.strings")
-        
         //Invert Colors
         backgroundView.accessibilityIgnoresInvertColors = true
         

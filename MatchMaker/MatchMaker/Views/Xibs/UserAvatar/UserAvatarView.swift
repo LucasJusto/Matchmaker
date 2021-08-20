@@ -41,7 +41,11 @@ class UserAvatarView: UIView, NibLoadable {
         buttonBackground.layer.cornerCurve = .circular
         
         contentImage.image = UIImage(named: "photoDefault")
+        
         contentImage.accessibilityIgnoresInvertColors = true
+        
+        photoButton.accessibilityLabel = NSLocalizedString("ACeditProfilePictureButton", comment: "This is the translation for 'ACeditProfilePictureButton' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        photoButton.accessibilityHint = NSLocalizedString("ACeditProfilePictureButtonHint", comment: "This is the translation for 'ACeditProfilePictureButtonHint' at the Accessibility - Profile/Other Profile section of Localizable.strings")
     }
     
     //MARK: UserAvatarView - Nib Setup

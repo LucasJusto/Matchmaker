@@ -130,16 +130,32 @@ class ProfileViewController: UIViewController {
         editProfileButton.accessibilityHint = NSLocalizedString("ACeditProfileButtonHint", comment: "This is the translation for 'ACeditProfileButtonHint' at the Accessibility - Profile/Other Profile section of Localizable.strings")
         
         ratingsTitleLabel.accessibilityLabel = NSLocalizedString("ACscreenRatingSection", comment: "This is the translation for 'ACscreenRatingSection' at the Accessibility - Profile/Other Profile section of Localizable.strings")
-        ratingsTitleLabel.accessibilityValue = NSLocalizedString("Ratings", comment: "This is the translation for 'Ratings' at the Friend Profile (OtherPrifile) section of Localizable.strings")
+        //ratingsTitleLabel.accessibilityValue = NSLocalizedString("Ratings", comment: "This is the translation for 'Ratings' at the Friend Profile (OtherPrifile) section of Localizable.strings")
+        
+        //behaviour rating grade
+        behaviourRatingView.ratingLabel.accessibilityLabel = NSLocalizedString("ACratingsResult", comment: "This is the translation for 'ACratingsResult' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        behaviourRatingView.ratingLabel.accessibilityValue = "\(unwrappedUser.behaviourRate)"
+        
+        //behaviour label category
+        behaviourRatingView.categoryOfRatingLabel.accessibilityLabel = NSLocalizedString("ACratingsCategory", comment: "This is the translation for 'ACratingsCategory' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        behaviourRatingView.categoryOfRatingLabel.accessibilityValue = NSLocalizedString("UserBehaviour", comment: "This is the translation for 'UserBehaviour' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        
+        //skill rating grade
+        skillsRatingView.ratingLabel.accessibilityLabel = NSLocalizedString("ACratingsResult", comment: "This is the translation for 'ACratingsResult' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        skillsRatingView.ratingLabel.accessibilityValue = "\(unwrappedUser.skillRate)"
+        
+        //skill label category
+        skillsRatingView.categoryOfRatingLabel.accessibilityLabel = NSLocalizedString("ACratingsCategory", comment: "This is the translation for 'ACratingsCategory' at the Accessibility - Profile/Other Profile section of Localizable.strings")
+        skillsRatingView.categoryOfRatingLabel.accessibilityValue = NSLocalizedString("UserSkills", comment: "This is the translation for 'UserSkills' at the Accessibility - Profile/Other Profile section of Localizable.strings")
             
         platformsTitleLabel.accessibilityLabel = NSLocalizedString("ACscreenPlatformsSection", comment: "This is the translation for 'ACscreenPlatformsSection' at the Accessibility - Profile/Other Profile section of Localizable.strings")
-        platformsTitleLabel.accessibilityValue = NSLocalizedString("Platforms", comment: "This is the translation for 'Platforms' at the Friend Profile (OtherPrifile) section of Localizable.strings")
+        //platformsTitleLabel.accessibilityValue = NSLocalizedString("Platforms", comment: "This is the translation for 'Platforms' at the Friend Profile (OtherPrifile) section of Localizable.strings")
         
         languagesTitleLabel.accessibilityLabel = NSLocalizedString("ACscreenLanguagesSection", comment: "This is the translation for 'ACscreenLanguagesSection' at the Accessibility - Profile/Other Profile section of Localizable.strings")
-        languagesTitleLabel.accessibilityValue = NSLocalizedString("Languages", comment: "This is the translation for 'Languages' at the Friend Profile (OtherPrifile) section of Localizable.strings")
+        //languagesTitleLabel.accessibilityValue = NSLocalizedString("Languages", comment: "This is the translation for 'Languages' at the Friend Profile (OtherPrifile) section of Localizable.strings")
         
         gamesTitleLabel.accessibilityLabel = NSLocalizedString("ACscreenGamesSection", comment: "This is the translation for 'ACscreenRatingSection' at the Accessibility - Profile/Other Profile section of Localizable.strings")
-        gamesTitleLabel.accessibilityValue = NSLocalizedString("UserGames", comment: "This is the translation for 'ACscreenGamesSection' at the UserProfile (Profile Tab) section of Localizable.strings")
+        //gamesTitleLabel.accessibilityValue = NSLocalizedString("UserGames", comment: "This is the translation for 'ACscreenGamesSection' at the UserProfile (Profile Tab) section of Localizable.strings")
         
         //Dynamic Types
         let scaledUserProfileNameFont = AccessibilityManager
