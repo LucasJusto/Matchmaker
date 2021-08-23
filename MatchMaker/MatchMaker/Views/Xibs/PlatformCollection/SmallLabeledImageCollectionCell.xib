@@ -23,7 +23,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Playstation" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="4Nt-pM-UAt">
-                        <rect key="frame" x="0.0" y="40" width="90" height="24"/>
+                        <rect key="frame" x="0.0" y="30" width="90" height="34"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -35,7 +35,7 @@
                     <constraint firstItem="4Nt-pM-UAt" firstAttribute="leading" secondItem="eM3-UL-EVo" secondAttribute="leading" id="Qd9-jQ-2YE"/>
                     <constraint firstAttribute="trailing" secondItem="4Nt-pM-UAt" secondAttribute="trailing" id="d3A-m7-9wd"/>
                     <constraint firstItem="ndy-Hw-s36" firstAttribute="top" secondItem="eM3-UL-EVo" secondAttribute="top" id="hMl-mf-8si"/>
-                    <constraint firstItem="4Nt-pM-UAt" firstAttribute="top" secondItem="ndy-Hw-s36" secondAttribute="bottom" constant="10" id="jxF-wp-T2w"/>
+                    <constraint firstItem="4Nt-pM-UAt" firstAttribute="top" secondItem="ndy-Hw-s36" secondAttribute="bottom" id="jxF-wp-T2w"/>
                     <constraint firstAttribute="bottom" secondItem="4Nt-pM-UAt" secondAttribute="bottom" id="wk3-Mr-R4Y"/>
                     <constraint firstAttribute="trailing" secondItem="ndy-Hw-s36" secondAttribute="trailing" id="ygW-50-mcs"/>
                 </constraints>
