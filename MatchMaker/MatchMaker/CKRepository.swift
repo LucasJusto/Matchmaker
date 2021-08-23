@@ -673,7 +673,7 @@ public class CKRepository {
     static func searchUsers(languages: [Languages], platforms: [Platform], behaviourRate: Double, skillRate: Double, locations: [Locations], games: [Game], completion: @escaping ([Social]) -> Void) {
         //creating user array to be returned
         var usersFound: [Social] = [Social]()
-        let semaphore = DispatchSemaphore(value: 1)
+        let semaphoreGames = DispatchSemaphore(value: 0)
         getBlockedUsersId { blockedUsers in
             getUserId { id in
                 if let idNotNull = id {
@@ -768,38 +768,82 @@ public class CKRepository {
                                     if let ckAsset = resultsNotNull[i].value(forKey: UserTable.photo.description) as? CKAsset {
                                         photoURL = ckAsset.fileURL
                                     }
-                                    CKRepository.getUserGamesById(id: id) { userGames in
-                                        semaphore.wait()
-                                        usersFound.append(Social(id: id, name: name, nickname: nickName, photoURL: photoURL, games: userGames, isInvite: nil, isInviter: nil))
-                                        semaphore.signal()
-                                        if usersFound.count == resultsNotNull.count {
-                                            //if usersFound is completlty filled
-                                            
-                                            //remove users that do not conform to the filter games
-                                            usersFound = usersFound.filter { user in
-                                                filterPerGames(filterBy: games, userGames: user.games ?? [])
+                                    usersFound.append(Social(id: id, name: name, nickname: nickName, photoURL: photoURL, games: [], isInvite: nil, isInviter: nil))
+                                    if usersFound.count == resultsNotNull.count {
+                                        //if usersFound is completlty filled
+                                        
+                                        //adding self to the filter list (filtering blockedIds after)
+                                        blockedUsersId.append(idNotNull)
+                                        
+                                        //adding friends to the filter list (filtering blockedIds after)
+                                        getFriendsIdsById(id: idNotNull) { friendsIds in
+                                            for friendId in friendsIds {
+                                                blockedUsersId.append(friendId)
                                             }
-                                            
-                                            //adding self to the filter list (filtering blockedIds after)
-                                            blockedUsersId.append(idNotNull)
-                                            
-                                            //adding friends to the filter list (filtering blockedIds after)
-                                            getFriendsIdsById(id: idNotNull) { friendsIds in
-                                                for friendId in friendsIds {
-                                                    blockedUsersId.append(friendId)
-                                                }
-                                                //if the user has blocked users
-                                                if blockedUsersId.count > 0 {
-                                                    //remove them from the search
-                                                    usersFound = usersFound.filter({ user in
-                                                        !blockedUsersId.contains(user.id)
-                                                    })
-                                                }
-                                                completion(usersFound)
+                                            //if the user has blocked users
+                                            if blockedUsersId.count > 0 {
+                                                //remove them from the search
+                                                usersFound = usersFound.filter({ user in
+                                                    !blockedUsersId.contains(user.id)
+                                                })
                                             }
-                                            
-                                            
+                                            semaphoreGames.signal()
                                         }
+                                    }
+                                }
+                                semaphoreGames.wait()
+                                let usersFoundIds = usersFound.map { user in
+                                    user.id
+                                }
+                                let predicateGames = NSPredicate(format: "ANY %@ == \(UserGamesTable.userId.description)", usersFoundIds)
+                                let queryGames = CKQuery(recordType: UserGamesTable.recordType.description, predicate: predicateGames)
+                                
+                                //filling the array with results to the search (filtered)
+                                publicDB.perform(queryGames, inZoneWith: nil) { resultsGames, error in
+                                    if let ckError = error as? CKError {
+                                        CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+                                    }
+                                    let allGames = Games.buildGameArray()
+                                    if let resultsGamesNotNull = resultsGames {
+                                        if resultsGamesNotNull.count > 0 {
+                                            for i in 0...resultsGamesNotNull.count-1 {
+                                                let gameId = Games.getGameIdInt(id: (resultsGamesNotNull[i].value(forKey: UserGamesTable.gameId.description) as! String))
+                                                let gameSelectedPlatforms = ((resultsGamesNotNull[i].value(forKey: UserGamesTable.selectedPlatforms.description) as? [String]) ?? []).map { platform in
+                                                    Platform.getPlatform(key: platform)
+                                                }
+                                                let gameSelectedServersString = (resultsGamesNotNull[i].value(forKey: UserGamesTable.selectedServers.description) as? [String]) ?? []
+                                                var gameSelectedServers: [Servers] = [Servers]()
+                                                
+                                                for g in gameSelectedServersString {
+                                                    if let sv = allGames[gameId].serverType?.getServer(server: g) {
+                                                        gameSelectedServers.append(sv)
+                                                    }
+                                                }
+                                                var game = allGames[gameId]
+                                                game.selectedPlatforms = gameSelectedPlatforms
+                                                game.selectedServers = gameSelectedServers
+                                                
+                                                for userFound in usersFound {
+                                                    if userFound.id == resultsGamesNotNull[i].value(forKey: UserGamesTable.userId.description) as! String {
+                                                        userFound.games?.append(game)
+                                                        break
+                                                    }
+                                                }
+                                                if resultsGamesNotNull.count-1 == i {
+                                                    //remove users that do not conform to the filter games
+                                                    usersFound = usersFound.filter { user in
+                                                        filterPerGames(filterBy: games, userGames: user.games ?? [])
+                                                    }
+                                                    completion(usersFound)
+                                                }
+                                            }
+                                        }
+                                        else {
+                                            completion(usersFound)
+                                        }
+                                    }
+                                    else {
+                                        completion(usersFound)
                                     }
                                 }
                             }

@@ -202,7 +202,7 @@ public class Social {
     let name: String //real name
     let nickname: String //in game name
     let photoURL: URL? //profile picture
-    let games: [Game]? //games played by this user
+    var games: [Game]? //games played by this user
     var isInvite: IsInvite?
     var isInviter: Bool?
     
