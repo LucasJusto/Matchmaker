@@ -29,9 +29,7 @@ class OtherProfileViewController: UIViewController {
             }
         }
     }
-    
-    var socialViewController: SocialViewController?
-    
+        
     //MARK: OtherProfileViewController Outlets setup
     
     @IBOutlet weak var titleViewLabel: UINavigationItem!
@@ -69,15 +67,23 @@ class OtherProfileViewController: UIViewController {
     @IBOutlet weak var rejectButton: UIButton!
     @IBOutlet weak var requestFriendButton: UIButton!
     
-    
     @IBOutlet weak var upperDone: UIBarButtonItem!
     
-    //MARK: OtherProfileViewController Outlet functions
+    //MARK: OtherProfileViewController Variables setup
     
+    var user: User?
+    var social: Social?
+    var friendshipStatus: FriendshipStatus?
+    var userGames: [Game] = []
+    var discoverViewController: DiscoverViewController?
+    var socialViewController: SocialViewController?
+    
+    //MARK: OtherProfileViewController Outlet functions
     
     @IBAction func didTapUpperDone(_ sender: Any) {
         self.dismiss(animated: true)
     }
+    
     @IBAction func rejectButtonAction(_ sender: Any) {
         denyFriendshipRequest()
     }
@@ -121,14 +127,6 @@ class OtherProfileViewController: UIViewController {
     @IBAction func rateSkillButton(_ sender: Any) {
         performSegue(withIdentifier: "toRateUser", sender: RateType.skill)
     }
-    
-    //MARK: OtherProfileViewController Variables setup
-    
-    var user: User?
-    var social: Social?
-    var friendshipStatus: FriendshipStatus?
-    var userGames: [Game] = []
-    var discoverViewController: DiscoverViewController?
     
     //MARK: OtherProfileViewController Class setup
     
@@ -204,7 +202,7 @@ class OtherProfileViewController: UIViewController {
         skillRateButton.layer.cornerRadius = 8
     }
     
-    func setupUserProfile() {
+    func setupProfileAfterRating() {
         DispatchQueue.main.async {
             guard let unwrappedUser = self.user else { return }
             
@@ -239,6 +237,41 @@ class OtherProfileViewController: UIViewController {
             
             self.gameCollectionView.delegate = self
         }
+    }
+    
+    func setupUserProfile() {
+        guard let unwrappedUser = self.user else { return }
+        
+        if let url = unwrappedUser.photoURL {
+            DispatchQueue.global().async {
+                if let data = try? Data(contentsOf: url) {
+                    DispatchQueue.main.async {
+                        self.userProfileImage.image = UIImage(data: data)
+                    }
+                }
+            }
+        } else {
+            self.userProfileImage.image = UIImage(named: "photoDefault")
+        }
+        
+        self.behaviourRateLabel.text = String(unwrappedUser.behaviourRate)
+        //amountOfReviewsBehavioursLabel.text = "0" + NSLocalizedString("UserReviews", comment: "This is the key for 'reviews' translation")
+        
+        self.skillRateLabel.text = String(unwrappedUser.skillRate)
+        //amaountOfReviewsSKillLaber.text = "0 " + NSLocalizedString("UserReviews", comment: "This is the key for 'reviews' translation")
+        
+        self.userProfileNameLabel.text = unwrappedUser.name
+        self.userProfileGamertagLabel.text = "@" + unwrappedUser.nickname
+        self.userProfileBioLabel.text = unwrappedUser.description
+        self.userProfileLocationLabel.text = NSLocalizedString("Playing from ", comment: "") + "\(unwrappedUser.location)"
+        
+        //userProfileImage.image = colocar imagem do usuário
+        
+        self.platformsView.smallLabeledImageModels = unwrappedUser.selectedPlatforms
+        self.languagesView.titleModels = unwrappedUser.languages
+        self.gameCollectionView.roundedRectangleImageModels = unwrappedUser.selectedGames
+        
+        self.gameCollectionView.delegate = self
     }
     
     func setupAccessibiltyFeatures(){

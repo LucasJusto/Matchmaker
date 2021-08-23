@@ -62,7 +62,7 @@ class RateViewController: UIViewController {
                     if let userNotNull = self.user {
                         CKRepository.getUserById(id: userNotNull.id) { userA in
                             self.otherProfileViewController?.user = userA
-                            self.otherProfileViewController?.setupUserProfile()
+                            self.otherProfileViewController?.setupProfileAfterRating()
                         }
                     }
                 }
@@ -73,7 +73,7 @@ class RateViewController: UIViewController {
                     if let userNotNull = self.user {
                         CKRepository.getUserById(id: userNotNull.id) { userA in
                             self.otherProfileViewController?.user = userA
-                            self.otherProfileViewController?.setupUserProfile()
+                            self.otherProfileViewController?.setupProfileAfterRating()
                         }
                     }
                 }
@@ -94,7 +94,7 @@ class RateViewController: UIViewController {
                     if let userNotNull = self.user {
                         CKRepository.getUserById(id: userNotNull.id) { userA in
                             self.otherProfileViewController?.user = userA
-                            self.otherProfileViewController?.setupUserProfile()
+                            self.otherProfileViewController?.setupProfileAfterRating()
                         }
                     }
                 }
@@ -105,7 +105,7 @@ class RateViewController: UIViewController {
                     if let userNotNull = self.user {
                         CKRepository.getUserById(id: userNotNull.id) { userA in
                             self.otherProfileViewController?.user = userA
-                            self.otherProfileViewController?.setupUserProfile()
+                            self.otherProfileViewController?.setupProfileAfterRating()
                         }
                     }
                 }
