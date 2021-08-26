@@ -481,6 +481,7 @@ extension OtherProfileViewController {
                 if inviteSuccessful {
                     self.social?.isInvite = .yes
                     self.social?.isInviter = true
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: FriendsTable.tableChanged.description), object: nil)
                     DispatchQueue.main.async {
                         if let unwrappedParent = self.discoverViewController {
                             for i in 0..<unwrappedParent.users.count {
