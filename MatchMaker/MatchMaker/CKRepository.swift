@@ -348,23 +348,34 @@ public class CKRepository {
         }
     }
     
-    //    private static func deleteAllGamesFromEveryone() {
-    //        let publicDB = container.publicCloudDatabase
-    //        let predicate = NSPredicate(value: true)
-    //        let query = CKQuery(recordType: UserGamesTable.recordType.description, predicate: predicate)
-    //
-    //        publicDB.perform(query, inZoneWith: nil) { results, error in
-    //            if let ckError = error as? CKError {
-    //                CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
-    //            }
-    //            if let resultsNotNull = results {
-    //                let operation = CKModifyRecordsOperation(recordsToSave: nil, recordIDsToDelete: resultsNotNull.map({ record in
-    //                    record.recordID
-    //                }))
-    //                publicDB.add(operation)
-    //            }
-    //        }
-    //    }
+//    public static func getAllGamesFromEveryone() {
+//        let publicDB = container.publicCloudDatabase
+//        let predicate = NSPredicate(value: true)
+//        let query = CKQuery(recordType: UserGamesTable.recordType.description, predicate: predicate)
+//
+//        publicDB.perform(query, inZoneWith: nil) { results, error in
+//            for result in results! {
+//                print(result)
+//            }
+//        }
+//    }
+//    private static func deleteAllGamesFromEveryone() {
+//        let publicDB = container.publicCloudDatabase
+//        let predicate = NSPredicate(value: true)
+//        let query = CKQuery(recordType: UserGamesTable.recordType.description, predicate: predicate)
+//
+//        publicDB.perform(query, inZoneWith: nil) { results, error in
+//            if let ckError = error as? CKError {
+//                CKRepository.errorAlertHandler(CKErrorCode: ckError.code)
+//            }
+//            if let resultsNotNull = results {
+//                let operation = CKModifyRecordsOperation(recordsToSave: nil, recordIDsToDelete: resultsNotNull.map({ record in
+//                    record.recordID
+//                }))
+//                publicDB.add(operation)
+//            }
+//        }
+//    }
     
     static func getUserById(id: String, completion: @escaping (User) -> Void){
         let publicDB = container.publicCloudDatabase
