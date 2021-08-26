@@ -40,6 +40,21 @@ class DiscoverTableViewCell: UITableViewCell {
             DispatchQueue.main.async {
                 self.addToFriendsButton.setTitle(NSLocalizedString("DiscoverScreenRequestSent", comment: "Message shown when the request was sent"), for: .normal)
                 self.addToFriendsButton.isEnabled = false
+                if let discoverViewController = self.delegate as? DiscoverViewController {
+                    for social in discoverViewController.users {
+                        if social.id == userId {
+                            social.isInvite = .yes
+                            social.isInviter = false
+                        }
+                    }
+                    for social in discoverViewController.filteredUsers {
+                        if social.id == userId {
+                            social.isInvite = .yes
+                            social.isInviter = false
+                        }
+                    }
+                    discoverViewController.discoverTableView.reloadData()
+                }
             }
         })
     }
