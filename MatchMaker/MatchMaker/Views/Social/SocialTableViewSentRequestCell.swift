@@ -44,6 +44,7 @@ class SocialTableViewSentRequestCell: UITableViewCell {
     }
     
     func setup(userId: String, photoURL: URL?, name: String, nickname: String) {
+        self.avatar.image = UIImage(named: "profile_default")
         
         // Trying to unwrap, get image data and set it in the UI
         if let url = photoURL {
