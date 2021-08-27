@@ -32,6 +32,9 @@
 
 // MARK: - Platforms
 
+//MARK: AppDelegate Push Notification
+"friendRequestAlert" = "Você recebeu um pedido de amizade!";
+
 // MARK: - ONBOARDING 1
 "onboarding1Title" = "Bem vindo ao";
 "onboarding1Description" = "Encontre jogadores que correspondem a um filtro personalizado";
