@@ -112,7 +112,7 @@ para você escolher e encontrar jogadores";
 "LocationAsiaWest" = "Oeste Asiático";
 "LocationAfricaNorth" = "Norte da África";
 "LocationAfricaSouth" = "Sul da África";
-"LocationDontKnow" = "Eu não sei onde estou";
+"LocationDontKnow" = "Eu não sei informar";
 
 "Dota2Description" = "Descrição do Dota 2";
 "LeagueOfLegendsDescription" = "Descrição do League of Legends";
@@ -193,22 +193,6 @@ para você escolher e encontrar jogadores";
 "CancelButtonLabel" = "Cancelar";
 "TitleRateModalView"= "Avaliação";
 
-//MARK: - ImagePickerManager
-"galleryAccessMessage" = "Para poder colocar uma foto de perfil você precisa permitir acesso a sua galeria de fotos. Entre em Configurações > Matchmaker > Galeria de fotos.";
-"cameraAccessMessage" = "Para poder colocar uma foto de perfil você precisa permitir acesso a sua câmera. Entre em Configurações > Matchmaker > Câmera";
-"cameraGallerySheet" = "Editar foto de perfil";
-"cameraAction" = "Câmera";
-"galleryAction" = "Galeria";
-"cancelAction" = "Cancelar";
-"warningTitle" = "Aviso";
-"OKAction" = "OK";
-"avatarUploadSheetTitle" = "Upload de avatar";
-"avatarUploadSheetMessage" = "Selecione uma foto como sua foto de perfil ou Permitir acesso a mais fotos ou va em Configurações e permita acesso a todas as fotos";
-"selectImageAction" = "Selecione uma foto de perfil";
-"limitedGalleryAction" = "Permitir acesso a mais fotos";
-"fullGalleryAction" = "Permitir acesso a todas as fotos";
-"cameraError" = "Você não possui uma câmera";
-
 // MARK: - Filters
 "filtersNavigationTitle" = "Filtros";
 "filtersCleanButtonLabel" = "Limpar filtros";
@@ -219,6 +203,11 @@ para você escolher e encontrar jogadores";
 "filtersSkillsRateLabel" = "Habilidade";
 "filtersLocationLabel" = "Localidade";
 "filtersGamesLabel" = "Jogos";
+
+// MARK: - Profile Customization
+"CancelButtonLabel" = "Cancelar";
+"DoneButtonLabel" = "Pronto";
+"EditingProfileModalTitle" = "Editar Perfil";
 
 // MARK: - Discover
 "DiscoverScreenAddToFriendsButton" = "Adicionar";
@@ -236,12 +225,73 @@ para você escolher e encontrar jogadores";
 "SocialShowMoreButton" = "Ver mais";
 "SocialUnblockButton" = "Desbloquear";
 
+//MARK: - ImagePickerManager
+"galleryAccessMessage" = "Para poder colocar uma foto de perfil você precisa permitir acesso a sua galeria de fotos. Entre em Configurações > Matchmaker > Galeria de fotos.";
+"cameraAccessMessage" = "Para poder colocar uma foto de perfil você precisa permitir acesso a sua câmera. Entre em Configurações > Matchmaker > Câmera";
+"cameraGallerySheet" = "Editar foto de perfil";
+"cameraAction" = "Câmera";
+"galleryAction" = "Galeria";
+"cancelAction" = "Cancelar";
+"warningTitle" = "Aviso";
+"OKAction" = "OK";
+"avatarUploadSheetTitle" = "Upload de avatar";
+"avatarUploadSheetMessage" = "Selecione uma foto como sua foto de perfil ou Permitir acesso a mais fotos ou va em Configurações e permita acesso a todas as fotos";
+"selectImageAction" = "Selecione uma foto de perfil";
+"limitedGalleryAction" = "Permitir acesso a mais fotos";
+"fullGalleryAction" = "Permitir acesso a todas as fotos";
+"cameraError" = "Você não possui uma câmera";
+
 //MARK: Accessibility - Profile/Other Profile
+//labels
 "ACuserName" = "Nome do usuário";
-"ACuserGamertag" = "nickname/gamertag do usuario";
+"ACuserGamertag" = "Nickname/gamertag do usuário";
 "ACuserBio" = "Descrição do usuário";
-"ACuserLocation" = "Localização do usuário";
+"ACuserLocation" = "Local de onde o usuário joga";
 "ACratingsCategory" = "Categoria de avaliação";
 "ACratingsResult" = "Nota do usuário";
-"ACeditProfileButton" = "Editar meu perfil";
-"ACeditProfilePictureButton" = "Alterar minha foto de perfil";
+"ACscreenRatingSection" = "Notas do usuário";
+"ACscreenPlatformsSection" = "Plataformas nas quais o usuário joga";
+"ACscreenLanguagesSection" = "Idiomas que o usuário fala";
+"ACscreenGamesSection" = "Jogos que o usuário joga";
+
+//profile-buttons
+"ACupperDoneButton" = "Feito";
+"ACupperDoneButtonHint" = "Clique duas vezes para fazer a tela sumir e voltar para a tela anterior.";
+"ACeditProfileButton" = "Editar meu perfil.";
+"ACeditProfileButtonHint" = "Clique duas vezes para ir para a próxima tela e editar o seu perfil.";
+"ACrateFriendBehaviourHint" = "Clique duas vezes para ir para a tela e avaliar o usuário.";
+"ACrateFriendBehaviourHint2" = "Nota de comportamento do usuário";
+"ACrateFriendSkillHint" = "Double tap to go to Ratings screen and rate";
+"ACrateFriendSkillHint2" = "Nota de habilidade do usuário";
+"ACsendFriendRequestHint" = "Clique duas vezes para enviar solicitação de amizade para ";
+"ACacceptFriendRequestHint" = "Clique duas vezes para aceitar solicitação de amizade de ";
+"ACdenyFriendRequestHint" = "Clique duas vezes para recusar a solicitação de amizade de ";
+"ACdeleteFriendshipHint" = "Clique duas vezes para excluir ";
+"ACdeleteFriendshipHint2" = " da sua lista de amigos";
+"ACcancelFriendRequestHint" = "Clique duas vezes para excluir a solicitação de amizade para ";
+
+//profile/onboarding editing buttons
+"ACcancelButton" = "Cancelar";
+"ACcancelButtonHint" = "Clique duas vezes para cancelar e disfazer qualquer mudança. Essa ação irá fechar a tela e ir para a tela anterior.";
+"ACchangeLocationButton" = "Mudar Localização";
+"ACchangeLocationButtonHint" = "Double tap to go to Locations screen and change your location Clique duas vezes para ir para a tela de localizações e mudar a sua localização";
+"ACbottomDoneButton" = "Feito";
+"ACbottomDoneButtonHint" = "Clique duas vezes para salvar suas alterações. Suas mudanças serão salvas somente se você preencheu os campos de nome e nickname.";
+
+//discover/social buttons
+"ACuserProfileButton" = "Perfil do usuário";
+"ACuserProfileButtonHint" = "Clique duas vezes para ir para o perfil deste usuário";
+"ACaddToFriendsButton" = "Adicionar aos amigos";
+"ACaddToFriendsButtonHint" = "Clique duas vezes para enviar uma solicitação de amizade para este usuário";
+
+//home buttons
+"ACfindPlayersButton" = "Encontre novos jogadores";
+"ACfindPlayersButtonHint" = "Clique duas vezes para ir para a tela de achar novos jogadores com filtro do Dota 2.";
+
+//MARK: Accessibility - User Avatar
+"ACeditProfilePictureButton" = "Mudar minha foto de perfil";
+"ACeditProfilePictureButtonHint" = "Clique duas vezes para abrir a tela de seleção de nova foto de perfil.";
+
+//MARK: Accessibility - Rounded rectangle cells
+"ACroundedRectangleCell" = "Capa do jogo";
+"ACroundedRectangleCellHint" = "Clique duas vezes para mostrar os detalhes deste jogo";

@@ -32,6 +32,9 @@
 
 // MARK: - Platforms
 
+//MARK: AppDelegate Push Notification
+"friendRequestAlert" = "You have a new friend request!";
+
 // MARK: - ONBOARDING 1
 "onboarding1Title" = "Welcome to";
 "onboarding1Description" = "Find players that correspond
@@ -175,12 +178,13 @@ without using your storage";
 "GamesTitleLabel" = "Games";
 "HighlightTitileAboveImage" = "New game available";
 "TitleButtonHiglighAboveImage" = "Find players now";
+"RecentNotificationsLabel" = "Recent notifications";
 
 // MARK: - Frind request cell
 "RejectRequestFriendButtonLabel" = "Reject";
 "AceptRequestFriendButtonLabel" = "Acept";
 "NotificationRequestFriendLabel" = "sent you a friend request";
-"RecentNotificationsLabel" = "Recent notifications";
+
 
 // MARK: - Rate
 "ExplainRateLabel" = "Rate based on your gaming \nexperience with the player";
@@ -237,9 +241,6 @@ without using your storage";
 "limitedGalleryAction" = "Allow more photos";
 "fullGalleryAction" = "Allow access to all photos";
 "cameraError" = "You don't have camera";
-
-//MARK: AppDelegate Push Notification
-"friendRequestAlert" = "You have a new friend request!";
 
 //MARK: Accessibility - Profile/Other Profile
 //labels
